@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="팀전 인원수"
+        android:id="@+id/TeamM_tv"
         android:textSize="20sp"/>
     <EditText
         android:layout_width="match_parent"
@@ -81,9 +82,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/CtPW_et"
         android:layout_span="3"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:layout_weight="4"
-        android:imeOptions="actionSend"/>
+        android:imeOptions="actionDone"/>
     </TableRow>
     <TableRow>
         <Button

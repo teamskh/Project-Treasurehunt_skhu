@@ -17,8 +17,7 @@
             android:textSize="20sp"
             android:layout_marginTop="50dp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="20dp"
-            android:inputType="number">
+            android:layout_marginBottom="20dp">
         </TextView>
 
         <EditText
@@ -26,7 +25,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/authenticode_et"
             android:layout_marginHorizontal="30dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:inputType="numberPassword"
+            android:imeOptions="actionDone">
         </EditText>
 
         <Button
