@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.toomuch.find_tre.uplugin">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application>
+        <activity android:name=".kakaoplugin">
+
+        </activity>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="{NATIVE_APP_KEY}" /> //네이티브 앱 키 설정
+    </application>
+
+</manifest>
