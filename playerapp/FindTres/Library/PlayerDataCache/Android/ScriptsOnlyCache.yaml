@@ -37,21 +37,21 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11238}
+      Script: {instanceID: 11164}
     - Class: 114
-      Script: {instanceID: 11408}
+      Script: {instanceID: 11330}
     - Class: 114
-      Script: {instanceID: 11454}
+      Script: {instanceID: 11374}
     - Class: 114
-      Script: {instanceID: 11894}
+      Script: {instanceID: 11802}
     - Class: 114
-      Script: {instanceID: 12330}
+      Script: {instanceID: 12220}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12742}
     - Class: 114
-      Script: {instanceID: 13188}
+      Script: {instanceID: 13046}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 13114}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -510,4 +510,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/keystore/find.apk
+  playerPath: C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/keystore/find.apk
