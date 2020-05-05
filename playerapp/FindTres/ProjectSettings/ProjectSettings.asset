@@ -262,7 +262,7 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
-  AndroidEnableTango: 0
+  AndroidEnableTango: 1
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
   androidUseCustomKeystore: 1
@@ -683,7 +683,8 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
