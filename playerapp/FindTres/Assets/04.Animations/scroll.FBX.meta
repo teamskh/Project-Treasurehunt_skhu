@@ -28,7 +28,7 @@ ModelImporter:
       name: Material #93
     second: {fileID: 2100000, guid: ce83ac348a6b4a94caf12c86d40091aa, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -46,11 +46,11 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
-    animationWrapMode: 0
+    animationWrapMode: 2
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
@@ -60,7 +60,7 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 100
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
