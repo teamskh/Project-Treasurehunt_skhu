@@ -39,6 +39,7 @@ public class GooglePlayManager : MonoBehaviour
                 {
                     Debug.Log("Success : " + Social.localUser.userName);
                     text.text = Social.localUser.userName;
+                    
                 }
                 else
                 {
@@ -54,4 +55,6 @@ public class GooglePlayManager : MonoBehaviour
         ((PlayGamesPlatform)Social.Active).SignOut();
         text.text = "Logout";
     }
+
+    
 }
