@@ -6,12 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/playerapp/sample2.unity
+    path: Assets/01.Scenes/playerapp/sample2.unity
     guid: aa1089d0e5669d04486e2fbf8b400164
   - enabled: 1
-    path: Assets/Scenes/playerapp/sample1.unity
-    guid: 60523950d2fea014588021e0af5d82c1
-  m_configObjects: {}
+    path: Assets/01.Scenes/playerapp/main.unity
+    guid: 7c542c0105ff6e84d948586015c3f369
+  m_configObjects:
+    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: ebaffc830a07e4b419de587ce330f375,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 446e4dbe8f3d36443a80dbfa53a6c784,
+      type: 2}
