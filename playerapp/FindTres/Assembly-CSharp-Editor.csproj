@@ -62,35 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GoogleARCore\Examples\Common\Scripts\Editor\PointcloudVisualizerEditor.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\Editor\InstantPreviewBugReport.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreAnalytics.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreAnalyticsGUI.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreAnalyticsPreferences.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreAnalyticsProvider.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreIOSSupportHelper.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreIOSSupportPreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreProjectSettingsGUI.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreProjectSettingsProvider.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreProjectSettingsWindow.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreSupportedPreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreUnitySDKManifest.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ARCoreUnitySDKPreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\Analytics\ArcoreClearcut.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\Analytics\ArcoreSdkLog.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\AndroidDependenciesHelper.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\AssetHelper.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\AugmentedImageDatabaseContextMenu.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\AugmentedImageDatabaseInspector.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\AugmentedImageDatabasePreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\BackgroundJobExecutor.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\CloudAnchorPreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ExampleBuildHelper.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ExamplePreprocessBuild.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\HelpAttributeDrawer.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\LogRequestUtils.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\PreprocessBuildBase.cs" />
-    <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\RequiredOptionalPreprocessBuild.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSPostBuild.cs" />
@@ -102,7 +73,6 @@
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.10.08.txt" />
     <None Include="Assets\ExternalDependencyManager\Editor\GoogleRegistries.xml" />
     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
-    <None Include="Assets\GoogleARCore\Editor\ARCoreiOSDependencies.template" />
     <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_v1.2.144.txt" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
     <None Include="Assets\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
@@ -114,8 +84,14 @@
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.Management">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Subsystem.Registration">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
@@ -123,11 +99,29 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.ARSubsystems">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARSubsystems.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARFoundation.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.ARFoundation">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -140,6 +134,9 @@
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Management.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
@@ -368,9 +365,6 @@
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.144">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.144.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Protobuf">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Assets/GoogleARCore/SDK/Plugins/Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
