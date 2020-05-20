@@ -26,8 +26,8 @@ MonoBehaviour:
     m_Name: puppy
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 5044115612478138718
-      m_GuidHigh: 1694820908445315731
+      m_GuidLow: 4760569197610949573
+      m_GuidHigh: 13725723912782826141
     m_SerializedTextureGuid:
       m_GuidLow: 735445543454571237
       m_GuidHigh: 3938600032625030057

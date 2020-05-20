@@ -14,4 +14,14 @@ public class scenechange : MonoBehaviour
     {
         SceneManager.LoadScene("sample2");
     }
+
+    public void changeMenuScene()
+    {
+        SceneManager.LoadScene("02.menu");
+    }
+
+    public void changeSettingScene()
+    {
+        SceneManager.LoadScene("03.Setting");
+    }
 }
