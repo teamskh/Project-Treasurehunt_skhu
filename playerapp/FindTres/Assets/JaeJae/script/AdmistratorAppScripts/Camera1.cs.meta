@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 9ef9832e604ba9a4397a88d9b3b30312
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - TakePicture_b: {fileID: 4710039665113826481, guid: b98d2d54be541e84b922ba8aabccb484,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

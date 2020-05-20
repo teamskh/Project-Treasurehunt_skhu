@@ -18,7 +18,7 @@ public class scroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        qtxt.text = quizLib.Instance.exam;
+        qtxt.text = gameman.Instance.exam;
     }
 
     public void inq()

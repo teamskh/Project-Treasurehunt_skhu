@@ -21,6 +21,6 @@ public class quiz : MonoBehaviour
 
     public void inq()
     {
-        quizLib.Instance.exam = txt.text;
+        gameman.Instance.exam = txt.text;
     }
 }
