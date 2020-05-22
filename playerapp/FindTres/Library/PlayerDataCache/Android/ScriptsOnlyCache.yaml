@@ -1,7 +1,14 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+<<<<<<< HEAD
     - camera
+=======
+    - Music
+    - gameman
+    - scenechange
+    - sfxmusic
+>>>>>>> master
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -12,6 +19,14 @@ ScriptsOnlyBuild:
     - TMPro.TMP_StyleSheet
     Unity.XR.ARCore.Editor.dll:
     - UnityEditor.XR.ARCore.ARCoreSettings
+<<<<<<< HEAD
+=======
+    Unity.XR.Management.Editor.dll:
+    - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
+    Unity.XR.Management.dll:
+    - UnityEngine.XR.Management.XRGeneralSettings
+    - UnityEngine.XR.Management.XRManagerSettings
+>>>>>>> master
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -24,10 +39,20 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+<<<<<<< HEAD
     - UnityEngine.UI.RawImage
+=======
+    - UnityEngine.UI.Slider
+>>>>>>> master
     - UnityEngine.UI.Text
+    com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
+<<<<<<< HEAD
     Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity:
+=======
+    Assets/01.Scenes/playerapp/01.start.unity:
+>>>>>>> master
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -44,6 +69,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -51,6 +80,7 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
+<<<<<<< HEAD
       Script: {instanceID: 11300}
     - Class: 114
       Script: {instanceID: 11494}
@@ -80,6 +110,145 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13946}
     - Class: 114
       Script: {instanceID: 14106}
+=======
+      Script: {instanceID: 11322}
+    - Class: 114
+      Script: {instanceID: 11550}
+    - Class: 114
+      Script: {instanceID: 11600}
+    - Class: 114
+      Script: {instanceID: 11616}
+    - Class: 114
+      Script: {instanceID: 12192}
+    - Class: 114
+      Script: {instanceID: 12242}
+    - Class: 114
+      Script: {instanceID: 12820}
+    - Class: 114
+      Script: {instanceID: 13146}
+    - Class: 114
+      Script: {instanceID: 13168}
+    - Class: 114
+      Script: {instanceID: 13536}
+    - Class: 114
+      Script: {instanceID: 13762}
+    - Class: 114
+      Script: {instanceID: 13932}
+    - Class: 114
+      Script: {instanceID: 14088}
+    - Class: 114
+      Script: {instanceID: 29818}
+    - Class: 114
+      Script: {instanceID: 36714}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/01.Scenes/playerapp/02.menu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11322}
+    - Class: 114
+      Script: {instanceID: 11550}
+    - Class: 114
+      Script: {instanceID: 11600}
+    - Class: 114
+      Script: {instanceID: 11616}
+    - Class: 114
+      Script: {instanceID: 12192}
+    - Class: 114
+      Script: {instanceID: 12820}
+    - Class: 114
+      Script: {instanceID: 13536}
+    - Class: 114
+      Script: {instanceID: 14088}
+    - Class: 114
+      Script: {instanceID: 36714}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/01.Scenes/playerapp/03.Setting.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11322}
+    - Class: 114
+      Script: {instanceID: 11550}
+    - Class: 114
+      Script: {instanceID: 11600}
+    - Class: 114
+      Script: {instanceID: 11616}
+    - Class: 114
+      Script: {instanceID: 12192}
+    - Class: 114
+      Script: {instanceID: 12820}
+    - Class: 114
+      Script: {instanceID: 13536}
+    - Class: 114
+      Script: {instanceID: 14088}
+    - Class: 114
+      Script: {instanceID: 14124}
+    - Class: 114
+      Script: {instanceID: 23810}
+>>>>>>> master
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -123,10 +292,17 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ChangeScene
+=======
+      Hash: 9c0c0fdbc5f6852f4fe9c49760383b30
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TrackedImageInfoMultipleManager
+>>>>>>> master
   - hash:
       serializedVersion: 2
       Hash: 5bd9a19c7b5f76c563418e28f48a561b
@@ -387,12 +563,15 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 0fdbd81d05674a9ba1938e550c17d387
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: QuizAddSceneManager
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: dd7520b7d4e690e8c593273e7b9fbe80
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -459,12 +638,15 @@ ScriptsOnlyBuild:
     className: ARPlaneMeshVisualizer
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: cfee9ab8837dd17434591ad6b7f2b624
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ContestInput
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -489,12 +671,15 @@ ScriptsOnlyBuild:
     className: CameraController
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 4c988c5e6571f902909160408fca7809
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: quizLib
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -579,12 +764,15 @@ ScriptsOnlyBuild:
     className: NetworkStartPosition
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ScreenResolutionM
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 982acebdb29318e47aa2d3c2cb7e1539
     assemblyName: Unity.XR.ARFoundation.dll
     namespaceName: UnityEngine.XR.ARFoundation
@@ -627,12 +815,15 @@ ScriptsOnlyBuild:
     className: TMP_DigitValidator
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: backbutton1
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -771,12 +962,15 @@ ScriptsOnlyBuild:
     className: ARPointCloudManager
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: getTexture
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 27e5341178f188b89bdc6495710b590c
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -909,12 +1103,15 @@ ScriptsOnlyBuild:
     className: TMPro_InstructionOverlay
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 26f5a1f6e78f5c5b178a9286cbd98ee0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Camera1
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: GooglePlayGames.OurUtils
@@ -1035,12 +1232,15 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
+<<<<<<< HEAD
       Hash: 92058973a5086149a55ea2b1b4ae43c1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TextButton
   - hash:
       serializedVersion: 2
+=======
+>>>>>>> master
       Hash: 8ab9295d94483c961936d82d233d3df2
     assemblyName: Unity.XR.Management.dll
     namespaceName: UnityEngine.XR.Management
@@ -1093,7 +1293,38 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QR
+  - hash:
+      serializedVersion: 2
+      Hash: b62233697e9ed12f0cc39e08f968c534
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Music
+  - hash:
+      serializedVersion: 2
+      Hash: 7b62bb0f9b498721eab77bb71a3d313d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: gameman
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: sfxmusic
   platform: 13
   scenePathNames:
+<<<<<<< HEAD
   - Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
   playerPath: C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/keystore/test2.apk
+=======
+  - Assets/01.Scenes/playerapp/01.start.unity
+  - Assets/01.Scenes/playerapp/02.menu.unity
+  - Assets/01.Scenes/playerapp/03.Setting.unity
+  playerPath: C:/Users/yoon/Desktop/1.apk
+>>>>>>> master

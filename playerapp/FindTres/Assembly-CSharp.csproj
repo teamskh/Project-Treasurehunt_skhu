@@ -64,10 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\02.scripts\GooglePlayManager.cs" />
+    <Compile Include="Assets\02.scripts\playerapp\Music.cs" />
+    <Compile Include="Assets\02.scripts\playerapp\QRCodeCreator.cs" />
+    <Compile Include="Assets\02.scripts\playerapp\TrackedImageInfoMultipleManager.cs" />
+    <Compile Include="Assets\02.scripts\playerapp\gameman.cs" />
     <Compile Include="Assets\02.scripts\playerapp\quiz.cs" />
-    <Compile Include="Assets\02.scripts\playerapp\quizLib.cs" />
     <Compile Include="Assets\02.scripts\playerapp\scenechange.cs" />
     <Compile Include="Assets\02.scripts\playerapp\scroll.cs" />
+    <Compile Include="Assets\02.scripts\playerapp\sfxmusic.cs" />
     <Compile Include="Assets\GPGSIds.cs" />
     <Compile Include="Assets\GooglePlayGames\BasicApi\Achievement.cs" />
     <Compile Include="Assets\GooglePlayGames\BasicApi\CommonStatusCodes.cs" />
@@ -202,13 +206,20 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="Unity.XR.Management">
+<<<<<<< HEAD
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+=======
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Subsystem.Registration">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Subsystem.Registration">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
@@ -228,17 +239,35 @@
     <Reference Include="Unity.XR.ARFoundation.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.ARSubsystems">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARSubsystems.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARFoundation.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.ARFoundation">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -254,6 +283,9 @@
     </Reference>
     <Reference Include="Unity.XR.Management.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Management.Editor">
+      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
@@ -445,7 +477,11 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
+<<<<<<< HEAD
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+=======
+      <HintPath>D:/Program Files/Unity/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
