@@ -1,11 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - GooglePlayManager
-    - quiz
-    - quizLib
-    - scenechange
-    - scroll
+    - camera
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -23,14 +19,15 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
-    - UnityEngine.UI.InputField
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -56,153 +53,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11300}
     - Class: 114
-      Script: {instanceID: 11532}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 11600}
     - Class: 114
-      Script: {instanceID: 12228}
+      Script: {instanceID: 11886}
     - Class: 114
-      Script: {instanceID: 12810}
+      Script: {instanceID: 12180}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 12232}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 12814}
     - Class: 114
-      Script: {instanceID: 13532}
+      Script: {instanceID: 12842}
     - Class: 114
-      Script: {instanceID: 13758}
+      Script: {instanceID: 13144}
     - Class: 114
-      Script: {instanceID: 13936}
+      Script: {instanceID: 13166}
     - Class: 114
-      Script: {instanceID: 13992}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 14096}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/playerapp/sample1.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 102
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 111
-      Script: {instanceID: 0}
+      Script: {instanceID: 13764}
     - Class: 114
-      Script: {instanceID: 11300}
+      Script: {instanceID: 13946}
     - Class: 114
-      Script: {instanceID: 11532}
-    - Class: 114
-      Script: {instanceID: 11580}
-    - Class: 114
-      Script: {instanceID: 11598}
-    - Class: 114
-      Script: {instanceID: 12176}
-    - Class: 114
-      Script: {instanceID: 12610}
-    - Class: 114
-      Script: {instanceID: 12810}
-    - Class: 114
-      Script: {instanceID: 13532}
-    - Class: 114
-      Script: {instanceID: 14096}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 137
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/playerapp/sample2.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11300}
-    - Class: 114
-      Script: {instanceID: 11532}
-    - Class: 114
-      Script: {instanceID: 11582}
-    - Class: 114
-      Script: {instanceID: 11598}
-    - Class: 114
-      Script: {instanceID: 12176}
-    - Class: 114
-      Script: {instanceID: 12610}
-    - Class: 114
-      Script: {instanceID: 12810}
-    - Class: 114
-      Script: {instanceID: 13092}
-    - Class: 114
-      Script: {instanceID: 13396}
-    - Class: 114
-      Script: {instanceID: 13532}
-    - Class: 114
-      Script: {instanceID: 14096}
+      Script: {instanceID: 14106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -274,6 +151,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e464d395f95084cdabed6ed95f99e68c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: camera
   - hash:
       serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
@@ -418,6 +301,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GetPicture
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -882,6 +771,12 @@ ScriptsOnlyBuild:
     className: ARPointCloudManager
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: getTexture
+  - hash:
+      serializedVersion: 2
       Hash: 27e5341178f188b89bdc6495710b590c
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1014,7 +909,7 @@ ScriptsOnlyBuild:
     className: TMPro_InstructionOverlay
   - hash:
       serializedVersion: 2
-      Hash: 8236c2a92223c6b5d18205fcc95998c0
+      Hash: 26f5a1f6e78f5c5b178a9286cbd98ee0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Camera1
@@ -1200,7 +1095,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  - Assets/Scenes/playerapp/sample2.unity
-  - Assets/Scenes/playerapp/sample1.unity
-  playerPath: C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/keystore/find.apk
+  - Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
+  playerPath: C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/keystore/test2.apk

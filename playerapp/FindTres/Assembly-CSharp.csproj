@@ -138,11 +138,14 @@
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ChangeScene.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestAddList.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestInput.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\GetPicture.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\QuizAddSceneManager.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ScreenResolutionM.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\TextButton.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton1.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton2.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\camera.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\getTexture.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

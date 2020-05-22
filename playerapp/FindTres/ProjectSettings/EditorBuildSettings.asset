@@ -5,15 +5,45 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/playerapp/sample2.unity
     guid: aa1089d0e5669d04486e2fbf8b400164
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/playerapp/sample1.unity
     guid: 60523950d2fea014588021e0af5d82c1
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample2.unity
+    guid: 2a799b7d45957c44aa7009bded5c39ca
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample.unity
+    guid: 8edf4e0d39f492e4d97cbef13cea4291
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample3.unity
+    guid: fa8064f7363db1c4cb31b31b48d9d88a
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
+    guid: a8925bcc64057be41a36c029c038e92f
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/administratorMenu.unity
+    guid: abba70b33ca1fd4499571d3dfab18416
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/ContestMenu.unity
+    guid: a5f3fa3dc3d95e14185f4f4fdfc25f35
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/QuizMenu.unity
+    guid: e12e68270fa776841a8b5c170a08f770
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/QuizType.unity
+    guid: 696ec9fac020f4b4389226a4eeb61c94
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
+    guid: c8d5fcfc63fddfb4e804d253b012626a
+  - enabled: 1
+    path: Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
+    guid: 84736688e73aee64a9c4456895254beb
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: d7d3e6d89f730214183a94edfb864140,
       type: 2}

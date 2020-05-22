@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/playerapp/sample2.unity
+- path: Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
