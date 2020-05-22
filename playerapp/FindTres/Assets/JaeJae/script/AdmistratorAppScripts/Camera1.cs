@@ -1,16 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Unity.IO;
 public class Camera1 : MonoBehaviour
 {
 	public GameObject TakePicture_b;
-    // Start is called before the first frame update
-    void Start()
+	public GameObject RawImagePW;
+	public GameObject upperbar;
+	public RawImage selectImage;
+	public RawImage usingImage;
+	public GameObject ImageOnPanel;
+	public Texture2D savess;
+	// Start is called before the first frame update
+	/*
+	public static class Variables {
+		public static Texture2D savess;
+	}*/
+	/*
+	static Camera1 instance;
+	public static Camera1 Instance
+	{
+		get
+		{
+			return instance;
+		}
+	}*/
+	void Start()
     {
-        
-    }
-
+		RawImagePW.SetActive(false);
+		upperbar.SetActive(false);
+	}
+	/*
+	public void Awake()
+	{
+		DontDestroyOnLoad(selectImage);
+	}*/
 	// Update is called once per frame
 	/*void Update()
 	{
@@ -42,6 +68,7 @@ public class Camera1 : MonoBehaviour
 			}
 		}
 	}*/
+	/*
 	public void TakeScreenShot()
 	{
 		StartCoroutine(TakeScreenshotAndSave());
@@ -60,9 +87,101 @@ public class Camera1 : MonoBehaviour
 		// To avoid memory leaks
 		Destroy(ss);
 		TakePicture_b.SetActive(true);
+	}*/
+	IEnumerator TakeScreenshotPV()
+	{
+		TakePicture_b.SetActive(false);
+		yield return new WaitForEndOfFrame();
+		Texture2D ss = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+		ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+		ss.Apply();
+		upperbar.SetActive(true);
+		RawImagePW.SetActive(true);
+		selectImage.texture = ss;
+		//Variables.savess = ss;
+		//Variables.savess.Apply();
+		savess = ss;
+		savess.Apply();
 	}
 
-	public  void PickImage(int maxSize)
+	public void TakeScreenShot()
+	{
+		StartCoroutine(TakeScreenshotPV());
+
+	}
+
+	public void useImage()
+	{
+		upperbar.SetActive(false);
+		RawImagePW.SetActive(false);
+		ChangeSceneToUseImage();
+		//usingImage.texture = Variables.savess;
+		//usingImage = (RawImage)ImageOnPanel.GetComponent<RawImage>();
+		//usingImage.texture = (Texture2D)Variables.savess;
+		usingImage.texture = (Texture2D)ImageOnPanel.GetComponent<Texture2D>();
+		//selectImage.texture = Variables.savess;
+		selectImage.texture = savess;
+		/*
+		if (instance == null)
+		{
+			DontDestroyOnLoad(gameObject);
+			instance = this;
+		}
+		else
+		{
+			DontDestroyOnLoad(gameObject);
+		}
+		usingImage.texture = instance.savess;*/
+
+		/*
+		Texture2D texture = (Texture2D)selectImage.texture;
+		GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+		quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
+		quad.transform.forward = Camera.main.transform.forward;
+		quad.transform.localScale = new Vector3(1f, texture.height / (float)texture.width, 1f);
+
+		Material material = quad.GetComponent<Renderer>().material;
+		if (!material.shader.isSupported) // happens when Standard shader is not included in the build
+			material.shader = Shader.Find("Legacy Shaders/Diffuse");
+
+		material.mainTexture = texture;*/
+		//Texture2D texture = (Texture2D)selectImage.texture;
+		//usingImage.GetComponent<Renderer>().material.mainTexture = texture;
+		//usingImage.texture = savess;
+
+		//Material material = selectImage.GetComponent<Renderer>().material;
+		//material.mainTexture = texture;
+		//usingImage.texture = texture;
+
+		// If a procedural texture is not destroyed manually, 
+		// it will only be freed after a scene change
+		//Destroy(texture, 5f);
+
+		//Texture2D image = (Texture2D)selectImage.texture;
+		//Texture2D image = (Texture2D)gameObject.find
+
+		//usingImage.texture = savess;
+		//savess.Apply();
+
+		//image.ReadPixels(new Rect(0,0,image.width, image.height),0,0);
+
+		//		Texture ImageSave = selectImage.texture;
+		//		usingImage.texture = ImageSave;
+
+	}
+/*
+	public void SaveImage()
+	{
+		//ImageV.gameObject.SetActive(true);
+		Texture2D saveImage = (Texture2D)selectImage.texture;
+		Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(saveImage, "GalleryTest", "Image.png"));
+
+		// To avoid memory leaks
+		Destroy(saveImage);
+		//TakePicture_b.SetActive(true);
+	}
+	*/
+	public void PickImage(int maxSize)
 	{
 		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
 		{
@@ -119,4 +238,10 @@ public class Camera1 : MonoBehaviour
 	{
 		Application.LoadLevel("CameraSample");//카메라
 	}
+	
+	public void ChangeSceneToUseImage()
+	{
+		Application.LoadLevel("CameraSample3");//캡처 후 preview
+	}
+	
 }

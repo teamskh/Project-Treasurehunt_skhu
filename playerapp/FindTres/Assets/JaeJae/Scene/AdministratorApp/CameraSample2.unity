@@ -224,6 +224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TakePicture_b: {fileID: 0}
+  RawImagePW: {fileID: 0}
+  upperbar: {fileID: 0}
+  selectImage: {fileID: 0}
+  usingImage: {fileID: 0}
 --- !u!4 &157995822
 Transform:
   m_ObjectHideFlags: 0

@@ -578,7 +578,6 @@ GameObject:
   - component: {fileID: 316416432}
   - component: {fileID: 316416431}
   - component: {fileID: 316416434}
-  - component: {fileID: 316416435}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -661,18 +660,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65b1cb01cf917564c944b70d0e7f3656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &316416435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316416430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a1e49956908ba4ea6b83c6180d58e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &337377377
@@ -2105,6 +2092,7 @@ GameObject:
   - component: {fileID: 919802288}
   - component: {fileID: 919802287}
   - component: {fileID: 919802286}
+  - component: {fileID: 919802290}
   m_Layer: 5
   m_Name: ContestCanvas
   m_TagString: Untagged
@@ -2194,6 +2182,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &919802290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919802285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a1e49956908ba4ea6b83c6180d58e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938265247
 GameObject:
   m_ObjectHideFlags: 0

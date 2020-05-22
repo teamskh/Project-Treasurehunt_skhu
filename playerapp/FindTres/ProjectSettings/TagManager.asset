@@ -4,12 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
+  - Image
+=======
   - true
   - false
   - 1
   - 2
   - 3
   - 4
+>>>>>>> master
   layers:
   - Default
   - TransparentFX
