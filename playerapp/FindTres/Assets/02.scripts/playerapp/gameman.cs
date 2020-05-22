@@ -8,6 +8,7 @@ public class gameman : MonoBehaviour
     public string exam; //여러개로
     public AudioSource baaudio;
     public AudioSource sfaudio;
+    public Image[] img; 
 
     static gameman instance;
     public static gameman Instance
