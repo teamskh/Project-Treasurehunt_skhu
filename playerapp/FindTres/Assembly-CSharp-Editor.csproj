@@ -62,6 +62,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ARLocationConfigInspector.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ARLocationEditorConfigManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ARLocationManagerInspector.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ARLocationOrientationInspector.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ARLocationProviderInspector.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\ConditionalPropertyDrawer.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\DefineSymbols.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\DefineSymbolsManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\GameObjectMenuItems.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\LocationPathInspector.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\LocationPropertyDataDrawer.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Editor\OverrideAltitudeDataDrawer.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\ContextMenu.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\ExtendedColorPicker.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\InitShift.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\UIManagerEditor.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSPostBuild.cs" />
