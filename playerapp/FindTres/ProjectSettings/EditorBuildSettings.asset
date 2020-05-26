@@ -5,29 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-<<<<<<< HEAD
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/playerapp/sample2.unity
-    guid: aa1089d0e5669d04486e2fbf8b400164
-  - enabled: 0
-    path: Assets/Scenes/playerapp/sample1.unity
-    guid: 60523950d2fea014588021e0af5d82c1
-  - enabled: 0
-    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample2.unity
-    guid: 2a799b7d45957c44aa7009bded5c39ca
-  - enabled: 0
-    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample.unity
-    guid: 8edf4e0d39f492e4d97cbef13cea4291
-  - enabled: 0
-    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample3.unity
-    guid: fa8064f7363db1c4cb31b31b48d9d88a
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
     guid: a8925bcc64057be41a36c029c038e92f
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/administratorMenu.unity
     guid: abba70b33ca1fd4499571d3dfab18416
   - enabled: 0
@@ -42,24 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
     guid: c8d5fcfc63fddfb4e804d253b012626a
-  - enabled: 1
-    path: Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
-    guid: 84736688e73aee64a9c4456895254beb
-  m_configObjects:
-    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: d7d3e6d89f730214183a94edfb864140,
-=======
-  - enabled: 1
-    path: Assets/01.Scenes/playerapp/01.start.unity
-    guid: 2bd6c9feaed014d498cf6e826d16a61b
-  - enabled: 1
-    path: Assets/01.Scenes/playerapp/02.menu.unity
-    guid: 2ce5f2840d4f14d4bb2d92f35baa9c31
-  - enabled: 1
-    path: Assets/01.Scenes/playerapp/03.Setting.unity
-    guid: 39fc807e6c3e76846846aca5d562f8a6
-  m_configObjects:
-    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 91bc00f032692c74594f05e4a56be782,
-      type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36a78d431dacbd845aaa084b1bb0a063,
->>>>>>> master
-      type: 2}
+  - enabled: 0
+    path: Assets/JaeJae/Scene/AdministratorApp/CameraSample.unity
+    guid: 8edf4e0d39f492e4d97cbef13cea4291
+  m_configObjects: {}

@@ -16,5 +16,10 @@ public class backbutton1 : MonoBehaviour
                 Application.LoadLevel("ContestList");
             }
         }
+        if (Input.GetKey(KeyCode.Escape))
+
+        {
+            Application.LoadLevel("ContestList");
+        }
     }
 }

@@ -72,6 +72,111 @@
     <Compile Include="Assets\02.scripts\playerapp\scenechange.cs" />
     <Compile Include="Assets\02.scripts\playerapp\scroll.cs" />
     <Compile Include="Assets\02.scripts\playerapp\sfxmusic.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ARLocation.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ARSession\ARFoundationSessionManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ARSession\IARSessionManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ARSession\VuforiaSessionManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\ARLocationManager.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\ARLocationOrientation.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\ARLocationProvider.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\GroundHeight.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\Hotspot.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\MoveAlongPath.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\PlaceAlongPath.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\PlaceAtLocation.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\PlaceAtLocations.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\RenderPathLine.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\ARTrackingInfo.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\DebugDistance.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\DebugInfoOverlay.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\LoadingBar.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\LocationProviderInfo.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\UI\OrientationInfo.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Components\WebMapEditor\WebMapLoader.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\AbstractLocationProvider.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\AndroidMagneticDeclination.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\AndroidNativeCompass.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\HeadingReading.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\ILocationProvider.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\Location.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\LocationReading.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\MockLocationProvider.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Location\UnityLocationProvider.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\AngleLowPassFilter.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\CatmullRomCurve.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\CatmullRomSpline.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\Curve.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\DVector2.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\DVector3.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\Line.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\LinearSpline.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\LowPassFilter.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\MathUtils.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Math\Spline.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ScriptableObjects\ARLocationConfig.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ScriptableObjects\LocationData.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ScriptableObjects\LocationPath.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\ScriptableObjects\PrefabDatabase.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\ConditionalPropertyAttribute.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\CreatePointOfInterestTextMeshes.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\DebugCanvas.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\DevCameraController.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\FaceCamera.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\FadeOutTextMesh.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\FollowCameraPosition.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\Logger.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\Misc.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\MovingAveragePosition.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\RotateObject.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\SelectScene.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\ShowHideSelfOnPointerClick.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\Singleton.cs" />
+    <Compile Include="Assets\06.Res\asset\ARLocation\Scripts\Utils\SmoothMove.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\ChapterButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\FavoriteButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainPanelButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\QuickMatchButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\SettingsButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\ShortcutButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Buttons\SpotlightButton.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Event\HoldKeyEvent.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Event\PointerEnterEvents.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Event\PressKeyEvent.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Event\TimedEvent.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Fix\LayoutGroupPositionFix.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Fix\UIElementInFront.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Input\GamepadChecker.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Input\ScrollGamepadManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Input\SliderGamepadManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursorAnimate.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Other\CanvasManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Other\ExitToSystem.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Other\LaunchURL.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Other\QualityManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Other\ScrollForMore.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\FriendsPanelManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelButtonParent.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\ModalWindowManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\ServerBrowserManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Panel\SplashScreenManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Rendering\BlurManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Rendering\GradientEffect.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\Rendering\UIParticleRenderer.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Element\CustomInputField.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Element\HorizontalSelector.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Element\SliderManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Element\SwitchManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManager.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerBGMusic.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerBackground.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerGameLogo.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerImage.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerParticle.cs" />
+    <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerText.cs" />
     <Compile Include="Assets\GPGSIds.cs" />
     <Compile Include="Assets\GooglePlayGames\BasicApi\Achievement.cs" />
     <Compile Include="Assets\GooglePlayGames\BasicApi\CommonStatusCodes.cs" />
@@ -140,7 +245,9 @@
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\Camera1.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ChangeScene.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\Contest.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestAddList.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestController.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestInput.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\GetPicture.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\QuizAddSceneManager.cs" />
@@ -149,7 +256,6 @@
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton1.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton2.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\camera.cs" />
-    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\getTexture.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -183,43 +289,46 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <None Include="Assets\06.Res\asset\ARLocation\Samples\Data\pois.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Shaders\Masked UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\06.Res\asset\ARLocation\Data\data.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Shaders\Fast UI Blur.shader" />
+    <None Include="Assets\06.Res\asset\ARLocation\GO Map Integration\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Shaders\UI Particle Additive.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Read Me.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\06.Res\asset\ARLocation\Third-Party-Notices.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Shaders\UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\06.Res\asset\ARLocation\Materials\Shaders\ShadowDrawer.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="Unity.XR.Management">
-<<<<<<< HEAD
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
-=======
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
->>>>>>> master
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Subsystem.Registration">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Subsystem.Registration">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
@@ -239,35 +348,17 @@
     <Reference Include="Unity.XR.ARFoundation.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.ARSubsystems">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.ARSubsystems.Editor">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARSubsystems.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.ARCore">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.ARFoundation.Editor">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.ARFoundation">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.ARCore.Editor">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -283,9 +374,6 @@
     </Reference>
     <Reference Include="Unity.XR.Management.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.Management.Editor">
-      <HintPath>D:/github/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/user/OneDrive/Project/Project-Treasurehunt_skhu/playerapp/FindTres/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
@@ -477,11 +565,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-<<<<<<< HEAD
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
-=======
-      <HintPath>D:/Program Files/Unity/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
->>>>>>> master
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

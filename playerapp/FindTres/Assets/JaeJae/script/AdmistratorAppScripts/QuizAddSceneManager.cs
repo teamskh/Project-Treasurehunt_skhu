@@ -6,56 +6,62 @@ using UnityEngine.SceneManagement;
 public class QuizAddSceneManager : MonoBehaviour
 {
     public GameObject OXQuizP, MultiCQuizP, ShortAnswerQuizP, ConnectedQuizP, PlacementQuizP;
-    
+    public GameObject TakePicture_b;
+
     public void ChangeSceneToOXQuiz()
     {
-        Application.LoadLevel("QuizAdd");//Quiz추가화면 OX
+        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
         OXQuizP.SetActive(true);
         MultiCQuizP.SetActive(false);
         ShortAnswerQuizP.SetActive(false);
         ConnectedQuizP.SetActive(false);
         PlacementQuizP.SetActive(false);
+        TakePicture_b.SetActive(false);
     }
     
     public void ChangeSceneToMultiCQuiz()
     {
-        Application.LoadLevel("QuizAdd");//Quiz추가화면 OX
+        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
         OXQuizP.SetActive(false);
         MultiCQuizP.SetActive(true);
         ShortAnswerQuizP.SetActive(false);
         ConnectedQuizP.SetActive(false);
         PlacementQuizP.SetActive(false);
+        TakePicture_b.SetActive(false);
     }
     
     public void ChangeSceneToShortAnswerQuiz()
     {
-        Application.LoadLevel("QuizAdd");//Quiz추가화면 OX
+        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
         OXQuizP.SetActive(false);
         MultiCQuizP.SetActive(false);
         ShortAnswerQuizP.SetActive(true);
         ConnectedQuizP.SetActive(false);
         PlacementQuizP.SetActive(false);
+        TakePicture_b.SetActive(false);
     }
 
     public void ChangeSceneToConnectedQuiz()
     {
-        Application.LoadLevel("QuizAdd");//Quiz추가화면 OX
+        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
         OXQuizP.SetActive(false);
         MultiCQuizP.SetActive(false);
         ShortAnswerQuizP.SetActive(false);
         ConnectedQuizP.SetActive(true);
         PlacementQuizP.SetActive(false);
+        TakePicture_b.SetActive(false);
     }
 
     public void ChangeSceneToPlacementQuiz()
     {
-        Application.LoadLevel("QuizAdd");//Quiz추가화면 OX
+        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
         OXQuizP.SetActive(false);
         MultiCQuizP.SetActive(false);
         ShortAnswerQuizP.SetActive(false);
         ConnectedQuizP.SetActive(false);
         PlacementQuizP.SetActive(true);
-    }
+        TakePicture_b.SetActive(true);
+}
     void Update()
 
     {
@@ -64,7 +70,7 @@ public class QuizAddSceneManager : MonoBehaviour
             if (Input.GetKey(KeyCode.Escape))
 
             {
-                Application.LoadLevel("QuizMenu");
+                SceneManager.LoadScene("QuizMenu");
             }
         }
     }

@@ -7,12 +7,16 @@ using Unity.IO;
 public class Camera1 : MonoBehaviour
 {
 	public GameObject TakePicture_b;
-	public GameObject RawImagePW;
+	public GameObject RawImagePV;
 	public GameObject upperbar;
 	public RawImage selectImage;
 	public RawImage usingImage;
-	public GameObject ImageOnPanel;
+	//public GameObject ImageOnPanel;
 	public Texture2D savess;
+	//public GameObject RawImageP;
+	public GameObject CselectB;
+	public GameObject Image;
+
 	// Start is called before the first frame update
 	/*
 	public static class Variables {
@@ -29,8 +33,12 @@ public class Camera1 : MonoBehaviour
 	}*/
 	void Start()
     {
-		RawImagePW.SetActive(false);
+		RawImagePV.SetActive(false);
 		upperbar.SetActive(false);
+		//RawImageP.SetActive(false);
+		CselectB.SetActive(false);
+		TakePicture_b.SetActive(false);
+		Image.SetActive(true);
 	}
 	/*
 	public void Awake()
@@ -96,7 +104,7 @@ public class Camera1 : MonoBehaviour
 		ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
 		ss.Apply();
 		upperbar.SetActive(true);
-		RawImagePW.SetActive(true);
+		RawImagePV.SetActive(true);
 		selectImage.texture = ss;
 		//Variables.savess = ss;
 		//Variables.savess.Apply();
@@ -113,14 +121,15 @@ public class Camera1 : MonoBehaviour
 	public void useImage()
 	{
 		upperbar.SetActive(false);
-		RawImagePW.SetActive(false);
-		ChangeSceneToUseImage();
+		RawImagePV.SetActive(false);
+		//RawImageP.SetActive(true);
+
 		//usingImage.texture = Variables.savess;
 		//usingImage = (RawImage)ImageOnPanel.GetComponent<RawImage>();
 		//usingImage.texture = (Texture2D)Variables.savess;
-		usingImage.texture = (Texture2D)ImageOnPanel.GetComponent<Texture2D>();
+		//usingImage.texture = (Texture2D)ImageOnPanel.GetComponent<Texture2D>();
 		//selectImage.texture = Variables.savess;
-		selectImage.texture = savess;
+		//selectImage.texture = savess;
 		/*
 		if (instance == null)
 		{
@@ -160,9 +169,8 @@ public class Camera1 : MonoBehaviour
 		//Texture2D image = (Texture2D)selectImage.texture;
 		//Texture2D image = (Texture2D)gameObject.find
 
-		//usingImage.texture = savess;
-		//savess.Apply();
-
+		usingImage.texture = savess;
+		savess.Apply();
 		//image.ReadPixels(new Rect(0,0,image.width, image.height),0,0);
 
 		//		Texture ImageSave = selectImage.texture;
@@ -195,7 +203,7 @@ public class Camera1 : MonoBehaviour
 					Debug.Log("Couldn't load texture from " + path);
 					return;
 				}
-
+				/*
 				// Assign texture to a temporary quad and destroy it after 5 seconds
 				GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
 				quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
@@ -213,6 +221,8 @@ public class Camera1 : MonoBehaviour
 				// If a procedural texture is not destroyed manually, 
 				// it will only be freed after a scene change
 				Destroy(texture, 5f);
+				*/
+				usingImage.texture = texture;
 			}
 		}, "Select a PNG image", "image/png");
 
@@ -233,7 +243,7 @@ public class Camera1 : MonoBehaviour
 
 			Debug.Log("Permission result: " + permission);
 		}*/
-
+		/*
 	public void ChangeSceneToCamera()
 	{
 		Application.LoadLevel("CameraSample");//카메라
@@ -243,5 +253,5 @@ public class Camera1 : MonoBehaviour
 	{
 		Application.LoadLevel("CameraSample3");//캡처 후 preview
 	}
-	
+	*/
 }

@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/JaeJae/Scene/AdministratorApp/CameraTest.unity
-=======
-- path: Assets/01.Scenes/playerapp/main.unity
->>>>>>> master
+- path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
