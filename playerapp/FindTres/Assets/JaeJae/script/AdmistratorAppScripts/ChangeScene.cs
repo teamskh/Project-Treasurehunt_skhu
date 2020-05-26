@@ -60,4 +60,9 @@ public class ChangeScene : MonoBehaviour
     {
         Application.LoadLevel("QuizAdd");//Quiz Add 화면
     }
+
+    public void ChangeSceneToContestList()
+    {
+        Application.LoadLevel("ContestList");//Quiz Add 화면
+    }
 }

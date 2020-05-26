@@ -37,8 +37,9 @@ public class GooglePlayManager : MonoBehaviour
             {
                 if (bSuccess)
                 {
+                    gameman.Instance.userna.text = Social.localUser.userName;
                     Debug.Log("Success : " + Social.localUser.userName+Social.localUser.id);
-                    text.text = Social.localUser.id;
+                    text.text = Social.localUser.userName;
                 }
                 else
                 {
