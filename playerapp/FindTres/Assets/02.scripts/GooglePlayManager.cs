@@ -37,9 +37,14 @@ public class GooglePlayManager : MonoBehaviour
             {
                 if (bSuccess)
                 {
-                    gameman.Instance.userna.text = Social.localUser.userName;
+                    
+                    //유저 이름 저장
+                    
+
                     Debug.Log("Success : " + Social.localUser.userName+Social.localUser.id);
-                    text.text = Social.localUser.userName;
+                    gameman.instance.userna = Social.localUser.userName;
+                    //text.text = gameman.instance.userna;
+                    gameObject.GetComponent<scenechange>().changeFirstScene();
                 }
                 else
                 {
