@@ -1,9 +1,17 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: ec0a8adc9b8678d47bba3e05df476472
 =======
 guid: 478189f6890eec649a6300668a931612
 >>>>>>> server
+=======
+<<<<<<< HEAD:playerapp/FindTres/Assets/ExtendedButtons/Assets/Editor.meta
+guid: bae5595033f791642ac75383e3755d79
+=======
+guid: 0594cb5397078904d815e4a08845bfe3
+>>>>>>> admin:playerapp/FindTres/Assets/06.Res/asset/Sci-Fi Sounds.meta
+>>>>>>> admin
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

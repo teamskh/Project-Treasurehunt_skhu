@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:playerapp/FindTres/Assets/06.Res/masset.meta
 guid: 81a4eb543dbfcfb49a06e05d403acd85
+=======
+guid: 608af9ec52f04e843810ccb624e4de56
+>>>>>>> admin:playerapp/FindTres/Assets/06.Res/asset/ARLocation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
