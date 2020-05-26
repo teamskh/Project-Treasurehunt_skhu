@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ContestInput : MonoBehaviour
 {
     public GameObject ContestPanel;
@@ -19,6 +20,7 @@ public class ContestInput : MonoBehaviour
     public GameObject toggleChoice, all_t;
     int nextNumber, wordNumber;
     //List<GameObject> ContestList = new List<GameObject>();
+
 
     public void Start()
     {
@@ -75,7 +77,8 @@ public class ContestInput : MonoBehaviour
 
         }
     }*/
-    
+
+
     public void Save()
     {
         //PlayerPrefs.SetString("ContestName", ContestName_infT.text);
@@ -94,6 +97,7 @@ public class ContestInput : MonoBehaviour
             {
                 if (ContestName_infT.text != "" && ContestTN_infT.text != "" && ContestPw_infT.text != "")
                 {
+
                     if (PlayerPrefs.HasKey("nextNumber"))
                         PlayerPrefs.GetInt("nextNumber", nextNumber);
                     nextNumber++;
@@ -115,6 +119,7 @@ public class ContestInput : MonoBehaviour
                     CBPrefab.transform.SetParent(Content.transform, false);
                     //PlayerPrefs.SetInt("nextNumber", nextNumber);
                     wordNumber++;
+
                     PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
                     Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
                 }

@@ -5,10 +5,19 @@ using UnityEditor;
 
 public class gameman : MonoBehaviour
 {
+
     public string exam; //여러개로
     public AudioSource baaudio;
     public AudioSource sfaudio;
-    public Image[] img; 
+    public Image[] img;
+    public int score = 0;
+    public GameObject inss;
+
+    public Text userna;
+
+    public bool chek = false;
+
+    public 
 
     static gameman instance;
     public static gameman Instance
@@ -36,6 +45,7 @@ public class gameman : MonoBehaviour
     {
         baaudio.volume = PlayerPrefs.GetFloat("backvol", 1f);
         sfaudio.volume = PlayerPrefs.GetFloat("sfxvol", 1f);
+        Screen.fullScreen = !Screen.fullScreen;
     }
 
 }
