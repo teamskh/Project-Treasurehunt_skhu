@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 54
+  controlID: 85
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 221}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 124
+  controlID: 86
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,8 +161,8 @@ MonoBehaviour:
     y: 0
     width: 403
     height: 671
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -278,21 +278,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 98ceffffc6e2ffff14e5ffff30e5ffffcae6ffffd8e6ffff20e8ffff34e8ffff4ee8ffff76e8ffff78e8ffff84ebffff66eeffffdceefffff6eeffffd6f0ffffaef2ffffc8f2ffffacf4ffff3ef6ffffccf7ffffd8f7ffff70fbffff8850000004520000765300009e530000ee550000f8550000
+      m_ExpandedIDs: 6e5cffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: scrollling
-        m_OriginalName: scrollling
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -7482
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 7}
       m_SearchString: 
@@ -348,10 +348,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -481
-    m_HBaseRangeMax: 481
-    m_VBaseRangeMin: -314.5
-    m_VBaseRangeMax: 314.5
+    m_HBaseRangeMin: -360
+    m_HBaseRangeMax: 360
+    m_VBaseRangeMin: -640
+    m_VBaseRangeMax: 640
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -368,23 +368,23 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 962
-      height: 629
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 481, y: 314.5}
+      height: 650
+    m_Scale: {x: 0.5078125, y: 0.5078125}
+    m_Translation: {x: 481, y: 325}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -481
-      y: -314.5
-      width: 962
-      height: 629
+      x: -947.2
+      y: -640
+      width: 1894.4
+      height: 1280
     m_MinimalGUI: 1
-  m_defaultScale: 1
+  m_defaultScale: 0.5078125
   m_LastWindowPixelSize: {x: 962, y: 650}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -477,11 +477,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.020975998, y: -0.04647327, z: -0.0009768467, w: 0.99870145}
     speed: 2
-    m_Value: {x: -0.020977383, y: -0.044975046, z: -0.0009453791, w: 0.99876744}
+    m_Value: {x: 0.020975998, y: 0.04647327, z: 0.0009768467, w: -0.99870145}
   m_Size:
     m_Target: 12.873906
     speed: 2
-    m_Value: 12.319528
+    m_Value: 12.873906
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -583,20 +583,20 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/04.Animations
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/04.Animations
+  - Assets
   m_LastFoldersGridSize: 71
-  m_LastProjectPath: D:\github\Project-Treasurehunt_skhu\playerapp\FindTres
+  m_LastProjectPath: C:\Users\ooo95\Desktop\Git\STeam\GSKHU\report\playerapp\FindTres
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 169}
-    m_SelectedIDs: 7e380000
-    m_LastClickedID: 14462
-    m_ExpandedIDs: 000000006038000062380000763800007e3800009c380000b43f0000d63f00003a4100008c4100009e410000d6410000ee4100003645000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 2e3c0000
+    m_LastClickedID: 15406
+    m_ExpandedIDs: 000000002e3c0000303c0000463c00004e3c0000543c0000ba3c0000c23c0000e03c0000f63c0000fc3c0000343d0000383d00004c3d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -624,7 +624,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 8e380000
     m_LastClickedID: 14478
-    m_ExpandedIDs: 00000000603800006238000076380000963800009c380000b23f0000b43f0000d63f00003a4100008c4100009e410000d6410000ee41000036450000
+    m_ExpandedIDs: 000000002e3c0000303c0000463c00004e3c0000543c0000ba3c0000c23c0000e03c0000f63c0000fc3c0000343d0000383d00004c3d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 664c0000503a0000be430000ca440000e44400000000000066410000206f0000e0410000364200005242000046420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
