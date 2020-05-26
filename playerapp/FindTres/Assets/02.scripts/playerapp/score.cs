@@ -23,7 +23,8 @@ public class score : MonoBehaviour
     {
         txt.text = "0";
         endtxt.text = "0";
-        user.text = gameman.Instance.userna.text;
+        user.text = gameman.Instance.userna;
+        //메인 화면에 유저 이름 띄우기
     }
 
     public void click() //시간 세팅
@@ -45,7 +46,7 @@ public class score : MonoBehaviour
                 end.SetActive(true);
                 gameman.Instance.chek = true;
             }
-            else if(gameman.Instance.score == 2)
+            else if(gameman.Instance.score == 3)
             {
                 endtimerbar.text = "" + Mathf.Round(LimiTime); //클리어창 남은시간
                 bar.SetActive(false);

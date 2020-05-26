@@ -13,7 +13,8 @@ public class gameman : MonoBehaviour
     public int score = 0;
     public GameObject inss;
 
-    public Text userna;
+    public string userna; 
+    //페이지 이동시 저장될 유저이름
 
     public bool chek = false;
 
