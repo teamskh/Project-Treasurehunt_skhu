@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\02.scripts\Func\Quizlibrary.cs" />
     <Compile Include="Assets\02.scripts\GooglePlayManager.cs" />
     <Compile Include="Assets\02.scripts\playerapp\Music.cs" />
     <Compile Include="Assets\02.scripts\playerapp\QRCodeCreator.cs" />
@@ -243,7 +244,6 @@
     <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
     <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
-    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\Camera1.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ChangeScene.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestAddList.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestInput.cs" />
@@ -252,6 +252,11 @@
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\TextButton.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton1.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\backbutton2.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\Prefabs\SerializeDic.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\Prefabs\makeNumber.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\Prefabs\onClicks.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\SerializableDictionary.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\userQuiz.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -313,6 +318,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Shaders\UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\QuizTobinary\Licence.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\06.Res\asset\ARLocation\Materials\Shaders\ShadowDrawer.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />

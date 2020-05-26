@@ -87,6 +87,8 @@
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
+    <Compile Include="Assets\QuizTobinary\Editor\SerializableDictionaryPropertyDrawer.cs" />
+    <Compile Include="Assets\QuizTobinary\Example\Editor\UserSerializableDictionaryPropertyDrawers.cs" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.10.08.txt" />
     <None Include="Assets\ExternalDependencyManager\Editor\GoogleRegistries.xml" />
     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
