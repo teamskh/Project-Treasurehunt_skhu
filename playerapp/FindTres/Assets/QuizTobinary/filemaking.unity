@@ -1164,7 +1164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Word
       value: 
-      objectReference: {fileID: 4144139030177193461}
+      objectReference: {fileID: 1643192461}
     - target: {fileID: 8858899848291198589, guid: afa48ec0a3b2efa4da2caa0724f945f2,
         type: 3}
       propertyPath: TFPanel
@@ -1864,6 +1864,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636622723}
   m_CullTransparentMesh: 0
+--- !u!114 &1643192461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4144139030376750025, guid: 5ab827cc0eebba24dbdc72b667159502,
+    type: 3}
+  m_PrefabInstance: {fileID: 4144139030177193460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1748451262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4144139029000808200, guid: 5ab827cc0eebba24dbdc72b667159502,
@@ -2722,18 +2734,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab827cc0eebba24dbdc72b667159502, type: 3}
---- !u!114 &4144139030177193461 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4144139029778458679, guid: 5ab827cc0eebba24dbdc72b667159502,
-    type: 3}
-  m_PrefabInstance: {fileID: 4144139030177193460}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7295717494885407579
 PrefabInstance:
   m_ObjectHideFlags: 0

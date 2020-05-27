@@ -261,6 +261,7 @@
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestAddList.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ContestInput.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\GetPicture.cs" />
+    <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\MakeDisplayRatio.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\QuizAddSceneManager.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\ScreenResolutionM.cs" />
     <Compile Include="Assets\JaeJae\script\AdmistratorAppScripts\TextButton.cs" />

@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class makeNumber : MonoBehaviour
 {
     //input field size:4 각각 text등록
-    [SerializeField] private Text[] txts;
+    [SerializeField]
+    private Text[] txts;
     //input field size:4 각각 text등록
-    [SerializeField] private Text[] nos;
+    [SerializeField]
+    private Text[] nos;
 
     private SerializeDic dic;
 
@@ -16,6 +18,7 @@ public class makeNumber : MonoBehaviour
     void Start()
     {
         dic = GetComponent<SerializeDic>();
+        
     }
 
     // Update is called once per frame
