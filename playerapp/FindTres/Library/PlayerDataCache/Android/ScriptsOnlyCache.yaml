@@ -1,49 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - ExtendedButtons.Button3D
-    - ExtendedButtons.ButtonsListenerBasic
-    - GooglePlayManager
-    - Michsky.UI.Shift.ChapterButton
-    - Michsky.UI.Shift.CustomInputField
-    - Michsky.UI.Shift.FavoriteButton
-    - Michsky.UI.Shift.LayoutGroupPositionFix
-    - Michsky.UI.Shift.MainButton
-    - Michsky.UI.Shift.MainPanelButton
-    - Michsky.UI.Shift.SliderManager
-    - Michsky.UI.Shift.UIElementSound
+    - ChangeScene
+    - MakeDisplayRatio
     - Michsky.UI.Shift.UIManager
-    - Michsky.UI.Shift.UIManagerImage
-    - Michsky.UI.Shift.UIManagerText
-    - Music
-    - QRCodeCreator
-    - TrackedImageInfoMultipleManager
-    - gameman
-    - scenechange
-    - score
-    - setResoultion
-    - sfxmusic
-    - touchOX
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_InputField
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
-    - TMPro.TMP_SubMeshUI
-    - TMPro.TextMeshProUGUI
-    Unity.XR.ARFoundation.dll:
-    - UnityEngine.XR.ARFoundation.ARCameraBackground
-    - UnityEngine.XR.ARFoundation.ARCameraManager
-    - UnityEngine.XR.ARFoundation.ARInputManager
-    - UnityEngine.XR.ARFoundation.ARSession
-    - UnityEngine.XR.ARFoundation.ARSessionOrigin
-    - UnityEngine.XR.ARFoundation.ARTrackedImageManager
-    Unity.XR.ARSubsystems.dll:
-    - UnityEngine.XR.ARSubsystems.XRReferenceImageLibrary
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
     Unity.XR.Management.dll:
@@ -53,31 +21,18 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEngine.SpatialTracking.dll:
-    - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
-    - UnityEngine.UI.AspectRatioFitter
-    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
-    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
-    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
-    - UnityEngine.UI.LayoutElement
-    - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
-    - UnityEngine.UI.ScrollRect
-    - UnityEngine.UI.Scrollbar
-    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
-    - UnityEngine.UI.VerticalLayoutGroup
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
-    Assets/01.Scenes/playerapp/01.start.unity:
+    Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -92,17 +47,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
     - Class: 83
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -111,51 +58,35 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11318}
+      Script: {instanceID: 11400}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11558}
     - Class: 114
-      Script: {instanceID: 11582}
+      Script: {instanceID: 11664}
     - Class: 114
-      Script: {instanceID: 11634}
+      Script: {instanceID: 11736}
     - Class: 114
-      Script: {instanceID: 11654}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 12420}
     - Class: 114
-      Script: {instanceID: 12280}
+      Script: {instanceID: 13100}
     - Class: 114
-      Script: {instanceID: 12338}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 12432}
+      Script: {instanceID: 13458}
     - Class: 114
-      Script: {instanceID: 12752}
+      Script: {instanceID: 13842}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 13866}
     - Class: 114
-      Script: {instanceID: 13116}
+      Script: {instanceID: 14122}
     - Class: 114
-      Script: {instanceID: 13356}
+      Script: {instanceID: 14312}
     - Class: 114
-      Script: {instanceID: 13378}
+      Script: {instanceID: 14498}
     - Class: 114
-      Script: {instanceID: 13682}
-    - Class: 114
-      Script: {instanceID: 13762}
-    - Class: 114
-      Script: {instanceID: 13786}
-    - Class: 114
-      Script: {instanceID: 13836}
-    - Class: 114
-      Script: {instanceID: 14040}
-    - Class: 114
-      Script: {instanceID: 14134}
-    - Class: 114
-      Script: {instanceID: 14230}
-    - Class: 114
-      Script: {instanceID: 14298}
-    - Class: 114
-      Script: {instanceID: 14416}
+      Script: {instanceID: 32952}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -171,268 +102,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 225
-      Script: {instanceID: 0}
-    - Class: 329
-      Script: {instanceID: 0}
-    Assets/01.Scenes/playerapp/03.Setting.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11318}
-    - Class: 114
-      Script: {instanceID: 11564}
-    - Class: 114
-      Script: {instanceID: 11582}
-    - Class: 114
-      Script: {instanceID: 11588}
-    - Class: 114
-      Script: {instanceID: 11634}
-    - Class: 114
-      Script: {instanceID: 11654}
-    - Class: 114
-      Script: {instanceID: 11822}
-    - Class: 114
-      Script: {instanceID: 11852}
-    - Class: 114
-      Script: {instanceID: 11954}
-    - Class: 114
-      Script: {instanceID: 12008}
-    - Class: 114
-      Script: {instanceID: 12122}
-    - Class: 114
-      Script: {instanceID: 12162}
-    - Class: 114
-      Script: {instanceID: 12280}
-    - Class: 114
-      Script: {instanceID: 12596}
-    - Class: 114
-      Script: {instanceID: 12666}
-    - Class: 114
-      Script: {instanceID: 12990}
-    - Class: 114
-      Script: {instanceID: 13116}
-    - Class: 114
-      Script: {instanceID: 13140}
-    - Class: 114
-      Script: {instanceID: 13302}
-    - Class: 114
-      Script: {instanceID: 13356}
-    - Class: 114
-      Script: {instanceID: 13682}
-    - Class: 114
-      Script: {instanceID: 13762}
-    - Class: 114
-      Script: {instanceID: 13786}
-    - Class: 114
-      Script: {instanceID: 13836}
-    - Class: 114
-      Script: {instanceID: 14416}
-    - Class: 114
-      Script: {instanceID: 14456}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    - Class: 225
-      Script: {instanceID: 0}
-    - Class: 329
-      Script: {instanceID: 0}
-    Assets/01.Scenes/playerapp/main.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
-    - Class: 74
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
-    - Class: 102
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 11318}
-    - Class: 114
-      Script: {instanceID: 11458}
-    - Class: 114
-      Script: {instanceID: 11474}
-    - Class: 114
-      Script: {instanceID: 11516}
-    - Class: 114
-      Script: {instanceID: 11564}
-    - Class: 114
-      Script: {instanceID: 11582}
-    - Class: 114
-      Script: {instanceID: 11588}
-    - Class: 114
-      Script: {instanceID: 11634}
-    - Class: 114
-      Script: {instanceID: 11654}
-    - Class: 114
-      Script: {instanceID: 11702}
-    - Class: 114
-      Script: {instanceID: 11822}
-    - Class: 114
-      Script: {instanceID: 11852}
-    - Class: 114
-      Script: {instanceID: 11954}
-    - Class: 114
-      Script: {instanceID: 12008}
-    - Class: 114
-      Script: {instanceID: 12122}
-    - Class: 114
-      Script: {instanceID: 12150}
-    - Class: 114
-      Script: {instanceID: 12280}
-    - Class: 114
-      Script: {instanceID: 12382}
-    - Class: 114
-      Script: {instanceID: 12432}
-    - Class: 114
-      Script: {instanceID: 12442}
-    - Class: 114
-      Script: {instanceID: 12666}
-    - Class: 114
-      Script: {instanceID: 12752}
-    - Class: 114
-      Script: {instanceID: 12990}
-    - Class: 114
-      Script: {instanceID: 13020}
-    - Class: 114
-      Script: {instanceID: 13116}
-    - Class: 114
-      Script: {instanceID: 13140}
-    - Class: 114
-      Script: {instanceID: 13168}
-    - Class: 114
-      Script: {instanceID: 13228}
-    - Class: 114
-      Script: {instanceID: 13302}
-    - Class: 114
-      Script: {instanceID: 13332}
-    - Class: 114
-      Script: {instanceID: 13352}
-    - Class: 114
-      Script: {instanceID: 13356}
-    - Class: 114
-      Script: {instanceID: 13610}
-    - Class: 114
-      Script: {instanceID: 13612}
-    - Class: 114
-      Script: {instanceID: 13682}
-    - Class: 114
-      Script: {instanceID: 13700}
-    - Class: 114
-      Script: {instanceID: 13710}
-    - Class: 114
-      Script: {instanceID: 13762}
-    - Class: 114
-      Script: {instanceID: 13786}
-    - Class: 114
-      Script: {instanceID: 13824}
-    - Class: 114
-      Script: {instanceID: 13836}
-    - Class: 114
-      Script: {instanceID: 14058}
-    - Class: 114
-      Script: {instanceID: 14148}
-    - Class: 114
-      Script: {instanceID: 14256}
-    - Class: 114
-      Script: {instanceID: 14314}
-    - Class: 114
-      Script: {instanceID: 14336}
-    - Class: 114
-      Script: {instanceID: 14416}
-    - Class: 114
-      Script: {instanceID: 14430}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    - Class: 225
-      Script: {instanceID: 0}
-    - Class: 241
-      Script: {instanceID: 0}
-    - Class: 243
-      Script: {instanceID: 0}
-    - Class: 245
       Script: {instanceID: 0}
     - Class: 329
       Script: {instanceID: 0}
@@ -659,6 +328,12 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkTransform
+  - hash:
+      serializedVersion: 2
+      Hash: abab6eb8b928cbca015f9acc49354ddb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: makeNumber
   - hash:
       serializedVersion: 2
       Hash: 8a2f25f9cccfdeb04c515d69353654b5
@@ -1169,6 +844,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ChatController
+  - hash:
+      serializedVersion: 2
+      Hash: 896a82e8c4a00c6e23a6a65f10a8a0d8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: onClicks
   - hash:
       serializedVersion: 2
       Hash: 5f1752ed2092162f016c19510c28a8b9
@@ -1699,10 +1380,22 @@ ScriptsOnlyBuild:
     className: SwingArmModel
   - hash:
       serializedVersion: 2
+      Hash: dca00438540fa0874a2b3eb87f831f55
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Quizlibrary
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f7781a91c210afc365df290dec3f43ce
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SerializeDic
   - hash:
       serializedVersion: 2
       Hash: d791aa6007fa3640be1164ea75bb087d
@@ -1985,9 +1678,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: feac65113c8fc31f1fbc0f9ffdce2183
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MakeDisplayRatio
   platform: 13
   scenePathNames:
-  - Assets/01.Scenes/playerapp/01.start.unity
-  - Assets/01.Scenes/playerapp/main.unity
-  - Assets/01.Scenes/playerapp/03.Setting.unity
-  playerPath: C:/Users/yoon/Desktop/10.apk
+  - Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
+  playerPath: C:/Users/ooo95/Desktop/ersf.apk

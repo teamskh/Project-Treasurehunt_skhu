@@ -79,6 +79,7 @@
     <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\ExtendedColorPicker.cs" />
     <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\InitShift.cs" />
     <Compile Include="Assets\06.Res\asset\Shift - Complete Sci-Fi UI\Editor\UIManagerEditor.cs" />
+    <Compile Include="Assets\ExtendedButtons\Assets\Editor\Button2DEditor.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSPostBuild.cs" />

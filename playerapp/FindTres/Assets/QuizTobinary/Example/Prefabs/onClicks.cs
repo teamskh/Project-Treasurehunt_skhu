@@ -12,7 +12,7 @@ public class onClicks : MonoBehaviour
     [SerializeField]
     Text quiz;
     [SerializeField]
-    GameObject OK_B;
+    GameObject Contents;
 
     [SerializeField]
     GameObject TFPanel;
@@ -31,12 +31,14 @@ public class onClicks : MonoBehaviour
     [SerializeField] Text QuizInfo;
     
     private SerializeDic dic;
+    private ScrollRect box;
     // Start is called before the first frame update
     void Start()
     {
         dic = gameObject.GetComponent<SerializeDic>();
         if(dic == null)
         { Debug.Log("dic is null"); }
+        box = Contents.GetComponent<ScrollRect>();
         Changekind_TF();
     }
 
@@ -52,7 +54,7 @@ public class onClicks : MonoBehaviour
         TFPanel.SetActive(true);
         IPanel.SetActive(false);
         WPanel.SetActive(false);
-        OK_B.SetActive(true);
+        box.content = TFPanel.GetComponent<RectTransform>();
     }
 
     public void Changekind_int()
@@ -62,7 +64,7 @@ public class onClicks : MonoBehaviour
         ipanelInit();
         TFPanel.SetActive(false);
         WPanel.SetActive(false);
-        OK_B.SetActive(true);
+        box.content = IPanel.GetComponent<RectTransform>();
     }
 
     public void Changekind_W()
@@ -71,19 +73,18 @@ public class onClicks : MonoBehaviour
         WPanel.SetActive(true);
         IPanel.SetActive(false);
         TFPanel.SetActive(false);
+        box.content = WPanel.GetComponent<RectTransform>();
     }
     public void IpanelChange()
     {
         ipanel1.SetActive(false);
         ipanel2.SetActive(true);
-        OK_B.SetActive(true);
     }
     
     void ipanelInit()
     {
         ipanel1.SetActive(true);
         ipanel2.SetActive(false);
-        OK_B.SetActive(false);
     }
     
     public void setAnswer(bool b){ dic.ans.Banswer = b; }
@@ -101,7 +102,7 @@ public class onClicks : MonoBehaviour
             dic.ans.Wanswer = Word.text;
         }
         dic.setTitleQuiz();
-        QuizDebug();
+        //QuizDebug();
     }
 
     void QuizDebug()

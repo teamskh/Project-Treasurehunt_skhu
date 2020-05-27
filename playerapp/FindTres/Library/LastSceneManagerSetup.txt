@@ -1,1 +1,5 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
