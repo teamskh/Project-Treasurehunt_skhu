@@ -1,0 +1,2 @@
+D:\github\Project-Treasurehunt_skhu\playerapp\FindTres\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\github\Project-Treasurehunt_skhu\playerapp\FindTres\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
