@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/01.start.unity
     guid: 2bd6c9feaed014d498cf6e826d16a61b
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/main.unity
     guid: f9a92b8205ba31648bc2a62e1e78414b
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/03.Setting.unity
     guid: 39fc807e6c3e76846846aca5d562f8a6
   - enabled: 0
@@ -26,9 +26,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/JaeJae/Scene/AdministratorApp/QuizType.unity
     guid: 696ec9fac020f4b4389226a4eeb61c94
-  - enabled: 1
-    path: Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
-    guid: c8d5fcfc63fddfb4e804d253b012626a
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 91bc00f032692c74594f05e4a56be782,
       type: 2}

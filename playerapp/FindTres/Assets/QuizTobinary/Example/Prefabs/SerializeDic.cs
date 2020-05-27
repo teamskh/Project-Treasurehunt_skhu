@@ -16,7 +16,7 @@ public class SerializeDic : MonoBehaviour
 
     public void Initialized()
     {
-        dataPath = Application.persistentDataPath + "/gameData.dat";
+        dataPath = Application.dataPath + "/gameData.dat";
     }
     public void Save()
     {
@@ -59,7 +59,6 @@ public class SerializeDic : MonoBehaviour
     public void setTitleQuiz()
     {
         m_titleQuiz.Add(title, ans);
-        ans = new Answer();
 
     }
     private void Start()

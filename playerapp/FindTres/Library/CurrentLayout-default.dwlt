@@ -14,10 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1
     y: 51
     width: 958
     height: 988
+=======
+    x: 0
+    y: 43
+    width: 1920
+    height: 997
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
@@ -110,12 +117,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 958
     height: 938
   m_MinSize: {x: 677, y: 492}
   m_MaxSize: {x: 12002, y: 14042}
   vertical: 1
   controlID: 53
+=======
+    width: 1920
+    height: 947
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 12004, y: 14042}
+  vertical: 1
+  controlID: 85
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,12 +152,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 958
     height: 665
   m_MinSize: {x: 677, y: 221}
   m_MaxSize: {x: 12002, y: 4021}
   vertical: 0
   controlID: 54
+=======
+    width: 1920
+    height: 671
+  m_MinSize: {x: 679, y: 221}
+  m_MaxSize: {x: 12004, y: 4021}
+  vertical: 0
+  controlID: 86
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -159,10 +184,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 201
     height: 665
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    width: 403
+    height: 671
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -185,8 +217,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 201
     y: 0
+<<<<<<< HEAD
     width: 481
     height: 665
+=======
+    width: 964
+    height: 671
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
@@ -210,12 +247,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 682
     y: 0
     width: 276
     height: 665
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    x: 1367
+    y: 0
+    width: 553
+    height: 671
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -268,17 +314,28 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1
     y: 81
     width: 200
     height: 644
+=======
+    x: 0
+    y: 73
+    width: 402
+    height: 650
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: d6380000
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 3ed9ffff56d9ffffcce3ffffe6e3ffffe0e4ffff3af0ffff18f2ffff62f2ffff70f2ffff3cf3ffffc68b0000d68b0000968f00006c900000309300007e930000
+=======
+      m_ExpandedIDs: 6e5cffff
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -323,10 +380,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 0
     width: 479
     height: 644
+=======
+    x: 403
+    y: 73
+    width: 962
+    height: 650
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewsNames: []
   m_SerializedViewsValues: []
@@ -368,17 +432,26 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
+<<<<<<< HEAD
       y: 21
       width: 479
       height: 623
     m_Scale: {x: 0.48671874, y: 0.48671874}
     m_Translation: {x: 239.5, y: 311.5}
+=======
+      y: 0
+      width: 962
+      height: 650
+    m_Scale: {x: 0.5078125, y: 0.5078125}
+    m_Translation: {x: 481, y: 325}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -492.07062
       y: -640
       width: 984.14124
@@ -386,6 +459,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 0.48671874
   m_LastWindowPixelSize: {x: 479, y: 644}
+=======
+      x: -947.2
+      y: -640
+      width: 1894.4
+      height: 1280
+    m_MinimalGUI: 1
+  m_defaultScale: 0.5078125
+  m_LastWindowPixelSize: {x: 962, y: 650}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000001000000000000
@@ -412,24 +494,37 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 202
     y: 81
     width: 479
     height: 644
+=======
+    x: 403
+    y: 73
+    width: 962
+    height: 650
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: 969604f591705154b9a7c08bc07bde09
   m_Gizmos: 1
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 1
+  m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 391.975, y: 992.75543, z: -246.3759}
     speed: 2
     m_Value: {x: 391.975, y: 992.75543, z: -246.3759}
+=======
+    m_Target: {x: -1.3755883, y: 1.6537158, z: 3.3363314}
+    speed: 2
+    m_Value: {x: -1.3755883, y: 1.6537158, z: 3.3363314}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -457,7 +552,7 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -465,7 +560,7 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -475,17 +570,23 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.020975998, y: -0.04647327, z: -0.0009768467, w: 0.99870145}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: 0.020975998, y: 0.04647327, z: 0.0009768467, w: -0.99870145}
   m_Size:
+<<<<<<< HEAD
     m_Target: 285.45996
     speed: 2
     m_Value: 285.45996
-  m_Ortho:
-    m_Target: 1
+=======
+    m_Target: 12.873906
     speed: 2
-    m_Value: 1
+    m_Value: 12.873906
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
+  m_Ortho:
+    m_Target: 0
+    speed: 2
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -499,7 +600,11 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
+<<<<<<< HEAD
   m_LastSceneViewRotation: {x: -0.020975998, y: -0.04647327, z: -0.0009768467, w: 0.99870145}
+=======
+  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -527,10 +632,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 683
     y: 81
     width: 275
     height: 644
+=======
+    x: 1367
+    y: 73
+    width: 552
+    height: 650
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ViewDataDictionary: {fileID: 0}
   m_OpenAddComponentMenu: 0
   m_ObjectsLockedBeforeSerialization: []
@@ -565,10 +677,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1
     y: 746
     width: 958
     height: 252
+=======
+    x: 0
+    y: 744
+    width: 1920
+    height: 255
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -583,20 +702,35 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/01.Scenes/playerapp
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
   - Assets/01.Scenes/playerapp
+=======
+    - Assets
+  m_ViewMode: 1
+  m_StartGridSize: 71
+  m_LastFolders:
+  - Assets
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
   m_LastFoldersGridSize: 71
   m_LastProjectPath: D:\github\Project-Treasurehunt_skhu\playerapp\FindTres
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: d4380000
     m_LastClickedID: 14548
     m_ExpandedIDs: 00000000cc380000ce380000e2380000e4380000f6380000123900002e3a00004a3a0000284000004c400000ae410000fc4100002e420000444200005c420000a4450000244600002a4600009646000098460000ae460000c6460000da4600007455000076550000785500007e550000805500008255000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 2e3c0000
+    m_LastClickedID: 15406
+    m_ExpandedIDs: 000000002e3c0000303c0000463c00004e3c0000543c0000ba3c0000c23c0000e03c0000f63c0000fc3c0000343d0000383d00004c3d000000ca9a3b
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: playerapp
@@ -624,7 +758,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 8e380000
     m_LastClickedID: 14478
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000cc380000ce380000e2380000123900002e3a00004a3a0000284000004c400000ae410000fc4100002e420000444200005c420000a4450000244600002a4600009646000098460000ae460000c6460000da4600007455000076550000785500007a5500007c5500007e5500008055000082550000
+=======
+    m_ExpandedIDs: 000000002e3c0000303c0000463c00004e3c0000543c0000ba3c0000c23c0000e03c0000f63c0000fc3c0000343d0000383d00004c3d0000
+>>>>>>> parent of 7ff966af... [PYJ]Update Quiz ADD
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -651,7 +789,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 664c0000503a0000be430000ca440000e44400000000000066410000206f0000e0410000364200005242000046420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
