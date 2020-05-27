@@ -1,0 +1,8 @@
+SerializableDictionaryPropertyDrawer.cs
+UserSerializableDictionaryPropertyDrawers.cs
+SerializableDictionary.cs
+.etcs
+
+from SerializableDictionary - Mathieu Le Ber
+
+https://assetstore.unity.com/packages/tools/integration/serializabledictionary-90477
