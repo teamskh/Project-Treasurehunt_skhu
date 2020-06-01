@@ -5,25 +5,34 @@ using DataInfo;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+//저장용 변수 저장-로드용 함수 및 클래스
+
 public class SerializeDic : MonoBehaviour
 {
     [SerializeField]
-    TitleQuizDictionary m_titleQuiz;
+    QuizInfoDictionary m_titleQuiz;
 
-    public Answer ans;
+    [SerializeField]
+    ContestDictionary m_Contest;
+
+    public QuizInfo ans;
     public string title;
-    private string dataPath;
+    private string QuizdataPath;
+    private string ContestdataPath;
 
     public void Initialized()
     {
-        dataPath = Application.persistentDataPath + "/gameData.dat";
+        QuizdataPath = Application.persistentDataPath + "Quiz.dat";
+        ContestdataPath = Application.persistentDataPath + "Contest.dat";
     }
-    public void Save()
+
+    //퀴즈 dictionary 변수 저장용 함수
+    public void QuizSave()
     {
         BinaryFormatter bf = new BinaryFormatter();
 
-        FileStream file = File.Create(dataPath);
-        TitleQuizDictionary data = new TitleQuizDictionary();
+        FileStream file = File.Create(QuizdataPath);
+        QuizInfoDictionary data = new QuizInfoDictionary();
         data.CopyFrom(m_titleQuiz);
 
         data.OnBeforeSerialize();
@@ -31,42 +40,83 @@ public class SerializeDic : MonoBehaviour
         file.Close();
     }
 
-    private void Load()
+    //대회 dictionary 변수 저장용 함수 -> 대회 리스트를 얻는 함수는 userQuiz.cs 파일 내에 구현
+    public void ContestSave()
     {
-        if (File.Exists(dataPath))
+        BinaryFormatter bf = new BinaryFormatter();
+
+        FileStream file = File.Create(ContestdataPath);
+        ContestDictionary data = new ContestDictionary();
+        data.CopyFrom(m_Contest);
+
+        data.OnBeforeSerialize();
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    //퀴즈 dictionary 변수 로드용 함수
+    private void QuizLoad()
+    {
+        if (File.Exists(QuizdataPath))
         {
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream file = File.Open(dataPath, FileMode.Open);
-            m_titleQuiz = (TitleQuizDictionary)bf.Deserialize(file);
+            FileStream file = File.Open(QuizdataPath, FileMode.Open);
+            m_titleQuiz = (QuizInfoDictionary)bf.Deserialize(file);
             m_titleQuiz.OnAfterDeserialize();
             file.Close();
         }
         else
         {
-            m_titleQuiz = new TitleQuizDictionary();
+            m_titleQuiz = new QuizInfoDictionary();
         }
 
         return;
     }
 
-    public IDictionary<string,Answer> TitleQuizDictionary
+    // 대회 로드용 함수
+    private void ContestLoad()
+    {
+        if (File.Exists(ContestdataPath))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            FileStream file = File.Open(ContestdataPath, FileMode.Open);
+            m_Contest = (ContestDictionary)bf.Deserialize(file);
+            m_Contest.OnAfterDeserialize();
+            file.Close();
+        }
+        else
+        {
+            m_Contest = new ContestDictionary();
+        }
+
+        return;
+    }
+
+    public IDictionary<string, QuizInfo> QuizInfoDictionary
     {
         get { return m_titleQuiz; }
         set { m_titleQuiz.CopyFrom(value); }
     }
 
+    /*
+    public IDictionary<string, Contest> ContestDictionary
+    {
+        get { return m_Contest; }
+        set { m_Contest.CopyFrom(value); }
+    }*/
+
     public void setTitleQuiz()
     {
         m_titleQuiz.Add(title, ans);
-        ans = new Answer();
 
     }
     private void Start()
     {
         //ans = new Answer();
         Initialized();
-        Load();
-        
+        QuizLoad();
+
     }
 }
