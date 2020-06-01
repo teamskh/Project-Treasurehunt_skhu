@@ -46,16 +46,16 @@ public class ContestInput : MonoBehaviour
     void SaveContestDataToJson()
     {
         string jsonData = JsonUtility.ToJson(contestData, true);
-        string path = Path.Combine(Application.dataPath, "contestData.json");
-        //string path = Path.Combine(Application.persistentDataPath, "contestData.json");
+        //string path = Path.Combine(Application.dataPath, "contestData.json");
+        string path = Path.Combine(Application.persistentDataPath, "contestData.json");
         File.WriteAllText(path, jsonData);
     }
 
     [ContextMenu("From Json Data")]
     void LoadContestDataFromJson()
     {
-        //string path = Path.Combine(Application.persistentDataPath, "contestData.json");
-        string path = Path.Combine(Application.dataPath, "contestData.json");
+        string path = Path.Combine(Application.persistentDataPath, "contestData.json");
+        //string path = Path.Combine(Application.dataPath, "contestData.json");
         string jsonData = File.ReadAllText(path);
         contestData = JsonUtility.FromJson<ContestData>(jsonData);
     }
