@@ -70,11 +70,11 @@ MonoBehaviour:
   title: {fileID: 0}
   quiz: {fileID: 0}
   OK_B: {fileID: 0}
-  TFPanel: {fileID: 3100290400726234943, guid: a2c49e17ae1dd54469aebd59e6ffb7eb, type: 3}
-  IPanel: {fileID: 7295717495544801606, guid: b6328816851367d41acef4b713c4cffa, type: 3}
+  TFPanel: {fileID: 0}
+  IPanel: {fileID: 0}
   ipanel1: {fileID: 0}
   ipanel2: {fileID: 0}
-  WPanel: {fileID: 4144139029000808200, guid: 5ab827cc0eebba24dbdc72b667159502, type: 3}
+  WPanel: {fileID: 0}
   Word: {fileID: 0}
   QuizInfo: {fileID: 0}
 --- !u!114 &-2897858667709327140
@@ -92,4 +92,3 @@ MonoBehaviour:
   m_titleQuiz:
     m_keys: []
     m_values: []
-  title: 

@@ -6,19 +6,16 @@ using UnityEngine.UI;
 public class makeNumber : MonoBehaviour
 {
     //input field size:4 각각 text등록
-    [SerializeField]
-    private Text[] txts;
+    [SerializeField] private Text[] txts;
     //input field size:4 각각 text등록
-    [SerializeField]
-    private Text[] nos;
+    [SerializeField] private Text[] nos;
 
-    private SerializeDic dic;
+    //private QuizDic dic;
 
     // Start is called before the first frame update
     void Start()
     {
-        dic = GetComponent<SerializeDic>();
-        
+       // dic = GetComponent<QuizDic>();
     }
 
     // Update is called once per frame
@@ -39,12 +36,13 @@ public class makeNumber : MonoBehaviour
             text.text = "";
         }
     }
-    public void makelist()
+    public string[] makeslist()
     {
-        dic.ans.list = new string[4];
+        var list = new string[4];
         for(int i = 0; i < nos.Length; i++)
         {
-            dic.ans.list[i] = nos[i].text;
+            list[i] = nos[i].text;
         }
+        return list;
     }
 }

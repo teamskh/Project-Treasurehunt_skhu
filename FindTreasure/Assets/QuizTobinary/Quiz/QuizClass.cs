@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
-using UnityEngine;
-using System.Security.Permissions;
-using System.Linq;
+using serializeDic;
 
 namespace DataInfo
 {
@@ -38,43 +36,15 @@ namespace DataInfo
         public string Wanswer;
     }
 
-    [System.Serializable]
-    public class Contest
-    {
-        public bool Mode;
-        public int MaxMember;
-        public string Password;
-        public DateTime StartTime;
-        public DateTime EndTime;
-        public string info;
-        public int Userword;
-    }
+    
 
     [System.Serializable]
-    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo>
-    {
+    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo> {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizInfoDictionary() { }
     }
-
-    [System.Serializable]
-    public class ContestDictionary : SerializableDictionary<string, Contest>
-    {
-        protected ContestDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
-        public ContestDictionary() { }
-        public List<string> getContestList()
-        {
-            List<string> vs = new List<string>();
-
-            foreach (string k in this.Keys)
-            {
-                vs.Add(k);
-            }
-
-            return vs;
-        }
-    }
-
+    
+    
     public class QuizDictionary : SerializableDictionary<string, Quiz>
     {
         public void GetList(QuizInfoDictionary basedictionary)
@@ -82,13 +52,13 @@ namespace DataInfo
             var keys = basedictionary.Keys;
             var values = basedictionary.Values;
 
-            foreach (KeyValuePair<string, QuizInfo> k in basedictionary)
+            foreach(KeyValuePair<string,QuizInfo> k in basedictionary)
             {
                 Quiz value = new Quiz();
                 value.str = k.Value.str;
                 value.kind = k.Value.kind;
                 value.list = new String[4];
-                for (int j = 0; j < 4; j++)
+                for(int j = 0; j < 4; j++)
                 {
                     value.list[j] = k.Value.list[j];
                 }
