@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
 using serializeDic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DataInfo
 {
@@ -42,6 +43,17 @@ namespace DataInfo
     public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo> {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizInfoDictionary() { }
+
+        public List<string> GetList()
+        {
+            List<string> list = new List<string>();
+            foreach(var key in this.Keys)
+            {
+                list.Add(key);
+            }
+            return list;
+        }
+        
     }
     
     
@@ -65,6 +77,15 @@ namespace DataInfo
 
                 this.Add(k.Key, value);
             }
+        }
+        public Quiz FindQuiz(string key)
+        {
+            Quiz quiz = new Quiz();
+            if(this.TryGetValue(key,out quiz))
+            {
+                return quiz;
+            }
+            return null;
         }
     }
 
@@ -95,6 +116,17 @@ namespace DataInfo
 
                 this.Add(k.Key, value);
             }
+        }
+
+        public Answer GetAnswer(string key)
+        {
+            Answer ans = new Answer();
+            if (this.TryGetValue(key, out ans))
+            {
+                return ans;
+            }
+            else
+                return null;
         }
     }
 

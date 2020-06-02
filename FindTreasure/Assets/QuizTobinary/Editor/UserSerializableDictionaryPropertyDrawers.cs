@@ -9,7 +9,7 @@ using serializeDic;
 [CustomPropertyDrawer(typeof(ObjectColorDictionary))]
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]*/
 [CustomPropertyDrawer(typeof(QuizInfoDictionary))]
-[CustomPropertyDrawer(typeof(ContestDictionary))]
+[CustomPropertyDrawer(typeof(CompetitionDictionary))]
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
 /*[CustomPropertyDrawer(typeof(ColorArrayStorage))]

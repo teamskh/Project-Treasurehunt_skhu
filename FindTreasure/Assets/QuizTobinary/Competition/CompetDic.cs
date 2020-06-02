@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using serializeDic;
 
 [System.Serializable]
-public class Contest
+public class Competition
 {
     public bool Mode;
     public int MaxMember;
@@ -20,10 +20,10 @@ public class Contest
 }
 
 [System.Serializable]
-public class ContestDictionary : SerializableDictionary<string, Contest>
+public class CompetitionDictionary : SerializableDictionary<string, Competition>
 {
-    protected ContestDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
-    public ContestDictionary() { }
+    protected CompetitionDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    public CompetitionDictionary() { }
     public List<string> getContestList()
     {
         List<string> vs = new List<string>();
@@ -38,44 +38,44 @@ public class ContestDictionary : SerializableDictionary<string, Contest>
 }
 
 
-public class ContestDic : MonoBehaviour
+public class CompetDic : MonoBehaviour
 {
     #region Save Varaiable
     [SerializeField]
-    ContestDictionary m_Contest;
+    CompetitionDictionary m_Competition;
     #endregion
 
     #region Public Variable
     #endregion
 
     #region Instance
-    public static ContestDic instance;
+    public static CompetDic instance;
     #endregion
 
     #region Private Variable
-    private string ContestdataPath;
+    private string CompetdataPath;
     #endregion
 
     #region Private Methods
     private void Initialized()
     {
-        ContestdataPath = Application.persistentDataPath + "Contest.dat";
+        CompetdataPath = Application.persistentDataPath + "Contest.dat";
     }
 
     private void ContestLoad()
     {
-        if (File.Exists(ContestdataPath))
+        if (File.Exists(CompetdataPath))
         {
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream file = File.Open(ContestdataPath, FileMode.Open);
-            m_Contest = (ContestDictionary)bf.Deserialize(file);
-            m_Contest.OnAfterDeserialize();
+            FileStream file = File.Open(CompetdataPath, FileMode.Open);
+            m_Competition = (CompetitionDictionary)bf.Deserialize(file);
+            m_Competition.OnAfterDeserialize();
             file.Close();
         }
         else
         {
-            m_Contest = new ContestDictionary();
+            m_Competition = new CompetitionDictionary();
         }
     }
 
@@ -84,9 +84,9 @@ public class ContestDic : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
 
-        FileStream file = File.Create(ContestdataPath);
-        ContestDictionary data = new ContestDictionary();
-        data.CopyFrom(m_Contest);
+        FileStream file = File.Create(CompetdataPath);
+        CompetitionDictionary data = new CompetitionDictionary();
+        data.CopyFrom(m_Competition);
 
         data.OnBeforeSerialize();
         bf.Serialize(file, data);
@@ -97,7 +97,7 @@ public class ContestDic : MonoBehaviour
     #endregion
 
     #region For Instance Methods
-    public static ContestDic Instance
+    public static CompetDic Instance
     {
         get { return instance; }
     }
@@ -123,21 +123,37 @@ public class ContestDic : MonoBehaviour
 
     #region Public Methods
     //변수 추가용 함수 : Dictionary에 대회 더하고, 파일로 저장
-    public void AddContest(string Title,Contest con)
+    public void AddContest(string Title,Competition com)
     {
-        m_Contest.Add(Title, con);
+        m_Competition.Add(Title, com);
         ContestSave();
     }
 
     public List<string> getCurrentList()
     {
-        return m_Contest.getContestList();
+        return m_Competition.getContestList();
     }
-    #endregion
-
-    public IDictionary<string, Contest> ContestDictionary
+    public void DelCompt(string key)
     {
-        get { return m_Contest; }
-        set { m_Contest.CopyFrom(value); }
+        if (m_Competition.Remove(key))
+        {
+            ContestSave();
+#if UNITY_EDITOR
+            Debug.Log("Detele Competition Key: " + key);
+#endif
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.Log("Can't Remove Competition Key: " + key);
+#endif
+        }
+    }
+#endregion
+
+public IDictionary<string, Competition> ContestDictionary
+    {
+        get { return m_Competition; }
+        set { m_Competition.CopyFrom(value); }
     }
 }

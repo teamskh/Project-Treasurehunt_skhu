@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using serializeDic;
 using UnityScript.Scripting.Pipeline;
 using System;
+using System.CodeDom;
 
 //저장용 변수 저장-로드용 함수 및 클래스
 
@@ -79,6 +80,17 @@ public class QuizDic : MonoBehaviour
 
         m_QuizDicPlayer.Add(title, mQuiz);
 
+        SaveQuizPlayer();
+    }
+
+    private void DelQuizPlayer(string key)
+    {
+        m_QuizDicPlayer.Remove(key);
+        SaveQuizPlayer();
+    }
+
+    private void SaveQuizPlayer()
+    {
         //변수 저장
         BinaryFormatter bf = new BinaryFormatter();
 
@@ -110,7 +122,17 @@ public class QuizDic : MonoBehaviour
         }
 
         m_AnswerDic.Add(title, ans);
+        SaveQuizAnswer();
+        
+    }
 
+    private void DelQuizAnswer(string key)
+    {
+        m_AnswerDic.Remove(key);
+        SaveQuizAnswer();
+    }
+
+    private void SaveQuizAnswer() {
         BinaryFormatter bf = new BinaryFormatter();
 
         FileStream file = File.Create(ServerdataPath);
@@ -139,7 +161,25 @@ public class QuizDic : MonoBehaviour
         AddQuizAnswer(title, quiz);
     }
 
-    #endregion
+    public void DeleteQuiz(string key)
+    {
+        if (m_titleQuiz.Remove(key))
+        {
+            DelQuizPlayer(key);
+            DelQuizAnswer(key);
+#if UNITY_EDITOR
+            Debug.Log("Detele Item Key: " + key);
+#endif
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.Log("Can't Remove Item Key: " + key);
+#endif
+        }
+    }
+
+#endregion
 
     private void Start()
     {
