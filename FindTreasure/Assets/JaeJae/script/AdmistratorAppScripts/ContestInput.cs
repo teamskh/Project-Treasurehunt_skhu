@@ -28,20 +28,21 @@ public class ContestInput : MonoBehaviour
         public string loadContestName;
         public string loadTeamMNumber;
         public string loadContestPW;
-        public bool indi;
+        public bool indi=false;
         //public GameObject ContestBPrefab;
-        //public string[] 
-        public ContestData(int no, string CN, string TMN, string CPW, bool True)
+        //public string[]
+        public ContestData(int no, string CN, string TMN, string CPW, bool F)
         {
             wordNumber = no;
             loadContestName = CN;
             loadTeamMNumber = TMN;
             loadContestPW = CPW;
-            indi = True;
+            indi = false;
         }
     }
 
     public ContestData contestData;
+    //public static ContestData contest;//얘어떻게 해야할듯
     [ContextMenu("To Json Data")]
     void SaveContestDataToJson()
     {
@@ -59,7 +60,6 @@ public class ContestInput : MonoBehaviour
         string jsonData = File.ReadAllText(path);
         contestData = JsonUtility.FromJson<ContestData>(jsonData);
     }
-
     /*
     public void Awake()
     {
@@ -164,6 +164,7 @@ public class ContestInput : MonoBehaviour
                     contestData.loadContestName = ContestName_infT.text;
                     contestData.loadTeamMNumber = ContestTN_infT.text;
                     contestData.loadContestPW = ContestPw_infT.text;
+                    contestData.indi = false;
                 /*
                     PlayerPrefs.SetString("words" + wordNumber, contestData.loadContestName);
                     PlayerPrefs.SetString("TeamMember" + wordNumber, contestData.loadTeamMNumber);
@@ -206,7 +207,7 @@ public class ContestInput : MonoBehaviour
             }
             else if (individual.isOn)
             {
-                if (ContestName_infT.text != "" && ContestPw_infT.text != "")
+            if (ContestName_infT.text != "" && ContestPw_infT.text != "")
                 {
                     if (PlayerPrefs.HasKey("nextNumber"))
                         PlayerPrefs.GetInt("nextNumber", nextNumber);
@@ -218,6 +219,7 @@ public class ContestInput : MonoBehaviour
                     string loadContestName = ContestName_infT.text;
                     string loadTeamMNumber = ContestTN_infT.text;
                     string loadContestPW = ContestPw_infT.text;
+                    contestData.indi = true;
                 /*
                     PlayerPrefs.SetString("ContestPassword" + wordNumber, loadContestPW);
                     PlayerPrefs.SetString("TeamMember" + wordNumber, loadTeamMNumber);
