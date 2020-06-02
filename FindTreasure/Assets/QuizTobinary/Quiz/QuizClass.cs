@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
-using UnityEngine;
-using System.Security.Permissions;
-using System.Linq;
+using serializeDic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DataInfo
 {
@@ -38,43 +37,26 @@ namespace DataInfo
         public string Wanswer;
     }
 
-    [System.Serializable]
-    public class Contest
-    {
-        public bool Mode;
-        public int MaxMember;
-        public string Password;
-        public DateTime StartTime;
-        public DateTime EndTime;
-        public string info;
-        public int Userword;
-    }
+    
 
     [System.Serializable]
-    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo>
-    {
+    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo> {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizInfoDictionary() { }
-    }
 
-    [System.Serializable]
-    public class ContestDictionary : SerializableDictionary<string, Contest>
-    {
-        protected ContestDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
-        public ContestDictionary() { }
-        public List<string> getContestList()
+        public List<string> GetList()
         {
-            List<string> vs = new List<string>();
-
-            foreach (string k in this.Keys)
+            List<string> list = new List<string>();
+            foreach(var key in this.Keys)
             {
-                vs.Add(k);
+                list.Add(key);
             }
-
-            return vs;
+            return list;
         }
+        
     }
-
+    
+    
     public class QuizDictionary : SerializableDictionary<string, Quiz>
     {
         public void GetList(QuizInfoDictionary basedictionary)
@@ -82,19 +64,28 @@ namespace DataInfo
             var keys = basedictionary.Keys;
             var values = basedictionary.Values;
 
-            foreach (KeyValuePair<string, QuizInfo> k in basedictionary)
+            foreach(KeyValuePair<string,QuizInfo> k in basedictionary)
             {
                 Quiz value = new Quiz();
                 value.str = k.Value.str;
                 value.kind = k.Value.kind;
                 value.list = new String[4];
-                for (int j = 0; j < 4; j++)
+                for(int j = 0; j < 4; j++)
                 {
                     value.list[j] = k.Value.list[j];
                 }
 
                 this.Add(k.Key, value);
             }
+        }
+        public Quiz FindQuiz(string key)
+        {
+            Quiz quiz = new Quiz();
+            if(this.TryGetValue(key,out quiz))
+            {
+                return quiz;
+            }
+            return null;
         }
     }
 
@@ -125,6 +116,17 @@ namespace DataInfo
 
                 this.Add(k.Key, value);
             }
+        }
+
+        public Answer GetAnswer(string key)
+        {
+            Answer ans = new Answer();
+            if (this.TryGetValue(key, out ans))
+            {
+                return ans;
+            }
+            else
+                return null;
         }
     }
 

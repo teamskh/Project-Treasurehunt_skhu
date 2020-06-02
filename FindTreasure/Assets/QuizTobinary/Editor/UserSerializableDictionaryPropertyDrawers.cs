@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using DataInfo;
+using serializeDic;
 
 /*[CustomPropertyDrawer(typeof(StringStringDictionary))]
 [CustomPropertyDrawer(typeof(ObjectColorDictionary))]
 [CustomPropertyDrawer(typeof(StringColorArrayDictionary))]*/
 [CustomPropertyDrawer(typeof(QuizInfoDictionary))]
-[CustomPropertyDrawer(typeof(ContestDictionary))]
+[CustomPropertyDrawer(typeof(CompetitionDictionary))]
 public class AnySerializableDictionaryPropertyDrawer : SerializableDictionaryPropertyDrawer {}
 
 /*[CustomPropertyDrawer(typeof(ColorArrayStorage))]
