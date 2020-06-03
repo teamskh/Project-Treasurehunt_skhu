@@ -20,4 +20,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/JaeJae/Scene/AdministratorApp/administratorMenu.unity
     guid: abba70b33ca1fd4499571d3dfab18416
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36a78d431dacbd845aaa084b1bb0a063,
+      type: 2}
