@@ -14,12 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/playerapp/main.unity
     guid: 6aefd9411e7567541b14ba0b0d595737
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
     guid: a8925bcc64057be41a36c029c038e92f
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/administratorMenu.unity
     guid: abba70b33ca1fd4499571d3dfab18416
-  m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36a78d431dacbd845aaa084b1bb0a063,
-      type: 2}
+  - enabled: 1
+    path: Assets/JaeJae/Scene/AdministratorApp/ContestMenu.unity
+    guid: a5f3fa3dc3d95e14185f4f4fdfc25f35
+  m_configObjects: {}
