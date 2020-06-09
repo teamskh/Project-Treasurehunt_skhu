@@ -8,12 +8,30 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class QuizAnswerLoad : MonoBehaviour
 {
     private string ServerdataPath;
-    private AnswerDictionary m_AnswerDictionary;
+    public AnswerDictionary m_AnswerDictionary;
+
     // Start is called before the first frame update
     void Start()
     {
         ServerdataPath = Application.persistentDataPath + "ServerQuiz.dat";
-        AnswersLoad();
+        InitLoad(ServerdataPath, out m_AnswerDictionary);
+    }
+
+    static public void InitLoad(string Path,out AnswerDictionary  Adic)
+    {
+        if (File.Exists(Path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            FileStream file = File.Open(Path, FileMode.Open);
+            Adic = (AnswerDictionary)bf.Deserialize(file);
+            Adic.OnAfterDeserialize();
+            file.Close();
+        }
+        else
+        {
+            Adic = new AnswerDictionary();
+        }
     }
 
     private void AnswersLoad()

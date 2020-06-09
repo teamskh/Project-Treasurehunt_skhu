@@ -8,13 +8,36 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class PlayerQuizLoad : MonoBehaviour
 {
     private string PlayerdataPath;
-    private QuizDictionary m_QuizDictionary;
+    public QuizDictionary m_QuizDictionary;
+
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerdataPath = Application.persistentDataPath + "PlayerQuiz.dat";
-        QuizLoad();
+        //QuizLoad();
+        initLoad(PlayerdataPath, out m_QuizDictionary);
+        CheckKeys();
+    }
+
+    static public void initLoad(string path, out QuizDictionary Qdic)
+    {
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            FileStream file = File.Open(path, FileMode.Open);
+            Qdic = (QuizDictionary)bf.Deserialize(file);
+            Qdic.OnAfterDeserialize();
+            file.Close();
+            
+        }
+        else
+        {
+            Debug.Log("File Does't Exist");
+            Qdic = new QuizDictionary();
+        }
+
     }
 
     private void QuizLoad()
@@ -30,10 +53,16 @@ public class PlayerQuizLoad : MonoBehaviour
         }
         else
         {
+            Debug.Log("File Does't Exist");
             m_QuizDictionary = new QuizDictionary();
         }
 
         return;
+    }
+
+    private void CheckKeys()
+    {
+        
     }
 
     // Update is called once per frame

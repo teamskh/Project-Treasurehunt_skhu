@@ -95,6 +95,7 @@ public class onClicks : MonoBehaviour
         mQuiz.str = quiz.text;
 
         if(mQuiz.kind == 1) {
+            mQuiz.list = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.list, 4);
         }
         else if (mQuiz.kind == 2){

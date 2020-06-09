@@ -12,6 +12,7 @@ public class gameman : MonoBehaviour
     public Image[] img;
     public int score = 0;
     public GameObject inss;
+    public string imageText; //문제,답 내용 결정
 
     public string userna; 
     //페이지 이동시 저장될 유저이름

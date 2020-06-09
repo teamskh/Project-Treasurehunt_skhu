@@ -23,7 +23,7 @@ MonoBehaviour:
       m_GuidHigh: 6512008761490783000
     m_Size: {x: 1, y: 1}
     m_SpecifySize: 1
-    m_Name: AROX
+    m_Name: 1
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5272361991092306583
@@ -33,7 +33,7 @@ MonoBehaviour:
       m_GuidHigh: 13323265021357331400
     m_Size: {x: 1, y: 1.3333334}
     m_SpecifySize: 1
-    m_Name: ARChoice
+    m_Name: 2
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5432312405066400829
@@ -43,5 +43,5 @@ MonoBehaviour:
       m_GuidHigh: 15731237244009412538
     m_Size: {x: 1, y: 1.3333334}
     m_SpecifySize: 1
-    m_Name: ARInput
+    m_Name: 3
     m_Texture: {fileID: 0}
