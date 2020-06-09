@@ -4,6 +4,7 @@ using System;
 using System.Runtime.Serialization;
 using serializeDic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 namespace DataInfo
 {
@@ -55,40 +56,47 @@ namespace DataInfo
         }
         
     }
-    
-    
+
+    [System.Serializable]
     public class QuizDictionary : SerializableDictionary<string, Quiz>
     {
         public void GetList(QuizInfoDictionary basedictionary)
         {
-            var keys = basedictionary.Keys;
-            var values = basedictionary.Values;
-
             foreach(KeyValuePair<string,QuizInfo> k in basedictionary)
             {
                 Quiz value = new Quiz();
                 value.str = k.Value.str;
                 value.kind = k.Value.kind;
-                value.list = new String[4];
-                for(int j = 0; j < 4; j++)
+                if (value.kind == 1)
                 {
-                    value.list[j] = k.Value.list[j];
+                    value.list = new string[4];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        value.list[i] = k.Value.list[i];
+                    }
                 }
-
                 this.Add(k.Key, value);
             }
         }
         public Quiz FindQuiz(string key)
         {
             Quiz quiz = new Quiz();
-            if(this.TryGetValue(key,out quiz))
+            if (!this.ContainsKey(key)) Debug.Log("Can't find Key");
+            if (this.TryGetValue(key, out quiz))
             {
                 return quiz;
             }
-            return null;
+            else
+            {
+                Debug.Log("Can't Find Item");
+                return null;
+            }
         }
+        protected QuizDictionary(SerializationInfo info,StreamingContext context) : base(info, context) { }
+        public QuizDictionary() { }
     }
 
+    [System.Serializable]
     public class AnswerDictionary : SerializableDictionary<string, Answer>
     {
         public void GetList(QuizInfoDictionary basedictionary)
@@ -128,6 +136,8 @@ namespace DataInfo
             else
                 return null;
         }
+        protected AnswerDictionary(SerializationInfo info,StreamingContext context) :base(info, context) { }
+        public AnswerDictionary() { }
     }
 
 }
