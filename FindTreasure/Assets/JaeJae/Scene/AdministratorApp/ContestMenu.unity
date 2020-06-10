@@ -524,8 +524,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 203135112}
   m_TextComponent: {fileID: 722068979}
   m_Placeholder: {fileID: 518070494}
-  m_ContentType: 7
-  m_InputType: 2
+  m_ContentType: 0
+  m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -4132,7 +4132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1907594091
 RectTransform:
   m_ObjectHideFlags: 0

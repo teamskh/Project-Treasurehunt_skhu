@@ -9,45 +9,42 @@ public class ContestInput : MonoBehaviour
 {
     public GameObject ContestPanel;
     public InputField ContestName_infT;
-    public InputField ContestTN_infT;
+    public InputField ContestTN_infT;//inputfield
+    public Dropdown ContestTn_DD;//dropdown
     public InputField ContestPw_infT;
     public Toggle Team;
     public Toggle individual;
     public GameObject ContestBPrefab; //대회버튼
     public GameObject Content;
-    //public GameObject TeamMNumber;
+    public GameObject panel;
     public GameObject toggleChoice, all_t;
     int nextNumber;
-    //int wordNumber;
-    //List<GameObject> ContestList = new List<GameObject>();
+    List<string> num = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9" };
 
     [System.Serializable]
     public class ContestData
     {
         public int wordNumber;
         public string loadContestName;
-        public string loadTeamMNumber;
+        public string loadTeamMNumber = "2";
         public string loadContestPW;
-        public bool indi=false;
-        //public GameObject ContestBPrefab;
-        //public string[]
-        public ContestData(int no, string CN, string TMN, string CPW, bool F)
+        public bool indi = false;
+        public ContestData(int wordNumber, string loadContestName, string loadTeamMNumber, string loadContestPW, bool indi)
         {
-            wordNumber = no;
-            loadContestName = CN;
-            loadTeamMNumber = TMN;
-            loadContestPW = CPW;
-            indi = false;
+            this.wordNumber = wordNumber;
+            this.loadContestName = loadContestName;
+            this.loadTeamMNumber = loadTeamMNumber;
+            this.loadContestPW = loadContestPW;
+            this.indi = indi;
         }
-    }
-
+     }
+    public List<ContestData> contestList = new List<ContestData>();
+    
     public ContestData contestData;
-    //public static ContestData contest;//얘어떻게 해야할듯
     [ContextMenu("To Json Data")]
     void SaveContestDataToJson()
     {
-        string jsonData = JsonUtility.ToJson(contestData, true);
-        //string path = Path.Combine(Application.dataPath, "contestData.json");
+        string jsonData = JsonUtility.ToJson(contestList, true);
         string path = Path.Combine(Application.persistentDataPath, "contestData.json");
         File.WriteAllText(path, jsonData);
     }
@@ -56,23 +53,10 @@ public class ContestInput : MonoBehaviour
     void LoadContestDataFromJson()
     {
         string path = Path.Combine(Application.persistentDataPath, "contestData.json");
-        //string path = Path.Combine(Application.dataPath, "contestData.json");
         string jsonData = File.ReadAllText(path);
         contestData = JsonUtility.FromJson<ContestData>(jsonData);
     }
-    /*
-    public void Awake()
-    {
-        LoadContestDataFromJson();
-        for (int i = 0; i < wordNumber; i++)
-        {
-            GameObject CBPrefab = Instantiate(ContestBPrefab, ContestBPrefab.transform.position, Quaternion.identity) as GameObject;
-            //CBPrefab.transform.GetChild(0).transform.GetComponent<Text>().text = "" + (i + 1);//number
-            string loadContestName = PlayerPrefs.GetString("words" + i);//내어너니언어합친거버튼에 나타낼문장
-            CBPrefab.transform.GetChild(1).GetComponent<Text>().text = loadContestName; //number옆text
-            CBPrefab.transform.SetParent(Content.transform, false);
-        }
-    }*/
+   
     public void Start()
     {
         
@@ -84,7 +68,6 @@ public class ContestInput : MonoBehaviour
         contestData.wordNumber = PlayerPrefs.GetInt("wordNumber");
 
         //transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, contestData.wordNumber * 112);
-        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, contestData.wordNumber * 112);
 
         LoadContestDataFromJson();
         //for (int i = 0; i < wordNumber; i++)
@@ -92,25 +75,22 @@ public class ContestInput : MonoBehaviour
         {
             GameObject CBPrefab = Instantiate(ContestBPrefab, ContestBPrefab.transform.position, Quaternion.identity) as GameObject;
             //CBPrefab.transform.GetChild(0).transform.GetComponent<Text>().text = "" + (i + 1);//number
-            string loadContestName = PlayerPrefs.GetString("words" + i);//내어너니언어합친거버튼에 나타낼문장
-            CBPrefab.transform.GetChild(1).GetComponent<Text>().text = loadContestName; //number옆text
-            CBPrefab.transform.SetParent(Content.transform, false);
+            //string loadContestName = PlayerPrefs.GetString("words" + i);//내어너니언어합친거버튼에 나타낼문장
+            CBPrefab.transform.GetChild(1).GetComponent<Text>().text = contestData.loadContestName; //number옆text
+            CBPrefab.transform.SetParent(Content.transform);
         }
+        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, contestData.wordNumber * 155);
     }
     public void Update()
     {
         
         if (Team.isOn)
         {
-            //TeamMNumber.SetActive(true);
-            ContestTN_infT.image.color = Color.white;
+            panel.SetActive(false);
         }
         else if(individual.isOn)
         {
-            ContestTN_infT.DeactivateInputField();
-            ContestTN_infT.image.color=Color.gray;
-            ContestTN_infT.text = "";
-            //TeamMNumber.SetActive(false);
+            panel.SetActive(true);
         }
 
     }
@@ -123,37 +103,19 @@ public class ContestInput : MonoBehaviour
         else if (ContestPanel.activeSelf == false)
         {
             ContestPanel.SetActive(true);
+            contestData.loadTeamMNumber = "2";
+            HandleInputData();
         }
     }
-    /*
-    public void AddContestList()
-    {
-        if(ContestName_infT.text!=""&&ContestTN_infT.text!=""&& ContestPw_infT.text != "")
-        {
-
-        }
-    }*/
+   
     
     public void Save()
     {
-        //PlayerPrefs.SetString("ContestName", ContestName_infT.text);
-        //PlayerPrefs.SetString("TeamMember", ContestTN_infT.text);
-        //PlayerPrefs.SetString("ContestPassword", ContestPw_infT.text);
-        /*
-        if (ContestName_infT.text == "" || ContestTN_infT.text == "" || ContestPw_infT.text== "")
-        {
-            all_t.SetActive(true);
-            StartCoroutine(setActiveObjinSecond(all_t, 1f));
-            //Destroy(this.all_t, 3f)
-            ContestPanel.SetActive(true);
-        }
-        else
-        {*/
-        
-            if (Team.isOn)
+        if (Team.isOn)
             {
-                if (ContestName_infT.text != "" && ContestTN_infT.text != "" && ContestPw_infT.text != "")
-                {
+            //if (ContestName_infT.text != "" && ContestTN_infT.text != "" && ContestPw_infT.text != "")
+            if (ContestName_infT.text != "" && ContestPw_infT.text != "")
+            {
                     if (PlayerPrefs.HasKey("nextNumber"))
                        nextNumber= PlayerPrefs.GetInt("nextNumber", nextNumber);
                     nextNumber++;
@@ -162,7 +124,7 @@ public class ContestInput : MonoBehaviour
                     //CBPrefab.transform.GetChild(0).transform.GetComponent<Text>().text=""+nextNumber;
                     //string loadContestName=PlayerPrefs.GetString
                     contestData.loadContestName = ContestName_infT.text;
-                    contestData.loadTeamMNumber = ContestTN_infT.text;
+                    //contestData.loadTeamMNumber = ContestTN_infT.text;
                     contestData.loadContestPW = ContestPw_infT.text;
                     contestData.indi = false;
                 /*
@@ -170,9 +132,11 @@ public class ContestInput : MonoBehaviour
                     PlayerPrefs.SetString("TeamMember" + wordNumber, contestData.loadTeamMNumber);
                     PlayerPrefs.SetString("ContestPassword" + wordNumber, contestData.loadContestPW);
                     */
-                PlayerPrefs.SetString("words" + contestData.wordNumber, contestData.loadContestName);
-                PlayerPrefs.SetString("TeamMember" + contestData.wordNumber, contestData.loadTeamMNumber);
-                PlayerPrefs.SetString("ContestPassword" + contestData.wordNumber, contestData.loadContestPW);
+    /*
+    PlayerPrefs.SetString("words" + contestData.wordNumber, contestData.loadContestName);
+    PlayerPrefs.SetString("TeamMember" + contestData.wordNumber, contestData.loadTeamMNumber);
+    PlayerPrefs.SetString("ContestPassword" + contestData.wordNumber, contestData.loadContestPW);
+    */
 
                 CBPrefab.transform.GetChild(1).transform.GetComponent<Text>().text = contestData.loadContestName;
                     ContestName_infT.text = "";
@@ -185,12 +149,13 @@ public class ContestInput : MonoBehaviour
                 //PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
                 PlayerPrefs.SetInt("wordNumber" + contestData.wordNumber, contestData.wordNumber);
                 //Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
-                Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, contestData.wordNumber * 112);
+                
                 for (int i = 0; i < contestData.wordNumber; i++)
                 {
                     SaveContestDataToJson();
                 }
-                }
+                Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, contestData.wordNumber * 155);
+            }
                 else
                 {
                      all_t.SetActive(true);
@@ -204,6 +169,7 @@ public class ContestInput : MonoBehaviour
                 Instantiate(ContestBPrefab, new Vector3(0, Count * 10, 0), Quaternion.identity);
                 ContestList.Add(ContestBPrefab.gameObject);
                 string loadContestName = PlayerPrefs.GetString("ContestName");*/
+
             }
             else if (individual.isOn)
             {
@@ -216,37 +182,44 @@ public class ContestInput : MonoBehaviour
                         Quaternion.identity) as GameObject;
                     //CBPrefab.transform.GetChild(0).transform.GetComponent<Text>().text=""+nextNumber;
                     //string loadContestName=PlayerPrefs.GetString
+                    /*
                     string loadContestName = ContestName_infT.text;
                     string loadTeamMNumber = ContestTN_infT.text;
-                    string loadContestPW = ContestPw_infT.text;
+                    string loadContestPW = ContestPw_infT.text;*/
+
                     contestData.indi = true;
+                contestData.loadContestName = ContestName_infT.text;
+                contestData.loadTeamMNumber = "1";
+                contestData.loadContestPW = ContestPw_infT.text;
                 /*
                     PlayerPrefs.SetString("ContestPassword" + wordNumber, loadContestPW);
                     PlayerPrefs.SetString("TeamMember" + wordNumber, loadTeamMNumber);
                     PlayerPrefs.SetString("words" + wordNumber, loadContestName);*/
-                PlayerPrefs.SetString("ContestPassword" + contestData.wordNumber, loadContestPW);
-                PlayerPrefs.SetString("TeamMember" + contestData.wordNumber, loadTeamMNumber);
-                PlayerPrefs.SetString("words" + contestData.wordNumber, loadContestName);
+    /*
+    PlayerPrefs.SetString("ContestPassword" + contestData.wordNumber, loadContestPW);
+    PlayerPrefs.SetString("TeamMember" + contestData.wordNumber, loadTeamMNumber);
+    PlayerPrefs.SetString("words" + contestData.wordNumber, loadContestName);
+    */
 
-                CBPrefab.transform.GetChild(1).transform.GetComponent<Text>().text = loadContestName;
-                    ContestName_infT.text = "";
+                CBPrefab.transform.GetChild(1).transform.GetComponent<Text>().text = contestData.loadContestName;
+                ContestName_infT.text = "";
                     ContestTN_infT.text = "";
                     ContestPw_infT.text = "";
                     CBPrefab.transform.SetParent(Content.transform, false);
                     PlayerPrefs.SetInt("nextNumber", nextNumber);
-                /*
-                    wordNumber++;
-                    PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
-                    Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);*/
+
                 contestData.wordNumber++;
                 PlayerPrefs.SetInt("wordNumber" + contestData.wordNumber, contestData.wordNumber);
-                Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, contestData.wordNumber * 112);
+                for (int i = 0; i < contestData.wordNumber; i++)
+                {
+                    SaveContestDataToJson();
+                }
+                Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, contestData.wordNumber * 155);
             }
                 else
                 {
                 all_t.SetActive(true);
                 StartCoroutine(setActiveObjinSecond(all_t, 1f));
-                //Destroy(this.all_t, 3f)
                 ContestPanel.SetActive(true);
                 Debug.Log("Empty");
                  }
@@ -256,8 +229,8 @@ public class ContestInput : MonoBehaviour
                 toggleChoice.SetActive(true);
                 Destroy(toggleChoice, 1);
             }
-        
 
+        ContestTn_DD.ClearOptions();
     }
 
     public void Cancel()
@@ -265,6 +238,8 @@ public class ContestInput : MonoBehaviour
         ContestName_infT.text = "";
         ContestTN_infT.text = "";
         ContestPw_infT.text = "";
+        contestData.loadTeamMNumber = "";
+        ContestTn_DD.ClearOptions();
     }
 
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
@@ -273,12 +248,12 @@ public class ContestInput : MonoBehaviour
         yield return new WaitForSeconds(second);
         gameObject.SetActive(false);
     }
-    
-    /*
-     public void Load()
-     {
-         ContestName_infT.text = PlayerPrefs.GetString("ContestName");
-         ContestTN_infT.text = PlayerPrefs.GetInt("TeamMember").ToString();
-         ContestPw_infT.text = PlayerPrefs.GetString("ContestPassword");
-     }*/
+    public void HandleInputData()
+    {
+        ContestTn_DD.AddOptions(num);
+    }
+    public void DropDown_Change(int index)
+    {
+        contestData.loadTeamMNumber = num[index];
+    }
 }
