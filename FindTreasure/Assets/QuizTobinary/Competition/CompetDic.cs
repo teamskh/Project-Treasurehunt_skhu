@@ -54,12 +54,13 @@ public class CompetDic : MonoBehaviour
 
     #region Private Variable
     private string CompetdataPath;
+   
     #endregion
 
     #region Private Methods
     private void Initialized()
     {
-        CompetdataPath = Application.persistentDataPath + "Contest.dat";
+        CompetdataPath = Application.persistentDataPath + "/Contest.dat";
     }
 
     private void ContestLoad()
@@ -68,13 +69,16 @@ public class CompetDic : MonoBehaviour
         {
             BinaryFormatter bf = new BinaryFormatter();
 
-            FileStream file = File.Open(CompetdataPath, FileMode.Open);
-            m_Competition = (CompetitionDictionary)bf.Deserialize(file);
-            m_Competition.OnAfterDeserialize();
-            file.Close();
+            using (FileStream file = File.Open(CompetdataPath, FileMode.Open))
+            {
+                m_Competition = (CompetitionDictionary)bf.Deserialize(file);
+                m_Competition.OnAfterDeserialize();
+                file.Close();
+            }
         }
         else
         {
+            Debug.Log("Contest File.Doesn't Exisit");
             m_Competition = new CompetitionDictionary();
         }
     }
@@ -84,14 +88,15 @@ public class CompetDic : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
 
-        FileStream file = File.Create(CompetdataPath);
-        CompetitionDictionary data = new CompetitionDictionary();
-        data.CopyFrom(m_Competition);
+        using (FileStream file = File.Create(CompetdataPath))
+        {
+            CompetitionDictionary data = new CompetitionDictionary();
+            data.CopyFrom(m_Competition);
 
-        data.OnBeforeSerialize();
-        bf.Serialize(file, data);
-        file.Close();
-
+            data.OnBeforeSerialize();
+            bf.Serialize(file, data);
+            file.Close();
+        }
 
     }
     #endregion
@@ -102,7 +107,7 @@ public class CompetDic : MonoBehaviour
         get { return instance; }
     }
 
-    private void Awake()
+    private void Start()
     {
         if(instance == null)
         {

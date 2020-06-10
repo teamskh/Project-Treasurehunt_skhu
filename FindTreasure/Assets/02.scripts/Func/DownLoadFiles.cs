@@ -7,12 +7,14 @@ using UnityEngine;
 public class DownLoadFiles : MonoBehaviour
 {
     string gitFileRoot = "https://github.com/teamskh/REPORT/tree/master/contents";
-    string downLoadPath = Application.persistentDataPath;
-    string FileName = "PlayerQuiz.dat";
+    string downLoadPath;
+    string FileName = "/Contest.dat";
     WebClient wc;
     // Start is called before the first frame update
     void Start()
     {
+        downLoadPath = Application.persistentDataPath;
+
         wc = new WebClient();
         DownLoad();
     }
