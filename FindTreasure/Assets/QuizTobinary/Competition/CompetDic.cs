@@ -11,12 +11,13 @@ using serializeDic;
 public class Competition
 {
     public bool Mode;
-    public int MaxMember;
+    public string MaxMember;
     public string Password;
     public DateTime StartTime;
     public DateTime EndTime;
     public string info;
     public int Userword;
+    public int wordNumber;
 }
 
 [System.Serializable]
