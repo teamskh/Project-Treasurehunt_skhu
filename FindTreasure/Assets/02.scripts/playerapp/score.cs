@@ -16,6 +16,8 @@ public class score : MonoBehaviour
     public Text endtimerbar; // 상단에 남은시간
     public GameObject endtime; //남은시간있다면 켜지고 아니라면 안나옴
 
+    public Text test;
+
     public Text user;
 
     // Start is called before the first frame update
@@ -30,7 +32,7 @@ public class score : MonoBehaviour
     public void click() //시간 세팅
     {
         star = true;
-        LimiTime = 20;
+        LimiTime = 50;
         bar.SetActive(true);
         gameman.Instance.score = 0;
     }
@@ -38,6 +40,8 @@ public class score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        test.text = gameman.Instance.imageText;
+
         if (star == true)
         {
             if (LimiTime < 0)
