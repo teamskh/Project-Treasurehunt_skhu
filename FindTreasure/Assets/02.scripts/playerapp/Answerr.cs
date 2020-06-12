@@ -45,148 +45,20 @@ public class Answerr : MonoBehaviour
         }
     }
     
-    public void Ansfirst()
+    public void Ans(int a)
     {
         Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-        if (current.Ianswer == 1)
+        for (int i =0;i<4;i++)
         {
-            testscore += current.score;
-            ans[0].GetComponent<Renderer>().material = Mat1;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
+            if(current.Ianswer == a&& a==i+1)
+            {
+                testscore += current.score;
+                ans[i].GetComponent<Renderer>().material = Mat1;
+            }
+            else
+            {
+                ans[i].GetComponent<Renderer>().material = Mat2;
+            }
         }
-        else if (current.Ianswer == 2)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat1;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 3)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat1;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 4)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat1;
-        }
-
-        an.SetActive(true);
-
     }
-    public void Anssecond()
-    {
-        Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-        if (current.Ianswer == 1)
-        {
-            
-            ans[0].GetComponent<Renderer>().material = Mat1;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 2)
-        {
-            testscore += current.score;
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat1;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 3)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat1;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 4)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat1;
-        }
-        an.SetActive(true);
-
-    }
-    public void Ansthird()
-    {
-        Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-        if (current.Ianswer == 1)
-        {
-            
-            ans[0].GetComponent<Renderer>().material = Mat1;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 2)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat1;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 3)
-        {
-            testscore += current.score;
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat1;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 4)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat1;
-        }
-        an.SetActive(true);
-
-    }
-    public void Ansfour()
-    {
-        Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-        if (current.Ianswer == 1)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat1;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 2)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat1;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 3)
-        {
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat1;
-            ans[3].GetComponent<Renderer>().material = Mat2;
-        }
-        else if (current.Ianswer == 4)
-        {
-            testscore += current.score;
-            ans[0].GetComponent<Renderer>().material = Mat2;
-            ans[1].GetComponent<Renderer>().material = Mat2;
-            ans[2].GetComponent<Renderer>().material = Mat2;
-            ans[3].GetComponent<Renderer>().material = Mat1;
-        }
-
-        an.SetActive(true);
-    }
-    
 }
