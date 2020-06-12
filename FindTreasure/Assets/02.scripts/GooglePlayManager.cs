@@ -10,15 +10,13 @@ using GooglePlayGames.BasicApi;
 public class GooglePlayManager : MonoBehaviour
 {
     bool bWait = false;
-    public Text text;
 
     void Awake()
     {
         PlayGamesPlatform.InitializeInstance(new PlayGamesClientConfiguration.Builder().Build());
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
-
-        text.text = "no Login";
+        
     }
     void Start()
     {
@@ -44,12 +42,11 @@ public class GooglePlayManager : MonoBehaviour
                     Debug.Log("Success : " + Social.localUser.userName+Social.localUser.id);
                     gameman.instance.userna = Social.localUser.userName;
                     //text.text = gameman.instance.userna;
-                    gameObject.GetComponent<scenechange>().changeFirstScene();
+                    gameObject.GetComponent<scenechange>().changeMainScene();
                 }
                 else
                 {
                     Debug.Log("Fall");
-                    text.text = "Fail";
                 }
             });
         }
@@ -58,6 +55,6 @@ public class GooglePlayManager : MonoBehaviour
     public void OnLogOut()
     {
         ((PlayGamesPlatform)Social.Active).SignOut();
-        text.text = "Logout";
     }
+    
 }

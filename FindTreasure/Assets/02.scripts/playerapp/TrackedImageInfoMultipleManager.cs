@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 
 [RequireComponent(typeof(ARTrackedImageManager))]
@@ -8,81 +9,68 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject[] arObjectsToPlace;
+    private GameObject[] placeablePrefabs;
 
-    [SerializeField]
-    private Vector3 scaleFactor = new Vector3(0.1f,0.1f,0.1f);
+    private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
+    private ARTrackedImageManager trackedImageManager;
 
-    private ARTrackedImageManager m_TrackedImageManager;
-
-    private Dictionary<string, GameObject> arObjects = new Dictionary<string, GameObject>();
-
-    void Awake()
+    private void Awake()
     {
-        m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
-        
-        // setup all game objects in dictionary
-        foreach(GameObject arObject in arObjectsToPlace)
+        trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
+
+        foreach (GameObject prefab in placeablePrefabs)
         {
-            GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
-            newARObject.name = arObject.name;
-            arObjects.Add(arObject.name, newARObject);
+            GameObject newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            newPrefab.name = prefab.name;
+            spawnedPrefabs.Add(prefab.name, newPrefab);
         }
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        trackedImageManager.trackedImagesChanged += ImageChanged;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        m_TrackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
+        trackedImageManager.trackedImagesChanged -= ImageChanged;
     }
 
-
-    void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    private void ImageChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        foreach (ARTrackedImage trackedImage in eventArgs.added)
+        foreach(ARTrackedImage trackedImage in eventArgs.added)
         {
-            UpdateARImage(trackedImage);
+            UpdateImage(trackedImage);
         }
-
-        foreach (ARTrackedImage trackedImage in eventArgs.updated)
+        foreach(ARTrackedImage trackedImage in eventArgs.updated)
         {
-            UpdateARImage(trackedImage);
+            UpdateImage(trackedImage);
         }
-
-        foreach (ARTrackedImage trackedImage in eventArgs.removed)
+        foreach(ARTrackedImage trackedImage in eventArgs.removed)
         {
-            arObjects[trackedImage.name].SetActive(false);
+            string[] name = trackedImage.name.Split(new char[] { '_' });
+            spawnedPrefabs[name[0]].SetActive(false);
         }
     }
 
-    private void UpdateARImage(ARTrackedImage trackedImage)
+    private void UpdateImage(ARTrackedImage trackedImage)
     {
-        // Assign and Place Game Object
-        AssignGameObject(trackedImage.referenceImage.name, trackedImage.transform.position);
+        string[] name = trackedImage.referenceImage.name.Split(new char[] { '_' });
 
-        Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
-    }
+        gameman.Instance.imageText = name[1];
 
-    void AssignGameObject(string name, Vector3 newPosition)
-    {
-        if(arObjectsToPlace != null)
+        Vector3 position = trackedImage.transform.position;
+
+        GameObject prefab = spawnedPrefabs[name[0]];
+        prefab.transform.position = position;
+        prefab.SetActive(true);
+
+        foreach(GameObject go in spawnedPrefabs.Values)
         {
-            GameObject goARObject = arObjects[name];
-            goARObject.SetActive(true);
-            goARObject.transform.position = newPosition;
-            goARObject.transform.localScale = scaleFactor;
-            foreach(GameObject go in arObjects.Values)
+            if(go.name != name[0])
             {
-                Debug.Log($"Go in arObjects.Values: {go.name}");
-                if(go.name != name)
-                {
-                    go.SetActive(false);
-                }
-            } 
+                go.SetActive(false);
+            }
         }
     }
 }

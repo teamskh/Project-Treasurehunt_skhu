@@ -29,6 +29,7 @@ public class QuizDic : MonoBehaviour
         QuizdataPath = Application.persistentDataPath + "Quiz.dat";
         PlayerdataPath = Application.persistentDataPath + "PlayerQuiz.dat";
         ServerdataPath = Application.persistentDataPath + "ServerQuiz.dat";
+        
     }
 
     //퀴즈 dictionary 변수 저장용 함수
@@ -61,6 +62,9 @@ public class QuizDic : MonoBehaviour
         {
             m_titleQuiz = new QuizInfoDictionary();
         }
+       
+        PlayerQuizLoad.initLoad(PlayerdataPath, out m_QuizDicPlayer);
+        QuizAnswerLoad.InitLoad(ServerdataPath, out m_AnswerDic);
 
         return;
     }
@@ -81,6 +85,7 @@ public class QuizDic : MonoBehaviour
         m_QuizDicPlayer.Add(title, mQuiz);
 
         SaveQuizPlayer();
+        Debug.Log("Making Files");
     }
 
     private void DelQuizPlayer(string key)
@@ -150,6 +155,16 @@ public class QuizDic : MonoBehaviour
     {
         get { return m_titleQuiz; }
         set { m_titleQuiz.CopyFrom(value); }
+    }
+    public IDictionary<string, Quiz> QuizDictionary
+    {
+        get { return m_QuizDicPlayer; }
+        set { m_QuizDicPlayer.CopyFrom(value); }
+    }
+    public IDictionary<string, Answer> AnswerDictionary
+    {
+        get { return m_AnswerDic; }
+        set { m_AnswerDic.CopyFrom(value); }
     }
 
     public void AddQuiz(string title, QuizInfo quiz)

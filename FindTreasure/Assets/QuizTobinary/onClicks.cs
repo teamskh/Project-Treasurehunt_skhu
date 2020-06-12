@@ -9,8 +9,6 @@ public class onClicks : MonoBehaviour
     Text title;
     [SerializeField]
     Text quiz;
-    [SerializeField]
-    GameObject OK_B;
 
     [SerializeField]
     GameObject TFPanel;
@@ -26,7 +24,7 @@ public class onClicks : MonoBehaviour
 
     [SerializeField] Text Word;
 
-    [SerializeField] Text QuizInfo;
+    [SerializeField] Text Quizlog;
     
     private QuizDic dic;
 
@@ -57,7 +55,6 @@ public class onClicks : MonoBehaviour
         TFPanel.SetActive(true);
         IPanel.SetActive(false);
         WPanel.SetActive(false);
-        OK_B.SetActive(true);
     }
 
     public void Changekind_int()
@@ -67,7 +64,6 @@ public class onClicks : MonoBehaviour
         ipanelInit();
         TFPanel.SetActive(false);
         WPanel.SetActive(false);
-        OK_B.SetActive(true);
     }
 
     public void Changekind_W()
@@ -81,14 +77,12 @@ public class onClicks : MonoBehaviour
     {
         ipanel1.SetActive(false);
         ipanel2.SetActive(true);
-        OK_B.SetActive(true);
     }
     
     void ipanelInit()
     {
         ipanel1.SetActive(true);
         ipanel2.SetActive(false);
-        OK_B.SetActive(false);
     }
     
     public void setAnswer(bool b){ mQuiz.Banswer = b; }
@@ -101,31 +95,33 @@ public class onClicks : MonoBehaviour
         mQuiz.str = quiz.text;
 
         if(mQuiz.kind == 1) {
+            mQuiz.list = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.list, 4);
         }
         else if (mQuiz.kind == 2){
             mQuiz.Wanswer = Word.text;
         }
         dic.AddQuiz(mtitle, mQuiz);
-        QuizDebug();
+        if (Quizlog != null)
+            QuizDebug();
 
         mQuiz = new QuizInfo();
     }
 
     void QuizDebug()
     {
-        QuizInfo.text = "";
-        QuizInfo.text += string.Format("Title: {0}\nQuiz: {1}\nKind: {2}\n", title.text, quiz.text, mQuiz.kind);
+        Quizlog.text = "";
+        Quizlog.text += string.Format("Title: {0}\nQuiz: {1}\nKind: {2}\n", title.text, quiz.text, mQuiz.kind);
         switch (mQuiz.kind)
         {
             case 0:
-                QuizInfo.text += string.Format("Answer: {0}\n", mQuiz.Banswer);
+                Quizlog.text += string.Format("Answer: {0}\n", mQuiz.Banswer);
                 break;
             case 1:
-                QuizInfo.text += string.Format("Answer: {0}\n", mQuiz.Ianswer);
+                Quizlog.text += string.Format("Answer: {0}\n", mQuiz.Ianswer);
                 break;
             case 2:
-                QuizInfo.text += string.Format("Answer: {0}\n", mQuiz.Wanswer);
+                Quizlog.text += string.Format("Answer: {0}\n", mQuiz.Wanswer);
                 break;
             default:
                 break;
