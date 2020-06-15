@@ -11,7 +11,7 @@ using serializeDic;
 public class Competition
 {
     public bool Mode;
-    public string MaxMember;
+    public int MaxMember;
     public string Password;
     public DateTime StartTime;
     public DateTime EndTime;
