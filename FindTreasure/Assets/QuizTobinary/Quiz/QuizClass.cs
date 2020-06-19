@@ -5,41 +5,12 @@ using System.Runtime.Serialization;
 using serializeDic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using TTM.Classes;
+using TTM.Save;
 
 namespace DataInfo
 {
-    [System.Serializable]
-    public class QuizInfo
-    {
-        public string str;
-        public int score;
-        public int kind;
-        public string[] list;
-        public bool Banswer;
-        public int Ianswer;
-        public string Wanswer;
-    }
-
-    [System.Serializable]
-    public class Quiz
-    {
-        public string str;
-        public int kind;
-        public string[] list;
-    }
-
-    [System.Serializable]
-    public class Answer
-    {
-        public int kind;
-        public int score;
-        public bool Banswer;
-        public int Ianswer;
-        public string Wanswer;
-    }
-
     
-
     [System.Serializable]
     public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo> {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
@@ -65,14 +36,14 @@ namespace DataInfo
             foreach(KeyValuePair<string,QuizInfo> k in basedictionary)
             {
                 Quiz value = new Quiz();
-                value.str = k.Value.str;
-                value.kind = k.Value.kind;
-                if (value.kind == 1)
+                value.Str = k.Value.Str;
+                value.Kind = k.Value.Kind;
+                if (value.Kind == 1)
                 {
-                    value.list = new string[4];
+                    value.List = new string[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        value.list[i] = k.Value.list[i];
+                        value.List[i] = k.Value.List[i];
                     }
                 }
                 this.Add(k.Key, value);
@@ -107,9 +78,9 @@ namespace DataInfo
             foreach (KeyValuePair<string, QuizInfo> k in basedictionary)
             {
                 Answer value = new Answer();
-                value.score = k.Value.score;
-                value.kind = k.Value.kind;
-                switch (value.kind)
+                value.Score = k.Value.Score;
+                value.Kind = k.Value.Kind;
+                switch (value.Kind)
                 {
                     case 0:
                         value.Banswer = k.Value.Banswer;
@@ -126,15 +97,30 @@ namespace DataInfo
             }
         }
 
-        public Answer GetAnswer(string key)
+        private static bool LoadAnswers(out Answer answer,string key)
+        {
+            AnswerDictionary dic;
+            if (JsonLoadSave.LoadAnswers(out dic))
+            {
+                if (dic.TryGetValue(key, out answer))
+                {
+                    Debug.Log($"Find Answer : {key}");
+                    return true;
+                }
+                else
+                    Debug.Log($"Can't Find Answer : {key}");
+            }
+            answer = null;
+            return false;
+        }
+        public static Answer GetAnswer(string key)
         {
             Answer ans = new Answer();
-            if (this.TryGetValue(key, out ans))
-            {
-                return ans;
+            if (!LoadAnswers(out ans, key)){
+                Debug.Log($"Can't Find Answer : {key}");
             }
-            else
-                return null;
+            return ans;
+
         }
         protected AnswerDictionary(SerializationInfo info,StreamingContext context) :base(info, context) { }
         public AnswerDictionary() { }

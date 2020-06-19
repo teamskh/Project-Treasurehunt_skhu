@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TTM.Classes;
 
 public class ContestInput : MonoBehaviour
 {

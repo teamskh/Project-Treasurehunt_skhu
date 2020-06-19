@@ -29,9 +29,12 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     score score;
 
+    private CompetDic scripts;
+
     private void Start()
     {
         m_ClickAction += SetActive;
+        scripts = gameObject.AddComponent<CompetDic>();
     }
 
 
@@ -40,7 +43,7 @@ public class CreateCompetbuttons : MonoBehaviour
     {
         m_ClickAction += sfxmusic.start;
         m_ClickAction += score.click;
-        curlist = CompetDic.instance.getCurrentList();
+        curlist = scripts.getCurrentList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
             b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count+1) * 60);

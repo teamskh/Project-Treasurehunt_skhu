@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TTM.Classes;
 
 public class onClicks : MonoBehaviour
 {
@@ -35,9 +36,7 @@ public class onClicks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dic = gameObject.GetComponent<QuizDic>();
-        if(dic == null)
-        { Debug.Log("dic is null"); }
+        dic = gameObject.AddComponent<QuizDic>();
         mQuiz = new QuizInfo();
 
         Changekind_TF();
@@ -51,7 +50,7 @@ public class onClicks : MonoBehaviour
     
     public void Changekind_TF()
     {
-        mQuiz.kind = 0;
+        mQuiz.Kind = 0;
         TFPanel.SetActive(true);
         IPanel.SetActive(false);
         WPanel.SetActive(false);
@@ -59,7 +58,7 @@ public class onClicks : MonoBehaviour
 
     public void Changekind_int()
     {
-        mQuiz.kind = 1;
+        mQuiz.Kind = 1;
         IPanel.SetActive(true);
         ipanelInit();
         TFPanel.SetActive(false);
@@ -68,7 +67,7 @@ public class onClicks : MonoBehaviour
 
     public void Changekind_W()
     {
-        mQuiz.kind = 2;
+        mQuiz.Kind = 2;
         WPanel.SetActive(true);
         IPanel.SetActive(false);
         TFPanel.SetActive(false);
@@ -92,13 +91,13 @@ public class onClicks : MonoBehaviour
     public void OK()
     {
         var mtitle = title.text;
-        mQuiz.str = quiz.text;
+        mQuiz.Str = quiz.text;
 
-        if(mQuiz.kind == 1) {
-            mQuiz.list = new string[4];
-            Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.list, 4);
+        if(mQuiz.Kind == 1) {
+            mQuiz.List = new string[4];
+            Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.List, 4);
         }
-        else if (mQuiz.kind == 2){
+        else if (mQuiz.Kind == 2){
             mQuiz.Wanswer = Word.text;
         }
         dic.AddQuiz(mtitle, mQuiz);
@@ -111,8 +110,8 @@ public class onClicks : MonoBehaviour
     void QuizDebug()
     {
         Quizlog.text = "";
-        Quizlog.text += string.Format("Title: {0}\nQuiz: {1}\nKind: {2}\n", title.text, quiz.text, mQuiz.kind);
-        switch (mQuiz.kind)
+        Quizlog.text += string.Format("Title: {0}\nQuiz: {1}\nKind: {2}\n", title.text, quiz.text, mQuiz.Kind);
+        switch (mQuiz.Kind)
         {
             case 0:
                 Quizlog.text += string.Format("Answer: {0}\n", mQuiz.Banswer);

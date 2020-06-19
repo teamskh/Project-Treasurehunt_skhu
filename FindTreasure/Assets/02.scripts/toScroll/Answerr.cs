@@ -1,9 +1,9 @@
 ﻿using DataInfo;
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TTM.Classes;
 
 public class Answerr : MonoBehaviour
 {
@@ -24,35 +24,25 @@ public class Answerr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        QuizAnswerLoad script = GetComponent<QuizAnswerLoad>();
-        if (script != null)
+        Answer current = gameman.instance.CheckAnswer();
+        Quiz Anslist = gameman.instance.FindQuiz();
+        if (current != null)
         {
-            Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-            Quiz Anslist = GetComponent<PlayerQuizLoad>().m_QuizDictionary.FindQuiz(gameman.Instance.imageText);
-            if (current != null)
-            {
-                Ban = current.Banswer;
-                for(int i=0;i<4;i++)
-                    AnsTex[i].text = Anslist.list[i];
-            }
-                
-            
+            Ban = current.Banswer;
+            for (int i = 0; i < 4; i++)
+                AnsTex[i].text = Anslist.List[i];
         }
-        else
-        {
-            Debug.Log("Can't find scripts");
-        }
+             
     }
     
     public void Ans(int a)
     {
-        Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
+        Answer current = gameman.instance.CheckAnswer();
         for (int i =0;i<4;i++)
         {
             if(current.Ianswer == a&& a==i+1)
             {
-                testscore += current.score;
+                testscore += current.Score;
                 ans[i].GetComponent<Renderer>().material = Mat1;
             }
             else
