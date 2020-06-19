@@ -73,4 +73,9 @@ public class gameman : MonoBehaviour
         userna.text = PlayerPrefs.GetString("id");
     }
 
+    public List<string> GetList()
+    {
+        return competdic.getContestList();
+    }
+
 }

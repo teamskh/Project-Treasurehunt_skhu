@@ -49,7 +49,6 @@ public class AnsIn : MonoBehaviour
             RaycastHit hit;    // 정보 저장할 구조체 만들고
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))    // 레이저를 끝까지 쏴블자. 충돌 한넘이 있으면 return true다.
             {
-                Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
                 //t는 이미지를 인식했을때 이미지에 이름
                 if (Input.GetTouch(0).phase == TouchPhase.Began)    // 딱 처음 터치 할때 발생한다
                 {
@@ -59,7 +58,7 @@ public class AnsIn : MonoBehaviour
 
                         if (Mtext.text == current.Wanswer)
                         {
-                            testscore += current.score;
+                            testscore += current.Score;
                             Tans.text = current.Wanswer;
                             Tans.gameObject.SetActive(true);
                         }

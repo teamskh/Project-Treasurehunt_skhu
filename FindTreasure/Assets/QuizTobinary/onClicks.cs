@@ -69,7 +69,7 @@ public class onClicks : MonoBehaviour
                 break;
         }
 
-        switch (mQuiz.kind)
+        switch (mQuiz.Kind)
         {
             case 0:
                 Changekind_TF();
