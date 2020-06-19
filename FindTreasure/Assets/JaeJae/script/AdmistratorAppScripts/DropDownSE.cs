@@ -102,10 +102,9 @@ public class DropDownSE : MonoBehaviour
         }
         else if (EndTAMPM.value == 1)
         {
-            endtime = Convert.ToDateTime(CalendarController._EDateString + " "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
+            endtime = Convert.ToDateTime(CalendarController._EDateString +" "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
         }
         Debug.Log(endtime);
-        Debug.Log(DateTime.Now);
     }
     public void SelectButtonEndnow()
     {
@@ -113,10 +112,12 @@ public class DropDownSE : MonoBehaviour
         reservEnd = false;
         endtime = DateTime.Now;
     }
+    /*
     private void FixedUpdate()
     {
         Panel.SetActive(!isOn);
-        if(reservStart)
+
+        if (reservStart)
         {
             int result = DateTime.Compare(DateTime.Now, starttime);
 
@@ -135,9 +136,9 @@ public class DropDownSE : MonoBehaviour
             if (reservEnd)
             {
                 int result = DateTime.Compare(DateTime.Now, endtime);
+                Debug.Log(result);
                 if (result >= 0)
                 {
-                   
                     isOn = false;
                     reservEnd = false;
                 }
@@ -147,12 +148,17 @@ public class DropDownSE : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
     IEnumerator CountTime()
     {
         while (true)
         {
-            Debug.Log(DateTime.Now);
+            TimeSpan time = endtime - DateTime.Now;
+            //Debug.Log($"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초");
+            string str = $"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초";
+            gameman.Instance.time = str;
+            Debug.Log(str);
+
             yield return new WaitForSeconds(1);
         }
     }

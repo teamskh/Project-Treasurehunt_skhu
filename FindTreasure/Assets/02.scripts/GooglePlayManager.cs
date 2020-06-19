@@ -40,9 +40,8 @@ public class GooglePlayManager : MonoBehaviour
                     
 
                     Debug.Log("Success : " + Social.localUser.userName+Social.localUser.id);
-                    gameman.instance.userna = Social.localUser.userName;
-                    //text.text = gameman.instance.userna;
                     gameObject.GetComponent<scenechange>().changeMainScene();
+                    PlayerPrefs.SetString("id", Social.localUser.userName);
                 }
                 else
                 {

@@ -39,7 +39,8 @@ public class CreateCompetbuttons : MonoBehaviour
     void Awake()
     {
         m_ClickAction += sfxmusic.start;
-        m_ClickAction += score.click;
+
+        //m_ClickAction += score.click;
         curlist = CompetDic.instance.getCurrentList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);

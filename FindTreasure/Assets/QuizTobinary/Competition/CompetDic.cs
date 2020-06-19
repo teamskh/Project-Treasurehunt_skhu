@@ -81,7 +81,13 @@ public class CompetDic : MonoBehaviour
         {
             Debug.Log("Contest File.Doesn't Exisit");
             m_Competition = new CompetitionDictionary();
+
         }
+
+        Competition con = new Competition();
+        con.Mode = true;
+        con.Password = "1234";
+        m_Competition.Add("11", con);
     }
 
     // save 함수

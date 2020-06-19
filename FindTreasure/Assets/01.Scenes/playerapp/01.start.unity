@@ -788,11 +788,16 @@ MonoBehaviour:
   exam: 1
   baaudio: {fileID: 1017659775}
   sfaudio: {fileID: 1017659774}
-  img: []
   score: 0
+<<<<<<< Updated upstream
   inss: {fileID: 0}
   imageText: 
   userna: 
+=======
+  imageText: 
+  st: {fileID: 0}
+  userna: {fileID: 0}
+>>>>>>> Stashed changes
   chek: 0
 --- !u!4 &1017659777
 Transform:
@@ -1756,7 +1761,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
@@ -1802,7 +1807,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1077337099}
+      objectReference: {fileID: 1017659776}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1811,7 +1816,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: changeFirstScene
+      value: Load
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
