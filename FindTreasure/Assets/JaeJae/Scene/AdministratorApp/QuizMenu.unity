@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 316416433}
   - component: {fileID: 316416432}
   - component: {fileID: 316416431}
-  - component: {fileID: 316416434}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -421,18 +420,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &316416434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316416430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b1cb01cf917564c944b70d0e7f3656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &524606913
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +572,7 @@ GameObject:
   - component: {fileID: 675838985}
   - component: {fileID: 675838984}
   m_Layer: 5
-  m_Name: ContestCanvas
+  m_Name: QuizCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,7 +668,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 788093706}
-  - component: {fileID: 788093707}
   - component: {fileID: 788093708}
   m_Layer: 0
   m_Name: SceneManager
@@ -704,18 +690,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &788093707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788093705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b1cb01cf917564c944b70d0e7f3656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &788093708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,7 +1493,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 788093707}
+      - m_Target: {fileID: 1979585451}
         m_MethodName: ChangeSceneToQuizType
         m_Mode: 1
         m_Arguments:
@@ -1725,6 +1699,8 @@ GameObject:
   - component: {fileID: 1979585452}
   - component: {fileID: 1979585451}
   - component: {fileID: 1979585450}
+  - component: {fileID: 1979585453}
+  - component: {fileID: 1979585454}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1770,6 +1746,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1979585453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979585449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc596d61c8794648bb73803f8e299cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BPrefab: {fileID: 4504820443070760683, guid: e8a44a37255e56945b5f752453e27395, type: 3}
+  Content: {fileID: 903746219}
+--- !u!114 &1979585454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979585449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6bcb68d20b05b1458ed78f4376b5be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_titleQuiz:
+    m_keys: []
+    m_values: []
 --- !u!1 &2124586756
 GameObject:
   m_ObjectHideFlags: 0

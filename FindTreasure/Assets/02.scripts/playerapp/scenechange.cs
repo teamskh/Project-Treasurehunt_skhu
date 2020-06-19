@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class scenechange :MonoBehaviour
 {
+    public static string Qname;
     public void changeMainScene()
     {
         SceneManager.LoadScene("02.Main");
@@ -20,8 +22,74 @@ public class scenechange :MonoBehaviour
         SceneManager.LoadScene("ContestList");
     }
 
-    public void test()
+    public void ChangeSceneToQuizMenu()
     {
-        SceneManager.LoadScene("tes");
+        SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
+    }
+
+    public static void ChangeSceneToQuizMenuToAdd()
+    {
+        SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
+    }
+
+    public void ChangeSceneToContestSetting()
+    {
+        SceneManager.LoadScene("ContestMenu");//대회 세팅 화면
+    }
+
+    public void ChangeSceneToCStartEnd()
+    {
+        SceneManager.LoadScene("CStartEnd");//시작끝시간 페이지 화면
+    }
+
+    public void ChangeSceneToRealTimeR()
+    {
+        SceneManager.LoadScene("RealTimeR");//실시간 랭킹 화면
+    }
+
+    public void ChangeSceneToAdMenu()
+    {
+        SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
+    }
+
+    public void ChangeSceneToPWChange()
+    {
+        SceneManager.LoadScene("PWChange");//비밀번호 변경화면
+    }
+
+    public void ChangeSceneToContestSettingChange()
+    {
+        SceneManager.LoadScene("CSChange");//대회 정보 수정화면
+    }
+
+    public void ChangeSceneToModeChange()
+    {
+        SceneManager.LoadScene("ModeChange");//모드 변경화면
+    }
+
+    public void ChangeSceneToContestClosed()
+    {
+        SceneManager.LoadScene("ContestClosed");//대회폐쇄화면
+    }
+
+    public void ChangeSceneToQuizType()
+    {
+        SceneManager.LoadScene("QuizType");//Quiz type설정 화면
+    }
+
+    public void ChangeSceneToQuizAdd()
+    {
+        SceneManager.LoadScene("QuizAdd");//Quiz Add 화면
+    }
+    
+    public void ChangeSceneToQuizAddToChange()
+    {
+        SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
+    }//onclicks에 quizchage랑 연결
+    public void OnClicked(Button button)
+    {
+        Qname=button.GetComponentInChildren<Text>().text;
+        Debug.Log(Qname);
+        ChangeSceneToQuizAddToChange();
     }
 }

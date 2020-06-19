@@ -74,7 +74,6 @@ public class QuizDic : MonoBehaviour
         Quiz mQuiz = new Quiz();
         mQuiz.str = quiz.str;
         mQuiz.kind = quiz.kind;
-
         mQuiz.list = new string[4];
 
         if(mQuiz.kind == 1)
@@ -201,5 +200,10 @@ public class QuizDic : MonoBehaviour
         Initialized();
         QuizLoad();
         
+    }
+    
+    public List<string> GetQuizList()//추가 
+    {
+        return m_titleQuiz.GetList();
     }
 }

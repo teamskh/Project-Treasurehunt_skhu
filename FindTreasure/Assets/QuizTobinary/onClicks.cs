@@ -1,6 +1,7 @@
 ﻿using DataInfo;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class onClicks : MonoBehaviour
@@ -32,6 +33,16 @@ public class onClicks : MonoBehaviour
     private QuizInfo mQuiz;
     #endregion
 
+    #region Instance
+    public static CompetDic instance;//추가
+    #endregion
+
+    //public InputField QuizTitle_infT;//sjj추가
+    //QuizList quizList = new QuizList();
+    public Text text;
+    public Slider slider;
+    public Toggle toggle_s;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +57,32 @@ public class onClicks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (QuizAddSceneManager.ButtonClick)
+        {
+            case 0:
+                Changekind_TF();
+                break;
+            case 1:
+                Changekind_int();
+                break;
+            case 2:
+                Changekind_W();
+                break;
+        }
+
+        switch (mQuiz.kind)
+        {
+            case 0:
+                Changekind_TF();
+                title.text = scenechange.Qname;
+                break;
+            case 1:
+                Changekind_int();
+                break;
+            case 2:
+                Changekind_W();
+                break;
+        }
     }
     
     public void Changekind_TF()
@@ -89,12 +125,32 @@ public class onClicks : MonoBehaviour
 
     public void setAnswer(int i) { mQuiz.Ianswer = i; }
 
+    public void SliderChange(float f)
+    {
+        slider.value = f;
+        text.text = ((int)f).ToString();
+    }
+
+    public void HighLevelQ()
+    {
+        if (toggle_s.isOn)
+        {
+            text.text = "30";
+            slider.interactable = false;
+        }
+        else
+        {
+            SliderChange(slider.value);
+            slider.interactable = true;
+        }
+        Debug.Log(text.text);
+    }
     public void OK()
     {
         var mtitle = title.text;
         mQuiz.str = quiz.text;
-
-        if(mQuiz.kind == 1) {
+        mQuiz.score = Convert.ToInt32(text.text);
+        if (mQuiz.kind == 1) {
             mQuiz.list = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.list, 4);
         }
@@ -106,6 +162,11 @@ public class onClicks : MonoBehaviour
             QuizDebug();
 
         mQuiz = new QuizInfo();
+        SceneManager.LoadScene("QuizMenu");
+        //GetComponent<QuizDic>().AddQuiz(QuizTitle_infT.text, mQuiz);//추가
+        QuizList quizList = this.gameObject.AddComponent<QuizList>();
+        QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가
+       
     }
 
     void QuizDebug()
@@ -127,4 +188,14 @@ public class onClicks : MonoBehaviour
                 break;
         }
     }
+    /*
+    public void ChangeQuiz()
+    {
+        mQuiz = new QuizInfo();
+        if (scenechange.QuizButton == 0)
+        {
+            Update();
+            title.text=
+        }
+    }*/
 }
