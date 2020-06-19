@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TTM.Classes;
+using TTM.Save;
+
 public class AnsIn : MonoBehaviour
 {
     public GameObject Dtouch; // 클릭시 버튼 못 누르게
@@ -27,7 +30,18 @@ public class AnsIn : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        
+        Answer current = FindAnswer(gameman.Instance.imageText);
+        
+        Inp.SetActive(false);
+
+        if (Mtext.text == current.Wanswer)
+        {
+            testscore += current.Score;
+            Tans.text = current.Wanswer;
+            Tans.gameObject.SetActive(true);
+        }
+        else
         {
             Vector2 pos = Input.GetTouch(0).position;    // 터치한 위치
             Vector3 theTouch = new Vector3(pos.x, pos.y, 0.0f);    // 변환 안하고 바로 Vector3로 받아도 되겠지.
@@ -59,5 +73,29 @@ public class AnsIn : MonoBehaviour
                     Dtouch.SetActive(true);
             }
         }
+    }
+
+    private Answer FindAnswer(string key)
+    {
+        Answer answer = new Answer();
+
+        AnswerDictionary dic;
+
+        if(JsonLoadSave.LoadAnswers(out dic))
+        {
+            Debug.Log("AnswerJson Exist");
+            if (dic.TryGetValue(key, out answer))
+            {
+                Debug.Log($"Key: {key} Exist");
+            }
+            else Debug.Log($"Key: {key} Doesn't Exist");
+        }
+        else
+        {
+            Debug.Log("AnswerJson Doesn't Exist");
+        }
+        answer.GetAns();
+
+        return answer;
     }
 }

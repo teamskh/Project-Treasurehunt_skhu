@@ -1,9 +1,9 @@
 ﻿using DataInfo;
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TTM.Classes;
 
 
 public class Answerr : MonoBehaviour
@@ -26,34 +26,28 @@ public class Answerr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        QuizAnswerLoad script = GetComponent<QuizAnswerLoad>();
-        if (script != null)
+        Answer current = gameman.instance.CheckAnswer();
+        Quiz Anslist = gameman.instance.FindQuiz();
+        if (current != null)
         {
-            Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
-            Quiz Anslist = GetComponent<PlayerQuizLoad>().m_QuizDictionary.FindQuiz(gameman.Instance.imageText);
-            if (current != null)
-            {
-                Ban = current.Banswer;
-                for(int i=0;i<4;i++)
-                    AnsTex[i].text = Anslist.list[i];
-            }
+            Ban = current.Banswer;
+            for (int i = 0; i < 4; i++)
+                AnsTex[i].text = Anslist.List[i];
         }
-        else
-        {
-            Debug.Log("Can't find scripts");
-        }
+             
     }
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        Answer current = gameman.instance.CheckAnswer();
+        for (int i =0;i<4;i++)
         {
-            Vector2 pos = Input.GetTouch(0).position;    // 터치한 위치
-            Vector3 theTouch = new Vector3(pos.x, pos.y, 0.0f);    // 변환 안하고 바로 Vector3로 받아도 되겠지.
-            Ray ray = Camera.main.ScreenPointToRay(theTouch);    // 터치한 좌표 레이로 바꾸엉
-            RaycastHit hit;    // 정보 저장할 구조체 만들고
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))    // 레이저를 끝까지 쏴블자. 충돌 한넘이 있으면 return true다.
+            if(current.Ianswer == a&& a==i+1)
+            {
+                testscore += current.Score;
+                ans[i].GetComponent<Renderer>().material = Mat1;
+            }
+            else
             {
                 Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
                 //t는 이미지를 인식했을때 이미지에 이름

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnsOX : MonoBehaviour
+using TTM.Classes;
+
+public class AnsOX : Scroll
 {
     public GameObject Dtouch; // 클릭시 버튼 못 누르게
     public GameObject[] ans; // 답
@@ -24,10 +26,10 @@ public class AnsOX : MonoBehaviour
     void Start()
     {
         Debug.Log("start");
-        QuizAnswerLoad script = GetComponent<QuizAnswerLoad>();
+        /*Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
         if (script != null)
         {
-            Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
+           
             if (current != null)
                 Ban = current.Banswer;
             else
@@ -36,12 +38,30 @@ public class AnsOX : MonoBehaviour
         else
         {
             Debug.Log("Can't find scripts");
-        }
+        }*/
     }
+    public new void Init(Quiz quiz)
+    {
+        base.Init(quiz);
+
+    }
+
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        Debug.Log("push");
+        Answer current = gameman.instance.CheckAnswer();
+        //t는 이미지를 인식했을때 이미지에 이름
+
+        if (Ban == true)
+        {
+            testscore += current.Score;
+            ans[0].GetComponent<Renderer>().material = Mat1;
+            ans[1].GetComponent<Renderer>().material = Mat2;
+        }
+
+
+        else
         {
             Vector2 pos = Input.GetTouch(0).position;    // 터치한 위치
             Vector3 theTouch = new Vector3(pos.x, pos.y, 0.0f);    // 변환 안하고 바로 Vector3로 받아도 되겠지.
@@ -85,5 +105,27 @@ public class AnsOX : MonoBehaviour
                 }
             }
         }
+
+        Dtouch.SetActive(true);
+
+    }
+    public void AnsX()
+    {
+       // Answer current = GetComponent<QuizAnswerLoad>().m_AnswerDictionary.GetAnswer(gameman.Instance.imageText);
+
+        if (Ban == false)
+        {
+            //testscore += current.Score;
+            ans[0].GetComponent<Renderer>().material = Mat2;
+            ans[1].GetComponent<Renderer>().material = Mat1;
+        }
+        else
+        {
+            ans[0].GetComponent<Renderer>().material = Mat1;
+            ans[1].GetComponent<Renderer>().material = Mat2;
+        }
+
+        Dtouch.SetActive(true);
+
     }
 }

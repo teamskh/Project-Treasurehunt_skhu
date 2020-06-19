@@ -1114,10 +1114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e83b012dc89654b83f1b4195ca9540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeablePrefabs:
-  - {fileID: 7468883653680213791, guid: 3d429ff4210f0cf488090a9c5ca6ac60, type: 3}
-  - {fileID: 8697930224611767362, guid: e29997b01d6ec034797f6578edf30a2d, type: 3}
-  - {fileID: 4310737561612010553, guid: 4cd4a95827a601443a97fcd37c6d0120, type: 3}
+  arObjectsToPlace: []
+  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
+  DebugforScreen: {fileID: 0}
 --- !u!1 &323701835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4308,6 +4307,7 @@ MonoBehaviour:
   bar: {fileID: 923739835}
   endtimerbar: {fileID: 23381276}
   endtime: {fileID: 1623526282}
+  test: {fileID: 0}
   user: {fileID: 2102526873}
 --- !u!114 &940987641
 MonoBehaviour:
@@ -9055,7 +9055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000091552734, y: 0}
+  m_AnchoredPosition: {x: -0.119903564, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1962340769

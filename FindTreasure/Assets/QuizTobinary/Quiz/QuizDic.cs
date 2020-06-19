@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DataInfo;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using serializeDic;
-using UnityScript.Scripting.Pipeline;
 using System;
-using System.CodeDom;
+using TTM.Classes;
+using TTM.Save;
 
 //저장용 변수 저장-로드용 함수 및 클래스
 
@@ -16,103 +13,41 @@ public class QuizDic : MonoBehaviour
     [SerializeField]
     QuizInfoDictionary m_titleQuiz;
 
-    private string QuizdataPath;
-    private string PlayerdataPath;
-    private string ServerdataPath;
-
     private QuizDictionary m_QuizDicPlayer;
     private AnswerDictionary m_AnswerDic;
 
     #region Private Methods
-    private void Initialized()
-    {
-        QuizdataPath = Application.persistentDataPath + "Quiz.dat";
-        PlayerdataPath = Application.persistentDataPath + "PlayerQuiz.dat";
-        ServerdataPath = Application.persistentDataPath + "ServerQuiz.dat";
-        
-    }
-
-    //퀴즈 dictionary 변수 저장용 함수
-    private void QuizSave()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-
-        FileStream file = File.Create(QuizdataPath);
-        QuizInfoDictionary data = new QuizInfoDictionary();
-        data.CopyFrom(m_titleQuiz);
-
-        data.OnBeforeSerialize();
-        bf.Serialize(file, data);
-        file.Close();
-    }
-
-    //퀴즈 dictionary 변수 로드용 함수
-    private void QuizLoad()
-    {
-        if (File.Exists(QuizdataPath))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-
-            FileStream file = File.Open(QuizdataPath, FileMode.Open);
-            m_titleQuiz = (QuizInfoDictionary)bf.Deserialize(file);
-            m_titleQuiz.OnAfterDeserialize();
-            file.Close();
-        }
-        else
-        {
-            m_titleQuiz = new QuizInfoDictionary();
-        }
-       
-        PlayerQuizLoad.initLoad(PlayerdataPath, out m_QuizDicPlayer);
-        QuizAnswerLoad.InitLoad(ServerdataPath, out m_AnswerDic);
-
-        return;
-    }
 
     private void AddQuizPlayer(string title, QuizInfo quiz)
     {
         Quiz mQuiz = new Quiz();
-        mQuiz.str = quiz.str;
-        mQuiz.kind = quiz.kind;
-        mQuiz.list = new string[4];
+        mQuiz.Str = quiz.Str;
+        mQuiz.Kind = quiz.Kind;
 
-        if(mQuiz.kind == 1)
-        {
-            Array.Copy(quiz.list, mQuiz.list, 4);
+        mQuiz.List = new string[4];
+
+        if(mQuiz.Kind == 1){
+            Array.Copy(quiz.List, mQuiz.List, 4);
         }
 
         m_QuizDicPlayer.Add(title, mQuiz);
 
-        SaveQuizPlayer();
+        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
         Debug.Log("Making Files");
     }
 
     private void DelQuizPlayer(string key)
     {
         m_QuizDicPlayer.Remove(key);
-        SaveQuizPlayer();
-    }
-
-    private void SaveQuizPlayer()
-    {
-        //변수 저장
-        BinaryFormatter bf = new BinaryFormatter();
-
-        FileStream file = File.Create(PlayerdataPath);
-        QuizDictionary data = new QuizDictionary();
-        data.CopyFrom(m_QuizDicPlayer);
-
-        data.OnBeforeSerialize();
-        bf.Serialize(file, data);
-        file.Close();
+        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
     }
 
     private void AddQuizAnswer(string title, QuizInfo quiz)
     {
         Answer ans = new Answer();
-        ans.kind = quiz.kind;
-        ans.score = quiz.score;
-        switch (ans.kind)
+        ans.Kind = quiz.Kind;
+        ans.Score = quiz.Score;
+        switch (ans.Kind)
         {
             case 0:
                 ans.Banswer = quiz.Banswer;
@@ -121,32 +56,20 @@ public class QuizDic : MonoBehaviour
                 ans.Ianswer = quiz.Ianswer;
                 break;
             case 2:
-                ans.Wanswer = String.Copy(quiz.Wanswer);
+                ans.Wanswer = quiz.Wanswer;
                 break;
         }
 
         m_AnswerDic.Add(title, ans);
-        SaveQuizAnswer();
-        
+        JsonLoadSave.SaveAnswers(m_AnswerDic);
     }
 
     private void DelQuizAnswer(string key)
     {
         m_AnswerDic.Remove(key);
-        SaveQuizAnswer();
+        JsonLoadSave.SaveAnswers(m_AnswerDic);
     }
 
-    private void SaveQuizAnswer() {
-        BinaryFormatter bf = new BinaryFormatter();
-
-        FileStream file = File.Create(ServerdataPath);
-        AnswerDictionary data = new AnswerDictionary();
-        data.CopyFrom(m_AnswerDic);
-
-        data.OnBeforeSerialize();
-        bf.Serialize(file, data);
-        file.Close();
-    }
     #endregion
 
     #region Public Methods
@@ -169,7 +92,7 @@ public class QuizDic : MonoBehaviour
     public void AddQuiz(string title, QuizInfo quiz)
     {
         m_titleQuiz.Add(title, quiz);
-        QuizSave();
+        JsonLoadSave.SaveQuizMade(m_titleQuiz);
 
         AddQuizPlayer(title, quiz);
         AddQuizAnswer(title, quiz);
@@ -179,6 +102,7 @@ public class QuizDic : MonoBehaviour
     {
         if (m_titleQuiz.Remove(key))
         {
+            JsonLoadSave.SaveQuizMade(m_titleQuiz);
             DelQuizPlayer(key);
             DelQuizAnswer(key);
 #if UNITY_EDITOR
@@ -197,9 +121,9 @@ public class QuizDic : MonoBehaviour
 
     private void Start()
     {
-        Initialized();
-        QuizLoad();
-        
+        JsonLoadSave.LoadQuizMade(out m_titleQuiz);
+        JsonLoadSave.LoadQuizs(out m_QuizDicPlayer);
+        JsonLoadSave.LoadAnswers(out m_AnswerDic);
     }
     
     public List<string> GetQuizList()//추가 

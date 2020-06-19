@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+using TTM.Classes;
+using TTM.Save;
+
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class TrackedImageInfoMultipleManager : MonoBehaviour
 {
@@ -27,7 +30,8 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
     {
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
 
-        PlayerQuizLoad.initLoad(Application.persistentDataPath + "PlayerQuiz.dat",out m_Dics);
+        JsonLoadSave.LoadQuizs(out m_Dics);
+        //PlayerQuizLoad.initLoad(Application.persistentDataPath + "PlayerQuiz.dat",out m_Dics);        -> 확인 후 삭제
 
         // setup all game objects in dictionary 
        /*foreach (GameObject arObject in arObjectsToPlace)
@@ -88,11 +92,11 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
             string title = trackedImage.referenceImage.name;
             gameman.Instance.imageText = title;
             if(!m_Dics.TryGetValue(title, out quiz)) { DebugforScreen.text = "Can't find quiz"; }
-            if (quiz.str != null)
+            if (quiz.Str != null)
             {
                 GameObject prefab = new GameObject();
                 Transform trans = trackedImage.transform;
-                switch (quiz.kind)
+                switch (quiz.Kind)
                 {
                     case 0:
                         prefab = Instantiate(arObjectsToPlace[0], trans.position, trans.rotation);
@@ -108,7 +112,7 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
                         }
                         if (tform != null)
                             for (int i = 0; i < 4; i++) {
-                                tform.GetComponentsInChildren<TextMesh>()[i].text = quiz.list[i];
+                                tform.GetComponentsInChildren<TextMesh>()[i].text = quiz.List[i];
                             }
                         break;
                     case 2:
@@ -119,7 +123,7 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
                 prefab.transform.localScale.Set(scaleFactor.x,scaleFactor.y,scaleFactor.z);
                 foreach(TextMesh t in prefab.GetComponentsInChildren<TextMesh>())
                 {
-                    if(t.tag=="STR")t.text = quiz.str;
+                    if(t.tag=="STR")t.text = quiz.Str;
 
                 }
                 arObjects.Add(title, prefab);

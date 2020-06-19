@@ -29,9 +29,12 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     score score;
 
+    private CompetDic scripts;
+
     private void Start()
     {
         m_ClickAction += SetActive;
+        scripts = gameObject.AddComponent<CompetDic>();
     }
 
 
