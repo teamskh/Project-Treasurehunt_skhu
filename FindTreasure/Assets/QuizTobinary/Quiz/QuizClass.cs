@@ -38,23 +38,24 @@ namespace DataInfo
         public string Wanswer;
     }
 
-    
+
 
     [System.Serializable]
-    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo> {
+    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo>
+    {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizInfoDictionary() { }
 
         public List<string> GetList()
         {
             List<string> list = new List<string>();
-            foreach(var key in this.Keys)
+            foreach (var key in this.Keys)
             {
                 list.Add(key);
             }
             return list;
         }
-        
+
     }
 
     [System.Serializable]
@@ -62,7 +63,7 @@ namespace DataInfo
     {
         public void GetList(QuizInfoDictionary basedictionary)
         {
-            foreach(KeyValuePair<string,QuizInfo> k in basedictionary)
+            foreach (KeyValuePair<string, QuizInfo> k in basedictionary)
             {
                 Quiz value = new Quiz();
                 value.str = k.Value.str;
@@ -92,7 +93,7 @@ namespace DataInfo
                 return null;
             }
         }
-        protected QuizDictionary(SerializationInfo info,StreamingContext context) : base(info, context) { }
+        protected QuizDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizDictionary() { }
     }
 
@@ -109,6 +110,7 @@ namespace DataInfo
                 Answer value = new Answer();
                 value.score = k.Value.score;
                 value.kind = k.Value.kind;
+
                 switch (value.kind)
                 {
                     case 0:
@@ -136,8 +138,7 @@ namespace DataInfo
             else
                 return null;
         }
-        protected AnswerDictionary(SerializationInfo info,StreamingContext context) :base(info, context) { }
+        protected AnswerDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public AnswerDictionary() { }
     }
-
 }

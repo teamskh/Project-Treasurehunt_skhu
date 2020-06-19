@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class ContestInput : MonoBehaviour
 {
@@ -74,19 +75,19 @@ public class ContestInput : MonoBehaviour
         foreach(string item in vs)
         {
             ContestList.Add( MakeCompetButton(item));
-        }        
+        }
     }
 
     private GameObject MakeCompetButton(string name)
     {
-        GameObject competb = Instantiate(ContestBPrefab,Content.transform);
+        GameObject competb = Instantiate(ContestBPrefab, ContestBPrefab.transform.position, Quaternion.identity);
         //위치 조정
-        competb.GetComponent<RectTransform>().anchoredPosition.Set(0,ContestList.Count*120);
-
+        //competb.GetComponent<RectTransform>().anchoredPosition.Set(0,ContestList.Count*120);
+        competb.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, (ContestList.Count+1) * 135);
         //글씨 조정
         competb.GetComponentInChildren<Text>().text = name;
+        competb.transform.SetParent(Content.transform, true);
 
-        
         return competb;
     }
     public void ShowAddPanel(bool a)
@@ -107,6 +108,19 @@ public class ContestInput : MonoBehaviour
     {
         if (ContestList.Count == 0)
             LoadCompets();
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+
+            {
+                SceneManager.LoadScene("02.Main");
+            }
+        }
+        if (Input.GetKey(KeyCode.Escape))
+
+        {
+            SceneManager.LoadScene("02.Main");
+        }
     }
     
     public void Cancel()

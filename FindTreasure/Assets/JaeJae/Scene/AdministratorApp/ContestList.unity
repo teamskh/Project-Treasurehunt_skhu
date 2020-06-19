@@ -919,7 +919,6 @@ GameObject:
   - component: {fileID: 316416433}
   - component: {fileID: 316416432}
   - component: {fileID: 316416431}
-  - component: {fileID: 316416434}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -992,18 +991,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &316416434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316416430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b1cb01cf917564c944b70d0e7f3656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &367321883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1049,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 680, y: 140}
+  m_CellSize: {x: 680, y: 120}
   m_Spacing: {x: 0, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1970,6 +1957,7 @@ GameObject:
   - component: {fileID: 703134199}
   - component: {fileID: 703134198}
   - component: {fileID: 703134200}
+  - component: {fileID: 703134201}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2028,6 +2016,18 @@ MonoBehaviour:
   m_Competition:
     m_keys: []
     m_values: []
+--- !u!114 &703134201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703134197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61d43d1647f71b449fd39b4355fc2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709674063
 GameObject:
   m_ObjectHideFlags: 0

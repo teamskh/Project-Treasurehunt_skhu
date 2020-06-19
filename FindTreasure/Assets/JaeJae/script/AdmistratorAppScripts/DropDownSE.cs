@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DropDownSE : MonoBehaviour
@@ -47,7 +48,22 @@ public class DropDownSE : MonoBehaviour
         HandleInputData();
         StartCoroutine(CountTime());
     }
+    void Update()
+    { 
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (Input.GetKey(KeyCode.Escape))
 
+                {
+                    SceneManager.LoadScene("administratorMenu");
+                }
+            }
+        if (Input.GetKey(KeyCode.Escape))
+
+        {
+            SceneManager.LoadScene("administratorMenu");
+        }
+    }
     private void SetDropdownOptionsExample()
     {
         startH.options.Clear();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.IO;
+
 public class Camera1 : MonoBehaviour
 {
 	public GameObject TakePicture_b;
@@ -11,91 +12,19 @@ public class Camera1 : MonoBehaviour
 	public GameObject upperbar;
 	public RawImage selectImage;
 	public RawImage usingImage;
-	//public GameObject ImageOnPanel;
 	public Texture2D savess;
-	//public GameObject RawImageP;
 	public GameObject CselectB;
 	public GameObject Image;
 
-	// Start is called before the first frame update
-	/*
-	public static class Variables {
-		public static Texture2D savess;
-	}*/
-	/*
-	static Camera1 instance;
-	public static Camera1 Instance
-	{
-		get
-		{
-			return instance;
-		}
-	}*/
 	void Start()
     {
 		RawImagePV.SetActive(false);
 		upperbar.SetActive(false);
-		//RawImageP.SetActive(false);
 		CselectB.SetActive(false);
 		TakePicture_b.SetActive(false);
 		Image.SetActive(true);
 	}
-	/*
-	public void Awake()
-	{
-		DontDestroyOnLoad(selectImage);
-	}*/
-	// Update is called once per frame
-	/*void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			if (Input.mousePosition.x < Screen.width / 3)
-			{
-				// Take a screenshot and save it to Gallery/Photos
-				StartCoroutine(TakeScreenshotAndSave());
-			}
-			else
-			{
-				// Don't attempt to pick media from Gallery/Photos if
-				// another media pick operation is already in progress
-				if (NativeGallery.IsMediaPickerBusy())
-					return;
-
-				if (Input.mousePosition.x < Screen.width * 2 / 3)
-				{
-					// Pick a PNG image from Gallery/Photos
-					// If the selected image's width and/or height is greater than 512px, down-scale the image
-					PickImage(512);
-				}
-				else
-				{
-					// Pick a video from Gallery/Photos
-					//PickVideo();
-				}
-			}
-		}
-	}*/
-	/*
-	public void TakeScreenShot()
-	{
-		StartCoroutine(TakeScreenshotAndSave());
-	}
-	private IEnumerator TakeScreenshotAndSave()
-	{
-		TakePicture_b.SetActive(false);
-		yield return new WaitForEndOfFrame();
-		Texture2D ss = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-		ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-		ss.Apply();
-
-		// Save the screenshot to Gallery/Photos
-		Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(ss, "GalleryTest", "Image.png"));
-
-		// To avoid memory leaks
-		Destroy(ss);
-		TakePicture_b.SetActive(true);
-	}*/
+	
 	IEnumerator TakeScreenshotPV()
 	{
 		TakePicture_b.SetActive(false);
@@ -106,8 +35,7 @@ public class Camera1 : MonoBehaviour
 		upperbar.SetActive(true);
 		RawImagePV.SetActive(true);
 		selectImage.texture = ss;
-		//Variables.savess = ss;
-		//Variables.savess.Apply();
+
 		savess = ss;
 		savess.Apply();
 	}
@@ -122,60 +50,10 @@ public class Camera1 : MonoBehaviour
 	{
 		upperbar.SetActive(false);
 		RawImagePV.SetActive(false);
-		//RawImageP.SetActive(true);
-
-		//usingImage.texture = Variables.savess;
-		//usingImage = (RawImage)ImageOnPanel.GetComponent<RawImage>();
-		//usingImage.texture = (Texture2D)Variables.savess;
-		//usingImage.texture = (Texture2D)ImageOnPanel.GetComponent<Texture2D>();
-		//selectImage.texture = Variables.savess;
-		//selectImage.texture = savess;
-		/*
-		if (instance == null)
-		{
-			DontDestroyOnLoad(gameObject);
-			instance = this;
-		}
-		else
-		{
-			DontDestroyOnLoad(gameObject);
-		}
-		usingImage.texture = instance.savess;*/
-
-		/*
-		Texture2D texture = (Texture2D)selectImage.texture;
-		GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-		quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
-		quad.transform.forward = Camera.main.transform.forward;
-		quad.transform.localScale = new Vector3(1f, texture.height / (float)texture.width, 1f);
-
-		Material material = quad.GetComponent<Renderer>().material;
-		if (!material.shader.isSupported) // happens when Standard shader is not included in the build
-			material.shader = Shader.Find("Legacy Shaders/Diffuse");
-
-		material.mainTexture = texture;*/
-		//Texture2D texture = (Texture2D)selectImage.texture;
-		//usingImage.GetComponent<Renderer>().material.mainTexture = texture;
-		//usingImage.texture = savess;
-
-		//Material material = selectImage.GetComponent<Renderer>().material;
-		//material.mainTexture = texture;
-		//usingImage.texture = texture;
-
-		// If a procedural texture is not destroyed manually, 
-		// it will only be freed after a scene change
-		//Destroy(texture, 5f);
-
-		//Texture2D image = (Texture2D)selectImage.texture;
-		//Texture2D image = (Texture2D)gameObject.find
-
+		
 		usingImage.texture = savess;
 		savess.Apply();
-		//image.ReadPixels(new Rect(0,0,image.width, image.height),0,0);
-
-		//		Texture ImageSave = selectImage.texture;
-		//		usingImage.texture = ImageSave;
-
+		
 	}
 /*
 	public void SaveImage()
@@ -203,25 +81,7 @@ public class Camera1 : MonoBehaviour
 					Debug.Log("Couldn't load texture from " + path);
 					return;
 				}
-				/*
-				// Assign texture to a temporary quad and destroy it after 5 seconds
-				GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-				quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
-				quad.transform.forward = Camera.main.transform.forward;
-				quad.transform.localScale = new Vector3(1f, texture.height / (float)texture.width, 1f);
-
-				Material material = quad.GetComponent<Renderer>().material;
-				if (!material.shader.isSupported) // happens when Standard shader is not included in the build
-					material.shader = Shader.Find("Legacy Shaders/Diffuse");
-
-				material.mainTexture = texture;
-
-				Destroy(quad, 5f);
-
-				// If a procedural texture is not destroyed manually, 
-				// it will only be freed after a scene change
-				Destroy(texture, 5f);
-				*/
+				
 				usingImage.texture = texture;
 			}
 		}, "Select a PNG image", "image/png");
@@ -243,15 +103,4 @@ public class Camera1 : MonoBehaviour
 
 			Debug.Log("Permission result: " + permission);
 		}*/
-		/*
-	public void ChangeSceneToCamera()
-	{
-		Application.LoadLevel("CameraSample");//카메라
-	}
-	
-	public void ChangeSceneToUseImage()
-	{
-		Application.LoadLevel("CameraSample3");//캡처 후 preview
-	}
-	*/
 }

@@ -397,7 +397,6 @@ GameObject:
   - component: {fileID: 316416433}
   - component: {fileID: 316416432}
   - component: {fileID: 316416431}
-  - component: {fileID: 316416434}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -470,18 +469,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &316416434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316416430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b1cb01cf917564c944b70d0e7f3656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &688851210
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,17 +946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee7e7f4258120747a6741e3aa0607a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OXQuizP: {fileID: 7869018201418569791, guid: 717a57ab570f14847b823ec7bc7882a1, type: 3}
-  MultiCQuizP: {fileID: 575791889822353571, guid: 961437de316eb084eb9ae29dc21a2b7d,
-    type: 3}
-  ShortAnswerQuizP: {fileID: 152283959555541397, guid: 1b67441c33f6d614cb706d39e523eb1b,
-    type: 3}
-  ConnectedQuizP: {fileID: 3436757279562258906, guid: e8bd4ffbdc209da4c84095248490e7e3,
-    type: 3}
-  PlacementQuizP: {fileID: 8628371178513591906, guid: 2ca63cf7ebae530489d158482705a6d4,
-    type: 3}
-  TakePicture_b: {fileID: 4710039665113826481, guid: b98d2d54be541e84b922ba8aabccb484,
-    type: 3}
 --- !u!1 &919802285
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +959,7 @@ GameObject:
   - component: {fileID: 919802287}
   - component: {fileID: 919802286}
   m_Layer: 5
-  m_Name: ContestCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
