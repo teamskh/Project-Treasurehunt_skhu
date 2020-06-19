@@ -423,8 +423,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57704296}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &88983437
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +552,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88983437}
   m_CullTransparentMesh: 0
->>>>>>> yjh
 --- !u!1 &101778470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5473,8 +5470,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196056431}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &1203401123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5547,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203401123}
   m_CullTransparentMesh: 0
->>>>>>> yjh
 --- !u!1 &1234041843
 GameObject:
   m_ObjectHideFlags: 0
@@ -8584,11 +8578,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1794906042}
   - component: {fileID: 1794906043}
-<<<<<<< HEAD
-=======
   - component: {fileID: 1794906044}
   - component: {fileID: 1794906045}
->>>>>>> yjh
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -8631,8 +8622,6 @@ MonoBehaviour:
   EndH: {fileID: 2054719119}
   EndM: {fileID: 2131181204}
   Panel: {fileID: 1957051480}
-<<<<<<< HEAD
-=======
 --- !u!114 &1794906044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8663,7 +8652,6 @@ MonoBehaviour:
   imageText: a
   userna: {fileID: 0}
   time: 
->>>>>>> yjh
 --- !u!1 &1838092632
 GameObject:
   m_ObjectHideFlags: 0
@@ -9047,10 +9035,7 @@ RectTransform:
   m_Children:
   - {fileID: 2146048956}
   - {fileID: 1957051483}
-<<<<<<< HEAD
-=======
   - {fileID: 88983438}
->>>>>>> yjh
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
