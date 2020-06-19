@@ -19,4 +19,9 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("ContestList");
     }
+
+    public void test()
+    {
+        SceneManager.LoadScene("tes");
+    }
 }

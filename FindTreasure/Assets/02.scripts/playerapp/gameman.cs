@@ -1,25 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class gameman : MonoBehaviour
 {
-
-    public string exam; //여러개로
     public AudioSource baaudio;
     public AudioSource sfaudio;
-    public Image[] img;
+    //public Image[] img;
     public int score = 0;
-    public GameObject inss;
-    public string imageText; //문제,답 내용 결정
+    //public GameObject inss;
+    public string imageText="a"; //문제,답 내용 결정
 
-    public string userna; 
+    public Text userna;
     //페이지 이동시 저장될 유저이름
 
-    public bool chek = false;
+    //public bool chek = false;
 
-    public 
+    public string time;
 
     static gameman instance;
     public static gameman Instance
@@ -48,6 +48,11 @@ public class gameman : MonoBehaviour
         baaudio.volume = PlayerPrefs.GetFloat("backvol", 1f);
         sfaudio.volume = PlayerPrefs.GetFloat("sfxvol", 1f);
         Screen.fullScreen = !Screen.fullScreen;
+    }
+
+    public void Load()
+    {
+        userna.text = PlayerPrefs.GetString("id");
     }
 
 }

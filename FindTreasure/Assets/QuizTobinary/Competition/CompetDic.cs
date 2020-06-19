@@ -76,7 +76,13 @@ public class CompetDic : MonoBehaviour
         else
         {
             m_Competition = new CompetitionDictionary();
+
         }
+
+        Competition con = new Competition();
+        con.Mode = true;
+        con.Password = "1234";
+        m_Competition.Add("11", con);
     }
 
     // save 함수
