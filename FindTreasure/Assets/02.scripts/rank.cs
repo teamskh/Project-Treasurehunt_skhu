@@ -1,37 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Text UI 사용
 using UnityEngine.UI;
-// 구글 플레이 연동
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 
 public class rank : MonoBehaviour
 {
-    private const string leaderboardId = "CgkIx5W8ioMMEAIQAQ";
-    public long sco =0;
-    public Text scoreText;
+    //json으로 추가되는거
+    public Text ConName;
+    public Text txTime;
+    public Text txScore;
 
-    public void test()
+   public void Load()
     {
-        sco += 1;
-        scoreText.text = string.Format("score : {0}", sco);
-    }
-
-    public void send()
-    {
-        Social.ReportScore(sco, leaderboardId, (bool _send) =>
-          {
-              if (_send == true)
-              {
-                  sco = 0;
-              }
-          });
-    }
-
-    public void my()
-    {
-        ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI(leaderboardId);
+        if (PlayerPrefs.HasKey("Name")) //대회이름
+        {
+            ConName.text = PlayerPrefs.GetString("Name");
+            txTime.text = PlayerPrefs.GetString("Times");
+            txScore.text = PlayerPrefs.GetInt("Score").ToString();
+        }
     }
 }

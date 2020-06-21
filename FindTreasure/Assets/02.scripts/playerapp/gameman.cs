@@ -13,9 +13,7 @@ public class gameman : MonoBehaviour
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
-    //public Image[] img;
     public int score = 0;
-    public GameObject inss;
     public string imageText; //문제,답 내용 결정
     public CompetitionDictionary competdic;
     public QuizDictionary quizdic;
