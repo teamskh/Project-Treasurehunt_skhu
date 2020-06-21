@@ -10,6 +10,8 @@ using GooglePlayGames.BasicApi;
 using BackEnd;
 using static BackEnd.BackendAsyncClass;
 
+using System.Text.RegularExpressions;
+
 
 #if UNITY_ANDROID
 
@@ -18,27 +20,47 @@ public class GooglePlayManager : MonoBehaviour
     bool isSuccess;
     BackendReturnObject bro = new BackendReturnObject();
 
-
-    public InputField NicknameInput;
+    [SerializeField]
+    private InputField NicknameInput;
 
     // Use this for initialization
     void Start()
     {
+        if (!Backend.IsInitialized)
+        {
+            //뒤끝 초기화
+            Backend.Initialize(BackEndInit);
+        }
+        else
+        {
+            BackEndInit();
+        }
+
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
             .Builder()
             .RequestServerAuthCode(false)
             .RequestIdToken()
+            .RequestEmail()
             .Build();
-
+        //커스텀된 정보로 GPGS 초기화
         PlayGamesPlatform.InitializeInstance(config);
         // recommended for debugging:
         PlayGamesPlatform.DebugLogEnabled = true;
         // Activate the Google Play Games platform
+        //GPGS 시작.
         PlayGamesPlatform.Activate();
+        GoogleAuth();
 
+        /*
         if (!Backend.Utils.GetGoogleHash().Equals(""))
             Debug.Log(Backend.Utils.GetGoogleHash());
+        */
 
+    }
+
+    public void BackEndInit() //뒤끝 초기화
+    {
+        Debug.Log(Backend.Utils.GetServerTime());
     }
 
     void Update()
@@ -161,6 +183,27 @@ public class GooglePlayManager : MonoBehaviour
         }
     }
 
+    private void GoogleAuth()
+    {
+        if (PlayGamesPlatform.Instance.localUser.authenticated == false)
+        {
+            Social.localUser.Authenticate(success => {
+                if (success == false)
+                {
+                    Debug.Log("구글 로그인 실패");
+                    return;
+                }
+
+                //로그인 성공
+                Debug.Log("GetIdToken - " + PlayGamesPlatform.Instance.GetIdToken());
+                Debug.Log("Email - " + ((PlayGamesLocalUser)Social.localUser).Email);
+                Debug.Log("GoogleId - " + Social.localUser.id);
+                Debug.Log("UsetName - " + Social.localUser.userName);
+                Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
+            });
+        }
+    }
+
     // 구글 토큰 받아옴
     private string GetTokens()
     {
@@ -176,9 +219,37 @@ public class GooglePlayManager : MonoBehaviour
         else
         {
             Debug.Log("접속되어있지 않습니다. PlayGamesPlatform.Instance.localUser.authenticated :  fail");
+            //재시도
+            GoogleAuth();
             return null;
         }
     }
+
+    //구글토큰으로 뒤끝서버 로그인하기 동기방식
+    public void OnClickGPGSLogin()
+    {
+        BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs로 만든 계정");
+        if (BRO.IsSuccess())
+        {
+            Debug.Log("구글 토큰으로 뒤끝서버 로그인 성공 - 동기 방식-");
+        }
+        else
+        {
+            switch (BRO.GetStatusCode())
+            {
+                case "200":
+                    Debug.Log("이미 회원가입된 회원");
+                    break;
+                case "403":
+                    Debug.Log("차단된 사용자 입니다. 차단 사유 : " + BRO.GetErrorCode());
+                    break;
+                default:
+                    Debug.Log("서버 공통 에러 발생" + BRO.GetMessage());
+                    break;
+            }
+        }
+    }
+
     #endregion
 
     #region Before Method
@@ -201,7 +272,7 @@ public class GooglePlayManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Fall");
+                    Debug.Log("Fail");
                 }
             });
         }
@@ -230,6 +301,12 @@ public class GooglePlayManager : MonoBehaviour
     #endregion
 
     #region NickName
+    //한글,영어, 숫자만 입력 가능하게
+    private bool CheckNickName()
+    {
+        return Regex.IsMatch(NicknameInput.text, "^[0-9a-zA-z가-힣]*$");
+    }
+
     bool InputFieldEmptyCheck(InputField inputField)
     {
         return inputField != null && !string.IsNullOrEmpty(inputField.text);
@@ -252,13 +329,90 @@ public class GooglePlayManager : MonoBehaviour
     public void CreateNickname()
     {
         Debug.Log("-------------CreateNickname-------------");
-        if (InputFieldEmptyCheck(NicknameInput))
+        /*if (InputFieldEmptyCheck(NicknameInput))
         {
             Debug.Log(Backend.BMember.CreateNickname(NicknameInput.text).ToString());
         }
         else
         {
             Debug.Log("check NicknameInput");
+            return;
+        }*/
+
+        if (CheckNickName() == false)
+        {
+            Debug.Log("닉네임은 한글, 영어, 숫자");
+            return;
+        }
+
+        BackendReturnObject BRO = Backend.BMember.CreateNickname(NicknameInput.text);
+
+        if (BRO.IsSuccess())
+        {
+            Debug.Log("닉네임 생성 완료");
+        }
+        else
+        {
+            switch (BRO.GetStatusCode())
+            {
+                case "409":
+                    Debug.Log("이미 중복된 닉네임");
+                    break;
+                case "400":
+                    if (BRO.GetMessage().Contains("too long"))
+                        Debug.Log("20자 이상의 닉네임");
+                    else if (BRO.GetMessage().Contains("blank")) Debug.Log("닉네임에 앞/뒤 공백");
+                    break;
+                default:
+                    Debug.Log("서버 공통 에러 발생: " + BRO.GetErrorCode());
+                    break;
+            }
+        }
+    }
+
+    // 닉네임 변경
+    public void UpdateNickname()
+    {
+        Debug.Log("-------------UpdateNickname-------------");
+        /*if (InputFieldEmptyCheck(NicknameInput))
+        {
+            Debug.Log(Backend.BMember.CreateNickname(NicknameInput.text).ToString());
+        }
+        else
+        {
+            Debug.Log("check NicknameInput");
+            return;
+        }
+        */
+
+        if(CheckNickName() == false)
+        {
+            Debug.Log("닉네임은 한글, 영어, 숫자");
+            return;
+        }
+
+        BackendReturnObject BRO = Backend.BMember.UpdateNickname(NicknameInput.text); //닉네임 변경
+
+        if (BRO.IsSuccess())
+        {
+            Debug.Log("닉네임 변경 완료");
+        }
+        else
+        {
+            switch (BRO.GetStatusCode())
+            {
+                case "409":
+                    Debug.Log("이미 중복된 닉네임");
+                    break;
+                case "400":
+                    if (BRO.GetMessage().Contains("too long"))
+                        Debug.Log("20자 이상의 닉네임");
+                    else if (BRO.GetMessage().Contains("blank")) Debug.Log("닉네임에 앞/뒤 공백");
+                    break;
+                default:
+                    Debug.Log("서버 공통 에러 발생: " + BRO.GetErrorCode());
+                    break;
+            }
         }
     }
     #endregion
