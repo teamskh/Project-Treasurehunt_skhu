@@ -789,15 +789,9 @@ MonoBehaviour:
   baaudio: {fileID: 1017659775}
   sfaudio: {fileID: 1017659774}
   score: 0
-<<<<<<< Updated upstream
-  inss: {fileID: 0}
-  imageText: 
-  userna: 
-=======
   imageText: 
   st: {fileID: 0}
   userna: {fileID: 0}
->>>>>>> Stashed changes
   chek: 0
 --- !u!4 &1017659777
 Transform:

@@ -216,12 +216,4 @@ namespace TTM.Save {
         //public static string ;
         //public static string ;
     }
-
-    public static class JsonFormatter
-    {
-        public static void BackEndJson()
-        {
-             
-        }
-    }
 }
