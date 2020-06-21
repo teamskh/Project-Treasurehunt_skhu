@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using TTM.Save;
 using DataInfo;
 using TTM.Classes;
+using BackEnd;
+using LitJson;
+
+
 
 public class gameman : MonoBehaviour
 {
@@ -21,9 +24,9 @@ public class gameman : MonoBehaviour
     public Text userna;
     //페이지 이동시 저장될 유저이름
 
-    //public bool chek = false;
+//public bool chek = false;
 
-    public string time;
+public string time;
 
     static gameman instance;
     public static gameman Instance
@@ -49,8 +52,8 @@ public class gameman : MonoBehaviour
 
     private void Start()
     {
-        baaudio.volume = PlayerPrefs.GetFloat("backvol", 1f);
-        sfaudio.volume = PlayerPrefs.GetFloat("sfxvol", 1f);
+        baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
+        sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         Screen.fullScreen = !Screen.fullScreen;
         JsonLoadSave.LoadCompetitions(out competdic);
         JsonLoadSave.LoadQuizs(out quizdic);
@@ -68,7 +71,7 @@ public class gameman : MonoBehaviour
 
     public void Load()
     {
-        userna.text = PlayerPrefs.GetString("id");
+        userna.text = PlayerPrefs.GetString(PrefsString.ID);
     }
 
     public List<string> GetList()
@@ -77,3 +80,4 @@ public class gameman : MonoBehaviour
     }
 
 }
+

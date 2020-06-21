@@ -26,7 +26,7 @@ public class Compet
 }
 
 [System.Serializable]
-public class CompetitionDictionary : Dictionary<string, Competition>
+public class CompetitionDictionary : SerializableDictionary<string, Competition>
 {
     public CompetitionDictionary() { }
     public List<string> getContestList()

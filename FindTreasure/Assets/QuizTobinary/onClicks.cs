@@ -163,8 +163,8 @@ public class onClicks : MonoBehaviour
         mQuiz = new QuizInfo();
         SceneManager.LoadScene("QuizMenu");
         //GetComponent<QuizDic>().AddQuiz(QuizTitle_infT.text, mQuiz);//추가
-        QuizList quizList = this.gameObject.AddComponent<QuizList>();
-        QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가
+        //QuizList quizList = this.gameObject.AddComponent<QuizList>();
+        //QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가
        
     }
 

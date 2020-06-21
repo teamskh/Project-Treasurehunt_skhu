@@ -1,20 +1,25 @@
-﻿using System.Collections;
+﻿using DataInfo;
+using System.Collections;
 using System.Collections.Generic;
 using TTM.Save;
 using UnityEngine;
+using BackEnd;
 
 public class jsonTester : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
-    CompetitionDictionary dic;
+    QuizInfoDictionary dic;
     void Start()
     {
-        init();
+        //init();
+       
     }
     public void init()
     {
-        JsonLoadSave.LoadCompetitions(out dic);
-        string str = JsonUtility.ToJson(dic);
+        JsonLoadSave.LoadQuizMade(out dic);
+        string str = $"{dic.Count}";
         Debug.Log($"{str}");
     }
 

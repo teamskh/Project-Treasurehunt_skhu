@@ -23,7 +23,6 @@ namespace TTM.Classes
         #endregion
     }
 
-
     public class QuizInfo
     {
         public string Str { get; set; }
