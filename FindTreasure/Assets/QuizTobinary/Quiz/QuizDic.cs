@@ -73,11 +73,7 @@ public class QuizDic : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public IDictionary<string,QuizInfo> QuizInfoDictionary
-    {
-        get { return m_titleQuiz; }
-        set { m_titleQuiz.CopyFrom(value); }
-    }
+    
     public IDictionary<string, Quiz> QuizDictionary
     {
         get { return m_QuizDicPlayer; }

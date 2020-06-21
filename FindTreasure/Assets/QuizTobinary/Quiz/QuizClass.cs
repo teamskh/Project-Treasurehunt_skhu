@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
 using serializeDic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using TTM.Classes;
 using TTM.Save;
@@ -12,7 +11,7 @@ namespace DataInfo
 {
     
     [System.Serializable]
-    public class QuizInfoDictionary : SerializableDictionary<string, QuizInfo>
+    public class QuizInfoDictionary : SerializableDictionary<string,QuizInfo>
     {
         protected QuizInfoDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
         public QuizInfoDictionary() { }
@@ -27,6 +26,16 @@ namespace DataInfo
             return list;
         }
 
+        public new string ToString() {
+            string Info = "";
+            Info += $"Items : {this.Count}\n";
+            int i = 0;
+            foreach(KeyValuePair<string,QuizInfo> vr in this)
+            {
+                Info += $"{i++}: {vr.Key} - {vr.Value}\n";
+            }
+            return Info;
+        }
     }
 
     [System.Serializable]

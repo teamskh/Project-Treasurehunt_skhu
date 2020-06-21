@@ -7,28 +7,184 @@ using UnityEngine.UI;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 
+using BackEnd;
+using static BackEnd.BackendAsyncClass;
+
+
+#if UNITY_ANDROID
+
 public class GooglePlayManager : MonoBehaviour
 {
-    bool bWait = false;
+    bool isSuccess;
+    BackendReturnObject bro = new BackendReturnObject();
 
-    void Awake()
-    {
-        PlayGamesPlatform.InitializeInstance(new PlayGamesClientConfiguration.Builder().Build());
-        PlayGamesPlatform.DebugLogEnabled = true;
-        PlayGamesPlatform.Activate();
-        
-    }
+
+    public InputField NicknameInput;
+
+    // Use this for initialization
     void Start()
     {
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
+            .Builder()
+            .RequestServerAuthCode(false)
+            .RequestIdToken()
+            .Build();
+
+        PlayGamesPlatform.InitializeInstance(config);
+        // recommended for debugging:
+        PlayGamesPlatform.DebugLogEnabled = true;
+        // Activate the Google Play Games platform
+        PlayGamesPlatform.Activate();
+
+        if (!Backend.Utils.GetGoogleHash().Equals(""))
+            Debug.Log(Backend.Utils.GetGoogleHash());
 
     }
+
     void Update()
     {
-
+        // if (isSuccess)
+        // {
+        //     Debug.Log("-------------Update(SaveToken)-------------");
+        //     BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
+        //     if (saveToken.IsSuccess())
+        //     {
+        //         Debug.Log("로그인 성공");
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("로그인 실패: " + saveToken.ToString());
+        //     }
+        //     isSuccess = false;
+        //     bro.Clear();
+        // }
     }
 
+    #region Login Methods
+    public void GPGSLogin()
+    {
+        Debug.Log("-------------GPGS-------------");
+        GoogleLogin(false, false);
+    }
+
+    public void UpdateFederationEmail()
+    {
+        Debug.Log("-------------UpdateFederationEmail-------------");
+        BackendReturnObject bro = Backend.BMember.UpdateFederationEmail(GetTokens(), FederationType.Google);
+        Debug.Log(bro);
+    }
+
+    public void AGPGSLogin()
+    {
+        Debug.Log("-------------A GPGS-------------");
+        GoogleLogin(true, false);
+    }
+
+    public void ChangeCustomToFederation()
+    {
+        Debug.Log("-------------ChangeCustomToFederation(GPGS)-------------");
+        GoogleLogin(false, true);
+    }
+
+    public void AChangeCustomToFederation()
+    {
+        Debug.Log("-------------AChangeCustomToFederation(GPGS)-------------");
+        GoogleLogin(true, true);
+    }
+    #endregion
+
+    #region 실질 Methods
+    private void GoogleLogin(bool async, bool changeFed)
+    {
+        // 이미 로그인 된 경우
+        if (Social.localUser.authenticated == true)
+        {
+            BackendAuthorize(async, changeFed);
+        }
+        else
+        {
+            Social.localUser.Authenticate((success, errorMessage) =>
+            {
+                if (success)
+                {
+                    // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입요청
+                    BackendAuthorize(async, changeFed);
+                }
+                else
+                {
+                    // 로그인 실패
+                    Debug.Log("Login failed for some reason\n" + errorMessage);
+                }
+            });
+        }
+    }
+
+    private void BackendAuthorize(bool async, bool changeFed)
+    {
+        // 커스텀 -> 페더레이션 변경
+        if (changeFed)
+        {
+            // 비동기
+            if (async)
+            {
+                BackendAsync(Backend.BMember.ChangeCustomToFederation, GetTokens(), FederationType.Google, isComplete =>
+                {
+                    Debug.Log(isComplete.ToString());
+                });
+            }
+            // 동기
+            else
+            {
+                BackendReturnObject BRO = Backend.BMember.ChangeCustomToFederation(GetTokens(), FederationType.Google);
+                Debug.Log(BRO);
+            }
+        }
+        // 페더레이션 인증
+        else
+        {
+            // 비동기
+            if (async)
+            {
+                // AuthorizeFederation 대신 AuthorizeFederationAsync 사용
+                BackendAsync(Backend.BMember.AuthorizeFederationAsync, GetTokens(), FederationType.Google, "gpgs", callback =>
+                {
+                    Debug.Log(callback);
+                    
+                });
+            }
+            // 동기
+            else
+            {
+                BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
+                Debug.Log(BRO);
+            }
+        }
+    }
+
+    // 구글 토큰 받아옴
+    private string GetTokens()
+    {
+        if (PlayGamesPlatform.Instance.localUser.authenticated)
+        {
+            // 유저 토큰 받기 첫번째 방법
+            string _IDtoken = PlayGamesPlatform.Instance.GetIdToken();
+            // 두번째 방법
+            // string _IDtoken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
+            Debug.Log(_IDtoken);
+            return _IDtoken;
+        }
+        else
+        {
+            Debug.Log("접속되어있지 않습니다. PlayGamesPlatform.Instance.localUser.authenticated :  fail");
+            return null;
+        }
+    }
+    #endregion
+
+    #region Before Method
     public void OnLogin()
     {
+        
         if (!Social.localUser.authenticated)
         {
             Social.localUser.Authenticate((bool bSuccess) =>
@@ -55,5 +211,102 @@ public class GooglePlayManager : MonoBehaviour
     {
         ((PlayGamesPlatform)Social.Active).SignOut();
     }
-    
+    #endregion
+
+    #region Logout Signout
+    // 서버에서 뒤끝 access_token과 refresh_token을 삭제
+    public void Logout()
+    {
+        Debug.Log("-------------Logout-------------");
+        Debug.Log(Backend.BMember.Logout().ToString());
+    }
+
+    // 회원 탈퇴 
+    public void SignOut()
+    {
+        Debug.Log("-------------SignOut-------------");
+        Debug.Log(Backend.BMember.SignOut("탈퇴 사유").ToString());
+    }
+    #endregion
+
+    #region NickName
+    bool InputFieldEmptyCheck(InputField inputField)
+    {
+        return inputField != null && !string.IsNullOrEmpty(inputField.text);
+    }
+
+    public void CheckNicknameDuplication()
+    {
+        Debug.Log("-------------CheckNicknameDuplication-------------");
+        if (InputFieldEmptyCheck(NicknameInput))
+        {
+            Debug.Log(Backend.BMember.CheckNicknameDuplication(NicknameInput.text).ToString());
+        }
+        else
+        {
+            Debug.Log("check NicknameInput");
+        }
+    }
+
+    // 닉네임 생성 
+    public void CreateNickname()
+    {
+        Debug.Log("-------------CreateNickname-------------");
+        if (InputFieldEmptyCheck(NicknameInput))
+        {
+            Debug.Log(Backend.BMember.CreateNickname(NicknameInput.text).ToString());
+        }
+        else
+        {
+            Debug.Log("check NicknameInput");
+        }
+    }
+    #endregion
+
+    #region Token Auth
+
+    // 기기에 저장된 뒤끝 AccessToken으로 로그인 (페더레이션, 커스텀 회원가입 또는 로그인 이후에 시도 가능)
+    public void LoginWithTheBackendToken()
+    {
+        Debug.Log("-------------LoginWithTheBackendToken-------------");
+        Debug.Log(Backend.BMember.LoginWithTheBackendToken().ToString());
+    }
+
+    public void ALoginWithTheBackendToken()
+    {
+        Debug.Log("-------------ALoginWithTheBackendToken-------------");
+        // LoginWithTheBackendToken 대신 LoginWithTheBackendTokenAsync 사용
+        BackendAsync(Backend.BMember.LoginWithTheBackendTokenAsync, isComplete =>
+        {
+            // 성공시 - Update() 문에서 토큰 저장
+            Debug.Log(isComplete.ToString());
+            isSuccess = isComplete.IsSuccess();
+            bro = isComplete;
+        });
+    }
+
+
+    //뒤끝 RefreshToken 을 통해 뒤끝 AccessToken 을 재발급 받습니다
+    public void RefreshTheBackendToken()
+    {
+        Debug.Log("-------------RefreshTheBackendToken-------------");
+        Debug.Log(Backend.BMember.RefreshTheBackendToken().ToString());
+    }
+
+    public void ARefreshTheBackendToken()
+    {
+        Debug.Log("-------------ARefreshTheBackendToken-------------");
+        // RefreshTheBackendToken 대신 RefreshTheBackendTokenAsync 사용
+        BackendAsync(Backend.BMember.RefreshTheBackendTokenAsync, isComplete =>
+        {
+            // 성공시 - Update() 문에서 토큰 저장
+            Debug.Log(isComplete.ToString());
+            isSuccess = isComplete.IsSuccess();
+            bro = isComplete;
+        });
+    }
+
+    #endregion
 }
+
+#endif
