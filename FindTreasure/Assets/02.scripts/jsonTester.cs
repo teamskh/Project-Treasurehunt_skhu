@@ -10,6 +10,11 @@ using TTM.Classes;
 public class jsonTester : MonoBehaviour
 {
     CompetitionDictionary dic;
+    string id = "Admin";
+    string pw = "toomuch";
+
+    BackendReturnObject bro = new BackendReturnObject();
+    bool isSuccess = false;
     void Start()
     {
         Backend.Initialize(BRO =>
@@ -18,7 +23,12 @@ public class jsonTester : MonoBehaviour
             // 성공
             if (BRO.IsSuccess())
             {
-                 
+                Backend.BMember.CustomLogin(id, pw, callback =>
+                {
+                    Debug.Log("CustomLogin " + callback);
+                    isSuccess = callback.IsSuccess();
+                    bro = callback;
+                });
             }
             // 실패
             else
@@ -26,8 +36,6 @@ public class jsonTester : MonoBehaviour
                 Debug.LogError("Failed to initialize the backend");
             }
         });
-       
-       init();
     }
     public void init()
     {
@@ -38,11 +46,29 @@ public class jsonTester : MonoBehaviour
         dic.Add("Test", comp);
         Debug.Log(comp.ToString());
         JsonFormatter.CompetitionFormatter(dic);
+        isSuccess = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isSuccess)
+        {
+            Debug.Log("-------------Update(SaveToken)-------------");
+            BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
+            if (saveToken.IsSuccess())
+            {
+                Debug.Log("로그인 성공");
+                //init();
+                JsonFormatter.GetContentsByIndate();
+               
+            }
+            else
+            {
+                Debug.Log("로그인 실패: " + saveToken.ToString());
+            }
+            isSuccess = false;
+            bro.Clear();
+        }
     }
 }

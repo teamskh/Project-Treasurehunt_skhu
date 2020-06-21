@@ -17,7 +17,7 @@ using System.Text.RegularExpressions;
 
 public class GooglePlayManager : MonoBehaviour
 {
-    bool isSuccess;
+    public bool isSuccess = false;
     BackendReturnObject bro = new BackendReturnObject();
 
     [SerializeField]
