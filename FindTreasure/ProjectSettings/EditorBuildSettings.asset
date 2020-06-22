@@ -5,37 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/01.start.unity
     guid: c8a13e42ece79364bb20d85644f094d8
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/02.Main.unity
     guid: 6aefd9411e7567541b14ba0b0d595737
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/03.Setting.unity
     guid: a783dc629f3071444850e7174bce0a5d
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
     guid: a8925bcc64057be41a36c029c038e92f
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/administratorMenu.unity
     guid: abba70b33ca1fd4499571d3dfab18416
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/ContestMenu.unity
     guid: a5f3fa3dc3d95e14185f4f4fdfc25f35
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/QuizAdd.unity
     guid: c8d5fcfc63fddfb4e804d253b012626a
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/QuizMenu.unity
     guid: e12e68270fa776841a8b5c170a08f770
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/QuizType.unity
     guid: 696ec9fac020f4b4389226a4eeb61c94
-  - enabled: 0
+  - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/CStartEnd.unity
     guid: 06a47ae00dd46504a87319bbff78ecde
-  - enabled: 1
+  - enabled: 0
     path: Assets/01.Scenes/tes.unity
     guid: 39efbafb76c1bbd40a4a2b53f2a3bcef
   m_configObjects:

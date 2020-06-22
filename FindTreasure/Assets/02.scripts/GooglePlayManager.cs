@@ -415,6 +415,43 @@ public class GooglePlayManager : MonoBehaviour
             }
         }
     }
+
+    //랭킹 닉네임 사용
+    public void InitRank()
+    {
+        Param lunch = new Param();
+        lunch.Add("id", Backend.BMember.CreateNickname(NicknameInput.text).ToString());
+        lunch.Add("score", 0);
+        BackendReturnObject BRO = Backend.GameSchemaInfo.Insert("rank", lunch);
+
+        if (BRO.IsSuccess())
+        {
+            Debug.Log("성공");
+        }
+        else
+        {
+            if (BRO.IsSuccess())
+            {
+                Debug.Log("성공공");
+            }
+            else
+            {
+                switch (BRO.GetStatusCode())
+                {
+                    case "404":
+                        Debug.Log("존재하지 않는 테이블이름");
+                        break;
+                    case "412":
+                        Debug.Log("비활성화 된 테이블");
+                        break;
+                    default:
+                        Debug.Log("서버 공통 에러 발생" + BRO.GetMessage());
+                        break;
+                }
+            }
+        }
+    }
+
     #endregion
 
     #region Token Auth

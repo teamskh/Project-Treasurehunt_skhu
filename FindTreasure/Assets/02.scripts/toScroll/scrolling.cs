@@ -36,11 +36,6 @@ public class scrolling : MonoBehaviour
         timer = 0;
     }
 
-    public new void Init(Quiz quiz)
-    {
-        this.quiz = quiz;
-    } //???
-
     void Update()
     {
         timer += Time.deltaTime;
