@@ -24,10 +24,12 @@ public class gameman : MonoBehaviour
     public Text userna;
     //페이지 이동시 저장될 유저이름
 
-//public bool chek = false;
 
-public string time;
+    CompetitionDictionary m_Competition{get; set; }
+    //public bool chek = false;
 
+    public string time;
+    
     static gameman instance;
     public static gameman Instance
     {
@@ -36,7 +38,7 @@ public string time;
             return instance;
         }
     }
-
+ 
     private void Awake()
     {
         if (instance == null)
@@ -49,13 +51,15 @@ public string time;
             DontDestroyOnLoad(gameObject);
         }
     }
-
+    
     private void Start()
     {
         baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         Screen.fullScreen = !Screen.fullScreen;
-        JsonLoadSave.LoadCompetitions(out competdic);
+
+        m_Competition = adminManager.Instance.CallCompetDic();
+        //JsonLoadSave.LoadCompetitions(out competdic);
         JsonLoadSave.LoadQuizs(out quizdic);
     }
 
@@ -76,7 +80,7 @@ public string time;
 
     public List<string> GetList()
     {
-        return competdic.getContestList();
+        return m_Competition.getCompetitionList();
     }
 
 }

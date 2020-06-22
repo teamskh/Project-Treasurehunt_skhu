@@ -42,7 +42,6 @@ public class Camera1 : MonoBehaviour
 	public void TakeScreenShot()
 	{
 		StartCoroutine(TakeScreenshotPV());
-
 	}
 
 	public void useImage()
@@ -58,9 +57,6 @@ public class Camera1 : MonoBehaviour
 	public void saveImage()
     {
 		byte[] imageBytes = savess.EncodeToPNG();
-		/*
-		//Save image to file 
-		System.IO.File.WriteAllBytes(path, imageBytes);*/
 		var dirPath = Application.dataPath + "/Resources/Texture/";
 		if (!Directory.Exists(dirPath))
 		{

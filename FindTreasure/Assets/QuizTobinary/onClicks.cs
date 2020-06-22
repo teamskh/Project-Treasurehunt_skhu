@@ -38,8 +38,6 @@ public class onClicks : MonoBehaviour
     public static CompetDic instance;//추가
     #endregion
 
-    //public InputField QuizTitle_infT;//sjj추가
-    //QuizList quizList = new QuizList();
     public Text text;
     public Slider slider;
     public Toggle toggle_s;
@@ -74,7 +72,6 @@ public class onClicks : MonoBehaviour
         {
             case 0:
                 Changekind_TF();
-                title.text = scenechange.Qname;
                 break;
             case 1:
                 Changekind_int();
@@ -164,11 +161,7 @@ public class onClicks : MonoBehaviour
         mQuiz = new QuizInfo();
         Ttitle = mtitle;
         QuizList.number = 1;
-        //GetComponent<QuizDic>().AddQuiz(QuizTitle_infT.text, mQuiz);//추가
         SceneManager.LoadScene("QuizMenu");
-        /*
-        QuizList quizList = this.gameObject.AddComponent<QuizList>();
-        QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가*/
     }
 
     void QuizDebug()
@@ -190,14 +183,4 @@ public class onClicks : MonoBehaviour
                 break;
         }
     }
-    /*
-    public void ChangeQuiz()
-    {
-        mQuiz = new QuizInfo();
-        if (scenechange.QuizButton == 0)
-        {
-            Update();
-            title.text=
-        }
-    }*/
 }

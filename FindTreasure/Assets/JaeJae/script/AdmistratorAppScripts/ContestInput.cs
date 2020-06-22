@@ -19,7 +19,7 @@ public class ContestInput : MonoBehaviour
     public GameObject Content;
     public GameObject all_t;
     int nextNumber;
-    //int wordNumber;
+
     List<GameObject> ContestList = new List<GameObject>();
 
     //Toggle Changed Func
@@ -73,10 +73,11 @@ public class ContestInput : MonoBehaviour
     public void LoadCompets()
     {
         List<string> vs = GetComponent<CompetDic>().getCurrentList();
-        foreach(string item in vs)
-        {
-            ContestList.Add( MakeCompetButton(item));
-        }
+        if (vs != null)
+            foreach (string item in vs)
+            {
+                ContestList.Add(MakeCompetButton(item));
+            }
     }
 
     private GameObject MakeCompetButton(string name)
