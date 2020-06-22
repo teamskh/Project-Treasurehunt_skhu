@@ -1,39 +1,30 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using TTM.Save;
 using DataInfo;
 using TTM.Classes;
 using BackEnd;
-using LitJson;
 
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 
-using static BackEnd.BackendAsyncClass;
-
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using TTM.Server;
 
-
-
-public class gameman : MonoBehaviour
+public class gameman : GameDataFunction
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
     public int score = 0;
     public string imageText; //문제,답 내용 결정
-    public CompetitionDictionary competdic;
-    public QuizDictionary quizdic;
 
     public GameObject nicknamebar;
 
     public string userna;
     //페이지 이동시 저장될 유저이름
-
+    //playerdic;
     //public bool chek = false;
 
     public string time;
@@ -96,8 +87,8 @@ public class gameman : MonoBehaviour
         baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         Screen.fullScreen = !Screen.fullScreen;
-        JsonLoadSave.LoadCompetitions(out competdic);
-        JsonLoadSave.LoadQuizs(out quizdic);
+
+        
     }
 
     public void Usnick() //존재하는 닉네임
@@ -170,6 +161,11 @@ public class gameman : MonoBehaviour
         if (BRO.IsSuccess())
         {
             Debug.Log("구글 토큰으로 뒤끝서버 로그인 성공 - 동기 방식-");
+            BackendReturnObject saveToken = Backend.BMember.SaveToken(BRO);
+            if (saveToken.IsSuccess())
+            {
+                GetContentsByIndate(TableName.competitiondic);
+            }
         }
         else
         {
@@ -360,7 +356,7 @@ public class gameman : MonoBehaviour
     }
 
     public Quiz FindQuiz() {
-        return quizdic.FindQuiz(imageText);
+        return quizplayerdic.FindQuiz(imageText);
     }
 
     public void Load()
