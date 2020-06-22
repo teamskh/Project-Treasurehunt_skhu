@@ -6,23 +6,16 @@ using UnityEngine.UI;
 public class rank : MonoBehaviour
 {
     public Text Name;
+    public InputField ConTestNa;
 
     private void Start()
     {
         Name.text = PlayerPrefs.GetString("nickna");
     }
-    //json으로 추가되는거
-    /*public Text ConName;
-    public Text txTime;
-    public Text txScore;
 
-   public void Load()
+    public void Test()
     {
-        if (PlayerPrefs.HasKey("Name")) //대회이름
-        {
-            ConName.text = PlayerPrefs.GetString("Name");
-            txTime.text = PlayerPrefs.GetString("Times");
-            txScore.text = PlayerPrefs.GetInt("Score").ToString();
-        }
-    }*/
+        PlayerPrefs.SetString("ConName",ConTestNa.ToString());
+        PlayerPrefs.SetInt("Score", gameman.Instance.score);
+    }
 }
