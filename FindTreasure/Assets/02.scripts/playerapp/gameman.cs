@@ -35,6 +35,11 @@ public class gameman : GameDataFunction
     [SerializeField]
     private InputField NicknameInput;
 
+    CompetitionDictionary m_Competition{get; set; }
+    //public bool chek = false;
+
+    public string time;
+    
     static gameman instance;
     public static gameman Instance
     {
@@ -43,7 +48,7 @@ public class gameman : GameDataFunction
             return instance;
         }
     }
-
+ 
     private void Awake()
     {
         if (instance == null)
@@ -56,7 +61,7 @@ public class gameman : GameDataFunction
             DontDestroyOnLoad(gameObject);
         }
     }
-
+    
     private void Start()
     {
         if (!Backend.IsInitialized)
@@ -131,6 +136,9 @@ public class gameman : GameDataFunction
                 Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
             });
         }
+        m_Competition = adminManager.Instance.CallCompetDic();
+        //JsonLoadSave.LoadCompetitions(out competdic);
+        JsonLoadSave.LoadQuizs(out quizdic);
     }
 
     // 구글 토큰 받아옴
@@ -367,7 +375,7 @@ public class gameman : GameDataFunction
 
     public List<string> GetList()
     {
-        return competdic.getContestList();
+        return m_Competition.getCompetitionList();
     }
     #endregion
 }

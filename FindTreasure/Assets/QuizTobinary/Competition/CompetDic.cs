@@ -22,7 +22,7 @@ public class Compet
 public class CompetitionDictionary : SerializableDictionary<string, Competition>
 {
     public CompetitionDictionary() { }
-    public List<string> getContestList()
+    public List<string> getCompetitionList()
     {
         List<string> vs = new List<string>();
 
@@ -42,9 +42,10 @@ public class CompetDic : MonoBehaviour
     #region Monobehavior Methods
     CompetitionDictionary m_Competition;
 
-    private void Start()
+    private void Update()
     {
-        m_Competition = adminManager.Instance.CallCompetDic();
+        if (m_Competition == null)
+            m_Competition = adminManager.Instance.CallCompetDic();
     }
 
     #endregion
@@ -57,6 +58,12 @@ public class CompetDic : MonoBehaviour
         adminManager.Instance.CompetitionCommunication(m_Competition);
     }
 
+    public List<string> getCurrentList()
+    {
+        if (m_Competition == null) return null;
+
+        return m_Competition.getCompetitionList();
+    }
    
     public void DelCompt(string key)
     {

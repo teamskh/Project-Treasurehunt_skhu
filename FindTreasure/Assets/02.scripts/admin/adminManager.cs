@@ -15,22 +15,11 @@ public class adminManager : MonoBehaviour
         get { return instance; }
     }
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
     #endregion
+    public static bool isSet = false;
 
     CompetitionDictionary competdic;
-    public QuizInfoDictionary quizdic;
+    QuizInfoDictionary quizdic;
     string id = "Admin";
     string pw = "toomuch";
 
@@ -43,8 +32,18 @@ public class adminManager : MonoBehaviour
     bool CIsUpdate = false;
     bool QIsUpdate = false;
 
-    void Start()
+    private void Awake()
     {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        
         Indate = null;
         Backend.Initialize(BRO =>
         {
@@ -162,7 +161,7 @@ public class adminManager : MonoBehaviour
         }
         else
         {
-            if (tablename == TableName.competitiondic)
+            if (tablename == TableName.competitiondic) 
                 competdic = new CompetitionDictionary();
             else if (tablename == TableName.quizmadedic)
                 quizdic = new QuizInfoDictionary();
@@ -175,6 +174,7 @@ public class adminManager : MonoBehaviour
         // ReturnValue가 존재하고, 데이터가 있는지 확인
         if (returnData != null)
         {
+            CIsUpdate = true;
             Debug.Log("returnvalue is not null");
             // for the rows 
             if (returnData.Keys.Contains("rows"))
@@ -211,7 +211,6 @@ public class adminManager : MonoBehaviour
 
         if (data.Keys.Contains(CompetitionKey))
         {
-            CIsUpdate = true;
             var JsonDic = data[CompetitionKey]["M"];
             Debug.Log(JsonDic.ToJson());
             competdic = JsonMapper.ToObject<CompetitionDictionary>(new JsonReader(JsonDic.ToJson()));
@@ -259,7 +258,7 @@ public class adminManager : MonoBehaviour
         competdic = dic;
         Cversion++;
         Param p = JsonFormatter.CompetitionFormatter(dic, Cversion);
-        if (CIsUpdate)
+        if (!CIsUpdate)
         {
             ServerFunc.DataInsert(p, TableName.competitiondic);
         }

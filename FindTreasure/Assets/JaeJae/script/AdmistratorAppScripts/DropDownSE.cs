@@ -172,7 +172,7 @@ public class DropDownSE : MonoBehaviour
             TimeSpan time = endtime - DateTime.Now;
             //Debug.Log($"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초");
             string str = $"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초";
-            gameman.Instance.time = str;
+            //gameman.Instance.time = str;
             Debug.Log(str);
 
             yield return new WaitForSeconds(1);

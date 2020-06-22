@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Unity.IO;
+using System.IO;
+using UnityEditor;
 
 public class Camera1 : MonoBehaviour
 {
@@ -12,10 +12,9 @@ public class Camera1 : MonoBehaviour
 	public GameObject upperbar;
 	public RawImage selectImage;
 	public RawImage usingImage;
-	public Texture2D savess;
+	public static Texture2D savess;
 	public GameObject CselectB;
 	public GameObject Image;
-
 	void Start()
     {
 		RawImagePV.SetActive(false);
@@ -43,7 +42,6 @@ public class Camera1 : MonoBehaviour
 	public void TakeScreenShot()
 	{
 		StartCoroutine(TakeScreenshotPV());
-
 	}
 
 	public void useImage()
@@ -55,18 +53,33 @@ public class Camera1 : MonoBehaviour
 		savess.Apply();
 		
 	}
-/*
-	public void SaveImage()
-	{
-		//ImageV.gameObject.SetActive(true);
-		Texture2D saveImage = (Texture2D)selectImage.texture;
-		Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(saveImage, "GalleryTest", "Image.png"));
 
-		// To avoid memory leaks
-		Destroy(saveImage);
-		//TakePicture_b.SetActive(true);
+	public void saveImage()
+    {
+		byte[] imageBytes = savess.EncodeToPNG();
+		var dirPath = Application.dataPath + "/Resources/Texture/";
+		if (!Directory.Exists(dirPath))
+		{
+			Directory.CreateDirectory(dirPath);
+		}
+		File.WriteAllBytes(dirPath + onClicks.Ttitle + ".png", imageBytes);
+		Debug.Log(onClicks.Ttitle);
+#if UNITY_EDITOR
+		AssetDatabase.ImportAsset(dirPath + onClicks.Ttitle + ".png");
+#endif
 	}
-	*/
+	/*
+		public void SaveImage()
+		{
+			//ImageV.gameObject.SetActive(true);
+			Texture2D saveImage = (Texture2D)selectImage.texture;
+			Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(saveImage, "GalleryTest", "Image.png"));
+
+			// To avoid memory leaks
+			Destroy(saveImage);
+			//TakePicture_b.SetActive(true);
+		}
+		*/
 	public void PickImage(int maxSize)
 	{
 		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
