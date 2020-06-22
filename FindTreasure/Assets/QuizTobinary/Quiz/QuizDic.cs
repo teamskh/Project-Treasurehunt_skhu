@@ -11,7 +11,7 @@ using TTM.Save;
 public class QuizDic : MonoBehaviour
 {
     [SerializeField]
-    QuizInfoDictionary m_titleQuiz;
+    QuizInfoDictionary m_titleQuiz { get; set; }
 
     private QuizDictionary m_QuizDicPlayer;
     private AnswerDictionary m_AnswerDic;
@@ -88,7 +88,7 @@ public class QuizDic : MonoBehaviour
     public void AddQuiz(string title, QuizInfo quiz)
     {
         m_titleQuiz.Add(title, quiz);
-        JsonLoadSave.SaveQuizMade(m_titleQuiz);
+        adminManager.Instance.QuizMadeCommunication(m_titleQuiz);
 
         AddQuizPlayer(title, quiz);
         AddQuizAnswer(title, quiz);
@@ -98,7 +98,7 @@ public class QuizDic : MonoBehaviour
     {
         if (m_titleQuiz.Remove(key))
         {
-            JsonLoadSave.SaveQuizMade(m_titleQuiz);
+            adminManager.Instance.QuizMadeCommunication(m_titleQuiz);
             DelQuizPlayer(key);
             DelQuizAnswer(key);
 #if UNITY_EDITOR
@@ -117,7 +117,7 @@ public class QuizDic : MonoBehaviour
 
     private void Start()
     {
-        JsonLoadSave.LoadQuizMade(out m_titleQuiz);
+        m_titleQuiz = adminManager.Instance.CallQuizmadeDic();
         JsonLoadSave.LoadQuizs(out m_QuizDicPlayer);
         JsonLoadSave.LoadAnswers(out m_AnswerDic);
     }

@@ -9,6 +9,7 @@ using TTM.Classes;
 using System.Text;
 
 namespace TTM.Save {
+    
     public static class JsonLoadSave
     {
         public static string CompetFileName = "compets";
@@ -31,7 +32,7 @@ namespace TTM.Save {
             CreateJsonFile(path, data);
             Debug.Log($"File Save : {path}");
         }
-
+        /*
         public static void SaveCompetitions(CompetitionDictionary dic)
         {
             SaveFile(Address.GetComptSavePath(CompetFileName), JsonUtility.ToJson(dic));
@@ -40,7 +41,7 @@ namespace TTM.Save {
         public static void SaveQuizMade(QuizInfoDictionary dic)
         {
             SaveFile(Address.GetQuizMadeSavePath(QuizMadeFileName), JsonUtility.ToJson(dic));
-        }
+        }*/
 
         public static void SaveQuizs(QuizDictionary dic)
         {
@@ -79,7 +80,7 @@ namespace TTM.Save {
                 return false; 
             }
         }
-
+        /*
         public static bool LoadCompetitions(out CompetitionDictionary dic)
         {
             string data;
@@ -113,7 +114,7 @@ namespace TTM.Save {
                 dic = new QuizInfoDictionary();
                 return false;
             }
-        }
+        }*/
 
         public static bool LoadQuizs(out QuizDictionary dic)
         {
@@ -148,9 +149,9 @@ namespace TTM.Save {
         }
 
         #endregion
-        
-        #region DownLoad Json
         /*
+        #region DownLoad Json
+        
         public static void DownLoadCompetContents(string uri)
         {
             string teststorage = "test";
@@ -204,8 +205,8 @@ namespace TTM.Save {
                 }
             }
         }
-        */
-        #endregion
+        
+        #endregion*/
     }
 
     public static class PrefsString
