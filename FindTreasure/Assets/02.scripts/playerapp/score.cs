@@ -7,6 +7,7 @@ using System.Timers;
 public class score : MonoBehaviour
 {
     public GameObject bar;
+    public GameObject btnrank;
     public Text Time;
     public Text Score;
 
@@ -26,6 +27,7 @@ public class score : MonoBehaviour
         {
             PlayerPrefs.SetString("Name", Time.ToString());//대회 이름,,?
             bar.SetActive(false);
+            btnrank.SetActive(false);
             Ending.SetActive(true);
             if (int.Parse(Time.ToString()) < 1) //이게 될까?
             {

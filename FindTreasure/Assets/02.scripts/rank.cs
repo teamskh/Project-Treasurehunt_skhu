@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class rank : MonoBehaviour
 {
+    public Text Name;
+
+    private void Start()
+    {
+        Name.text = PlayerPrefs.GetString("nickna");
+    }
     //json으로 추가되는거
-    public Text ConName;
+    /*public Text ConName;
     public Text txTime;
     public Text txScore;
 
@@ -18,5 +24,5 @@ public class rank : MonoBehaviour
             txTime.text = PlayerPrefs.GetString("Times");
             txScore.text = PlayerPrefs.GetInt("Score").ToString();
         }
-    }
+    }*/
 }
