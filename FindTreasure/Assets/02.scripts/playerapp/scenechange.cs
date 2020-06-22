@@ -27,11 +27,6 @@ public class scenechange :MonoBehaviour
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
     }
 
-    public static void ChangeSceneToQuizMenuToAdd()
-    {
-        SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
-    }
-
     public void ChangeSceneToContestSetting()
     {
         SceneManager.LoadScene("ContestMenu");//대회 세팅 화면

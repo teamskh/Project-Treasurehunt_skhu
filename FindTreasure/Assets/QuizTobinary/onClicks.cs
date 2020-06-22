@@ -43,7 +43,7 @@ public class onClicks : MonoBehaviour
     public Text text;
     public Slider slider;
     public Toggle toggle_s;
-
+    public static string Ttitle;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +51,7 @@ public class onClicks : MonoBehaviour
         mQuiz = new QuizInfo();
 
         Changekind_TF();
+        slider.value = 1;
     }
 
     // Update is called once per frame
@@ -161,11 +162,13 @@ public class onClicks : MonoBehaviour
             QuizDebug();
 
         mQuiz = new QuizInfo();
-        SceneManager.LoadScene("QuizMenu");
+        Ttitle = mtitle;
+        QuizList.number = 1;
         //GetComponent<QuizDic>().AddQuiz(QuizTitle_infT.text, mQuiz);//추가
+        SceneManager.LoadScene("QuizMenu");
+        /*
         QuizList quizList = this.gameObject.AddComponent<QuizList>();
-        QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가
-       
+        QuizList.QList.Add(quizList.MakeQuizButton(mtitle));//추가*/
     }
 
     void QuizDebug()
