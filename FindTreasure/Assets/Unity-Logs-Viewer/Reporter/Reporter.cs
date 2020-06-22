@@ -65,7 +65,7 @@ public class Images
 }
 
 //To use Reporter just create reporter from menu (Reporter->Create) at first scene your game start.
-//then set the ” Scrip execution order ” in (Edit -> Project Settings ) of Reporter.cs to be the highest.
+//then set the ??Scrip execution order ??in (Edit -> Project Settings ) of Reporter.cs to be the highest.
 
 //Now to view logs all what you have to do is to make a circle gesture using your mouse (click and drag) 
 //or your finger (touch and drag) on the screen to show all these logs
@@ -2078,8 +2078,8 @@ public class Reporter : MonoBehaviour
 		}
 
 		//if (Application.platform != RuntimePlatform.OSXWebPlayer && Application.platform != RuntimePlatform.WindowsWebPlayer)
-			if (!url.Contains("://"))
-				url = "file://" + url;
+		//	if (!url.Contains("://"))
+		//		url = "file://" + url;
 
 
 		// float startTime = Time.realtimeSinceStartup;

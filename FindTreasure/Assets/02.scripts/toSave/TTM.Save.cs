@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using LitJson;
 using System.IO;
 using UnityEngine;
 using DataInfo;
 using TTM.Path;
 using BackEnd;
 using TTM.Classes;
+using System.Text;
 
 namespace TTM.Save {
+    
     public static class JsonLoadSave
     {
         public static string CompetFileName = "compets";
@@ -17,41 +18,59 @@ namespace TTM.Save {
         public static string AnswersFileName = "answers";
 
         #region Save Json
-        private static void SaveFile(string path, JsonData data)
+        private static void CreateJsonFile(string createPath, string data)
         {
-            File.WriteAllText(path, data.ToString());
-            Debug.Log($"File Save : {path}");
+            FileStream stream = new FileStream(createPath, FileMode.Create);
+            byte[] d = Encoding.UTF8.GetBytes(data);
+            stream.Write(d, 0, data.Length);
+            stream.Close();
         }
 
+        private static void SaveFile(string path, string data)
+        {
+            //File.WriteAllText(path, data);
+            CreateJsonFile(path, data);
+            Debug.Log($"File Save : {path}");
+        }
+        /*
         public static void SaveCompetitions(CompetitionDictionary dic)
         {
-            SaveFile(Address.GetComptSavePath(CompetFileName), JsonMapper.ToJson(dic));
+            SaveFile(Address.GetComptSavePath(CompetFileName), JsonUtility.ToJson(dic));
         }
 
         public static void SaveQuizMade(QuizInfoDictionary dic)
         {
-            SaveFile(Address.GetQuizMadeSavePath(QuizMadeFileName), JsonMapper.ToJson(dic));
-        }
+            SaveFile(Address.GetQuizMadeSavePath(QuizMadeFileName), JsonUtility.ToJson(dic));
+        }*/
 
         public static void SaveQuizs(QuizDictionary dic)
         {
-            SaveFile(Address.GetQuizSavePath(QuizsFileName), JsonMapper.ToJson(dic));
+            SaveFile(Address.GetQuizSavePath(QuizsFileName), JsonUtility.ToJson(dic));
         }
 
         public static void SaveAnswers(AnswerDictionary dic)
         {
-            SaveFile(Address.GetAnswerSavePath(AnswersFileName), JsonMapper.ToJson(dic));
+            SaveFile(Address.GetAnswerSavePath(AnswersFileName), JsonUtility.ToJson(dic));
         }
         #endregion
 
 
         #region Load Json
 
+        private static string LoadJsonFile(string path)
+        {
+            FileStream stream = new FileStream(path, FileMode.Open);
+            byte[] data = new byte[stream.Length];
+            stream.Read(data, 0, data.Length);
+            stream.Close();
+            return Encoding.UTF8.GetString(data);
+        }
+
         private static bool Load(string path,out string data)
         {
             if (File.Exists(path))
             {
-                data = File.ReadAllText(path);
+                data = LoadJsonFile(path);
                 Debug.Log($"File Exists: {path}\nData: {data}");
                 return true;
             }
@@ -61,15 +80,18 @@ namespace TTM.Save {
                 return false; 
             }
         }
-
+        /*
         public static bool LoadCompetitions(out CompetitionDictionary dic)
         {
             string data;
             if (Load(Address.GetComptSavePath(CompetFileName),out data))
             {
+                //dic = JsonMapper.ToObject<CompetitionDictionary>(new JsonReader(data));
                 dic = JsonUtility.FromJson<CompetitionDictionary>(data);
                 Debug.Log("LoadCompetition Clear!");
                 return true;
+                
+                
             }
             else
             {
@@ -84,7 +106,7 @@ namespace TTM.Save {
             if (Load(Address.GetQuizMadeSavePath(QuizMadeFileName), out data))
             {
                 dic = JsonUtility.FromJson<QuizInfoDictionary>(data);
-                Debug.Log("LoadQuizMade Clear!");
+                Debug.Log($"LoadQuizMade Clear!\n{dic}");
                 return true;
             }
             else
@@ -92,7 +114,7 @@ namespace TTM.Save {
                 dic = new QuizInfoDictionary();
                 return false;
             }
-        }
+        }*/
 
         public static bool LoadQuizs(out QuizDictionary dic)
         {
@@ -100,7 +122,7 @@ namespace TTM.Save {
             if (Load(Address.GetQuizSavePath(QuizsFileName), out data))
             {
                 dic = JsonUtility.FromJson<QuizDictionary>(data);
-                Debug.Log("LoadCompetition Clear!");
+                Debug.Log($"LoadQuizz Clear!\nItems: {dic.Count}");
                 return true;
             }
             else
@@ -127,8 +149,9 @@ namespace TTM.Save {
         }
 
         #endregion
-
+        /*
         #region DownLoad Json
+        
         public static void DownLoadCompetContents(string uri)
         {
             string teststorage = "test";
@@ -136,7 +159,7 @@ namespace TTM.Save {
             Debug.Log(returnObject);
             if (returnObject.IsSuccess())
             {
-                GetGameInfo(returnObject.GetReturnValuetoJSON(),"Competitions");
+                //GetGameInfo(returnObject.GetReturnValuetoJSON(),"Competitions");
                 Debug.Log(returnObject.GetReturnValuetoJSON()["rows"].Count);
             }
         }
@@ -182,7 +205,16 @@ namespace TTM.Save {
                 }
             }
         }
+        
+        #endregion*/
+    }
 
-        #endregion
+    public static class PrefsString
+    {
+        public static string ID = "ID";
+        public static string baaudio = "backvol";
+        public static string sfaudio = "sfxvol";
+        //public static string ;
+        //public static string ;
     }
 }
