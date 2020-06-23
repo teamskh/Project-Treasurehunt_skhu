@@ -2875,7 +2875,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 940987638}
-        m_MethodName: changeadminScene
+        m_MethodName: Loading
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3895,8 +3895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8c98c734d7d204ba45406030b8ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Competition:
-    m_keys: []
 --- !u!1 &1049337987
 GameObject:
   m_ObjectHideFlags: 0
@@ -6639,6 +6637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48191ede79c680446b89e2a9d594e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSuccess: 0
   NicknameInput: {fileID: 0}
 --- !u!1 &1623689388
 GameObject:

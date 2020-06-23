@@ -7,7 +7,6 @@ using TTM.Classes;
 
 public class competinfo : MonoBehaviour
 {
-    /*
     public InputField ContestName_infT;
     public Dropdown ContestTN_dbox;
     public InputField ContestPw_infT;
@@ -16,17 +15,17 @@ public class competinfo : MonoBehaviour
     public GameObject ContestBPrefab; //대회버튼
     public GameObject Content;
     public GameObject all_t;
+    Competition compet = new Competition();
     public void Start()
     {
-        Competition compet = new Competition();
-        Team.isOn = compet.Mode;
-        
-        if (compet.Mode)
+        string key = scenechange.Qname;
+        if (adminManager.Instance.CallCompetDic().TryGetValue(key, out compet))
         {
-            compet.MaxMember = ContestTN_dbox.value + 2;
+            Debug.Log(compet.Mode);
+            ContestPw_infT.text = compet.Password;
+            Debug.Log(compet.Password);
+            ContestName_infT.text = key;
         }
-
-        ContestPw_infT.text= compet.Password;
     }
     public void Update()
     {
@@ -44,33 +43,18 @@ public class competinfo : MonoBehaviour
             SceneManager.LoadScene("ContestList");
         }
     }
-    public void SaveContest()
+   public void PasswordLoad()
     {
-        Competition compet = new Competition();
-
-        if (ContestName_infT.text.Length < 1)
-        {
-            StartCoroutine(setActiveObjinSecond(all_t, 1f));
-            return;
-        }
-
+        ContestPw_infT.text= compet.Password;
+    }
+    public void PasswordSave()
+    {
         if (ContestPw_infT.text.Length < 1)
         {
             StartCoroutine(setActiveObjinSecond(all_t, 1f));
             return;
         }
-
-        compet.Mode = Team.isOn;
-
-        if (compet.Mode)
-        {
-            compet.MaxMember = ContestTN_dbox.value + 2;
-        }
-
-        compet.Password = ContestPw_infT.text;
-
-        GetComponent<CompetDic>().AddContest(ContestName_infT.text, compet);
-
+        compet.Password= ContestPw_infT.text;
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {
@@ -78,5 +62,4 @@ public class competinfo : MonoBehaviour
         yield return new WaitForSeconds(second);
         gameObject.SetActive(false);
     }
-*/
 }

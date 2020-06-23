@@ -4,6 +4,7 @@ using UnityEngine;
 using BackEnd;
 using TTM.Server;
 using LitJson;
+using TTM.Classes;
 
 public class adminManager : MonoBehaviour
 {
@@ -213,9 +214,15 @@ public class adminManager : MonoBehaviour
         {
             var JsonDic = data[CompetitionKey]["M"];
             Debug.Log(JsonDic.ToJson());
-            competdic = JsonMapper.ToObject<CompetitionDictionary>(new JsonReader(JsonDic.ToJson()));
+            
+            var dic = JsonMapper.ToObject<Dictionary<string,string>>(new JsonReader(JsonDic.ToJson()));
 
-            foreach (var key in competdic.Keys) Debug.Log(key);
+            foreach(KeyValuePair<string,string> pair in dic)
+            {
+                Debug.Log(pair.Key + ":" + pair.Value);
+                Competition com = JsonMapper.ToObject<Competition>(new JsonReader(pair.Value));
+                competdic.Add(pair.Key, com);
+            }
 
             if (data.Keys.Contains(VersionKey))
             {
