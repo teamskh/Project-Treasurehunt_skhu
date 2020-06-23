@@ -395,7 +395,7 @@ namespace TTM.Server {
 
         public CompetitionDictionary CallCompetDic() { return competdic; }
 
-        public void CompetitionCommunication(CompetitionDictionary dic)
+        protected void CompetitionCommunication(CompetitionDictionary dic)
         {
             competdic = dic;
             Cversion++;
@@ -412,7 +412,7 @@ namespace TTM.Server {
 
         public QuizInfoDictionary CallQuizmadeDic() { return quizdic; }
         
-        public void QuizMadeCommunication(QuizInfoDictionary dic)
+        protected void QuizMadeCommunication(QuizInfoDictionary dic)
         {
             Qversion++;
             Param p = JsonFormatter.QuizMadeFormatter(dic, Qversion);
@@ -428,7 +428,7 @@ namespace TTM.Server {
 
         public QuizDictionary CallQuizplayerDic() { return quizplayerdic; }
 
-        public void QuizPlayerCommunication(QuizDictionary dic) {
+        protected void QuizPlayerCommunication(QuizDictionary dic) {
             Pversion++;
             Param p = JsonFormatter.QuizPlayerFormatter(dic, Pversion);
             if (!PIsUpdate)
@@ -442,7 +442,7 @@ namespace TTM.Server {
         }
         public AnswerDictionary CallAnswerDic() { return answerdic; }
 
-        public void AnswerCommunication(AnswerDictionary dic)
+        protected void AnswerCommunication(AnswerDictionary dic)
         {
             Aversion++;
             Param p = JsonFormatter.AnswerFormatter(dic, Pversion);
