@@ -396,7 +396,8 @@ public class gameman : GameDataFunction
     #region 퀴즈용
     public Answer CheckAnswer()
     {
-        Answer ans = AnswerDictionary.GetAnswer(imageText);
+        Answer ans = new Answer();
+        answerdic.TryGetValue(imageText, out ans);
         return ans;
     }
 
