@@ -27,16 +27,14 @@ public class CreateCompetbuttons : MonoBehaviour
     GameObject bar;
 
     [SerializeField]
-    score score;
-
-    [SerializeField]
     GameObject rankButton;
+
 
     private CompetDic scripts;
 
     private void Start()
     {
-        m_ClickAction += SetActive;
+        
         scripts = gameObject.AddComponent<CompetDic>();
     }
 
@@ -45,7 +43,7 @@ public class CreateCompetbuttons : MonoBehaviour
     void Awake()
     {
         m_ClickAction += sfxmusic.start;
-
+        m_ClickAction += SetActive;
         //m_ClickAction += score.click;
         curlist = gameman.Instance.GetList();
         foreach (string title in curlist) {

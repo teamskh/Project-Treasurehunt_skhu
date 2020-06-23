@@ -26,7 +26,7 @@ public class createmyrank : MonoBehaviour
             string wordString = "대회이름";
             PlayerPrefs.SetString("words" + wordNumber, wordString);
 
-            go.transform.GetChild(1).transform.GetComponent<Text>().text = gameman.Instance.endtime; //number옆text
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = gameman.Instance.endingTime; //number옆text
             go.transform.GetChild(2).transform.GetComponent<Text>().text = "대회이름"; //number옆text
 
             go.transform.SetParent(Content.transform);
@@ -41,7 +41,7 @@ public class createmyrank : MonoBehaviour
             Debug.Log("nono");
         }
 
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         //deleted all playerprefs
 
         //wordNumber = PlayerPrefs.GetInt("wordNumber");
@@ -53,7 +53,7 @@ public class createmyrank : MonoBehaviour
         {
             GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
             go.transform.GetChild(0).transform.GetComponent<Text>().text = gameman.Instance.score.ToString(); //점수
-            go.transform.GetChild(1).transform.GetComponent<Text>().text = gameman.Instance.endtime; //number옆text
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = gameman.Instance.endingTime; //number옆text
             go.transform.GetChild(2).transform.GetComponent<Text>().text = "대회이름"; //number옆text
 
             go.transform.SetParent(Content.transform);
