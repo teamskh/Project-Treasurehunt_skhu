@@ -32,14 +32,14 @@ public class QuizDic : MonoBehaviour
 
         m_QuizDicPlayer.Add(title, mQuiz);
 
-        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
+        adminManager.Instance.QuizPlayerCommunication(m_QuizDicPlayer);
         Debug.Log("Making Files");
     }
 
     private void DelQuizPlayer(string key)
     {
         m_QuizDicPlayer.Remove(key);
-        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
+        adminManager.Instance.QuizPlayerCommunication(m_QuizDicPlayer);
     }
 
     private void AddQuizAnswer(string title, QuizInfo quiz)
@@ -61,13 +61,13 @@ public class QuizDic : MonoBehaviour
         }
 
         m_AnswerDic.Add(title, ans);
-        JsonLoadSave.SaveAnswers(m_AnswerDic);
+        adminManager.Instance.AnswerCommunication(m_AnswerDic);
     }
 
     private void DelQuizAnswer(string key)
     {
         m_AnswerDic.Remove(key);
-        JsonLoadSave.SaveAnswers(m_AnswerDic);
+        adminManager.Instance.AnswerCommunication(m_AnswerDic);
     }
 
     #endregion

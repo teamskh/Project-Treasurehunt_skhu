@@ -1,4 +1,4 @@
-﻿#if UNITY_ANDROID
+﻿//#if UNITY_ANDROID
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -112,7 +112,7 @@ public class gameman : GameDataFunction
                 Debug.Log("로그인 성공");
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizplayerdic);
-
+                GetContentsByIndate(TableName.answerdic);
             }
             else
             {
