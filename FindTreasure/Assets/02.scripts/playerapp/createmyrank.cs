@@ -42,7 +42,7 @@ public class createmyrank : MonoBehaviour
         }
 
         PlayerPrefs.DeleteAll();
-        //deleted all playerprefsㄴ
+        //deleted all playerprefs
 
         //wordNumber = PlayerPrefs.GetInt("wordNumber");
         wordNumber = PlayerPrefs.GetInt("nextNumber");
@@ -53,7 +53,7 @@ public class createmyrank : MonoBehaviour
         {
             GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
             go.transform.GetChild(0).transform.GetComponent<Text>().text = gameman.Instance.score.ToString(); //점수
-            go.transform.GetChild(1).transform.GetComponent<Text>().text = "시간"; //number옆text
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = gameman.Instance.endtime; //number옆text
             go.transform.GetChild(2).transform.GetComponent<Text>().text = "대회이름"; //number옆text
 
             go.transform.SetParent(Content.transform);
