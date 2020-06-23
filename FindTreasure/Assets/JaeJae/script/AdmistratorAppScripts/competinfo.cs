@@ -15,16 +15,21 @@ public class competinfo : MonoBehaviour
     public GameObject ContestBPrefab; //대회버튼
     public GameObject Content;
     public GameObject all_t;
+    string key;
     Competition compet = new Competition();
     public void Start()
     {
-        string key = scenechange.Qname;
+        key = scenechange.Qname;
         if (adminManager.Instance.CallCompetDic().TryGetValue(key, out compet))
         {
             Debug.Log(compet.Mode);
             ContestPw_infT.text = compet.Password;
+            if (compet.Mode == true)
+            {
+                //Team.
+            }
             Debug.Log(compet.Password);
-            ContestName_infT.text = key;
+            //ContestName_infT.text = key;
         }
     }
     public void Update()
@@ -55,6 +60,9 @@ public class competinfo : MonoBehaviour
             return;
         }
         compet.Password= ContestPw_infT.text;
+        Debug.Log(compet.Password);
+        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+        adminManager.Instance.GetComponent<CompetDic>().AddContest(key, compet);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {

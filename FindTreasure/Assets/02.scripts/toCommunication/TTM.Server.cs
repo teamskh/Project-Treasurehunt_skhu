@@ -183,19 +183,19 @@ namespace TTM.Server {
     public class GameDataFunction : MonoBehaviour { 
         protected string Indate;
 
-        protected CompetitionDictionary competdic;
+        protected CompetitionDictionary competdic=new CompetitionDictionary();
         protected int Cversion;
         protected bool CIsUpdate;
 
-        protected QuizInfoDictionary quizdic;
+        protected QuizInfoDictionary quizdic = new QuizInfoDictionary();
         protected int Qversion;
         protected bool QIsUpdate;
 
-        protected QuizDictionary quizplayerdic;
+        protected QuizDictionary quizplayerdic = new QuizDictionary();
         protected int Pversion;
         protected bool PIsUpdate;
 
-        protected AnswerDictionary answerdic;
+        protected AnswerDictionary answerdic = new AnswerDictionary();
         protected int Aversion;
         protected bool AIsUpdate;
 
