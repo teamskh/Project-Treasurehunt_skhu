@@ -181,20 +181,20 @@ namespace TTM.Server {
         protected string Indate;
 
         protected CompetitionDictionary competdic=new CompetitionDictionary();
-        protected int Cversion;
-        protected bool CIsUpdate;
+        protected int Cversion = 0;
+        protected bool CIsUpdate = false;
 
         protected QuizInfoDictionary quizdic = new QuizInfoDictionary();
-        protected int Qversion;
-        protected bool QIsUpdate;
+        protected int Qversion = 0;
+        protected bool QIsUpdate = false;
 
         protected QuizDictionary quizplayerdic = new QuizDictionary();
-        protected int Pversion;
-        protected bool PIsUpdate;
+        protected int Pversion = 0;
+        protected bool PIsUpdate = false;
 
         protected AnswerDictionary answerdic = new AnswerDictionary();
-        protected int Aversion;
-        protected bool AIsUpdate;
+        protected int Aversion = 0;
+        protected bool AIsUpdate = false;
 
         #region Load Data
         public void GetPublicContents()
@@ -226,11 +226,6 @@ namespace TTM.Server {
             }
             else
             {
-                if (tablename == TableName.competitiondic)
-                    competdic = new CompetitionDictionary();
-
-                if (tablename == TableName.quizmadedic)
-                    quizdic = new QuizInfoDictionary();
                 Debug.Log("there is no data");
             }
         }
