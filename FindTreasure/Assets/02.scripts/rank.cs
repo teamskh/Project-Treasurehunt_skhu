@@ -9,6 +9,7 @@ using DataInfo;
 
 using TTM.Classes;
 using TTM.Save;
+using BackEnd;
 
 public class rank : MonoBehaviour
 {
@@ -17,16 +18,17 @@ public class rank : MonoBehaviour
     public InputField ConTestNa;
     private TimeSpan times;
 
+    public GameObject endTime;
+    public GameObject endScore;
+
+    public Text endtimeT;
+    public Text endscoreT;
+
     private void Start()
     {
         Name.text = PlayerPrefs.GetString("nickna");
         gameman.Instance.score = 0;
-        
-    }
-
-    public void Update()
-    {
-
+        StartCoroutine(CountTime());
     }
 
     public void Loadrank()
@@ -35,9 +37,32 @@ public class rank : MonoBehaviour
         Debug.Log("create");
     }
 
-    public void Test()
+    public void GetConname()
     {
-        PlayerPrefs.SetString("ConName",ConTestNa.ToString());
-        PlayerPrefs.SetInt("Score", gameman.Instance.score);
+
+    }
+
+    public void SaveTS()
+    {
+        if (gameman.Instance.score==30) //시간 끝! 서버에서 갖고와 시간
+        {
+            endscoreT.text = gameman.Instance.score.ToString();
+            endScore.SetActive(false);
+        }
+        else  //목표 점수 도달 if문 점수
+        {
+            endtimeT.text = gameman.Instance.endtime;
+            endTime.SetActive(false);
+        }
+    }
+
+    IEnumerator CountTime()
+    {
+        while (true)
+        {
+            DateTime str = DateTime.Now;
+            Debug.Log(str);
+            yield return new WaitForSeconds(1);
+        }
     }
 }
