@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TTM.Save;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,11 @@ public class Music : MonoBehaviour
 
     private void Start()
     {
-        backVol = PlayerPrefs.GetFloat("backvol", 1f);
+        backVol = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         backVolume.value = backVol;
         gameman.Instance.baaudio.volume = backVolume.value;
 
-        sfxVol = PlayerPrefs.GetFloat("sfxvol", 1f);
+        sfxVol = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         sfxVolume.value = sfxVol;
         gameman.Instance.sfaudio.volume = sfxVolume.value;
     }
@@ -32,11 +33,11 @@ public class Music : MonoBehaviour
     {
         gameman.Instance.baaudio.volume = backVolume.value;
         backVol = backVolume.value;
-        PlayerPrefs.SetFloat("backvol", backVol);
+        PlayerPrefs.SetFloat(PrefsString.baaudio, backVol);
 
         gameman.Instance.sfaudio.volume = sfxVolume.value;
         sfxVol = sfxVolume.value;
-        PlayerPrefs.SetFloat("sfxvol", sfxVol);
+        PlayerPrefs.SetFloat(PrefsString.sfaudio, sfxVol);
     }
     
 }

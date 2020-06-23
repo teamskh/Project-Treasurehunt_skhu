@@ -11,7 +11,7 @@ using TTM.Save;
 public class QuizDic : MonoBehaviour
 {
     [SerializeField]
-    QuizInfoDictionary m_titleQuiz;
+    QuizInfoDictionary m_titleQuiz { get; set; }
 
     private QuizDictionary m_QuizDicPlayer;
     private AnswerDictionary m_AnswerDic;
@@ -32,14 +32,14 @@ public class QuizDic : MonoBehaviour
 
         m_QuizDicPlayer.Add(title, mQuiz);
 
-        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
+        adminManager.Instance.QuizPlayerCommunication(m_QuizDicPlayer);
         Debug.Log("Making Files");
     }
 
     private void DelQuizPlayer(string key)
     {
         m_QuizDicPlayer.Remove(key);
-        JsonLoadSave.SaveQuizs(m_QuizDicPlayer);
+        adminManager.Instance.QuizPlayerCommunication(m_QuizDicPlayer);
     }
 
     private void AddQuizAnswer(string title, QuizInfo quiz)
@@ -61,13 +61,13 @@ public class QuizDic : MonoBehaviour
         }
 
         m_AnswerDic.Add(title, ans);
-        JsonLoadSave.SaveAnswers(m_AnswerDic);
+        adminManager.Instance.AnswerCommunication(m_AnswerDic);
     }
 
     private void DelQuizAnswer(string key)
     {
         m_AnswerDic.Remove(key);
-        JsonLoadSave.SaveAnswers(m_AnswerDic);
+        adminManager.Instance.AnswerCommunication(m_AnswerDic);
     }
 
     #endregion
@@ -88,7 +88,7 @@ public class QuizDic : MonoBehaviour
     public void AddQuiz(string title, QuizInfo quiz)
     {
         m_titleQuiz.Add(title, quiz);
-        JsonLoadSave.SaveQuizMade(m_titleQuiz);
+        adminManager.Instance.QuizMadeCommunication(m_titleQuiz);
 
         AddQuizPlayer(title, quiz);
         AddQuizAnswer(title, quiz);
@@ -98,7 +98,7 @@ public class QuizDic : MonoBehaviour
     {
         if (m_titleQuiz.Remove(key))
         {
-            JsonLoadSave.SaveQuizMade(m_titleQuiz);
+            adminManager.Instance.QuizMadeCommunication(m_titleQuiz);
             DelQuizPlayer(key);
             DelQuizAnswer(key);
 #if UNITY_EDITOR
@@ -117,7 +117,7 @@ public class QuizDic : MonoBehaviour
 
     private void Start()
     {
-        JsonLoadSave.LoadQuizMade(out m_titleQuiz);
+        m_titleQuiz = adminManager.Instance.CallQuizmadeDic();
         JsonLoadSave.LoadQuizs(out m_QuizDicPlayer);
         JsonLoadSave.LoadAnswers(out m_AnswerDic);
     }

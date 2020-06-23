@@ -25,19 +25,19 @@ public class score : MonoBehaviour
 
         if ((int.Parse(Score.ToString()) == 50)||(int.Parse(Time.ToString())<1)) //최대 점수 대회마다 다름;; -> ??
         {
-            PlayerPrefs.SetString("Name", Time.ToString());//대회 이름,,?
+            PlayerPrefs.SetString(TTM.Save.PrefsString.CompetitionName, Time.ToString());//대회 이름,,?
             bar.SetActive(false);
             btnrank.SetActive(false);
             Ending.SetActive(true);
             if (int.Parse(Time.ToString()) < 1) //이게 될까?
             {
-                PlayerPrefs.SetInt("Score", int.Parse(Score.text));
+                PlayerPrefs.SetInt(TTM.Save.PrefsString.PersonalScore, int.Parse(Score.text));
                 EndingTime.SetActive(false);
             }
                 
             else if (int.Parse(Score.text) == 50)
             {
-                PlayerPrefs.SetString("Times", Time.ToString());
+                PlayerPrefs.SetString(TTM.Save.PrefsString.LastTime, Time.ToString());
                 EndingScore.SetActive(false);
             }
         }

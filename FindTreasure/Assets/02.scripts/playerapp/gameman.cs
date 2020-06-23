@@ -1,39 +1,31 @@
-﻿using System;
-using System.Collections;
+﻿//#if UNITY_ANDROID
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using TTM.Save;
 using DataInfo;
 using TTM.Classes;
 using BackEnd;
-using LitJson;
 
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 
-using static BackEnd.BackendAsyncClass;
-
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using TTM.Server;
 
-
-
-public class gameman : MonoBehaviour
+public class gameman : GameDataFunction
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
     public int score = 0;
     public string imageText; //문제,답 내용 결정
-    public CompetitionDictionary competdic;
-    public QuizDictionary quizdic;
 
     public GameObject nicknamebar;
 
     public string userna;
     //페이지 이동시 저장될 유저이름
-
+    //playerdic;
     //public bool chek = false;
 
     public string time;
@@ -44,6 +36,13 @@ public class gameman : MonoBehaviour
     [SerializeField]
     private InputField NicknameInput;
 
+    CompetitionDictionary m_Competition{ get; set; }
+    QuizDictionary m_QuizPlayer;
+    AnswerDictionary m_Answer;
+    //public bool chek = false;
+
+    
+    
     static gameman instance;
     public static gameman Instance
     {
@@ -52,6 +51,8 @@ public class gameman : MonoBehaviour
             return instance;
         }
     }
+
+    #region Monobehavior Methods
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class gameman : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
+    
     private void Start()
     {
         if (!Backend.IsInitialized)
@@ -91,19 +92,43 @@ public class gameman : MonoBehaviour
         // Activate the Google Play Games platform
         //GPGS 시작.
         PlayGamesPlatform.Activate();
-        GoogleAuth();
+        //GoogleAuth();
 
         baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         Screen.fullScreen = !Screen.fullScreen;
-        JsonLoadSave.LoadCompetitions(out competdic);
-        JsonLoadSave.LoadQuizs(out quizdic);
+
+        
     }
+
+    private void Update()
+    {
+        if (isSuccess)
+        {
+            Debug.Log("-------------Update(SaveToken)-------------");
+            BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
+            if (saveToken.IsSuccess())
+            {
+                Debug.Log("로그인 성공");
+                GetContentsByIndate(TableName.competitiondic);
+                GetContentsByIndate(TableName.quizplayerdic);
+                GetContentsByIndate(TableName.answerdic);
+            }
+            else
+            {
+                Debug.Log("로그인 실패: " + saveToken.ToString());
+            }
+            isSuccess = false;
+            bro.Clear();
+        }
+    }
+    #endregion
+
 
     public void Usnick() //존재하는 닉네임
     {
         Debug.Log("nicknuck");
-        if (PlayerPrefs.HasKey("nickna"))
+        if (PlayerPrefs.HasKey(PrefsString.nickname))
         {
             Debug.Log("yes");
             SceneManager.LoadScene("02.Main");
@@ -140,6 +165,9 @@ public class gameman : MonoBehaviour
                 Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
             });
         }
+        m_Competition = competdic;
+        //JsonLoadSave.LoadCompetitions(out competdic);
+        //JsonLoadSave.LoadQuizs(out quizdic);
     }
 
     // 구글 토큰 받아옴
@@ -170,6 +198,13 @@ public class gameman : MonoBehaviour
         if (BRO.IsSuccess())
         {
             Debug.Log("구글 토큰으로 뒤끝서버 로그인 성공 - 동기 방식-");
+            BackendReturnObject saveToken = Backend.BMember.SaveToken(BRO);
+            if (saveToken.IsSuccess())
+            {
+                GetContentsByIndate(TableName.competitiondic);
+                GetContentsByIndate(TableName.quizplayerdic);
+                GetContentsByIndate(TableName.answerdic);
+            }
         }
         else
         {
@@ -236,7 +271,7 @@ public class gameman : MonoBehaviour
 
         BackendReturnObject BRO = Backend.BMember.CreateNickname(NicknameInput.text);
         userna = NicknameInput.text.ToString();
-        PlayerPrefs.SetString("nickna", userna);
+        PlayerPrefs.SetString(PrefsString.nickname, userna);
 
         if (BRO.IsSuccess())
         {
@@ -360,7 +395,7 @@ public class gameman : MonoBehaviour
     }
 
     public Quiz FindQuiz() {
-        return quizdic.FindQuiz(imageText);
+        return quizplayerdic.FindQuiz(imageText);
     }
 
     public void Load()
@@ -371,7 +406,7 @@ public class gameman : MonoBehaviour
 
     public List<string> GetList()
     {
-        return competdic.getContestList();
+        return m_Competition.getCompetitionList();
     }
     #endregion
 }

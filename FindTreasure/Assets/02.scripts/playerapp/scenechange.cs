@@ -27,11 +27,6 @@ public class scenechange :MonoBehaviour
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
     }
 
-    public static void ChangeSceneToQuizMenuToAdd()
-    {
-        SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
-    }
-
     public void ChangeSceneToContestSetting()
     {
         SceneManager.LoadScene("ContestMenu");//대회 세팅 화면
@@ -51,7 +46,12 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
     }
-
+    public void ChangeSceneToAdMenu(Button button)
+    {
+        Qname = button.GetComponentInChildren<Text>().text;
+        Debug.Log(Qname);
+        ChangeSceneToAdMenu();
+    }
     public void ChangeSceneToPWChange()
     {
         SceneManager.LoadScene("PWChange");//비밀번호 변경화면
@@ -91,5 +91,9 @@ public class scenechange :MonoBehaviour
         Qname=button.GetComponentInChildren<Text>().text;
         Debug.Log(Qname);
         ChangeSceneToQuizAddToChange();
+    }
+    public void Loading()
+    {
+        SceneManager.LoadScene("loading");
     }
 }

@@ -11,6 +11,7 @@ using BackEnd;
 using static BackEnd.BackendAsyncClass;
 
 using System.Text.RegularExpressions;
+using TTM.Save;
 
 
 #if UNITY_ANDROID
@@ -268,7 +269,7 @@ public class GooglePlayManager : MonoBehaviour
 
                     Debug.Log("Success : " + Social.localUser.userName+Social.localUser.id);
                     gameObject.GetComponent<scenechange>().changeMainScene();
-                    PlayerPrefs.SetString("id", Social.localUser.userName);
+                    PlayerPrefs.SetString(PrefsString.ID, Social.localUser.userName);
                 }
                 else
                 {
