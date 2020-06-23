@@ -5,10 +5,10 @@ using BackEnd;
 using TTM.Server;
 using LitJson;
 
+
+
 public class adminManager : GameDataFunction
 {
-
-    delegate void CallMethods<T>(T dic);
     #region statics
     static adminManager instance;
 
@@ -80,50 +80,10 @@ public class adminManager : GameDataFunction
                 Debug.Log("로그인 실패: " + saveToken.ToString());
             }
             isSuccess = false;
+            bro.Clear();
         }
 
     }
-    private void Access<T>(T dic,CallMethods<T> dele)
-    {
-        BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
-        if (saveToken.IsSuccess())
-        {
-            Debug.Log("로그인 성공");
-
-            dele(dic);
-        }
-        else
-        {
-            Debug.Log("로그인 실패: " + saveToken.ToString());
-        }
-    }
-
-    
-    public void CompetToServer()
-    {
-        CallMethods<CompetitionDictionary> compets = new CallMethods<CompetitionDictionary>(CompetitionCommunication);
-        Access<CompetitionDictionary>(competdic, compets);
-    }
-
-    public void QuizMadeToServer()
-    {
-        CallMethods<QuizInfoDictionary> quizz = new CallMethods<QuizInfoDictionary>(QuizMadeCommunication);
-        Access<QuizInfoDictionary>(quizdic, quizz);
-    }
-
-    public void QuizPlayerToServer()
-    {
-        CallMethods<QuizDictionary> quizplayer = new CallMethods<QuizDictionary>(QuizPlayerCommunication);
-        Access<QuizDictionary>(quizplayerdic, quizplayer);
-    }
-
-    public void AnswerToServer()
-    {
-        CallMethods<AnswerDictionary> Answers = new CallMethods<AnswerDictionary>(AnswerCommunication);
-        Access<AnswerDictionary>(answerdic,Answers);
-    }
-
-
 
     #region Don't Need Now
     public void GetTableList()
