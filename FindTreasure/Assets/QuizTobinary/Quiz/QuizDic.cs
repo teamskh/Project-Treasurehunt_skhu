@@ -124,6 +124,7 @@ public class QuizDic : MonoBehaviour
     
     public List<string> GetQuizList()//추가 
     {
+        if (m_titleQuiz == null) return null;
         return m_titleQuiz.GetList();
     }
 }
