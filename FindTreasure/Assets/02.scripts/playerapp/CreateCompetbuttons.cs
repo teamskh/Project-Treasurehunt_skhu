@@ -29,6 +29,9 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     score score;
 
+    [SerializeField]
+    GameObject rankButton;
+
     private CompetDic scripts;
 
     private void Start()
@@ -60,7 +63,8 @@ public class CreateCompetbuttons : MonoBehaviour
     {
         List.SetActive(false);
         backmid.SetActive(false);
-        bar.SetActive(false);
+        bar.SetActive(true);
+        rankButton.SetActive(true);
     }
 
 }
