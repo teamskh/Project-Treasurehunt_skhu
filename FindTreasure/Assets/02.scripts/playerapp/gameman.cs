@@ -1,4 +1,6 @@
 ﻿//#if UNITY_ANDROID
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,9 +28,10 @@ public class gameman : GameDataFunction
     public string userna;
     //페이지 이동시 저장될 유저이름
     //playerdic;
-    //public bool chek = false;
+    public bool loadRankChek = false;
 
-    public string time;
+    public string starttime;
+    public string endtime;
 
     public bool isSuccess = false;
     BackendReturnObject bro = new BackendReturnObject();
@@ -131,7 +134,7 @@ public class gameman : GameDataFunction
         if (PlayerPrefs.HasKey(PrefsString.nickname))
         {
             Debug.Log("yes");
-            SceneManager.LoadScene("02.Main");
+            //SceneManager.LoadScene("02.Main");
         }
         else
         {

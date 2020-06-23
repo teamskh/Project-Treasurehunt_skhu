@@ -25,6 +25,7 @@ public class DropDownSE : MonoBehaviour
     private bool isOn;
     private bool reservStart;
     private bool reservEnd;
+    
 
     public void HandleInputData()
     {
@@ -120,7 +121,6 @@ public class DropDownSE : MonoBehaviour
         {
             endtime = Convert.ToDateTime(CalendarController._EDateString +" "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
         }
-        Debug.Log(endtime);
     }
     public void SelectButtonEndnow()
     {
@@ -128,11 +128,12 @@ public class DropDownSE : MonoBehaviour
         reservEnd = false;
         endtime = DateTime.Now;
     }
-    /*
+
     private void FixedUpdate()
     {
+        
         Panel.SetActive(!isOn);
-
+        
         if (reservStart)
         {
             int result = DateTime.Compare(DateTime.Now, starttime);
@@ -144,7 +145,7 @@ public class DropDownSE : MonoBehaviour
             {
                 isOn = true;
                 reservStart = false;
-                
+                //gamean 열리고 닫히고
             }
         }
         if (isOn)
@@ -157,6 +158,7 @@ public class DropDownSE : MonoBehaviour
                 {
                     isOn = false;
                     reservEnd = false;
+                    // 종료
                 }
                 else
                 {
@@ -164,17 +166,11 @@ public class DropDownSE : MonoBehaviour
                 }
             }
         }
-    }*/
+    }
     IEnumerator CountTime()
     {
         while (true)
         {
-            TimeSpan time = endtime - DateTime.Now;
-            //Debug.Log($"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초");
-            string str = $"{time.Days}일 {time.Hours}시간 {time.Minutes}분 {time.Seconds}초";
-            //gameman.Instance.time = str;
-            Debug.Log(str);
-
             yield return new WaitForSeconds(1);
         }
     }

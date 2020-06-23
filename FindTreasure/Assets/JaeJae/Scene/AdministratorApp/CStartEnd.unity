@@ -6545,8 +6545,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: changeFirstScene
+      - m_Target: {fileID: 1794906041}
+        m_MethodName: start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6556,8 +6556,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: start
+      - m_Target: {fileID: 1794906044}
+        m_MethodName: changeMainScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8373,6 +8373,7 @@ GameObject:
   - component: {fileID: 1794906042}
   - component: {fileID: 1794906043}
   - component: {fileID: 1794906044}
+  - component: {fileID: 1794906041}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -8380,6 +8381,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1794906041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794906040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5632917ffaccf42a76e7d84348436b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1794906042
 Transform:
   m_ObjectHideFlags: 0

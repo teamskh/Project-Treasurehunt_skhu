@@ -19,7 +19,7 @@ public class score : MonoBehaviour
     void Update()
     {
         //Score.text = gameman.Instance.score.ToString();
-        
+        /*
         Time.text = gameman.Instance.time;
         Score.text = gameman.Instance.score.ToString();
 
@@ -40,7 +40,7 @@ public class score : MonoBehaviour
                 PlayerPrefs.SetString(TTM.Save.PrefsString.LastTime, Time.ToString());
                 EndingScore.SetActive(false);
             }
-        }
+        }*/
     }
 
 }
