@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GooglePlayGames.BasicApi.Multiplayer;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,53 +15,46 @@ public class createmyrank : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         //deleted all playerprefs
-
-        wordNumber = PlayerPrefs.GetInt("wordNumber");
-
-        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, wordNumber * 112);
+        
+        //wordNumber = PlayerPrefs.GetInt("wordNumber");
+        wordNumber = PlayerPrefs.GetInt("nextNumber");
+        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
 
         for (int i = 0; i < wordNumber; i++)
         {
             GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
-            go.transform.GetChild(0).transform.GetComponent<Text>().text = "" + (i + 1);//number
-            string wordString = PlayerPrefs.GetString("words" + i);//내어너니언어합친거버튼에 나타낼문장
-            go.transform.GetChild(1).GetComponent<Text>().text = wordString; //number옆text
-            go.transform.SetParent(Content.transform, false);
+            go.transform.GetChild(0).transform.GetComponent<Text>().text = "점수"; //점수
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = "시간"; //number옆text
+            go.transform.GetChild(2).transform.GetComponent<Text>().text = "대회이름"; //number옆text
+
+            go.transform.SetParent(Content.transform);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     public void addWords()
     {
-        if (myLanguage.text != "" && otherLanguage.text != "")
-        {
             if (PlayerPrefs.HasKey("nextNumber"))
                 nextNumber = PlayerPrefs.GetInt("nextNumber");
 
             nextNumber++;
             GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
-            go.transform.GetChild(0).transform.GetComponent<Text>().text = "" + nextNumber;//number
-            string wordString = otherLanguage.text + "=" + myLanguage.text;//내어너니언어합친거버튼에 나타낼문장
+            go.transform.GetChild(0).transform.GetComponent<Text>().text = "호호"; //점수
+
+            string wordString = "대회이름";
             PlayerPrefs.SetString("words" + wordNumber, wordString);
 
-            go.transform.GetChild(1).GetComponent<Text>().text = wordString; //number옆text
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = "시간"; //number옆text
+            go.transform.GetChild(2).transform.GetComponent<Text>().text = "점수"; //number옆text
+
             myLanguage.text = "";
             otherLanguage.text = "";
-            go.transform.SetParent(Content.transform, false);
+
+            go.transform.SetParent(Content.transform);
             PlayerPrefs.SetInt("nextNumber", nextNumber);
             wordNumber++;
             PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
-            Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, wordNumber * 112);
-
-        }
-        else
-        {
-            Debug.Log("empty");
-        }
+            Debug.Log(wordNumber);
+            Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
     }
-
 }
+
