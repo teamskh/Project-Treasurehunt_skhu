@@ -30,6 +30,7 @@ public class gameman : GameDataFunction
     //playerdic;
     public bool loadRankChek = false;
 
+    public string starttime;
     public string endtime;
 
     public bool isSuccess = false;
