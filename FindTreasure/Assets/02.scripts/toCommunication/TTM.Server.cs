@@ -183,20 +183,20 @@ namespace TTM.Server {
         protected string Indate;
 
         protected CompetitionDictionary competdic=new CompetitionDictionary();
-        protected int Cversion;
-        protected bool CIsUpdate;
+        protected int Cversion = 0;
+        protected bool CIsUpdate = false;
 
         protected QuizInfoDictionary quizdic = new QuizInfoDictionary();
-        protected int Qversion;
-        protected bool QIsUpdate;
+        protected int Qversion = 0;
+        protected bool QIsUpdate = false;
 
         protected QuizDictionary quizplayerdic = new QuizDictionary();
-        protected int Pversion;
-        protected bool PIsUpdate;
+        protected int Pversion = 0;
+        protected bool PIsUpdate = false;
 
         protected AnswerDictionary answerdic = new AnswerDictionary();
-        protected int Aversion;
-        protected bool AIsUpdate;
+        protected int Aversion = 0;
+        protected bool AIsUpdate = false;
 
         #region Load Data
         public void GetPublicContents()
@@ -228,11 +228,6 @@ namespace TTM.Server {
             }
             else
             {
-                if (tablename == TableName.competitiondic)
-                    competdic = new CompetitionDictionary();
-
-                if (tablename == TableName.quizmadedic)
-                    quizdic = new QuizInfoDictionary();
                 Debug.Log("there is no data");
             }
         }
@@ -312,6 +307,7 @@ namespace TTM.Server {
 
             if (data.Keys.Contains(CompetitionKey))
             {
+                competdic.Clear();
                 CIsUpdate = true;
                 var JsonDic = data[CompetitionKey]["M"];
                 Debug.Log(JsonDic.ToJson());
@@ -331,6 +327,7 @@ namespace TTM.Server {
 
             if (data.Keys.Contains(QuizMadeKey))
             {
+                quizdic.Clear();
                 QIsUpdate = true;
                 var JsonDic = data[QuizMadeKey]["M"];
                 Debug.Log(JsonDic.ToJson());
@@ -350,6 +347,7 @@ namespace TTM.Server {
 
             if (data.Keys.Contains(QuizPlayerKey))
             {
+                quizplayerdic.Clear();
                 PIsUpdate = true;
                 var JsonDic = data[QuizPlayerKey]["M"];
                 Debug.Log(JsonDic.ToJson());
@@ -369,6 +367,7 @@ namespace TTM.Server {
 
             if (data.Keys.Contains(AnswerKey))
             {
+                answerdic.Clear();
                 AIsUpdate = true;
                 var JsonDic = data[AnswerKey]["M"];
                 Debug.Log(JsonDic.ToJson());
@@ -396,7 +395,8 @@ namespace TTM.Server {
 
         public void CompetitionCommunication(CompetitionDictionary dic)
         {
-            competdic = dic;
+            GetContentsByIndate(TableName.competitiondic);
+            
             Cversion++;
             Param p = JsonFormatter.CompetitionFormatter(dic, Cversion);
             if (!CIsUpdate)
@@ -413,6 +413,7 @@ namespace TTM.Server {
         
         public void QuizMadeCommunication(QuizInfoDictionary dic)
         {
+            GetContentsByIndate(TableName.quizmadedic);
             Qversion++;
             Param p = JsonFormatter.QuizMadeFormatter(dic, Qversion);
             if (!QIsUpdate)
@@ -428,6 +429,7 @@ namespace TTM.Server {
         public QuizDictionary CallQuizplayerDic() { return quizplayerdic; }
 
         public void QuizPlayerCommunication(QuizDictionary dic) {
+            GetContentsByIndate(TableName.quizplayerdic);
             Pversion++;
             Param p = JsonFormatter.QuizPlayerFormatter(dic, Pversion);
             if (!PIsUpdate)
@@ -443,6 +445,7 @@ namespace TTM.Server {
 
         public void AnswerCommunication(AnswerDictionary dic)
         {
+            GetContentsByIndate(TableName.answerdic);
             Aversion++;
             Param p = JsonFormatter.AnswerFormatter(dic, Pversion);
             if (!AIsUpdate)

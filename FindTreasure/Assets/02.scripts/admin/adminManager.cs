@@ -6,7 +6,6 @@ using TTM.Server;
 using LitJson;
 
 
-
 public class adminManager : GameDataFunction
 {
     #region statics
@@ -73,6 +72,7 @@ public class adminManager : GameDataFunction
 
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizmadedic);
+                GetComponent<CompetDic>().isSet = true;
             }
             else
             {

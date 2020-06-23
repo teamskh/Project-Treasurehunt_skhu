@@ -40,12 +40,17 @@ public class CompetDic : MonoBehaviour
 {
 
     #region Monobehavior Methods
-    CompetitionDictionary m_Competition;
+    CompetitionDictionary m_Competition = new CompetitionDictionary();
+    public bool isSet = false;
 
     private void Update()
     {
-        if (m_Competition == null)
-            m_Competition = adminManager.Instance.CallCompetDic();
+        if (isSet)
+        {
+            m_Competition.CopyFrom(adminManager.Instance.CallCompetDic());
+            isSet = false;
+        }
+        
     }
 
     #endregion
