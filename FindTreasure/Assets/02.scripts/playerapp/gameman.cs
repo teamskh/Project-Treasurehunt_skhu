@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_ANDROID
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TTM.Save;
@@ -35,10 +36,12 @@ public class gameman : GameDataFunction
     [SerializeField]
     private InputField NicknameInput;
 
-    CompetitionDictionary m_Competition{get; set; }
+    CompetitionDictionary m_Competition{ get; set; }
+    QuizDictionary m_QuizPlayer;
+    AnswerDictionary m_Answer;
     //public bool chek = false;
 
-    public string time;
+    
     
     static gameman instance;
     public static gameman Instance
@@ -48,7 +51,9 @@ public class gameman : GameDataFunction
             return instance;
         }
     }
- 
+
+    #region Monobehavior Methods
+
     private void Awake()
     {
         if (instance == null)
@@ -87,7 +92,7 @@ public class gameman : GameDataFunction
         // Activate the Google Play Games platform
         //GPGS 시작.
         PlayGamesPlatform.Activate();
-        GoogleAuth();
+        //GoogleAuth();
 
         baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
@@ -96,10 +101,34 @@ public class gameman : GameDataFunction
         
     }
 
+    private void Update()
+    {
+        if (isSuccess)
+        {
+            Debug.Log("-------------Update(SaveToken)-------------");
+            BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
+            if (saveToken.IsSuccess())
+            {
+                Debug.Log("로그인 성공");
+                GetContentsByIndate(TableName.competitiondic);
+                GetContentsByIndate(TableName.quizplayerdic);
+
+            }
+            else
+            {
+                Debug.Log("로그인 실패: " + saveToken.ToString());
+            }
+            isSuccess = false;
+            bro.Clear();
+        }
+    }
+    #endregion
+
+
     public void Usnick() //존재하는 닉네임
     {
         Debug.Log("nicknuck");
-        if (PlayerPrefs.HasKey("nickna"))
+        if (PlayerPrefs.HasKey(PrefsString.nickname))
         {
             Debug.Log("yes");
             SceneManager.LoadScene("02.Main");
@@ -136,9 +165,9 @@ public class gameman : GameDataFunction
                 Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
             });
         }
-        m_Competition = adminManager.Instance.CallCompetDic();
+        m_Competition = competdic;
         //JsonLoadSave.LoadCompetitions(out competdic);
-        JsonLoadSave.LoadQuizs(out quizdic);
+        //JsonLoadSave.LoadQuizs(out quizdic);
     }
 
     // 구글 토큰 받아옴
@@ -173,6 +202,8 @@ public class gameman : GameDataFunction
             if (saveToken.IsSuccess())
             {
                 GetContentsByIndate(TableName.competitiondic);
+                GetContentsByIndate(TableName.quizplayerdic);
+                GetContentsByIndate(TableName.answerdic);
             }
         }
         else
@@ -240,7 +271,7 @@ public class gameman : GameDataFunction
 
         BackendReturnObject BRO = Backend.BMember.CreateNickname(NicknameInput.text);
         userna = NicknameInput.text.ToString();
-        PlayerPrefs.SetString("nickna", userna);
+        PlayerPrefs.SetString(PrefsString.nickname, userna);
 
         if (BRO.IsSuccess())
         {

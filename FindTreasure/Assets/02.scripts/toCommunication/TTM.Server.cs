@@ -5,6 +5,9 @@ using TTM.Classes;
 using UnityEngine;
 using LitJson;
 using DataInfo;
+using UnityEditor.UIElements;
+using System.Collections;
+using System;
 
 namespace TTM.Server {
 
@@ -14,6 +17,7 @@ namespace TTM.Server {
         public static string competitiondic = "competitiondic";
         public static string quizmadedic = "quizmadedic";
         public static string quizplayerdic = "quizplayerdic";
+        public static string answerdic = "answerdic";
         //public static string 
     }
 
@@ -24,13 +28,17 @@ namespace TTM.Server {
         {
             Param param = new Param();
             Dictionary<string, string> paramdic = new Dictionary<string, string>();
+            List<string> list = new List<string>();
+
             foreach (KeyValuePair<string, Competition> vr in dic)
             {
                 paramdic.Add(vr.Key, JsonMapper.ToJson(vr.Value));
+                list.Add(vr.Key);
                 Debug.Log($"key: {vr.Key}, value: {JsonMapper.ToJson(vr.Value)}");
             }
 
             param.Add(TableName.competitiondic, paramdic);
+            param.Add("rowkeys", list.ToArray());
             param.Add("version", version);
             Debug.Log(param.ToString());
 
@@ -41,13 +49,16 @@ namespace TTM.Server {
         {
             Param param = new Param();
             Dictionary<string, string> paramdic = new Dictionary<string, string>();
+            List<string> list = new List<string>();
             foreach (KeyValuePair<string, QuizInfo> vr in dic)
             {
                 paramdic.Add(vr.Key, JsonMapper.ToJson(vr.Value));
+                list.Add(vr.Key);
                 Debug.Log($"key: {vr.Key}, value: {JsonMapper.ToJson(vr.Value)}");
             }
 
             param.Add(TableName.quizmadedic, paramdic);
+            param.Add("rowkeys", list.ToArray());
             param.Add("version", version);
             Debug.Log(param.ToString());
 
@@ -58,13 +69,37 @@ namespace TTM.Server {
         {
             Param param = new Param();
             Dictionary<string, string> paramdic = new Dictionary<string, string>();
+            List<string> list = new List<string>();
             foreach (KeyValuePair<string, Quiz> vr in dic)
             {
                 paramdic.Add(vr.Key, JsonMapper.ToJson(vr.Value));
+                list.Add(vr.Key);
                 Debug.Log($"key: {vr.Key}, value: {JsonMapper.ToJson(vr.Value)}");
             }
 
             param.Add(TableName.quizplayerdic, paramdic);
+            param.Add("rowkeys", list.ToArray());
+            param.Add("version", version);
+            Debug.Log(param.ToString());
+
+            return param;
+        }
+
+        public static Param AnswerFormatter(AnswerDictionary dic , int version)
+        {
+
+            Param param = new Param();
+            Dictionary<string, string> paramdic = new Dictionary<string, string>();
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<string, Answer> vr in dic)
+            {
+                paramdic.Add(vr.Key, JsonMapper.ToJson(vr.Value));
+                list.Add(vr.Key);
+                Debug.Log($"key: {vr.Key}, value: {JsonMapper.ToJson(vr.Value)}");
+            }
+
+            param.Add(TableName.answerdic, paramdic);
+            param.Add("rowkeys", list.ToArray());
             param.Add("version", version);
             Debug.Log(param.ToString());
 
@@ -143,7 +178,7 @@ namespace TTM.Server {
 
         #endregion
     }
-   
+
 
     public class GameDataFunction : MonoBehaviour { 
         protected string Indate;
@@ -160,6 +195,11 @@ namespace TTM.Server {
         protected int Pversion;
         protected bool PIsUpdate;
 
+        protected AnswerDictionary answerdic;
+        protected int Aversion;
+        protected bool AIsUpdate;
+
+        #region Load Data
         public void GetPublicContents()
         {
             Debug.Log("-----------------Get Public Contents-----------------");
@@ -167,7 +207,6 @@ namespace TTM.Server {
             BackendReturnObject backendReturnObject = Backend.GameInfo.GetPublicContents(TableName.competitiondic, 20);
             Debug.Log(backendReturnObject);
         }
-
 
         // 게임정보 한개 가져옴
         public void GetContentsByIndate(string tablename)
@@ -234,25 +273,57 @@ namespace TTM.Server {
         void GetData(JsonData data)
         {
 
-            string CompetitionKey = "competitiondic";
-            string QuizMadeKey = "quizmadedic";
+            string CompetitionKey = TableName.competitiondic;
+            string QuizMadeKey = TableName.quizmadedic;
+            string QuizPlayerKey = TableName.quizplayerdic;
+            string AnswerKey = TableName.answerdic;
             string VersionKey = "version";
+
+            List<string> returnlist = new List<string>();
+            if (data.Keys.Contains("rowkeys"))
+            {
+                JsonData list = data["rowkeys"]["L"];
+                var listCount = list.Count;
+                if (listCount > 0)
+                {
+                    for (int j = 0; j < listCount; j++)
+                    {
+                        var listdata = list[j]["S"].ToString();
+                        returnlist.Add(listdata);
+                    }
+                    Debug.Log(JsonMapper.ToJson(returnlist));
+                }
+                else
+                {
+                    Debug.Log("list has no data");
+                }
+            }
+
+            int version;
+
+
+            if (data.Keys.Contains(VersionKey))
+            {
+                var jsonVer = data[VersionKey]["N"].ToString();
+
+               version = int.Parse(jsonVer);
+            }
+            else { version = 0; }
+
 
             if (data.Keys.Contains(CompetitionKey))
             {
                 CIsUpdate = true;
                 var JsonDic = data[CompetitionKey]["M"];
                 Debug.Log(JsonDic.ToJson());
-                competdic = JsonMapper.ToObject<CompetitionDictionary>(new JsonReader(JsonDic.ToJson()));
 
-                foreach (var key in competdic.Keys) Debug.Log(key);
-
-                if (data.Keys.Contains(VersionKey))
+                foreach (var key in returnlist)
                 {
-                    var jsonVer = data[VersionKey]["N"];
-
-                    Cversion = JsonMapper.ToObject<int>(new JsonReader(jsonVer.ToJson()));
+                    string jsonclass = JsonDic[key]["S"].ToString();
+                    competdic.Add(key, JsonMapper.ToObject<Competition>(new JsonReader(jsonclass)));
                 }
+
+                Cversion = version;
             }
             else
             {
@@ -264,22 +335,61 @@ namespace TTM.Server {
                 QIsUpdate = true;
                 var JsonDic = data[QuizMadeKey]["M"];
                 Debug.Log(JsonDic.ToJson());
-                quizdic = JsonMapper.ToObject<QuizInfoDictionary>(new JsonReader(JsonDic.ToJson()));
-                foreach (var key in quizdic.Keys) Debug.Log(key);
 
-                if (data.Keys.Contains(VersionKey))
+                foreach (var key in returnlist)
                 {
-                    var jsonVer = data[VersionKey]["N"];
-
-                    Cversion = JsonMapper.ToObject<int>(new JsonReader(jsonVer.ToJson()));
+                    string jsonclass = JsonDic[key]["S"].ToString();
+                    quizdic.Add(key, JsonMapper.ToObject<QuizInfo>(new JsonReader(jsonclass)));
                 }
+
+                Qversion = version;
             }
             else
             {
                 Debug.Log("there is no key " + QuizMadeKey);
             }
 
+            if (data.Keys.Contains(QuizPlayerKey))
+            {
+                PIsUpdate = true;
+                var JsonDic = data[QuizPlayerKey]["M"];
+                Debug.Log(JsonDic.ToJson());
+
+                foreach (var key in returnlist)
+                {
+                    string jsonclass = JsonDic[key]["S"].ToString();
+                    quizplayerdic.Add(key, JsonMapper.ToObject<Quiz>(new JsonReader(jsonclass)));
+                }
+
+                Pversion = version;
+            }
+            else
+            {
+                Debug.Log("there is no key " + QuizPlayerKey);
+            }
+
+            if (data.Keys.Contains(AnswerKey))
+            {
+                AIsUpdate = true;
+                var JsonDic = data[AnswerKey]["M"];
+                Debug.Log(JsonDic.ToJson());
+
+                foreach (var key in returnlist)
+                {
+                    string jsonclass = JsonDic[key]["S"].ToString();
+                    answerdic.Add(key, JsonMapper.ToObject<Answer>(new JsonReader(jsonclass)));
+                }
+
+                Aversion = version;
+            }
+            else
+            {
+                Debug.Log("there is no key " + QuizPlayerKey);
+            }
+
         }
+
+        #endregion
 
         #region Call Methods
 
@@ -328,6 +438,21 @@ namespace TTM.Server {
             else
             {
                 ServerFunc.DataUpdate(p, TableName.quizplayerdic);
+            }
+        }
+        public AnswerDictionary CallAnswerDic() { return answerdic; }
+
+        public void AnswerCommunication(AnswerDictionary dic)
+        {
+            Aversion++;
+            Param p = JsonFormatter.AnswerFormatter(dic, Pversion);
+            if (!AIsUpdate)
+            {
+                ServerFunc.DataInsert(p, TableName.answerdic);
+            }
+            else
+            {
+                ServerFunc.DataUpdate(p, TableName.answerdic);
             }
         }
         #endregion
