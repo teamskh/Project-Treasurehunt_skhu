@@ -32,6 +32,7 @@ public class competinfo : MonoBehaviour
             if (compet.Mode == true)
             {
                 Team.isOn = true;
+                individual.isOn = false;
                 ContestTN_dbox.value = compet.MaxMember - 2;
             }
             else
@@ -82,6 +83,7 @@ public class competinfo : MonoBehaviour
     }
     public void memberNumberSave()
     {
+        compet.Mode = Team.isOn;
         if (compet.Mode == true)
         {
             Team.isOn = true;

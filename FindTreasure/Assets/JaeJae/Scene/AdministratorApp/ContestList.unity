@@ -202,8 +202,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: changeFirstScene
+      - m_Target: {fileID: 703134203}
+        m_MethodName: start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -213,8 +213,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: start
+      - m_Target: {fileID: 703134201}
+        m_MethodName: changeMainScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1959,6 +1959,7 @@ GameObject:
   - component: {fileID: 703134198}
   - component: {fileID: 703134200}
   - component: {fileID: 703134201}
+  - component: {fileID: 703134203}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2036,6 +2037,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c48e9c5afefaa1643b96d1da982cbbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &703134203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703134197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5632917ffaccf42a76e7d84348436b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &709674063
