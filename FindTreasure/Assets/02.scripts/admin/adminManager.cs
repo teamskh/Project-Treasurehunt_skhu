@@ -63,7 +63,6 @@ public class adminManager : GameDataFunction
     // Update is called once per frame
     void Update()
     {
-        
         if (isSuccess)
         {
             Debug.Log("-------------Update(SaveToken)-------------");
