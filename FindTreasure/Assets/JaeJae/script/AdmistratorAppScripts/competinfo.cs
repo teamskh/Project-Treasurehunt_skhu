@@ -12,13 +12,13 @@ public class competinfo : MonoBehaviour
     public InputField ContestPw_infT;
     public Toggle Team;
     public Toggle individual;
-    public GameObject ContestBPrefab; //대회버튼
-    public GameObject Content;
     public GameObject all_t;
+    public GameObject Panel;
     string key;
     Competition compet = new Competition();
     public void Start()
     {
+        all_t.SetActive(false);
         key = scenechange.Qname;
         if (adminManager.Instance.CallCompetDic().TryGetValue(key, out compet))
         {
@@ -26,7 +26,11 @@ public class competinfo : MonoBehaviour
             ContestPw_infT.text = compet.Password;
             if (compet.Mode == true)
             {
-                //Team.
+                Team.isOn = true;
+            }
+            else
+            {
+                individual.isOn = true;
             }
             Debug.Log(compet.Password);
             //ContestName_infT.text = key;
@@ -48,10 +52,6 @@ public class competinfo : MonoBehaviour
             SceneManager.LoadScene("ContestList");
         }
     }
-   public void PasswordLoad()
-    {
-        ContestPw_infT.text= compet.Password;
-    }
     public void PasswordSave()
     {
         if (ContestPw_infT.text.Length < 1)
@@ -61,6 +61,21 @@ public class competinfo : MonoBehaviour
         }
         compet.Password= ContestPw_infT.text;
         Debug.Log(compet.Password);
+        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+        adminManager.Instance.GetComponent<CompetDic>().AddContest(key, compet);
+        Panel.SetActive(false);
+    }
+    public void memberNumberSave()
+    {
+        if (compet.Mode == true)
+        {
+            compet.MaxMember = ContestTN_dbox.value + 2;
+        }
+        else
+        {
+            individual.isOn = true;
+            compet.MaxMember = 1;
+        }
         adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
         adminManager.Instance.GetComponent<CompetDic>().AddContest(key, compet);
     }
