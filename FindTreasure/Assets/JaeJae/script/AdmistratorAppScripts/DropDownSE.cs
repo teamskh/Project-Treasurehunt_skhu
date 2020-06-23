@@ -150,6 +150,7 @@ public class DropDownSE : MonoBehaviour
             {
                 isOn = true;
                 reservStart = false;
+                //gamean 열리고 닫히고
             }
         }
         if (isOn)
@@ -162,9 +163,11 @@ public class DropDownSE : MonoBehaviour
                 {
                     isOn = false;
                     reservEnd = false;
+                    // 종료
                 }
                 else
                 {
+                    
                 }
             }
         }
