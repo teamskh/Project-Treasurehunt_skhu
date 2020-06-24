@@ -53,7 +53,7 @@ public class Camera1 : MonoBehaviour
 		savess.Apply();
 		
 	}
-
+	/*
 	public void saveImage()
     {
 		byte[] imageBytes = savess.EncodeToPNG();
@@ -67,7 +67,7 @@ public class Camera1 : MonoBehaviour
 #if UNITY_EDITOR
 		AssetDatabase.ImportAsset(dirPath + onClicks.Ttitle + ".png");
 #endif
-	}
+	}*/
 	/*
 		public void SaveImage()
 		{

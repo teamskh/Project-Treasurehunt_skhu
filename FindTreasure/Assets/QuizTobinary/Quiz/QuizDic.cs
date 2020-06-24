@@ -11,11 +11,17 @@ using TTM.Save;
 public class QuizDic : MonoBehaviour
 {
     [SerializeField]
-    QuizInfoDictionary m_titleQuiz { get; set; }
+    //QuizInfoDictionary m_titleQuiz { get; set; }
+    QuizInfoDictionary m_titleQuiz = new QuizInfoDictionary();
 
-    private QuizDictionary m_QuizDicPlayer;
-    private AnswerDictionary m_AnswerDic;
+    private QuizDictionary m_QuizDicPlayer = new DataInfo.QuizDictionary();
+    private AnswerDictionary m_AnswerDic = new DataInfo.AnswerDictionary();
 
+
+    private void Update()
+    {
+           
+    }
     #region Private Methods
 
     private void AddQuizPlayer(string title, QuizInfo quiz)
@@ -117,9 +123,12 @@ public class QuizDic : MonoBehaviour
 
     private void Start()
     {
-        m_titleQuiz = adminManager.Instance.CallQuizmadeDic();
-        JsonLoadSave.LoadQuizs(out m_QuizDicPlayer);
-        JsonLoadSave.LoadAnswers(out m_AnswerDic);
+        m_titleQuiz.CopyFrom(adminManager.Instance.CallQuizmadeDic());
+
+        m_QuizDicPlayer.CopyFrom(adminManager.Instance.CallQuizplayerDic());
+        m_AnswerDic.CopyFrom(adminManager.Instance.CallAnswerDic());
+        if (GetComponent<QuizList>() != null)
+            GetComponent<QuizList>().LoadQuiz();
     }
     
     public List<string> GetQuizList()//추가 

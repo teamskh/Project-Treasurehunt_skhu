@@ -323,6 +323,7 @@ namespace TTM.Server {
                 }
 
                 Cversion = version;
+                return;
             }
             else
             {
@@ -342,6 +343,7 @@ namespace TTM.Server {
                 }
 
                 Qversion = version;
+                return;
             }
             else
             {
@@ -361,6 +363,7 @@ namespace TTM.Server {
                 }
 
                 Pversion = version;
+                return;
             }
             else
             {
@@ -380,10 +383,11 @@ namespace TTM.Server {
                 }
 
                 Aversion = version;
+                return;
             }
             else
             {
-                Debug.Log("there is no key " + QuizPlayerKey);
+                Debug.Log("there is no key " + AnswerKey);
             }
 
         }

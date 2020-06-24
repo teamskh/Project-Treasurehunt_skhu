@@ -74,6 +74,9 @@ public class adminManager : GameDataFunction
 
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizmadedic);
+                GetContentsByIndate(TableName.quizplayerdic);
+                GetContentsByIndate(TableName.answerdic);
+                GetComponent<CompetDic>().isSet = true;
             }
             else
             {
