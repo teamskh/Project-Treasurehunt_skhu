@@ -1881,8 +1881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da44882af1c41024d937551b7709a648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myLanguage: {fileID: 0}
-  otherLanguage: {fileID: 0}
   prefab: {fileID: 8870570066614791162, guid: 1c2f02cfab70dc94f846a561b0b78ef2, type: 3}
   Content: {fileID: 1114428841}
 --- !u!1 &521894563

@@ -41,7 +41,7 @@ public class createmyrank : MonoBehaviour
             Debug.Log("nono");
         }
 
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         //deleted all playerprefs
 
         //wordNumber = PlayerPrefs.GetInt("wordNumber");

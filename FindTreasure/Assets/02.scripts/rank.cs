@@ -26,13 +26,17 @@ public class rank : MonoBehaviour
     public Text endscoreT;
     public bool openendmess=false;
 
+    private IEnumerator corutuine;
+
     public string test;
 
     private void Start()
     {
         Name.text = PlayerPrefs.GetString("nickna");
         gameman.Instance.score = 0;
-        StartCoroutine(CountTime());
+        corutuine = CountTime();
+        //StartCoroutine(CountTime());
+        StartCoroutine(corutuine);
     }
     
     public void Loadrank()
@@ -43,10 +47,17 @@ public class rank : MonoBehaviour
 
     public void Close()
     {
-        openendmess = false;
+        openendmess = true;
+        gameman.Instance.loadRankChek = true;
     }
 
-    IEnumerator CountTime()
+   void Update()
+    {
+        if(openendmess==true)
+            StopCoroutine(corutuine);
+    }
+
+    public IEnumerator CountTime()
     {
         while (true)
         {
@@ -54,15 +65,16 @@ public class rank : MonoBehaviour
             {
                 TimeSpan times = gameman.Instance.endtime - DateTime.Now;
                 test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
-                if (times.Seconds < 2)
+                if (times.Seconds < 1)
                 {
-                    statusbar.SetActive(false);다
+                    statusbar.SetActive(false);
+                    
+                    Endingmess.SetActive(true);
 
-                    if (openendmess == true)
-                    {
-                        Endingmess.SetActive(true); //모르겠
-                    }
+                    openendmess = true;
+                    
                     endTime.SetActive(false);
+                    //gameman.Instance.endingTime = " ";
                     endscoreT.text = gameman.Instance.score.ToString();
                 }
                 else
@@ -72,6 +84,7 @@ public class rank : MonoBehaviour
                         statusbar.SetActive(false);
                         Endingmess.SetActive(true);
                         endScore.SetActive(false);
+                        gameman.Instance.score = 30;
                         endtimeT.text = gameman.Instance.endingTime;
                     }
                 }
