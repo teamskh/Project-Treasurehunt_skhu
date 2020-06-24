@@ -4,8 +4,7 @@ using UnityEngine;
 using BackEnd;
 using TTM.Server;
 using LitJson;
-
-
+using TTM.Classes;
 
 public class adminManager : GameDataFunction
 {
@@ -25,6 +24,7 @@ public class adminManager : GameDataFunction
 
     BackendReturnObject bro = new BackendReturnObject();
     bool isSuccess = false;
+    Competition com = new Competition();
 
     private void Awake()
     {
@@ -73,6 +73,7 @@ public class adminManager : GameDataFunction
 
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizmadedic);
+                GetComponent<CompetDic>().isSet = true;
             }
             else
             {
@@ -82,6 +83,11 @@ public class adminManager : GameDataFunction
             bro.Clear();
         }
 
+    }
+
+    public bool setComp(string key)
+    {
+        return competdic.TryGetValue(key,out  com);
     }
 
     #region Don't Need Now

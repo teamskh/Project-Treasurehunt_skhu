@@ -37,6 +37,7 @@ public class competinfo : MonoBehaviour
             }
             else
             {
+                individual.isOn = true;
                 Team.isOn = false;
             }
 

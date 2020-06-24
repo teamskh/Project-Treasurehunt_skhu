@@ -15,6 +15,8 @@ public class QuizList : MonoBehaviour
     public static List<GameObject> QList = new List<GameObject>();
     public static Texture2D texture;
 
+    
+
     public void LoadQuiz()
     {
         List<string> list = GetComponent<QuizDic>().GetQuizList();
@@ -24,6 +26,11 @@ public class QuizList : MonoBehaviour
             QList.Add(MakeQuizButton(item));
         }
     }
+    void SetComp(string name)
+    {
+        adminManager.Instance.setComp(name);
+    }
+
     public GameObject MakeQuizButton(string name)
     {
         GameObject quizb = Instantiate(BPrefab, BPrefab.transform.localPosition, Quaternion.identity);
@@ -32,6 +39,7 @@ public class QuizList : MonoBehaviour
         Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, (QList.Count+1) * 155);
         //글씨 조정
        quizb.GetComponentInChildren<Text>().text = name;
+        quizb.GetComponent<Button>().onClick.AddListener(delegate () { SetComp(name); });
         /*
         if (number == 0)
         {

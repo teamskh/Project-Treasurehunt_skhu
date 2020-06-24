@@ -1,4 +1,4 @@
-﻿//#if UNITY_ANDROID
+﻿#if UNITY_ANDROID
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,12 +36,7 @@ public class gameman : GameDataFunction
     [SerializeField]
     private InputField NicknameInput;
 
-    CompetitionDictionary m_Competition{ get; set; }
-    QuizDictionary m_QuizPlayer;
-    AnswerDictionary m_Answer;
-    //public bool chek = false;
-
-    
+    bool chek = false; //정상 로그인 - 컨텐츠 로드 완료
     
     static gameman instance;
     public static gameman Instance
@@ -65,6 +60,7 @@ public class gameman : GameDataFunction
         {
             DontDestroyOnLoad(gameObject);
         }
+        Debug.Log("ACCESS_TOKEN : " + PlayerPrefs.HasKey("access_token"));
     }
     
     private void Start()
@@ -92,46 +88,49 @@ public class gameman : GameDataFunction
         // Activate the Google Play Games platform
         //GPGS 시작.
         PlayGamesPlatform.Activate();
-        //GoogleAuth();
+        GoogleAuth();
 
         baaudio.volume = PlayerPrefs.GetFloat(PrefsString.baaudio, 1f);
         sfaudio.volume = PlayerPrefs.GetFloat(PrefsString.sfaudio, 1f);
         Screen.fullScreen = !Screen.fullScreen;
 
-        
     }
 
     private void Update()
     {
-        if (isSuccess)
+        if (bro.GetStatusCode() == "200" || bro.GetStatusCode() =="201")
         {
-            Debug.Log("-------------Update(SaveToken)-------------");
-            BackendReturnObject saveToken = Backend.BMember.SaveToken(bro);
-            if (saveToken.IsSuccess())
+            isSuccess = LoginWithTheBackendToken();
+            if (isSuccess)
             {
                 Debug.Log("로그인 성공");
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizplayerdic);
                 GetContentsByIndate(TableName.answerdic);
+                
+                chek = true;
+
             }
-            else
-            {
-                Debug.Log("로그인 실패: " + saveToken.ToString());
-            }
-            isSuccess = false;
             bro.Clear();
         }
+
+        if (chek) { Usnick(); chek = false; }
+        
     }
     #endregion
 
 
-    public void Usnick() //존재하는 닉네임
+    void Usnick() //닉네임이 존재(정상 가입)
     {
         Debug.Log("nicknuck");
         if (PlayerPrefs.HasKey(PrefsString.nickname))
         {
-            Debug.Log("yes");
-            SceneManager.LoadScene("02.Main");
+            BackendReturnObject BRO = Backend.BMember.UpdateNickname(PlayerPrefs.GetString(PrefsString.nickname));
+            if (BRO.IsSuccess())
+            {
+                Debug.Log("yes");
+                SceneManager.LoadScene("02.Main");
+            }
         }
         else
         {
@@ -155,7 +154,7 @@ public class gameman : GameDataFunction
                 {
                     Debug.Log("구글 로그인 실패");
                     return;
-                }
+                }else bro = Backend.BMember.CheckUserInBackend(GetTokens(), FederationType.Google);
 
                 //로그인 성공
                 Debug.Log("GetIdToken - " + PlayGamesPlatform.Instance.GetIdToken());
@@ -163,11 +162,10 @@ public class gameman : GameDataFunction
                 Debug.Log("GoogleId - " + Social.localUser.id);
                 Debug.Log("UsetName - " + Social.localUser.userName);
                 Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
+                
+
             });
         }
-        m_Competition = competdic;
-        //JsonLoadSave.LoadCompetitions(out competdic);
-        //JsonLoadSave.LoadQuizs(out quizdic);
     }
 
     // 구글 토큰 받아옴
@@ -197,14 +195,9 @@ public class gameman : GameDataFunction
         BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs로 만든 계정");
         if (BRO.IsSuccess())
         {
-            Debug.Log("구글 토큰으로 뒤끝서버 로그인 성공 - 동기 방식-");
-            BackendReturnObject saveToken = Backend.BMember.SaveToken(BRO);
-            if (saveToken.IsSuccess())
-            {
-                GetContentsByIndate(TableName.competitiondic);
-                GetContentsByIndate(TableName.quizplayerdic);
-                GetContentsByIndate(TableName.answerdic);
-            }
+            Debug.Log("구글 토큰으로 뒤끝서버 로그인 성공 - 동기 방식-");;
+            bro = BRO;
+            //isSuccess = true;
         }
         else
         {
@@ -236,64 +229,52 @@ public class gameman : GameDataFunction
         return inputField != null && !string.IsNullOrEmpty(inputField.text);
     }
 
-    public void CheckNicknameDuplication()
-    {
-        Debug.Log("-------------CheckNicknameDuplication-------------");
-        if (InputFieldEmptyCheck(NicknameInput))
-        {
-            Debug.Log(Backend.BMember.CheckNicknameDuplication(NicknameInput.text).ToString());
-        }
-        else
-        {
-            Debug.Log("check NicknameInput");
-        }
-    }
-
     // 닉네임 생성 
     public void CreateNickname()
     {
         Debug.Log("-------------CreateNickname-------------");
-        /*if (InputFieldEmptyCheck(NicknameInput))
+        if (InputFieldEmptyCheck(NicknameInput))
         {
-            Debug.Log(Backend.BMember.CreateNickname(NicknameInput.text).ToString());
+            if (CheckNickName() == false)
+            {
+                Debug.Log("닉네임은 한글, 영어, 숫자");
+                return;
+            }
+            BackendReturnObject BRO = Backend.BMember.CreateNickname(NicknameInput.text);
+
+            if (BRO.IsSuccess())
+            {
+                Debug.Log("닉네임 생성 완료");
+                userna = NicknameInput.text.ToString();
+                PlayerPrefs.SetString(PrefsString.nickname, userna);
+                chek = true;
+            }
+            else
+            {
+                switch (BRO.GetStatusCode())
+                {
+                    case "409":
+                        Debug.Log("이미 중복된 닉네임");
+                        break;
+                    case "400":
+                        if (BRO.GetMessage().Contains("too long"))
+                            Debug.Log("20자 이상의 닉네임");
+                        else if (BRO.GetMessage().Contains("blank")) Debug.Log("닉네임에 앞/뒤 공백");
+                        break;
+                    default:
+                        Debug.Log("서버 공통 에러 발생: " + BRO.GetErrorCode());
+                        break;
+                }
+
+            }
         }
         else
         {
             Debug.Log("check NicknameInput");
             return;
-        }*/
-
-        if (CheckNickName() == false)
-        {
-            Debug.Log("닉네임은 한글, 영어, 숫자");
-            return;
         }
 
-        BackendReturnObject BRO = Backend.BMember.CreateNickname(NicknameInput.text);
-        userna = NicknameInput.text.ToString();
-        PlayerPrefs.SetString(PrefsString.nickname, userna);
-
-        if (BRO.IsSuccess())
-        {
-            Debug.Log("닉네임 생성 완료");
-        }
-        else
-        {
-            switch (BRO.GetStatusCode())
-            {
-                case "409":
-                    Debug.Log("이미 중복된 닉네임");
-                    break;
-                case "400":
-                    if (BRO.GetMessage().Contains("too long"))
-                        Debug.Log("20자 이상의 닉네임");
-                    else if (BRO.GetMessage().Contains("blank")) Debug.Log("닉네임에 앞/뒤 공백");
-                    break;
-                default:
-                    Debug.Log("서버 공통 에러 발생: " + BRO.GetErrorCode());
-                    break;
-            }
-        }
+        
     }
 
     public void Logout()
@@ -306,16 +287,11 @@ public class gameman : GameDataFunction
     public void UpdateNickname()
     {
         Debug.Log("-------------UpdateNickname-------------");
-        /*if (InputFieldEmptyCheck(NicknameInput))
-        {
-            Debug.Log(Backend.BMember.CreateNickname(NicknameInput.text).ToString());
-        }
-        else
+        if (!InputFieldEmptyCheck(NicknameInput))
         {
             Debug.Log("check NicknameInput");
             return;
         }
-        */
 
         if (CheckNickName() == false)
         {
@@ -387,10 +363,44 @@ public class gameman : GameDataFunction
 
     #endregion
 
+    #region Logout Signout
+
+    // 회원 탈퇴 
+    public void SignOut()
+    {
+        Debug.Log("-------------SignOut-------------");
+        Debug.Log(Backend.BMember.SignOut("탈퇴 사유").ToString());
+    }
+    #endregion
+
+    #region Token Auth
+
+    // 기기에 저장된 뒤끝 AccessToken으로 로그인 (페더레이션, 커스텀 회원가입 또는 로그인 이후에 시도 가능)
+    public bool LoginWithTheBackendToken()
+    {
+        Debug.Log("-------------LoginWithTheBackendToken-------------");
+        BackendReturnObject returnObject = Backend.BMember.LoginWithTheBackendToken();
+        Debug.Log(returnObject.ToString());
+        return returnObject.IsSuccess();
+    }
+
+
+    //뒤끝 RefreshToken 을 통해 뒤끝 AccessToken 을 재발급 받습니다
+    public bool RefreshTheBackendToken()
+    {
+        Debug.Log("-------------RefreshTheBackendToken-------------");
+        BackendReturnObject returnObject = Backend.BMember.RefreshTheBackendToken();
+        Debug.Log(returnObject.ToString());
+        return returnObject.IsSuccess();
+    }
+
+    #endregion
+
     #region 퀴즈용
     public Answer CheckAnswer()
     {
-        Answer ans = AnswerDictionary.GetAnswer(imageText);
+        Answer ans = new Answer();
+        answerdic.TryGetValue(imageText, out ans);
         return ans;
     }
 
@@ -400,14 +410,14 @@ public class gameman : GameDataFunction
 
     public void Load()
     {
-        //userna = PlayerPrefs.GetString(PrefsString.ID);
-        userna = NicknameInput.text.ToString();
+        userna = PlayerPrefs.GetString(PrefsString.nickname);
     }
 
     public List<string> GetList()
     {
-        return m_Competition.getCompetitionList();
+        return competdic.getCompetitionList();
     }
     #endregion
 }
 
+#endif
