@@ -127,7 +127,10 @@ public class gameman : GameDataFunction
     }
     #endregion
 
-
+    public void updatecompet()
+    {
+        GetContentsByIndate(TableName.competitiondic);
+    }
     void Usnick() //닉네임이 존재(정상 가입)
     {
         Debug.Log("nicknuck");

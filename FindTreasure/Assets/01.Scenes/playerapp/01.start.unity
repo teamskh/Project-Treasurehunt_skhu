@@ -1119,10 +1119,12 @@ MonoBehaviour:
   imageText: 
   nicknamebar: {fileID: 1493461620}
   userna: 
-  loadRankChek: 0
   time: 
   isSuccess: 0
   NicknameInput: {fileID: 1523738379}
+  endingTime: 
+  loadRankChek: 0
+  che: 0
 --- !u!4 &1017659777
 Transform:
   m_ObjectHideFlags: 0
@@ -2578,7 +2580,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
@@ -2633,7 +2635,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Usnick
+      value: OnClickGPGSLogin
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
@@ -2703,7 +2705,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c633861b701d54142b68784d6f000faf, type: 3}
