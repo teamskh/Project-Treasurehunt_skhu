@@ -49,18 +49,7 @@ public class scrolling : MonoBehaviour
                 if (i == current.Kind)
                 { //i 값이 스크롤내용 구분하는거
                     chek[i].SetActive(true);
-
                     //update에 넣은 이유는 문제들이 모두 setactive(false)되어있기때문에 못 찾는다
-
-                    foreach (var item in GetComponentsInChildren<Text>())
-                    {
-                        if (item.gameObject.tag == "STR")
-                        {
-                            qtxt = item;
-                            break;
-                        }
-                    }
-
                     if (i == 1)
                     {
                         Quiz Anslist = gameman.Instance.FindQuiz();
