@@ -40,7 +40,7 @@ public class CompetDic : MonoBehaviour
 {
 
     #region Monobehavior Methods
-    CompetitionDictionary m_Competition;
+    CompetitionDictionary m_Competition = new CompetitionDictionary();
     public bool isSet = false;
 
     private void Update()
