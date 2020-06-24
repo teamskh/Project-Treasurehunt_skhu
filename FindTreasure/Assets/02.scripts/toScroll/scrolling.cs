@@ -53,6 +53,7 @@ public class scrolling : MonoBehaviour
                     if (i == 1)
                     {
                         Quiz Anslist = gameman.Instance.FindQuiz();
+                        Debug.Log(Anslist == null);
                         if (current != null)
                         {
                             Ban = current.Banswer;
