@@ -21,7 +21,8 @@ public class QuizList : MonoBehaviour
     {
         List<string> list = GetComponent<QuizDic>().GetQuizList();
         Debug.Log($"List items: {list.Count}");
-        foreach (string item in list)
+        if (list != null)
+            foreach (string item in list)
         {
             QList.Add(MakeQuizButton(item));
         }
@@ -39,7 +40,7 @@ public class QuizList : MonoBehaviour
         Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, (QList.Count+1) * 155);
         //글씨 조정
        quizb.GetComponentInChildren<Text>().text = name;
-        quizb.GetComponent<Button>().onClick.AddListener(delegate () { SetComp(name); });
+        //quizb.GetComponent<Button>().onClick.AddListener(delegate () { SetComp(name); });
         /*
         if (number == 0)
         {
@@ -48,18 +49,24 @@ public class QuizList : MonoBehaviour
             if (System.IO.Directory.Exists(dirPath))
             {
                 System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(dirPath);
+
                 foreach (var item in di.GetFiles())
                 {
-                    Console.WriteLine(item.Name);
+                    Debug.Log(item.Name);
                     if (item.Name == name + ".png")
                     {
-                        string PATH = "Texture/" + item.Name;
-                        texture = Resources.Load(PATH, typeof(Texture2D)) as Texture2D;
+                        string PATH = "Texture/" + name;
+                        //texture = Resources.Load(PATH, typeof(Texture2D)) as Texture2D;
+                        texture = Resources.Load<Texture2D>(PATH);
                         if (texture == null)
                         {
-                            Debug.Log("망함");
+                            Debug.Log("망함 " + PATH);
                         }
-                        quizb.GetComponentInChildren<RawImage>().texture = texture;
+                        else
+                        {
+                            quizb.GetComponentInChildren<RawImage>().texture = texture;
+                        }
+
                     }
                 }
             }
@@ -68,7 +75,7 @@ public class QuizList : MonoBehaviour
         {
             quizb.GetComponentInChildren<RawImage>().texture = Camera1.savess;
         }*/
-
+        /*
         var dirPath = Application.dataPath + "/Resources/Texture/";
 
         if (System.IO.Directory.Exists(dirPath))
@@ -95,7 +102,7 @@ public class QuizList : MonoBehaviour
                 }
             }
         }
-
+        */
         quizb.transform.SetParent(Content.transform, true);
         return quizb;
     }
@@ -107,7 +114,7 @@ public class QuizList : MonoBehaviour
             MakeQuizButton(onClicks.Ttitle);//추가
             number = 0;
         }
-        LoadQuiz();
+        //LoadQuiz();
     }
     public void OnEnable()
     {

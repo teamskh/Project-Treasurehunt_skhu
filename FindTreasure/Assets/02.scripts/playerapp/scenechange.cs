@@ -57,10 +57,6 @@ public class scenechange :MonoBehaviour
         SceneManager.LoadScene("PWChange");//비밀번호 변경화면
     }
 
-    public void ChangeSceneToContestSettingChange()
-    {
-        SceneManager.LoadScene("CSChange");//대회 정보 수정화면
-    }
 
     public void ChangeSceneToModeChange()
     {

@@ -45,7 +45,7 @@ public class onClicks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dic = gameObject.AddComponent<QuizDic>();
+        dic = gameObject.GetComponent<QuizDic>();
         mQuiz = new QuizInfo();
 
         Changekind_TF();
@@ -146,8 +146,8 @@ public class onClicks : MonoBehaviour
     {
         var mtitle = title.text;
         mQuiz.Str = quiz.text;
-
-        if(mQuiz.Kind == 1) {
+        mQuiz.Score = int.Parse(text.text);
+        if (mQuiz.Kind == 1) {
             mQuiz.List = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.List, 4);
         }
@@ -158,7 +158,6 @@ public class onClicks : MonoBehaviour
         if (Quizlog != null)
             QuizDebug();
 
-        mQuiz = new QuizInfo();
         Ttitle = mtitle;
         QuizList.number = 1;
         SceneManager.LoadScene("QuizMenu");
