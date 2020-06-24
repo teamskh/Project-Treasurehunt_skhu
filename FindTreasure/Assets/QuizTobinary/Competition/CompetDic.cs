@@ -44,16 +44,23 @@ public class CompetDic : MonoBehaviour
 
     private void Update()
     {
-        if (adminManager.Instance.isSet)
+        if (adminManager.Instance!=null)
         {
-            m_Competition.CopyFrom(adminManager.Instance.CallCompetDic());
-            adminManager.Instance.isSet = false;
+            if (adminManager.Instance.isSet)
+            {
+                m_Competition.CopyFrom(adminManager.Instance.CallCompetDic());
+                adminManager.Instance.isSet = false;
+            }
+
         }
 
-        if (gameman.Instance.isSet)
+        if (gameman.Instance!=null)
         {
-            m_Competition.CopyFrom(gameman.Instance.CallCompetDic());
-            gameman.Instance.isSet = false;
+            if (gameman.Instance.isSet)
+            {
+                m_Competition.CopyFrom(gameman.Instance.CallCompetDic());
+                gameman.Instance.isSet = false;
+            }
         }
 
     }

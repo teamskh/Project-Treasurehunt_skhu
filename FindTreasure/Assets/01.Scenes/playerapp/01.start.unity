@@ -1113,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127f90e430068c44a00038e96b98693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSet: 0
   baaudio: {fileID: 1017659775}
   sfaudio: {fileID: 1017659774}
   score: 0
@@ -1279,7 +1280,6 @@ GameObject:
   - component: {fileID: 1077337100}
   - component: {fileID: 1077337099}
   - component: {fileID: 1077337101}
-  - component: {fileID: 1077337103}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1323,18 +1323,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de5632917ffaccf42a76e7d84348436b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1077337103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077337098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b1116f02adc9f4897358766176575c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1293512516
