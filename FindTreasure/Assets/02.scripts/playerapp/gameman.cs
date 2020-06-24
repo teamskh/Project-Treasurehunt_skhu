@@ -125,9 +125,12 @@ public class gameman : GameDataFunction
         Debug.Log("nicknuck");
         if (PlayerPrefs.HasKey(PrefsString.nickname))
         {
-            Debug.Log("yes");
-            SceneManager.LoadScene("02.Main");
-            
+            BackendReturnObject BRO = Backend.BMember.UpdateNickname(PlayerPrefs.GetString(PrefsString.nickname));
+            if (BRO.IsSuccess())
+            {
+                Debug.Log("yes");
+                SceneManager.LoadScene("02.Main");
+            }
         }
         else
         {
