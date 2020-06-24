@@ -18,8 +18,6 @@ public class adminManager : GameDataFunction
     }
 
     #endregion
-    public static bool isSet = false;
-
     string id = "Admin";
     string pw = "toomuch";
 
@@ -76,7 +74,7 @@ public class adminManager : GameDataFunction
                 GetContentsByIndate(TableName.quizmadedic);
                 GetContentsByIndate(TableName.quizplayerdic);
                 GetContentsByIndate(TableName.answerdic);
-                GetComponent<CompetDic>().isSet = true;
+                isSet = true;
             }
             else
             {

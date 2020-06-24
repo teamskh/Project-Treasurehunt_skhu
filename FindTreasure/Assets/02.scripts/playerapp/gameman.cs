@@ -115,7 +115,7 @@ public class gameman : GameDataFunction
                 GetContentsByIndate(TableName.competitiondic);
                 GetContentsByIndate(TableName.quizplayerdic);
                 GetContentsByIndate(TableName.answerdic);
-
+                isSet = true;
                 chek = true;
 
             }
