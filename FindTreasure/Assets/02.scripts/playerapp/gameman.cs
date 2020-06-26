@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
 using TTM.Server;
 
 using System;
+using UnityEditor.SceneManagement;
+using LitJson;
 
 public class gameman : GameDataFunction
 {
@@ -66,9 +68,9 @@ public class gameman : GameDataFunction
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
-        Debug.Log("ACCESS_TOKEN : " + PlayerPrefs.HasKey("access_token"));
+        
     }
 
     private void Start()
@@ -106,26 +108,46 @@ public class gameman : GameDataFunction
 
     private void Update()
     {
-        if (bro.GetStatusCode() == "200" || bro.GetStatusCode() == "201")
-        {
-            isSuccess = LoginWithTheBackendToken();
-            if (isSuccess)
-            {
-                Debug.Log("로그인 성공");
-                GetContentsByIndate(TableName.competitiondic);
-                GetContentsByIndate(TableName.quizplayerdic);
-                GetContentsByIndate(TableName.answerdic);
-
-                chek = true;
-
-            }
-            bro.Clear();
-        }
-
-        if (chek) { Usnick(); chek = false; }
-
+        //if (chek) { Usnick(); chek = false; }
     }
     #endregion
+
+    private void DownloadContents()
+    {
+        GetContentsByIndate(TableName.competitiondic);
+        GetContentsByIndate(TableName.quizplayerdic);
+        GetContentsByIndate(TableName.answerdic);
+        isSet = true;
+        chek = true;
+    }
+
+    private bool AutoLogin()
+    {
+        BackendReturnObject returnObj =  Backend.BMember.CheckUserInBackend(GetTokens(), FederationType.Google);
+        if (returnObj.GetStatusCode() == "200")
+        {
+            returnObj.Clear();
+            returnObj = Backend.BMember.IsAccessTokenAlive();
+            if (!returnObj.IsSuccess())
+            {
+                returnObj.Clear();
+                if (!RefreshTheBackendToken())
+                {
+                    return false;
+                }
+            }
+            returnObj.Clear();
+            returnObj = Backend.BMember.LoginWithTheBackendToken();
+            if (returnObj.IsSuccess())
+                return true;
+
+            returnObj.Clear();
+            returnObj = Backend.BMember.AuthorizeFederation(GetTokens(),FederationType.Google);
+
+            if (returnObj.IsSuccess()) return true;
+        }
+        return false;
+    }
 
 
     void Usnick() //닉네임이 존재(정상 가입)
@@ -163,8 +185,6 @@ public class gameman : GameDataFunction
                     Debug.Log("구글 로그인 실패");
                     return;
                 }
-                else bro = Backend.BMember.CheckUserInBackend(GetTokens(), FederationType.Google);
-
                 //로그인 성공
                 Debug.Log("GetIdToken - " + PlayGamesPlatform.Instance.GetIdToken());
                 Debug.Log("Email - " + ((PlayGamesLocalUser)Social.localUser).Email);
@@ -174,6 +194,15 @@ public class gameman : GameDataFunction
 
 
             });
+        }
+
+        if (AutoLogin())
+        {
+            BackendReturnObject obj = Backend.BMember.GetUserInfo();
+            JsonData data = obj.GetReturnValuetoJSON();
+            string nickname = data["row"]["nickname"].ToString();
+
+            Debug.Log("String Nickname : " + nickname);
         }
     }
 
