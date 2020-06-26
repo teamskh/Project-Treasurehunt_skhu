@@ -45,8 +45,7 @@ public class gameman : GameDataFunction
     public DateTime endtime;
     public string endingTime;
     public bool loadRankChek;
-    public bool che = false; //종료 시간 버튼 눌렸는지 확인
-
+    public bool isSet = false;
 
     static gameman instance;
     public static gameman Instance
