@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEditor;
+using UnityEngine.Android;
 
 public class Camera1 : MonoBehaviour
 {
@@ -82,6 +83,7 @@ public class Camera1 : MonoBehaviour
 		*/
 	public void PickImage(int maxSize)
 	{
+		//NativeGallery.OpenSettings();
 		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
 		{
 			Debug.Log("Image path: " + path);

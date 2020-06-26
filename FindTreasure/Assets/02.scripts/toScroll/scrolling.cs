@@ -45,36 +45,34 @@ public class scrolling : MonoBehaviour
             //Action
             for (int i = 0; i < 3; i++)
             {
-                Answer current = gameman.Instance.CheckAnswer();
-                if (i == current.Kind)
-                { //i 값이 스크롤내용 구분하는거
-                    chek[i].SetActive(true);
+                if (gameman.Instance != null)
+                {
+                    Answer current = gameman.Instance.CheckAnswer();
 
-                    //update에 넣은 이유는 문제들이 모두 setactive(false)되어있기때문에 못 찾는다
-
-                    foreach (var item in GetComponentsInChildren<Text>())
+                    if (current != null)
                     {
-                        if (item.gameObject.tag == "STR")
-                        {
-                            qtxt = item;
-                            break;
+                        if (i == current.Kind)
+                        { //i 값이 스크롤내용 구분하는거
+                            chek[i].SetActive(true);
+                            //update에 넣은 이유는 문제들이 모두 setactive(false)되어있기때문에 못 찾는다
+                            if (i == 1)
+                            {
+                                Quiz Anslist = gameman.Instance.FindQuiz();
+                                Debug.Log(Anslist == null);
+                                if (Anslist != null)
+                                {
+                                    Ban = current.Banswer;
+                                    for (int j = 0; j < 4; j++)
+                                        AnsTex[j].text = Anslist.List[j]; //AnsTex 글자
+                                }
+                            }
                         }
+                        else
+                            chek[i].SetActive(false);
                     }
-
-                    if (i == 1)
-                    {
-                        Quiz Anslist = gameman.Instance.FindQuiz();
-                        if (current != null)
-                        {
-                            Ban = current.Banswer;
-                            for (int j = 0; j < 4; j++)
-                                AnsTex[j].text = Anslist.List[j]; //AnsTex 글자
-                        }
-                    }
+                    
                 }
-                else
-                    chek[i].SetActive(false);
-            }   
+            }
             timer = 0;
         }
         

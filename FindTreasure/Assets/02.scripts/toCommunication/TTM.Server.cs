@@ -179,7 +179,8 @@ namespace TTM.Server {
     }
 
 
-    public class GameDataFunction : MonoBehaviour { 
+    public class GameDataFunction : MonoBehaviour {
+        public bool isSet = false;
         protected string Indate;
 
         protected CompetitionDictionary competdic=new CompetitionDictionary();

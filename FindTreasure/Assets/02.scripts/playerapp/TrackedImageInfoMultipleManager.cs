@@ -30,17 +30,7 @@ public class TrackedImageInfoMultipleManager : MonoBehaviour
     {
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
 
-        JsonLoadSave.LoadQuizs(out m_Dics);
-        //PlayerQuizLoad.initLoad(Application.persistentDataPath + "PlayerQuiz.dat",out m_Dics);        -> 확인 후 삭제
-
-        // setup all game objects in dictionary 
-       /*foreach (GameObject arObject in arObjectsToPlace)
-        {
-            GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
-            newARObject.transform.localScale.Set(0.4f, 0.4f, 0.4f);
-            newARObject.name = arObject.name;
-            arObjects.Add(arObject.name, newARObject);
-        }*/
+        m_Dics = gameman.Instance.CallQuizplayerDic();
     }
 
     void OnEnable()
