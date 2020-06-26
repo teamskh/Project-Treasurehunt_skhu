@@ -46,6 +46,7 @@ public class gameman : GameDataFunction
     public string endingTime;
     public bool loadRankChek;
     public bool isSet = false;
+    public bool che;
 
     static gameman instance;
     public static gameman Instance
