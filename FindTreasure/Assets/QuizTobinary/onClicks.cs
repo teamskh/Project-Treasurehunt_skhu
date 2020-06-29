@@ -43,6 +43,8 @@ public class onClicks : MonoBehaviour
     public Toggle toggle_s;
     public static string Ttitle;
     string key;
+    public InputField input1;
+    public InputField input2;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,38 +79,46 @@ public class onClicks : MonoBehaviour
                 key = scenechange.Qname;
                 if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
                 {
-                    title.text = key;
-                    quiz.text= mQuiz.Str;
-                    text.text = mQuiz.Score;
-                    if (compet.Mode == true)
+                    Debug.Log(mQuiz.Banswer);
+                    input1.text = key;
+                    input2.text= mQuiz.Str;
+                    text.text = mQuiz.Score.ToString();
+                    if (mQuiz.Banswer == true)
                     {
-                        Team.isOn = true;
-                        individual.isOn = false;
-                        ContestTN_dbox.value = compet.MaxMember - 2;
+                        mQuiz.Banswer = true;
                     }
-                    else
+                    if(mQuiz.Banswer == false)
                     {
-                        individual.isOn = true;
-                        Team.isOn = false;
-                    }
-
-                    Debug.Log(compet.Password);
-                    ContestName_infT.text = key;
-                    if (compet.Info != null)
-                    {
-                        ContestInfo_infT.text = compet.Info;
-                    }
-                    if (compet.Userword.ToString() != null)
-                    {
-                        authen_infT.text = compet.Userword.ToString();
+                        mQuiz.Banswer = false;
                     }
                 }*/
                 break;
             case 1:
                 Changekind_int();
+                /*
+                key = scenechange.Qname;
+                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
+                {
+                    input1.text = key;
+                    input2.text = mQuiz.Str;
+                    text.text = mQuiz.Score.ToString();
+                    for(int i=0; i<4; i++)
+                    {
+                        ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
+                    }
+                }*/
                 break;
             case 2:
                 Changekind_W();
+                /*
+                key = scenechange.Qname;
+                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
+                {
+                    input1.text = key;
+                    input2.text = mQuiz.Str;
+                    text.text = mQuiz.Score.ToString();
+                    Word.text = mQuiz.Wanswer;
+                }*/
                 break;
         }
     }
@@ -185,10 +195,18 @@ public class onClicks : MonoBehaviour
         else if (mQuiz.Kind == 2){
             mQuiz.Wanswer = Word.text;
         }
+        /*
+        if (title.text == key)
+        {
+            dic.DeleteQuiz(key);
+        }
+        else
+        {
+            dic.AddQuiz(mtitle, mQuiz);
+        }*/
         dic.AddQuiz(mtitle, mQuiz);
         if (Quizlog != null)
             QuizDebug();
-
         Ttitle = mtitle;
         QuizList.number = 1;
         SceneManager.LoadScene("QuizMenu");

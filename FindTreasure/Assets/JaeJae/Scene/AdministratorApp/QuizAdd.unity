@@ -6982,6 +6982,8 @@ MonoBehaviour:
   text: {fileID: 563819812}
   slider: {fileID: 42292545}
   toggle_s: {fileID: 1895355945}
+  input1: {fileID: 2011965088}
+  input2: {fileID: 651941565}
 --- !u!1 &1811514154
 GameObject:
   m_ObjectHideFlags: 0
