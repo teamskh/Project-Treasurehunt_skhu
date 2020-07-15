@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class QuizAddSceneManager : MonoBehaviour
 {
-    public static int ButtonClick;
+    public static int ButtonClick=-1;
     
     public void ChangeSceneToOXQuiz()
     {

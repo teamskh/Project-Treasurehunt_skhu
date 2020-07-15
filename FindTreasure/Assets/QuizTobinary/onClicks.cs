@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
+using System.Collections;
+using UnityScript.Steps;
 
 public class onClicks : MonoBehaviour
 {
@@ -31,7 +33,7 @@ public class onClicks : MonoBehaviour
     private QuizDic dic;
 
     #region Private Variable
-    private QuizInfo mQuiz;
+    private QuizInfo mQuiz= new QuizInfo();
     #endregion
 
     #region Instance
@@ -45,82 +47,187 @@ public class onClicks : MonoBehaviour
     string key;
     public InputField input1;
     public InputField input2;
+    public bool check = true;
+    public bool check2 = true;
     // Start is called before the first frame update
+
     void Start()
     {
         dic = gameObject.GetComponent<QuizDic>();
-        mQuiz = new QuizInfo();
+        //mQuiz.Kind = -1;
 
-        Changekind_TF();
+        //Changekind_TF();
         slider.value = 1;
+        /*
+        if (QuizAddSceneManager.ButtonClick >= 0)
+        {
+            switch (QuizAddSceneManager.ButtonClick)
+            {
+                case 0:
+                    Changekind_TF();
+                    check2 = false;
+                    Debug.Log("엥1");
+                    break;
+                case 1:
+                    Changekind_int();
+                    check2 = false;
+                    Debug.Log("엥2");
+                    break;
+                case 2:
+                    Changekind_W();
+                    check2 = false;
+                    Debug.Log("엥3");
+                    break;
+                default:
+                    break;
+            }
+            QuizAddSceneManager.ButtonClick = -1;
+            
+        }*/
     }
 
+    public void loadData()
+    {
+        Debug.Log(QuizAddSceneManager.ButtonClick);
+        if (QuizAddSceneManager.ButtonClick >= 0 && check)
+        {
+            switch (QuizAddSceneManager.ButtonClick)
+            {
+                case 0:
+                    Changekind_TF();
+                    check2 = false;
+                    Debug.Log("엥1");
+                    break;
+                case 1:
+                    Changekind_int();
+                    check2 = false;
+                    Debug.Log("엥2");
+                    break;
+                case 2:
+                    Changekind_W();
+                    check2 = false;
+                    Debug.Log("엥3");
+                    break;
+                default:
+                    break;
+            }
+            QuizAddSceneManager.ButtonClick = -1;
+        }
+
+        else
+        {
+            Debug.Log("5");
+            if (check&&check2)
+            {
+                Debug.Log("4  "+ mQuiz.Kind);
+                key = scenechange.Qname;
+                adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz);
+                switch (mQuiz.Kind)
+                {
+                    case 0:
+                        Changekind_TF();
+                        /*
+                        key = scenechange.Qname;
+                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
+                        {*/
+                            check = false;
+                            Debug.Log(mQuiz.Banswer);
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn=true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            if (mQuiz.Banswer == true)
+                            {
+                                mQuiz.Banswer = true;
+                            }
+                            if (mQuiz.Banswer == false)
+                            {
+                                mQuiz.Banswer = false;
+                            }
+                        //}
+                        Debug.Log("3");
+                        break;
+                    case 1:
+                        Changekind_int();
+                        /*
+                        key = scenechange.Qname;
+                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
+                        {*/
+                            check = false;
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn = true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            for (int i = 0; i < 4; i++)
+                            {
+                                ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
+                            }
+                        //}
+                        //SliderChange(slider.value);
+                        break;
+                    case 2:
+                        Changekind_W();
+                        /*
+                        key = scenechange.Qname;
+                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
+                        {*/
+                            Debug.Log(mQuiz.Wanswer);
+                            check = false;
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn = true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            Word.text = mQuiz.Wanswer;
+                        //}
+                        Debug.Log("0");
+                        //SliderChange(slider.value);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            StartCoroutine(WaitForIt());
+        }
+    }
+    IEnumerator WaitForIt()
+    {
+        if (check == false)
+            check = false;
+        else check = true;
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("1");
+    }
     // Update is called once per frame
     void Update()
     {
-        switch (QuizAddSceneManager.ButtonClick)
-        {
-            case 0:
-                Changekind_TF();
-                break;
-            case 1:
-                Changekind_int();
-                break;
-            case 2:
-                Changekind_W();
-                break;
-        }
-
-        switch (mQuiz.Kind)
-        {
-            case 0:
-                Changekind_TF();
-                /*
-                key = scenechange.Qname;
-                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                {
-                    Debug.Log(mQuiz.Banswer);
-                    input1.text = key;
-                    input2.text= mQuiz.Str;
-                    text.text = mQuiz.Score.ToString();
-                    if (mQuiz.Banswer == true)
-                    {
-                        mQuiz.Banswer = true;
-                    }
-                    if(mQuiz.Banswer == false)
-                    {
-                        mQuiz.Banswer = false;
-                    }
-                }*/
-                break;
-            case 1:
-                Changekind_int();
-                /*
-                key = scenechange.Qname;
-                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                {
-                    input1.text = key;
-                    input2.text = mQuiz.Str;
-                    text.text = mQuiz.Score.ToString();
-                    for(int i=0; i<4; i++)
-                    {
-                        ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
-                    }
-                }*/
-                break;
-            case 2:
-                Changekind_W();
-                /*
-                key = scenechange.Qname;
-                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                {
-                    input1.text = key;
-                    input2.text = mQuiz.Str;
-                    text.text = mQuiz.Score.ToString();
-                    Word.text = mQuiz.Wanswer;
-                }*/
-                break;
-        }
+        loadData();
     }
     
     public void Changekind_TF()
@@ -188,26 +295,40 @@ public class onClicks : MonoBehaviour
         var mtitle = title.text;
         mQuiz.Str = quiz.text;
         mQuiz.Score = int.Parse(text.text);
-        if (mQuiz.Kind == 1) {
+
+        if (mQuiz.Kind == 1)
+        {
             mQuiz.List = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.List, 4);
         }
-        else if (mQuiz.Kind == 2){
+        else if (mQuiz.Kind == 2)
+        {
             mQuiz.Wanswer = Word.text;
         }
-        /*
-        if (title.text == key)
+
+        if (key == null)
         {
-            dic.DeleteQuiz(key);
+            dic.AddQuiz(mtitle, mQuiz);
+            if (Quizlog != null)
+                QuizDebug();
+            Ttitle = mtitle;
         }
         else
         {
-            dic.AddQuiz(mtitle, mQuiz);
-        }*/
-        dic.AddQuiz(mtitle, mQuiz);
-        if (Quizlog != null)
-            QuizDebug();
-        Ttitle = mtitle;
+            if (key != title.text)
+            {
+                Debug.Log(key);
+                adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
+                adminManager.Instance.GetComponent<QuizDic>().AddQuiz(mtitle, mQuiz);
+            }
+            else
+            {
+                Debug.Log(key);
+                adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
+                adminManager.Instance.GetComponent<QuizDic>().AddQuiz(key, mQuiz);
+            }
+            Ttitle = mtitle;
+        }
         QuizList.number = 1;
         SceneManager.LoadScene("QuizMenu");
     }
