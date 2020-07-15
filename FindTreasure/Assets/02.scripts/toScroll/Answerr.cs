@@ -31,6 +31,7 @@ public class Answerr : MonoBehaviour
         Quiz Anslist = gameman.Instance.FindQuiz();
         if (current != null)
         {
+            
             Ban = current.Banswer;
             for (int i = 0; i < 4; i++)
                 AnsTex[i].text = Anslist.List[i];
