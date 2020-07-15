@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
 using System.Collections;
-<<<<<<< Updated upstream
 using UnityScript.Steps;
-=======
->>>>>>> Stashed changes
 
 public class onClicks : MonoBehaviour
 {
@@ -36,11 +33,7 @@ public class onClicks : MonoBehaviour
     private QuizDic dic;
 
     #region Private Variable
-<<<<<<< Updated upstream
     private QuizInfo mQuiz= new QuizInfo();
-=======
-    private QuizInfo mQuiz=new QuizInfo();
->>>>>>> Stashed changes
     #endregion
 
     #region Instance
@@ -54,10 +47,6 @@ public class onClicks : MonoBehaviour
     string key;
     public InputField input1;
     public InputField input2;
-<<<<<<< Updated upstream
-=======
-    public InputField input3;
->>>>>>> Stashed changes
     public bool check = true;
     public bool check2 = true;
     // Start is called before the first frame update
@@ -65,11 +54,7 @@ public class onClicks : MonoBehaviour
     void Start()
     {
         dic = gameObject.GetComponent<QuizDic>();
-<<<<<<< Updated upstream
         //mQuiz.Kind = -1;
-=======
-        //mQuiz = new QuizInfo();
->>>>>>> Stashed changes
 
         //Changekind_TF();
         slider.value = 1;
@@ -132,22 +117,15 @@ public class onClicks : MonoBehaviour
         else
         {
             Debug.Log("5");
-<<<<<<< Updated upstream
             if (check&&check2)
             {
                 Debug.Log("4  "+ mQuiz.Kind);
-=======
-            if (check && check2)
-            {
-                Debug.Log("4  " + mQuiz.Kind);
->>>>>>> Stashed changes
                 key = scenechange.Qname;
                 adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz);
                 switch (mQuiz.Kind)
                 {
                     case 0:
                         Changekind_TF();
-<<<<<<< Updated upstream
                         /*
                         key = scenechange.Qname;
                         if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
@@ -230,75 +208,6 @@ public class onClicks : MonoBehaviour
                         //}
                         Debug.Log("0");
                         //SliderChange(slider.value);
-=======
-                        check = false;
-                        Debug.Log(mQuiz.Banswer);
-                        input1.text = key;
-                        input2.text = mQuiz.Str;
-                        text.text = mQuiz.Score.ToString();
-                        if (text.text == "30")
-                        {
-                            toggle_s.isOn = true;
-                            slider.interactable = false;
-                        }
-                        else
-                        {
-                            slider.value = int.Parse(text.text);
-                            slider.interactable = true;
-                        }
-                        if (mQuiz.Banswer == true)
-                        {
-                            mQuiz.Banswer = true;
-                        }
-                        if (mQuiz.Banswer == false)
-                        {
-                            mQuiz.Banswer = false;
-                        }
-                        Debug.Log("3");
-                        break;
-
-                    case 1:
-                        Changekind_int();
-                        check = false;
-                        input1.text = key;
-                        input2.text = mQuiz.Str;
-                        text.text = mQuiz.Score.ToString();
-                        if (text.text == "30")
-                        {
-                            toggle_s.isOn = true;
-                            slider.interactable = false;
-                        }
-                        else
-                        {
-                            slider.value = int.Parse(text.text);
-                            slider.interactable = true;
-                        }
-                        for (int i = 0; i < 4; i++)
-                        {
-                            ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
-                        }
-                        break;
-
-                    case 2:
-                        Changekind_W();
-                        Debug.Log(mQuiz.Wanswer);
-                        check = false;
-                        input1.text = key;
-                        input2.text = mQuiz.Str;
-                        text.text = mQuiz.Score.ToString();
-                        if (text.text == "30")
-                        {
-                            toggle_s.isOn = true;
-                            slider.interactable = false;
-                        }
-                        else
-                        {
-                            slider.value = int.Parse(text.text);
-                            slider.interactable = true;
-                        }
-                        input3.text = mQuiz.Wanswer;
-                        Debug.Log("0");
->>>>>>> Stashed changes
                         break;
                     default:
                         break;
@@ -307,10 +216,6 @@ public class onClicks : MonoBehaviour
             StartCoroutine(WaitForIt());
         }
     }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     IEnumerator WaitForIt()
     {
         if (check == false)
@@ -319,14 +224,11 @@ public class onClicks : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Debug.Log("1");
     }
-<<<<<<< Updated upstream
     // Update is called once per frame
     void Update()
     {
         loadData();
     }
-=======
->>>>>>> Stashed changes
     
     public void Changekind_TF()
     {
@@ -403,7 +305,6 @@ public class onClicks : MonoBehaviour
         {
             mQuiz.Wanswer = Word.text;
         }
-<<<<<<< Updated upstream
 
         if (key == null)
         {
@@ -430,36 +331,9 @@ public class onClicks : MonoBehaviour
         }
         QuizList.number = 1;
         SceneManager.LoadScene("QuizMenu");
-=======
-    if (key == null)
-    {
-        dic.AddQuiz(mtitle, mQuiz);
-        if (Quizlog != null)
-            QuizDebug();
-        Ttitle = mtitle;
->>>>>>> Stashed changes
     }
-    else
-    {
-        if (key != input1.text)
-        {
-            Debug.Log(key);
-            adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
-            adminManager.Instance.GetComponent<QuizDic>().AddQuiz(mtitle, mQuiz);
-        }
-        else
-        {
-            Debug.Log(key);
-            adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
-            adminManager.Instance.GetComponent<QuizDic>().AddQuiz(key, mQuiz);
-        }
-        Ttitle = mtitle;
-    }
-    QuizList.number = 1;
-    SceneManager.LoadScene("QuizMenu");
-}
 
-void QuizDebug()
+    void QuizDebug()
     {
         Quizlog.text = "";
         Quizlog.text += string.Format("Title: {0}\nQuiz: {1}\nKind: {2}\n", title.text, quiz.text, mQuiz.Kind);

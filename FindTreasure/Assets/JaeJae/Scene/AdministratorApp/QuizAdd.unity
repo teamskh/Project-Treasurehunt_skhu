@@ -6984,12 +6984,6 @@ MonoBehaviour:
   toggle_s: {fileID: 1895355945}
   input1: {fileID: 2011965088}
   input2: {fileID: 651941565}
-<<<<<<< Updated upstream
-=======
-  input3: {fileID: 1980985339}
-  check: 1
-  check2: 1
->>>>>>> Stashed changes
 --- !u!1 &1811514154
 GameObject:
   m_ObjectHideFlags: 0
