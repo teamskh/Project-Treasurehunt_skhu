@@ -11,33 +11,56 @@ public class QuizForUI : MonoBehaviour
     public GameObject sel;
     public GameObject inpu;
 
+    private Animator anim;
     private List<GameObject> list = new List<GameObject>();
 
-    // Start is called before the first frame update
-    private void OnEnable()
-    {
+    public void FindQuizAndSet() { 
         Quiz quiz = gameman.Instance.FindQuiz();
-        int kind = quiz.Kind;
-        for(int i = 0; i < list.Count; i++)
+        if (quiz != null)
         {
-            if (i == kind)
-                list[i].SetActive(true);
-            else
-                list[i].SetActive(false);
-        }
-        foreach(Text txt in GetComponentsInChildren<Text>())
-        {
-            if(txt.gameObject.tag == "STR")
+            int kind = quiz.Kind;
+            for (int i = 0; i < list.Count; i++)
             {
-                txt.text = quiz.Str;
-                return;
+                if (i == kind)
+                    list[i].SetActive(true);
+                else
+                    list[i].SetActive(false);
+            }
+            foreach (Text txt in GetComponentsInChildren<Text>())
+            {
+                if (txt.gameObject.tag == "STR")
+                {
+                    txt.text = quiz.Str;
+                    return;
+                }
             }
         }
     }
+    private void AnimStart(bool open)
+    {
+        if (anim != null)
+            anim.SetBool("Open", open);
+        else
+            Debug.Log("Anim is Null");
+    }
+
+
+    private void OnEnable()
+    {
+        AnimStart(true);
+        FindQuizAndSet();
+    }
+
+    private void OnDisable()
+    {
+        AnimStart(false);
+    }
+
     private void Start()
     {
         list.Add(OX);
         list.Add(sel);
         list.Add(inpu);
+        anim = GetComponentInChildren<Animator>();
     }
 }
