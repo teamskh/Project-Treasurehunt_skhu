@@ -19,7 +19,8 @@ public class competinfo : MonoBehaviour
     public GameObject Panel2;
     public GameObject Panel3;
     string key;
-    string title;
+    public string title;
+
     Competition compet = new Competition();
     public void Start()
     {
@@ -101,11 +102,39 @@ public class competinfo : MonoBehaviour
     }
     public void competInfoSave()
     {
+        Competition compet = new Competition();
         title = ContestName_infT.text;
         compet.Info= ContestInfo_infT.text;
         compet.Userword= int.Parse(authen_infT.text);
+        compet.Mode = Team.isOn;
+        if (compet.Mode == true)
+        {
+            Team.isOn = true;
+            compet.MaxMember = ContestTN_dbox.value + 2;
+        }
+        else
+        {
+            Team.isOn = false;
+            compet.MaxMember = 1;
+        }
+        compet.Password = ContestPw_infT.text;
+        /*
         adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
         adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
+        */
+        Debug.Log(key);
+        if (ContestName_infT.text == key)
+        {
+            Debug.Log(ContestName_infT.text+" " +key);
+            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+            adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
+        }
+        else
+        {
+            Debug.Log(ContestName_infT.text + " " + key);
+            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+            adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
+        }
         Panel3.SetActive(false);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
 using System.Collections;
-using UnityScript.Steps;
 
 public class onClicks : MonoBehaviour
 {
@@ -47,6 +46,7 @@ public class onClicks : MonoBehaviour
     string key;
     public InputField input1;
     public InputField input2;
+    public InputField input3;
     public bool check = true;
     public bool check2 = true;
     // Start is called before the first frame update
@@ -58,32 +58,6 @@ public class onClicks : MonoBehaviour
 
         //Changekind_TF();
         slider.value = 1;
-        /*
-        if (QuizAddSceneManager.ButtonClick >= 0)
-        {
-            switch (QuizAddSceneManager.ButtonClick)
-            {
-                case 0:
-                    Changekind_TF();
-                    check2 = false;
-                    Debug.Log("엥1");
-                    break;
-                case 1:
-                    Changekind_int();
-                    check2 = false;
-                    Debug.Log("엥2");
-                    break;
-                case 2:
-                    Changekind_W();
-                    check2 = false;
-                    Debug.Log("엥3");
-                    break;
-                default:
-                    break;
-            }
-            QuizAddSceneManager.ButtonClick = -1;
-            
-        }*/
     }
 
     public void loadData()
@@ -119,17 +93,13 @@ public class onClicks : MonoBehaviour
             Debug.Log("5");
             if (check&&check2)
             {
-                Debug.Log("4  "+ mQuiz.Kind);
                 key = scenechange.Qname;
                 adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz);
+                Debug.Log("4  " + mQuiz.Kind);
                 switch (mQuiz.Kind)
                 {
                     case 0:
                         Changekind_TF();
-                        /*
-                        key = scenechange.Qname;
-                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                        {*/
                             check = false;
                             Debug.Log(mQuiz.Banswer);
                             input1.text = key;
@@ -153,15 +123,10 @@ public class onClicks : MonoBehaviour
                             {
                                 mQuiz.Banswer = false;
                             }
-                        //}
                         Debug.Log("3");
                         break;
                     case 1:
                         Changekind_int();
-                        /*
-                        key = scenechange.Qname;
-                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                        {*/
                             check = false;
                             input1.text = key;
                             input2.text = mQuiz.Str;
@@ -180,15 +145,9 @@ public class onClicks : MonoBehaviour
                             {
                                 ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
                             }
-                        //}
-                        //SliderChange(slider.value);
                         break;
                     case 2:
                         Changekind_W();
-                        /*
-                        key = scenechange.Qname;
-                        if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                        {*/
                             Debug.Log(mQuiz.Wanswer);
                             check = false;
                             input1.text = key;
@@ -204,10 +163,8 @@ public class onClicks : MonoBehaviour
                                 slider.value = int.Parse(text.text);
                                 slider.interactable = true;
                             }
-                            Word.text = mQuiz.Wanswer;
-                        //}
+                            input3.text = mQuiz.Wanswer;
                         Debug.Log("0");
-                        //SliderChange(slider.value);
                         break;
                     default:
                         break;
