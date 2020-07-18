@@ -9,7 +9,9 @@ public class scenechange :MonoBehaviour
     public static string Qname;
     public void changeMainScene()
     {
+        //gameman.Instance.updatecompet();
         SceneManager.LoadScene("02.Main");
+        
     }
 
     public void changeSettingScene()
@@ -19,6 +21,7 @@ public class scenechange :MonoBehaviour
 
     public void changeadminScene()
     {
+       // adminManager.Instance.GetContentsByIndate(TTM.Server.TableName.competitiondic);
         SceneManager.LoadScene("ContestList");
     }
 

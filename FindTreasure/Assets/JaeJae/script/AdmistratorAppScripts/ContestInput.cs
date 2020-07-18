@@ -116,12 +116,14 @@ public class ContestInput : MonoBehaviour
 
             {
                 SceneManager.LoadScene("02.Main");
+                Destroy(adminManager.Instance.gameObject);
             }
         }
         if (Input.GetKey(KeyCode.Escape))
 
         {
             SceneManager.LoadScene("02.Main");
+            //Destroy(adminManager.Instance.gameObject);
         }
     }
     

@@ -1113,16 +1113,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127f90e430068c44a00038e96b98693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSet: 0
   baaudio: {fileID: 1017659775}
   sfaudio: {fileID: 1017659774}
   score: 0
   imageText: 
   nicknamebar: {fileID: 1493461620}
   userna: 
-  loadRankChek: 0
   time: 
   isSuccess: 0
   NicknameInput: {fileID: 1523738379}
+  endingTime: 
+  loadRankChek: 0
+  che: 0
+  LoginB: {fileID: 1252909431}
 --- !u!4 &1017659777
 Transform:
   m_ObjectHideFlags: 0
@@ -1219,17 +1223,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1077337099}
-        m_MethodName: changeMainScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1017659776}
         m_MethodName: CreateNickname
         m_Mode: 1
@@ -1288,7 +1281,6 @@ GameObject:
   - component: {fileID: 1077337100}
   - component: {fileID: 1077337099}
   - component: {fileID: 1077337101}
-  - component: {fileID: 1077337103}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1334,18 +1326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5632917ffaccf42a76e7d84348436b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1077337103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &1252909431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3816226728017228960, guid: c633861b701d54142b68784d6f000faf,
+    type: 3}
+  m_PrefabInstance: {fileID: 3816226728077582386}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077337098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b1116f02adc9f4897358766176575c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1293512516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,6 +2451,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1336548490}
     m_Modifications:
+    - target: {fileID: 3816226727180079746, guid: c633861b701d54142b68784d6f000faf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816226727577027683, guid: c633861b701d54142b68784d6f000faf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3816226727832077893, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2575,10 +2571,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Login Button
       objectReference: {fileID: 0}
+    - target: {fileID: 3816226728017228960, guid: c633861b701d54142b68784d6f000faf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
@@ -2633,7 +2634,7 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Usnick
+      value: OnClickGPGSLogin
       objectReference: {fileID: 0}
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
@@ -2703,6 +2704,11 @@ PrefabInstance:
     - target: {fileID: 3816226728017228965, guid: c633861b701d54142b68784d6f000faf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816226728268685889, guid: c633861b701d54142b68784d6f000faf,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
