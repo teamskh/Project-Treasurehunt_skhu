@@ -80,18 +80,12 @@ namespace TTM.Classes
 
     public class Q
     {
+        public string Title { get; set; }
         public string Str { get; set; }
         public int? Score { get; set; }
         public int? Kind { get; set; }
-        public string[] List { get; set; }
+        public String[] List { get; set; }
         public object Answer { get; set; }
 
-        public void SetMax() { Score = 30; }
-
-        public void SetListInit()
-        {
-            if (Kind == 1)
-                List = new string[4];
-        }
     }
 }

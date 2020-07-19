@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TTM.Classes;
 using UnityEngine.UI;
+using BackEnd;
 
 public class QuizFactory : MonoBehaviour
 {
@@ -63,22 +64,15 @@ public class QuizFactory : MonoBehaviour
         SaveButton?.onClick.AddListener(() => Save());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void Save()
     {
-        string title;
         //Title inputField에서 내용 받아오기
-        if ((title = inputfields.GetInputFieldString(0)) == "")
+        if ((quiz.Title = inputfields.GetInputFieldString(0)) == "")
         {
             Debug.LogError("Title is Empty");
             return;
         }
-        Debug.Log($"Title : {title}");
+        Debug.Log($"Title : {quiz.Title}");
 
         //Context inputField에서 내용 받아오기
         if ((quiz.Str = inputfields.GetInputFieldString(1)) == "")
@@ -139,6 +133,11 @@ public class QuizFactory : MonoBehaviour
                 Debug.Log($"Word : {s}");
                 break;
         }
+
+        Param param = new Param();
+        param.SetQuiz(quiz);
+        Debug.Log($"Param Data : {param.ToStr()}");
+        param.Insert();
     }
     
     //정답 전달
