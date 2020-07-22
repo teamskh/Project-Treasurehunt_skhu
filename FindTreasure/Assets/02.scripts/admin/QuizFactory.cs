@@ -34,7 +34,7 @@ public class QuizFactory : MonoBehaviour
     {
         //문제 유형 전달
         //kind = PlayerPrefs.GetInt("kind_quiz");
-        kind = 2;
+        kind = 1;
 
         //특정 Panel 활성화
         SetPanelActive();

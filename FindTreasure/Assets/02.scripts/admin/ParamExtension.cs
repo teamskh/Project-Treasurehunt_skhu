@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BackEnd;
+using LitJson;
 using TTM.Classes;
 using UnityEngine;
 
@@ -18,8 +19,7 @@ static class ParamExtension
        myParam.Add("kind", quiz.Kind.Value);
        myParam.Add("answer", quiz.Answer.ToString());
        
-       if (quiz.List != null)
-       {
+       if (quiz.List != null){
            myParam.Add("choices", quiz.List);
        }
     }
@@ -42,9 +42,4 @@ static class ParamExtension
         return txt;
     }
 
-    public static void GetQuiz(this Param param,Param where, int count)
-    {
-        BackendReturnObject bro = new BackendReturnObject();
-
-    }
 }

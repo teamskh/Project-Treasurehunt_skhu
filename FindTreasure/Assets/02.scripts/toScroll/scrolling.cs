@@ -152,7 +152,7 @@ public class scrolling : MonoBehaviour
 
         AnswerDictionary dic;
 
-        if (JsonLoadSave.LoadAnswers(out dic))
+        if (false)
         {
             Debug.Log("AnswerJson Exist");
             if (dic.TryGetValue(key, out answer))
@@ -165,7 +165,7 @@ public class scrolling : MonoBehaviour
         {
             Debug.Log("AnswerJson Doesn't Exist");
         }
-        answer.GetAns();
+        //.GetAns();
 
         return answer;
     }

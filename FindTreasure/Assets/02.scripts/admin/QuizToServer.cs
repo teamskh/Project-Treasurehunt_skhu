@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using TTM.Classes;
 
 public class QuizToServer : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class QuizToServer : MonoBehaviour
                 }
                 else
                     Debug.Log(bro.ToString());
+
+                Dictionary<string, Q> dic = new Dictionary<string, Q>();
+                dic.GetQuizz(0);
             }
        
         });

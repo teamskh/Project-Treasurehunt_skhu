@@ -80,7 +80,7 @@ public class AnsIn : MonoBehaviour
 
         AnswerDictionary dic;
 
-        if(JsonLoadSave.LoadAnswers(out dic))
+        if(false)
         {
             Debug.Log("AnswerJson Exist");
             if (dic.TryGetValue(key, out answer))
@@ -93,7 +93,7 @@ public class AnsIn : MonoBehaviour
         {
             Debug.Log("AnswerJson Doesn't Exist");
         }
-        answer.GetAns();
+        //answer.GetAns();
 
         return answer;
     }

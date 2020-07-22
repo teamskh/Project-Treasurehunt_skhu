@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ClassesTTMExtension;
 
 namespace TTM.Classes
 {
@@ -66,16 +65,6 @@ namespace TTM.Classes
         public int Ianswer { get; set; }
         public string Wanswer { get; set; }
 
-        #region Answer Extention
-        public Ans GetAns()
-        {
-            if(Kind ==0){ return new AnsB(Banswer); }
-            else if(Kind == 1) { return new AnsI(Ianswer); }
-            else if(Kind == 2) { return new AnsW(Wanswer); }
-            return null;
-        }
-
-        #endregion
     }
 
     public class Q
