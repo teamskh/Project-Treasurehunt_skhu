@@ -47,9 +47,9 @@ public class competinfo : MonoBehaviour
             {
                 ContestInfo_infT.text = compet.Info;
             }
-            if (compet.Userword.ToString() != null)
+            if (compet.UserPass.ToString() != null)
             {
-                authen_infT.text = compet.Userword.ToString();
+                authen_infT.text = compet.UserPass.ToString();
             }
         }
     }
@@ -103,7 +103,7 @@ public class competinfo : MonoBehaviour
     {
         title = ContestName_infT.text;
         compet.Info= ContestInfo_infT.text;
-        compet.Userword= int.Parse(authen_infT.text);
+        compet.UserPass= int.Parse(authen_infT.text);
         adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
         adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
         Panel3.SetActive(false);

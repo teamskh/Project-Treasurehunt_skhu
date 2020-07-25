@@ -135,9 +135,8 @@ public class QuizFactory : MonoBehaviour
         }
 
         Param param = new Param();
-        param.SetQuiz(quiz);
+        param.SetQuiz(quiz).InsertQuiz();
         Debug.Log($"Param Data : {param.ToStr()}");
-        param.Insert();
     }
     
     //정답 전달

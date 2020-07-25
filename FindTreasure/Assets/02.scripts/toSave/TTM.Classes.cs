@@ -6,13 +6,14 @@ namespace TTM.Classes
 {
     public class Competition
     {
+        public string Name { get; set; }
         public bool Mode { get; set; }
         public int MaxMember { get; set; }
         public string Password { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Info { get; set; }
-        public int Userword { get; set; }
+        public int UserPass { get; set; }
         public int wordNumber { get; set; }
 
         #region Set Times
@@ -20,6 +21,18 @@ namespace TTM.Classes
 
         public void setNowEnd() { EndTime = DateTime.Now; }
         #endregion
+
+        public override string ToString()
+        {
+            string compLog = "";
+
+            compLog = $"Name : {Name}\n";
+            compLog += "Mode : " + (Mode ? "Team" : "Individual") + "\n";
+            if (Mode) compLog += $"MaxMember : {MaxMember} \n";
+            compLog += $"Password : {Password}";
+
+            return compLog;
+        }
     }
 
     public class QuizInfo
@@ -76,5 +89,20 @@ namespace TTM.Classes
         public String[] List { get; set; }
         public object Answer { get; set; }
 
+        public override string ToString()
+        {
+            string quiz = "";
+            quiz += $"Title : {Title}\n";
+            quiz += $"Str : {Str}\n";
+            quiz += $"Score : {Score}\n";
+            quiz += $"Kind : {Kind}\n";
+            if(Kind ==1)
+                for(int i = 0; i < 4; i++)
+                {
+                    quiz += $"List[{i}] : {List[i]}\n";
+                }
+            quiz += $"Answer : {Answer}";
+            return base.ToString();
+        }
     }
 }
