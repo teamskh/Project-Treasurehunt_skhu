@@ -6473,6 +6473,7 @@ MonoBehaviour:
   Panel: {fileID: 1823139792}
   Panel2: {fileID: 1206532610}
   Panel3: {fileID: 2112677282}
+  title: 
 --- !u!1 &2112677282
 GameObject:
   m_ObjectHideFlags: 0

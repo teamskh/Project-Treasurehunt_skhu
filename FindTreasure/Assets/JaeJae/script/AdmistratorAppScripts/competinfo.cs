@@ -102,38 +102,49 @@ public class competinfo : MonoBehaviour
     }
     public void competInfoSave()
     {
-        Competition compet = new Competition();
-        title = ContestName_infT.text;
-        compet.Info= ContestInfo_infT.text;
-        compet.Userword= int.Parse(authen_infT.text);
-        compet.Mode = Team.isOn;
-        if (compet.Mode == true)
-        {
-            Team.isOn = true;
-            compet.MaxMember = ContestTN_dbox.value + 2;
-        }
-        else
-        {
-            Team.isOn = false;
-            compet.MaxMember = 1;
-        }
-        compet.Password = ContestPw_infT.text;
-        /*
-        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-        adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
-        */
         Debug.Log(key);
         if (ContestName_infT.text == key)
         {
             Debug.Log(ContestName_infT.text+" " +key);
             adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+            Competition compet = new Competition();
+            title = ContestName_infT.text;
+            compet.Info = ContestInfo_infT.text;
+            compet.Userword = int.Parse(authen_infT.text);
+            compet.Mode = Team.isOn;
+            if (compet.Mode)
+            {
+                compet.MaxMember = ContestTN_dbox.value + 2;
+            }
+            else
+            {
+                compet.MaxMember = 1;
+            }
+            compet.Password = ContestPw_infT.text;
             adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
         }
         else
         {
             Debug.Log(ContestName_infT.text + " " + key);
-            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+            Competition compet = new Competition();
+            title = ContestName_infT.text;
+            compet.Info = ContestInfo_infT.text;
+            compet.Userword = int.Parse(authen_infT.text);
+            compet.Mode = Team.isOn;
+            if (compet.Mode)
+            {
+                compet.MaxMember = ContestTN_dbox.value + 2;
+            }
+            else
+            {
+                compet.MaxMember = 1;
+            }
+            compet.Password = ContestPw_infT.text;
+
             adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
+            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
+            Debug.Log(compet.Info);
+            key = title;
         }
         Panel3.SetActive(false);
     }
