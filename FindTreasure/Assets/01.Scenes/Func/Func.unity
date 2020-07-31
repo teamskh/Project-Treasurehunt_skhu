@@ -491,13 +491,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060704627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96fa7300fcbf5b244879106cb1743d12, type: 3}
+  m_Script: {fileID: 11500000, guid: 8da9014929cf7734b83512eb88c537bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel_TF: {fileID: 0}
-  Panel_INT: {fileID: 0}
-  Panel_W: {fileID: 0}
-  SaveButton: {fileID: 0}
 --- !u!1 &1083924557
 GameObject:
   m_ObjectHideFlags: 0

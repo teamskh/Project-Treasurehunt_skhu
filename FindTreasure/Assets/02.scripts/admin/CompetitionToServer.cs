@@ -9,7 +9,7 @@ public class CompetitionToServer : MonoBehaviour
     string id = "Admin";
     string pw = "toomuch";
     //서버에서 로드한 competition 저장하는 dic;
-    Dictionary<string, Competition> dic;
+    TTM.Classes.CompetitionDictionary dic;
     //만든 버튼들 모아두는 리스트
     List<GameObject> Buttons = new List<GameObject>();
 
@@ -50,7 +50,7 @@ public class CompetitionToServer : MonoBehaviour
 
     public void SetList()
     {
-        dic = new Dictionary<string, Competition>();
+        dic = new TTM.Classes.CompetitionDictionary();
         dic.GetCompetitions();
 
         //버튼 관리 리스트 비우기
@@ -78,19 +78,9 @@ public class CompetitionToServer : MonoBehaviour
         
         //글씨 조정
         competb.GetComponentInChildren<Text>().text = name;
-        competb.GetComponent<Button>()?.onClick.AddListener(() =>SelectedButton(competb.transform as RectTransform));
-
+        competb.GetComponent<Button>()?.onClick.AddListener(() =>dic.CurrentCode(competb.GetComponentInChildren<Text>().text));
+       
         return competb;
     }
 
-    //누른 버튼의 리스너 추가
-    void SelectedButton(RectTransform transform)
-    {
-        //버튼 이름 받기
-         var key = transform.Find("Text").GetComponent<Text>().text;
-        
-        //dictionary에 key 가지고 있으면 나중에 편의를 위해 playerprefs에 등록
-        if (dic.ContainsKey(key))
-            PlayerPrefs.SetString("competition", key);
-    }
 }

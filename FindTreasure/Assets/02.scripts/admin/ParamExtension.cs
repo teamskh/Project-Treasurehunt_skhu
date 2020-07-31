@@ -55,6 +55,13 @@ static class ParamExtension
 
     public static void InsertCompetition(this Param param)
     {
+        TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
+        dic.GetCompetitions();
+
+        int code = 0;
+        MakeRandomCode.MakeCode(dic, out code);
+        param.Add("code", code);
+
         Debug.Log(param.GetJson());
         BackendReturnObject bro = new BackendReturnObject();
         bro = Backend.GameSchemaInfo.Insert("competitions", param);

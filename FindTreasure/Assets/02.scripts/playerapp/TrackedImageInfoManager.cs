@@ -45,7 +45,7 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary(runtimeImageLibrary); //
         trackImageManager.maxNumberOfMovingImages = 3;
 
-        // setup all game objects in dictionary
+         // setup all game objects in dictionary
       // foreach (GameObject arObject in arObjectsToPlace)
       // {
       //     GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
@@ -109,7 +109,6 @@ public class TrackedImageInfoManager : MonoBehaviour
 
         try
         {
-            //gameman.Instance.imageText = trackedImage.referenceImage.name;
             MutableRuntimeReferenceImageLibrary mutableRuntimeReferenceImageLibrary = trackImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
 
             debugLog.text += $"TextureFormat.RGBA32 supported: {mutableRuntimeReferenceImageLibrary.IsTextureFormatSupported(TextureFormat.RGBA32)}\n";
@@ -196,6 +195,10 @@ public class TrackedImageInfoManager : MonoBehaviour
     void MakeLibrary()
     {
         var txtures = Resources.LoadAll<Texture2D>("FindTreasure/Images");
+        
+        //아래 내용은 DownloadFiles 내용이 정상적으로 작동할 때 해제
+        //var competition = PlayerPrefs.GetString("current_competition");
+        //var txtures = Resources.LoadAll<Texture2D>("FindTreasure/IMG/" +competition);
 
         foreach (var txt in txtures)
         {   
