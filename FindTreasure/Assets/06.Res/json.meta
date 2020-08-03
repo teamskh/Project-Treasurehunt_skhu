@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:FindTreasure/Assets/06.Res/json.meta
 guid: 23b147b96dc0e7140a2a35b9490cd2a9
+=======
+guid: 9f6ae96a35bfb3b47a0d356cc730f6cd
+>>>>>>> master:FindTreasure/Assets/Resources/FindTreasure/Images.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
