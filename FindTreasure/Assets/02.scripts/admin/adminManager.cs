@@ -34,7 +34,7 @@ public class adminManager : GameDataFunction
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(this);
         }
         
         Indate = null;
