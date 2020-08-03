@@ -57,6 +57,14 @@ public class rank : MonoBehaviour
             StopCoroutine(corutuine);
     }
 
+    public Texture2D GetImageGPGS()
+    {
+        if (Social.localUser.authenticated)
+            return Social.localUser.image;
+        else
+            return null;
+    }
+
     public IEnumerator CountTime()
     {
         while (true)

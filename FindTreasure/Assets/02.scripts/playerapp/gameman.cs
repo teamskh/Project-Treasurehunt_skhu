@@ -1,4 +1,5 @@
-﻿#if UNITY_ANDROID
+﻿
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,7 @@ public class gameman : GameDataFunction
 
     public bool isSuccess = false;
     BackendReturnObject bro = new BackendReturnObject();
+    
 
     [SerializeField]
     private InputField NicknameInput;
@@ -182,7 +184,7 @@ public class gameman : GameDataFunction
                 userna = nickname.ToString();
                 MoveMain();
             }
-        }
+          }
     }
 
     //닉네임 등록 마치면 씬 전환
@@ -220,7 +222,6 @@ public class gameman : GameDataFunction
                 Debug.Log("GoogleId - " + Social.localUser.id);
                 Debug.Log("UsetName - " + Social.localUser.userName);
                 Debug.Log("UserName - " + PlayGamesPlatform.Instance.GetUserDisplayName());
-
 
             });
         }
@@ -427,7 +428,17 @@ public class gameman : GameDataFunction
     public void SignOut()
     {
         Debug.Log("-------------SignOut-------------");
-        Debug.Log(Backend.BMember.SignOut("탈퇴 사유").ToString());
+        Backend.BMember.SignOut();
+    }
+    #endregion
+
+    #region Logout
+
+    public void LogOut()
+    {
+
+        Debug.Log("-------------LogOut-------------");
+        Backend.BMember.Logout();
     }
     #endregion
 
@@ -479,4 +490,3 @@ public class gameman : GameDataFunction
     #endregion
 }
 
-#endif

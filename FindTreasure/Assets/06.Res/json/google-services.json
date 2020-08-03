@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "72518984364",
+    "firebase_url": "https://findtreasure20.firebaseio.com",
+    "project_id": "findtreasure20",
+    "storage_bucket": "findtreasure20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72518984364:android:40ceded300a6e1eef67509",
+        "android_client_info": {
+          "package_name": "com.TooMuch.FindTresasure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72518984364-oadc6hims72c1a3skcntgrg43cd8kj98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkZ-C8whXs8OTlLuJUdLbULIAgrANYzz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "72518984364-oadc6hims72c1a3skcntgrg43cd8kj98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
