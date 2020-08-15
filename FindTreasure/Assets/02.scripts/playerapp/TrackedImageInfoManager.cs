@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TTM.Classes;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -181,6 +182,7 @@ public class TrackedImageInfoManager : MonoBehaviour
             goARObject.SetActive(true);
             goARObject.transform.position = newPosition;
             goARObject.transform.localScale = scaleFactor;
+            StartCoroutine(CallingScroll(goARObject));
             foreach (GameObject go in arObjects.Values)
             {
                 Debug.Log($"Go in arObjects.Values: {go.name}");
@@ -190,6 +192,16 @@ public class TrackedImageInfoManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator CallingScroll(GameObject obj)
+    {
+        yield return null;
+        PQuizDicitionary dic = new PQuizDicitionary();
+        dic.GetQuizz(0);
+        Q item;
+        dic.TryGetValue(name, out item);
+        obj.GetComponent<Scroll>()?.Init(item);
     }
 
     void MakeLibrary()

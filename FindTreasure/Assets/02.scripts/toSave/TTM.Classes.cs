@@ -38,6 +38,7 @@ namespace TTM.Classes
         }
     }
 
+    #region Data Classes ver1.0
     public class QuizInfo
     {
         public string Str { get; set; }
@@ -82,7 +83,9 @@ namespace TTM.Classes
         public string Wanswer { get; set; }
 
     }
+    #endregion
 
+    #region Data Classes ver2.0
     public class Q
     {
         public string Title { get; set; }
@@ -109,18 +112,134 @@ namespace TTM.Classes
         }
     }
 
-    public class PQuizDicitionary:Dictionary<string, Quiz>
+    public class QuiDictionary : Dictionary<string, Q>,ITTMDictionary
     {
-        public string Competition { get; set; }
-        
-        public void GetQuizz(string competition)
+        public Dictionary<string, int> transCode = new Dictionary<string, int>();
+        public int Competition { get; set; }
+
+        public QuiDictionary() => Competition = -1;
+        public QuiDictionary(int code) => Competition = code;
+
+        public bool GetQuizz(int competition)
         {
+            //where 조건 설정
             Param where = new Param();
-            where.Add("name", competition);
-            
+            where.Add("idcompetition", competition);
+
+            //데이터 조정
+            BackendReturnObject bro = new BackendReturnObject();
+            bro = Backend.GameSchemaInfo.Get("Quizz", where, 100);
+            if (bro.IsSuccess())
+            {
+                JsonData data = bro.GetReturnValuetoJSON()["rows"];
+                foreach (JsonData item in data)
+                {
+                    var it = GetQuiz(item);
+                    Add(it.Title, it);
+                }
+                Debug.Log(data.ToJson());
+                return true;
+            }
+            else
+            {
+                Debug.Log(bro.ToString());
+                return false;
+            }
+        }
+        
+        protected virtual Q GetQuiz(JsonData quiz)
+        {
+            Q item = new Q();
+
+            item.Title = quiz["title"]["S"].ToString();
+
+            var quizcode = quiz["idquiz"]["N"].ToString();
+            transCode.Add(item.Title, int.Parse(quizcode));
+
+            item.Str = quiz["context"]["S"].ToString();
+
+            item.Kind = int.Parse(quiz["kind"]["N"].ToString());
+
+            item.Score = int.Parse(quiz["score"]["N"].ToString());
+
+            var ans = quiz["answer"]["S"].ToString();
+            switch (item.Kind)
+            {
+                case 0:
+                    item.Answer = bool.Parse(ans);
+                    break;
+                case 1:
+                    item.Answer = int.Parse(ans);
+                    JsonData data = quiz["choices"]["L"];
+                    var count = data.Count;
+                    item.List = new string[4];
+                    for (int i = 0; i < count; i++)
+                    {
+                        item.List[i] = data[i]["S"].ToString();
+                    }
+                    break;
+                case 2:
+                    item.Answer = ans;
+                    break;
+            }
+
+            return item;
+        }
+
+        public bool AvailableCode(int code)
+        {
+            foreach (var tcode in transCode.Values)
+                if (tcode == code) return false;
+            return true;
+        }
+
+        public virtual void CurrentCode(string name)
+        {
+            int code = -1;
+            if (transCode.TryGetValue(name, out code))
+                PlayerPrefs.SetInt("a_quiz", code);
+            Debug.Log($"a_quiz : {code}");
         }
     }
 
+    public class PQuizDicitionary:QuiDictionary
+    {
+        public PQuizDicitionary() : base() { }
+        public PQuizDicitionary(int code) : base(code) { }
+        protected override Q GetQuiz(JsonData quiz)
+        {
+            Q item = new Q();
+
+            item.Title = quiz["title"]["S"].ToString();
+
+            var quizcode = quiz["idquiz"]["N"].ToString();
+            transCode.Add(item.Title, int.Parse(quizcode));
+
+            item.Str = quiz["context"]["S"].ToString();
+
+            item.Kind = int.Parse(quiz["kind"]["N"].ToString());
+
+            if(item.Kind == 1)
+            {
+                JsonData data = quiz["choices"]["L"];
+                var count = data.Count;
+                item.List = new string[4];
+                for (int i = 0; i < count; i++)
+                {
+                    item.List[i] = data[i]["S"].ToString();
+                }
+            }
+
+            return item;
+        }
+        public override void CurrentCode(string name)
+        {//정답 체크시
+            int code = -1;
+            if (transCode.TryGetValue(name, out code))
+                PlayerPrefs.SetInt("p_quiz", code);
+            Debug.Log($"p_quiz : {code}");
+        }
+    }
 
     //관리자 Competition 전용 클래스
     public class CompetitionDictionary : Dictionary<string, Competition>, ITTMDictionary
@@ -189,7 +308,7 @@ namespace TTM.Classes
         }
 
         //버튼을 눌렀을 때 현재의 대회 코드 선택하는 함수
-        public void CurrentCode(string name)
+        public virtual void CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
@@ -235,6 +354,13 @@ namespace TTM.Classes
 
             return comp;
         }
+        public override void CurrentCode(string name)
+        {
+            int code = -1;
+            if (transCode.TryGetValue(name, out code))
+                PlayerPrefs.SetInt("p_competition", code);
+            Debug.Log($"p_Competition : {code}");
+        }
     }
 
     public interface ITTMDictionary
@@ -243,4 +369,44 @@ namespace TTM.Classes
 
        void CurrentCode(string name);
     }
+
+    #region AnswerClass
+    public class SAnswer
+    {
+       public static int CheckAnswer(string ans)
+        {
+            var idcompetition = PlayerPrefs.GetInt("p_competition");
+            var idquiz = PlayerPrefs.GetInt("p_quiz");
+
+            Param where = new Param();
+            where.Add("idcompetition", idcompetition);
+            where.Add("idquiz", idquiz);
+
+            BackendReturnObject bro = new BackendReturnObject();
+            Backend.GameSchemaInfo.Get("Quizz", where, 1);
+            if (bro.IsSuccess())
+            {
+                JsonData data = bro.GetReturnValuetoJSON()["row"];
+                var answer = data["answer"]["S"].ToString();
+                if(answer == ans)
+                {
+                    var score = data["score"]["N"].ToString();
+                    return int.Parse(score);
+                }
+                else
+                {
+                    Debug.Log($"Wrong Answer : {ans} != {answer}");
+                    return 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Deleted Quizz");
+                return 0;
+            }
+        }
+    }
+
+    #endregion
+    #endregion
 }

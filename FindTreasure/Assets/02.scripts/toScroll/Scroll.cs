@@ -6,30 +6,16 @@ using TTM.Classes;
 
 public class Scroll : MonoBehaviour
 {
-    TextMesh qtxt;
-    protected Quiz quiz;
+    Transform qtxt;
 
-    void Start()
+    private void Awake()
     {
-        foreach (var item in GetComponentsInChildren<TextMesh>())
-        {
-            if (item.gameObject.tag=="STR")
-            {
-                qtxt = item;
-                break;
-            }
-        }
+        qtxt = transform.Find("qtxt");
     }
 
-    public void Init(Quiz quiz)
+    public void Init(Q item)
     {
-        this.quiz = quiz;
+        qtxt.GetComponent<TextMesh>().text = item.Str;
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        //qtxt.text = gameman.Instance.exam;
-    }
 }
