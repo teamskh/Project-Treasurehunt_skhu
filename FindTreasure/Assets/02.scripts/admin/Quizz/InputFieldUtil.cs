@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,9 +42,9 @@ public class InputFieldUtil : MonoBehaviour
     public void SetInputFieldString(int i, string context)
     {
         if (i < 0) Debug.LogError($"i : {i}");
-        if (contents[i] != null)
+        if (contents[i] != null)//Contests[i]를 쓰는것만으로도 오류남 어째유,,
         {
-            InputField iput = contents[0].GetComponent<InputField>();
+            InputField iput = contents[i].GetComponent<InputField>();
             if (iput == null) Debug.LogError("Can't DownCasting to InputField");
             iput.SetTextWithoutNotify(context);
         }
@@ -63,6 +64,11 @@ public class InputFieldUtil : MonoBehaviour
     public int GetScore()
     {
         return int.Parse(score.text);
+    }
+
+    public int SetScore(int? i)
+    {
+        return (int)(slider.value = (float)i);
     }
 
     // 토글을 누를때 마다 불러오는 함수

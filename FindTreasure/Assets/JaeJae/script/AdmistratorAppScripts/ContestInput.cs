@@ -59,6 +59,10 @@ public class ContestInput : MonoBehaviour
         {
             compet.MaxMember = ContestTN_dbox.value + 2;
         }
+        else
+        {
+            compet.MaxMember = 1;
+        }
 
         compet.Password = ContestPw_infT.text;
 

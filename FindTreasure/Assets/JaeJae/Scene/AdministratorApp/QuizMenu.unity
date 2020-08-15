@@ -1701,6 +1701,7 @@ GameObject:
   - component: {fileID: 1979585450}
   - component: {fileID: 1979585453}
   - component: {fileID: 1979585454}
+  - component: {fileID: 1979585455}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1767,14 +1768,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979585449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6bcb68d20b05b1458ed78f4376b5be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_titleQuiz:
     m_keys: []
-    m_values: []
+--- !u!114 &1979585455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979585449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63472d96fee273a409768cae1221a702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2124586756
 GameObject:
   m_ObjectHideFlags: 0

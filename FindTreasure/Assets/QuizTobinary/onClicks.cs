@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
+using System.Collections;
 
 public class onClicks : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class onClicks : MonoBehaviour
     private QuizDic dic;
 
     #region Private Variable
-    private QuizInfo mQuiz;
+    private QuizInfo mQuiz= new QuizInfo();
     #endregion
 
     #region Instance
@@ -43,74 +44,147 @@ public class onClicks : MonoBehaviour
     public Toggle toggle_s;
     public static string Ttitle;
     string key;
+    public InputField input1;
+    public InputField input2;
+    public InputField input3;
+    public bool check = true;
+    public bool check2 = true;
     // Start is called before the first frame update
+
     void Start()
     {
         dic = gameObject.GetComponent<QuizDic>();
-        mQuiz = new QuizInfo();
+        //mQuiz.Kind = -1;
 
-        Changekind_TF();
+        //Changekind_TF();
         slider.value = 1;
     }
 
+    public void loadData()
+    {
+        Debug.Log(QuizAddSceneManager.ButtonClick);
+        if (QuizAddSceneManager.ButtonClick >= 0 && check)
+        {
+            switch (QuizAddSceneManager.ButtonClick)
+            {
+                case 0:
+                    Changekind_TF();
+                    check2 = false;
+                    Debug.Log("엥1");
+                    break;
+                case 1:
+                    Changekind_int();
+                    check2 = false;
+                    Debug.Log("엥2");
+                    break;
+                case 2:
+                    Changekind_W();
+                    check2 = false;
+                    Debug.Log("엥3");
+                    break;
+                default:
+                    break;
+            }
+            QuizAddSceneManager.ButtonClick = -1;
+        }
+
+        else
+        {
+            Debug.Log("5");
+            if (check&&check2)
+            {
+                key = scenechange.Qname;
+                adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz);
+                Debug.Log("4  " + mQuiz.Kind);
+                switch (mQuiz.Kind)
+                {
+                    case 0:
+                        Changekind_TF();
+                            check = false;
+                            Debug.Log(mQuiz.Banswer);
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn=true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            if (mQuiz.Banswer == true)
+                            {
+                                mQuiz.Banswer = true;
+                            }
+                            if (mQuiz.Banswer == false)
+                            {
+                                mQuiz.Banswer = false;
+                            }
+                        Debug.Log("3");
+                        break;
+                    case 1:
+                        Changekind_int();
+                            check = false;
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn = true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            for (int i = 0; i < 4; i++)
+                            {
+                                ipanel1.transform.GetChild(i).transform.GetComponent<InputField>().text = mQuiz.List[i];
+                            }
+                        break;
+                    case 2:
+                        Changekind_W();
+                            Debug.Log(mQuiz.Wanswer);
+                            check = false;
+                            input1.text = key;
+                            input2.text = mQuiz.Str;
+                            text.text = mQuiz.Score.ToString();
+                            if (text.text == "30")
+                            {
+                                toggle_s.isOn = true;
+                                slider.interactable = false;
+                            }
+                            else
+                            {
+                                slider.value = int.Parse(text.text);
+                                slider.interactable = true;
+                            }
+                            input3.text = mQuiz.Wanswer;
+                        Debug.Log("0");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            StartCoroutine(WaitForIt());
+        }
+    }
+    IEnumerator WaitForIt()
+    {
+        if (check == false)
+            check = false;
+        else check = true;
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("1");
+    }
     // Update is called once per frame
     void Update()
     {
-        switch (QuizAddSceneManager.ButtonClick)
-        {
-            case 0:
-                Changekind_TF();
-                break;
-            case 1:
-                Changekind_int();
-                break;
-            case 2:
-                Changekind_W();
-                break;
-        }
-
-        switch (mQuiz.Kind)
-        {
-            case 0:
-                Changekind_TF();
-                /*
-                key = scenechange.Qname;
-                if (adminManager.Instance.CallQuizmadeDic().TryGetValue(key, out mQuiz))
-                {
-                    title.text = key;
-                    quiz.text= mQuiz.Str;
-                    text.text = mQuiz.Score;
-                    if (compet.Mode == true)
-                    {
-                        Team.isOn = true;
-                        individual.isOn = false;
-                        ContestTN_dbox.value = compet.MaxMember - 2;
-                    }
-                    else
-                    {
-                        individual.isOn = true;
-                        Team.isOn = false;
-                    }
-
-                    Debug.Log(compet.Password);
-                    ContestName_infT.text = key;
-                    if (compet.Info != null)
-                    {
-                        ContestInfo_infT.text = compet.Info;
-                    }
-                    if (compet.Userword.ToString() != null)
-                    {
-                        authen_infT.text = compet.Userword.ToString();
-                    }
-                }*/
-                break;
-            case 1:
-                Changekind_int();
-                break;
-            case 2:
-                Changekind_W();
-                break;
-        }
+        loadData();
     }
     
     public void Changekind_TF()
@@ -178,18 +252,40 @@ public class onClicks : MonoBehaviour
         var mtitle = title.text;
         mQuiz.Str = quiz.text;
         mQuiz.Score = int.Parse(text.text);
-        if (mQuiz.Kind == 1) {
+
+        if (mQuiz.Kind == 1)
+        {
             mQuiz.List = new string[4];
             Array.Copy(GetComponent<makeNumber>().makeslist(), mQuiz.List, 4);
         }
-        else if (mQuiz.Kind == 2){
+        else if (mQuiz.Kind == 2)
+        {
             mQuiz.Wanswer = Word.text;
         }
-        dic.AddQuiz(mtitle, mQuiz);
-        if (Quizlog != null)
-            QuizDebug();
 
-        Ttitle = mtitle;
+        if (key == null)
+        {
+            dic.AddQuiz(mtitle, mQuiz);
+            if (Quizlog != null)
+                QuizDebug();
+            Ttitle = mtitle;
+        }
+        else
+        {
+            if (key != title.text)
+            {
+                Debug.Log(key);
+                adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
+                adminManager.Instance.GetComponent<QuizDic>().AddQuiz(mtitle, mQuiz);
+            }
+            else
+            {
+                Debug.Log(key);
+                adminManager.Instance.GetComponent<QuizDic>().DeleteQuiz(key);
+                adminManager.Instance.GetComponent<QuizDic>().AddQuiz(key, mQuiz);
+            }
+            Ttitle = mtitle;
+        }
         QuizList.number = 1;
         SceneManager.LoadScene("QuizMenu");
     }

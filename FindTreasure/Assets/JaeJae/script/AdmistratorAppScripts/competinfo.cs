@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
+using BackEnd;
 
 public class competinfo : MonoBehaviour
 {
@@ -19,13 +20,17 @@ public class competinfo : MonoBehaviour
     public GameObject Panel2;
     public GameObject Panel3;
     string key;
-    string title;
+    public string title;
+
     Competition compet = new Competition();
+    Dictionary<string, Competition> dic;
     public void Start()
     {
         all_t.SetActive(false);
         key = scenechange.Qname;
-        if (adminManager.Instance.CallCompetDic().TryGetValue(key, out compet))
+        dic = new Dictionary<string, Competition>();
+        dic.GetCompetitions();
+        if (dic.TryGetValue(key, out compet))
         {
             Debug.Log(compet.Mode);
             ContestPw_infT.text = compet.Password;
@@ -78,8 +83,10 @@ public class competinfo : MonoBehaviour
         }
         compet.Password= ContestPw_infT.text;
         Debug.Log(compet.Password);
-        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-        adminManager.Instance.GetComponent<CompetDic>().AddContest(key, compet);
+        Param param = new Param();
+        param.DeleteCompetition(compet);
+        param.SetCompetition(compet).InsertCompetition();
+
         Panel.SetActive(false);
     }
     public void memberNumberSave()
@@ -95,17 +102,31 @@ public class competinfo : MonoBehaviour
             Team.isOn = false;
             compet.MaxMember = 1;
         }
-        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-        adminManager.Instance.GetComponent<CompetDic>().AddContest(key, compet);
+        Param param = new Param();
+        param.DeleteCompetition(compet);
+        param.SetCompetition(compet).InsertCompetition();
         Panel2.SetActive(false);
     }
     public void competInfoSave()
     {
-        title = ContestName_infT.text;
-        compet.Info= ContestInfo_infT.text;
-        compet.UserPass= int.Parse(authen_infT.text);
-        adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-        adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
+        Competition compet = new Competition();
+        Param param = new Param();
+        compet.Name = ContestName_infT.text;
+        compet.Info = ContestInfo_infT.text;
+        compet.UserPass = int.Parse(authen_infT.text);
+        compet.Mode = Team.isOn;
+        if (compet.Mode)
+        {
+            compet.MaxMember = ContestTN_dbox.value + 2;
+        }
+        else
+        {
+            compet.MaxMember = 1;
+        }
+        compet.Password = ContestPw_infT.text;
+
+        param.DeleteCompetition(compet);
+        param.SetCompetition(compet).InsertCompetition();
         Panel3.SetActive(false);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)

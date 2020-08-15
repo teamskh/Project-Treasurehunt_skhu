@@ -338,18 +338,7 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: SliderChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &99778717
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +733,8 @@ GameObject:
   - component: {fileID: 247023732}
   - component: {fileID: 1789230658}
   - component: {fileID: 1789230659}
+  - component: {fileID: 247023735}
+  - component: {fileID: 247023734}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -759,7 +750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 711072065729047881}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247023731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6bcb68d20b05b1458ed78f4376b5be2, type: 3}
   m_Name: 
@@ -781,6 +772,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &247023734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247023731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63472d96fee273a409768cae1221a702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &247023735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247023731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fa7300fcbf5b244879106cb1743d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BasePanel: {fileID: 755245178}
 --- !u!1 &316416430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,18 +2359,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 645398063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: setAnswer
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &645398063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,8 +3132,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: OK
+      - m_Target: {fileID: 1056822130}
+        m_MethodName: ChangeSceneToQuizMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4409,29 +4414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1099479752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: IpanelChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1789230658}
-        m_MethodName: MakenuTXT
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1099479752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5261,18 +5244,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1379065616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: setAnswer
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1379065616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6942,7 +6914,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 711072065729047881}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247023731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e46232899887a4aaa61ee00ab4374c, type: 3}
   m_Name: 
@@ -6965,7 +6937,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 711072065729047881}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247023731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f62ef989a0b7354aac79f2bc45c2c76, type: 3}
   m_Name: 
@@ -6982,6 +6954,11 @@ MonoBehaviour:
   text: {fileID: 563819812}
   slider: {fileID: 42292545}
   toggle_s: {fileID: 1895355945}
+  input1: {fileID: 2011965088}
+  input2: {fileID: 651941565}
+  input3: {fileID: 1980985339}
+  check: 1
+  check2: 1
 --- !u!1 &1811514154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,18 +7238,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789230659}
-        m_MethodName: HighLevelQ
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1942647676
 GameObject:
@@ -8540,6 +8506,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 711072066104644361, guid: 8541c0bafd000274ea5dfe20eab455b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 711072066104644362, guid: 8541c0bafd000274ea5dfe20eab455b8,
         type: 3}
       propertyPath: title
@@ -8580,11 +8551,6 @@ PrefabInstance:
       propertyPath: Word
       value: 
       objectReference: {fileID: 1023473953}
-    - target: {fileID: 711072066104644362, guid: 8541c0bafd000274ea5dfe20eab455b8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 711072066104644363, guid: 8541c0bafd000274ea5dfe20eab455b8,
         type: 3}
       propertyPath: txts.Array.data[0]
@@ -8628,7 +8594,7 @@ PrefabInstance:
     - target: {fileID: 711072066104644363, guid: 8541c0bafd000274ea5dfe20eab455b8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711072066104644470, guid: 8541c0bafd000274ea5dfe20eab455b8,
         type: 3}

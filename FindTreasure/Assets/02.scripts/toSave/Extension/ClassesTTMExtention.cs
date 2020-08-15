@@ -17,7 +17,9 @@ static class ClassesTTMExtension
         item.Str = quiz["context"]["S"].ToString();
         
         item.Kind = int.Parse(quiz["kind"]["N"].ToString());
-        
+
+        item.Score = int.Parse(quiz["score"]["N"].ToString());//추가
+
         var ans = quiz["answer"]["S"].ToString();
         switch (item.Kind)
         {

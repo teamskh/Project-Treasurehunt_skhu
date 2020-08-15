@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:New Unity Project/Assets/Scenes.meta
+guid: 96a5fd2a7d2de244691e075b767129f8
+=======
 guid: 8dc13cd5d602a7948a8db1c2f5ce4975
+>>>>>>> master:FindTreasure/Assets/02.scripts/admin/Competitions.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -50,6 +50,10 @@ static class ParamExtension
         param.Add("mode", comp.Mode);
         if (comp.Mode) param.Add("maxmember", comp.MaxMember);
         param.Add("password", comp.Password);
+        if (comp.Info == null) comp.Info = null;
+        else param.Add("info", comp.Info);
+        if (comp.UserPass.ToString()==null) comp.Info = null;
+        else param.Add("userpass", comp.UserPass);
         return param;
     }
 
@@ -71,4 +75,18 @@ static class ParamExtension
             Debug.Log(bro.ToString());
     }
 
+    public static void DeleteCompetition(this Param param, Competition comp)
+    {
+        
+        TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
+        dic.GetCompetitions();
+
+        Debug.Log(param.GetJson());
+        BackendReturnObject bro = new BackendReturnObject();
+        bro = Backend.GameSchemaInfo.Delete("competitions", param);
+        if (bro.IsSuccess())
+            Debug.Log("Success");
+        else
+            Debug.Log(bro.ToString());
+    }
 }

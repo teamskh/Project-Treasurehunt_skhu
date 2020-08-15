@@ -2696,17 +2696,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2106536535}
-        m_MethodName: PasswordLoad
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1823139792}
         m_MethodName: SetActive
         m_Mode: 6
@@ -6473,6 +6462,7 @@ MonoBehaviour:
   Panel: {fileID: 1823139792}
   Panel2: {fileID: 1206532610}
   Panel3: {fileID: 2112677282}
+  title: 
 --- !u!1 &2112677282
 GameObject:
   m_ObjectHideFlags: 0
