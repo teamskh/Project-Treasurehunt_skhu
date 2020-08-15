@@ -4,12 +4,25 @@ using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class Player : MonoBehaviour
 {
     public static bool isLogin = false;
     public static bool LoginKind = false;
+    string path = "Assets/Resources/Log/{0}.dat";
+    List<PlayerGameLog> Log = new List<PlayerGameLog>();
+    string user;
 
+    private void OnEnable()
+    {
+        //로그인 이후
+        //유저 코드를 user에 저장
+        path = string.Format(path, user);
+        LoadPlayerLog(); 
+    }
+    /*
     public static bool AdminLogin()
     {
         if (isLogin)
@@ -59,14 +72,31 @@ public class Player : MonoBehaviour
         }
         else
             return false;
-    }
+    }*/
     void Start()
     {
-        
     }
 
     void Update()
     {
         
+    }
+
+    void LoadPlayerLog()
+    {
+        Stream rs = new FileStream(path, FileMode.OpenOrCreate);
+        BinaryFormatter deserializer = new BinaryFormatter();
+
+        Log = (List<PlayerGameLog>)deserializer.Deserialize(rs);
+        rs.Close();
+    }
+
+    public void Save()
+    {
+        Stream ws = new FileStream(path, FileMode.Truncate);
+        BinaryFormatter serializer = new BinaryFormatter();
+
+        serializer.Serialize(ws, Log);
+        ws.Close();
     }
 }

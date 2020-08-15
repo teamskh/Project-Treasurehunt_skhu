@@ -1,6 +1,4 @@
 ﻿using TTM.Classes;
-
-
 public static class MakeRandomCode 
 {
     public static bool MakeCode<T>(T dic, out int code) where T : ITTMDictionary
