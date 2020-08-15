@@ -52,9 +52,9 @@ public class competinfo : MonoBehaviour
             {
                 ContestInfo_infT.text = compet.Info;
             }
-            if (compet.Userword.ToString() != null)
+            if (compet.UserPass.ToString() != null)
             {
-                authen_infT.text = compet.Userword.ToString();
+                authen_infT.text = compet.UserPass.ToString();
             }
         }
     }
@@ -109,52 +109,6 @@ public class competinfo : MonoBehaviour
     }
     public void competInfoSave()
     {
-<<<<<<< Updated upstream
-        Debug.Log(key);
-        if (ContestName_infT.text == key)
-        {
-            Debug.Log(ContestName_infT.text+" " +key);
-            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-            Competition compet = new Competition();
-            title = ContestName_infT.text;
-            compet.Info = ContestInfo_infT.text;
-            compet.Userword = int.Parse(authen_infT.text);
-            compet.Mode = Team.isOn;
-            if (compet.Mode)
-            {
-                compet.MaxMember = ContestTN_dbox.value + 2;
-            }
-            else
-            {
-                compet.MaxMember = 1;
-            }
-            compet.Password = ContestPw_infT.text;
-            adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
-        }
-        else
-        {
-            Debug.Log(ContestName_infT.text + " " + key);
-            Competition compet = new Competition();
-            title = ContestName_infT.text;
-            compet.Info = ContestInfo_infT.text;
-            compet.Userword = int.Parse(authen_infT.text);
-            compet.Mode = Team.isOn;
-            if (compet.Mode)
-            {
-                compet.MaxMember = ContestTN_dbox.value + 2;
-            }
-            else
-            {
-                compet.MaxMember = 1;
-            }
-            compet.Password = ContestPw_infT.text;
-
-            adminManager.Instance.GetComponent<CompetDic>().AddContest(title, compet);
-            adminManager.Instance.GetComponent<CompetDic>().DelCompt(key);
-            Debug.Log(compet.Info);
-            key = title;
-        }
-=======
         Competition compet = new Competition();
         Param param = new Param();
         compet.Name = ContestName_infT.text;
@@ -173,7 +127,6 @@ public class competinfo : MonoBehaviour
 
         param.DeleteCompetition(compet);
         param.SetCompetition(compet).InsertCompetition();
->>>>>>> Stashed changes
         Panel3.SetActive(false);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)

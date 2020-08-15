@@ -1568,7 +1568,7 @@ GameObject:
   - component: {fileID: 484407748}
   - component: {fileID: 484407747}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: list1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1858,7 +1858,7 @@ GameObject:
   - component: {fileID: 563819813}
   - component: {fileID: 563819812}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,7 +2409,7 @@ GameObject:
   - component: {fileID: 651941566}
   - component: {fileID: 651941565}
   m_Layer: 5
-  m_Name: InputField (1)
+  m_Name: Context
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4862,7 @@ GameObject:
   - component: {fileID: 1278271265}
   - component: {fileID: 1278271264}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: list2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7094,7 +7094,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 448266138}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.6111111
+  m_Size: 0.61111104
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7253,7 +7253,7 @@ GameObject:
   - component: {fileID: 1942647679}
   - component: {fileID: 1942647678}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: list3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7531,7 +7531,7 @@ GameObject:
   - component: {fileID: 1989117219}
   - component: {fileID: 1989117218}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: list4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7670,7 +7670,7 @@ GameObject:
   - component: {fileID: 2011965089}
   - component: {fileID: 2011965088}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7873,8 +7873,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UseCustomMaterial: 0
   m_CustomMaterial: {fileID: 0}
-  m_UseCustomRendererAsset: 0
-  m_CustomRendererAsset: {fileID: 0}
 --- !u!114 &2031549128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8553,14 +8551,6 @@ PrefabInstance:
       propertyPath: Word
       value: 
       objectReference: {fileID: 1023473953}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 711072066104644362, guid: 8541c0bafd000274ea5dfe20eab455b8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 711072066104644363, guid: 8541c0bafd000274ea5dfe20eab455b8,
         type: 3}
       propertyPath: txts.Array.data[0]

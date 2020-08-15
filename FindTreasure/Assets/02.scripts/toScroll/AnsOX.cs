@@ -42,7 +42,7 @@ public class AnsOX : Scroll
     }
     public new void Init(Quiz quiz)
     {
-        base.Init(quiz);
+        //base.Init(quiz);
 
     }
 

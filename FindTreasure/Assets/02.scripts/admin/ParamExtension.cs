@@ -7,8 +7,6 @@ using UnityEngine;
 
 static class ParamExtension
 {
-    private static string Indate;
-
     public static Param SetQuiz(this Param myParam, Q quiz)
     {
         myParam.Add("idcompetition", 0);
