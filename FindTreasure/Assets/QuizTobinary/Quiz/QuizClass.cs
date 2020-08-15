@@ -110,7 +110,7 @@ namespace DataInfo
         private static bool LoadAnswers(out Answer answer,string key)
         {
             AnswerDictionary dic;
-            if (JsonLoadSave.LoadAnswers(out dic))
+            if (false)
             {
                 if (dic.TryGetValue(key, out answer))
                 {
