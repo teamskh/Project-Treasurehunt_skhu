@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using TTM.Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,9 +15,50 @@ public class QuizList : MonoBehaviour
     public GameObject Content;
     public static List<GameObject> QList = new List<GameObject>();
     public static Texture2D texture;
+    QuiDictionary dic;
+    Competition comp = new Competition();
+    public void LoadQuiz()
+    {
+        dic = new QuiDictionary();
+        dic.GetQuizz(comp.wordNumber);
+        foreach (GameObject item in QList)
+        {
+            Destroy(item);
+        }
+        QList.Clear();
 
+        var list = dic.Keys;
+        if (list != null)
+            foreach (string item in list)
+            {
+                QList.Add(MakeQuizButton(item));
+            }
+    }
     
+    public GameObject MakeQuizButton(string name)
+    {
+        GameObject quizb = Instantiate(BPrefab, BPrefab.transform.localPosition, Quaternion.identity);
+        //위치 조정
+        quizb.transform.SetParent(Content.transform, false);
+        //quizb.GetComponent<RectTransform>().anchoredPosition.Set(0, QList.Count * 155);
+        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, (QList.Count + 1) * 155);
+        //글씨 조정
+        quizb.GetComponentInChildren<Text>().text = name;
+        quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(quizb.GetComponentInChildren<Text>().text));
 
+        return quizb;
+    }
+
+    public void Start()
+    {
+       
+    }
+    public void OnEnable()
+    {
+        LoadQuiz();
+    }
+
+    /*
     public void LoadQuiz()
     {
         List<string> list = GetComponent<QuizDic>().GetQuizList();
@@ -103,6 +145,7 @@ public class QuizList : MonoBehaviour
             }
         }
         */
+        /*
         quizb.transform.SetParent(Content.transform, true);
         return quizb;
     }
@@ -123,8 +166,8 @@ public class QuizList : MonoBehaviour
     public void OnDisable()
     {
         foreach (GameObject item in QList) Destroy(item);
-    }
-    public void Update()
+    }*/
+        public void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
         {

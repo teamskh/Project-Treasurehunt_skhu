@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 82868956}
   - component: {fileID: 82868955}
   m_Layer: 5
-  m_Name: ContestTN_d
+  m_Name: Competition_Member
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,18 +367,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 703134198}
-        m_MethodName: HideTeamOption
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &82868956
 MonoBehaviour:
@@ -1290,7 +1279,7 @@ GameObject:
   - component: {fileID: 508129958}
   - component: {fileID: 508129957}
   m_Layer: 5
-  m_Name: ContestOk_b
+  m_Name: OK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,18 +1347,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 508129958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 703134198}
-        m_MethodName: SaveContest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &508129958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,11 +1933,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703134199}
-  - component: {fileID: 703134202}
   - component: {fileID: 703134198}
   - component: {fileID: 703134200}
   - component: {fileID: 703134201}
   - component: {fileID: 703134203}
+  - component: {fileID: 703134204}
+  - component: {fileID: 703134202}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1974,7 +1953,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703134197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a0876476efb7439999385e57371ec, type: 3}
   m_Name: 
@@ -2010,7 +1989,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703134197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c8c98c734d7d204ba45406030b8ae37, type: 3}
   m_Name: 
@@ -2036,9 +2015,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 703134197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48e9c5afefaa1643b96d1da982cbbce, type: 3}
+  m_Script: {fileID: 11500000, guid: 06a71da581f8401438952c532314692f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonprefab: {fileID: 3584218156163941509, guid: a391bde2de5a0574ab1543f774c3b8d9,
+    type: 3}
+  Adapter: {fileID: 367321883}
 --- !u!114 &703134203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2051,6 +2033,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5632917ffaccf42a76e7d84348436b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &703134204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703134197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecdd31f3585d3947b1db51a62b522d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddPanel: {fileID: 709674064}
 --- !u!1 &709674063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,7 +2222,7 @@ GameObject:
   - component: {fileID: 819762091}
   - component: {fileID: 819762090}
   m_Layer: 5
-  m_Name: ContestPw_inf
+  m_Name: Competition_Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2439,7 +2434,7 @@ GameObject:
   - component: {fileID: 900631029}
   - component: {fileID: 900631028}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2508,18 +2503,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 900631029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 703134198}
-        m_MethodName: ShowAddPanel
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &900631029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2901,7 +2885,7 @@ GameObject:
   - component: {fileID: 1006182815}
   - component: {fileID: 1006182814}
   m_Layer: 5
-  m_Name: all_text
+  m_Name: AllText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3052,7 +3036,7 @@ GameObject:
   - component: {fileID: 1138447144}
   - component: {fileID: 1138447143}
   m_Layer: 5
-  m_Name: ContestC_b
+  m_Name: Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3120,29 +3104,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1138447144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 709674063}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 703134198}
-        m_MethodName: Cancel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1138447144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3455,7 +3417,7 @@ GameObject:
   - component: {fileID: 1248124414}
   - component: {fileID: 1248124413}
   m_Layer: 5
-  m_Name: ContestName_inf
+  m_Name: Competition_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5081,7 +5043,7 @@ GameObject:
   - component: {fileID: 2122080595}
   - component: {fileID: 2122080596}
   m_Layer: 5
-  m_Name: RadioButtonGroup
+  m_Name: Competition_Mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

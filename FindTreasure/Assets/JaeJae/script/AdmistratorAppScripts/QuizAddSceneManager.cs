@@ -34,8 +34,8 @@ public class QuizAddSceneManager : MonoBehaviour
     public void ChangeSceneToPlacementQuiz()
     {
         SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        //ButtonClick = 4;
-}
+                                          //ButtonClick = 4;
+    }
     void Update()
 
     {
@@ -47,5 +47,6 @@ public class QuizAddSceneManager : MonoBehaviour
                 SceneManager.LoadScene("QuizMenu");
             }
         }
+        PlayerPrefs.SetInt("ButtonClick", ButtonClick);
     }
 }
