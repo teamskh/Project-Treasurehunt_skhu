@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TTM.Save;
-using DataInfo;
 using TTM.Classes;
 using BackEnd;
 
@@ -12,7 +11,6 @@ using GooglePlayGames.BasicApi;
 
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
-using TTM.Server;
 
 using System;
 using LitJson;
@@ -471,11 +469,11 @@ public class gameman : GameDataFunction
     {
         userna = PlayerPrefs.GetString(PrefsString.nickname);
     }
-
+    /*
     public List<string> GetList()
     {
         return competdic.getCompetitionList();
-    }
+    }*/
     #endregion
 }
 
