@@ -15,7 +15,7 @@ using UnityEngine.SceneManagement;
 using System;
 using LitJson;
 
-public class gameman : GameDataFunction
+public class gameman :MonoBehaviour
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
@@ -51,6 +51,11 @@ public class gameman : GameDataFunction
     {
         get
         {
+            if (instance == null)
+            {
+                instance = new gameman();
+                DontDestroyOnLoad(instance);
+            }
             return instance;
         }
     }
@@ -59,15 +64,6 @@ public class gameman : GameDataFunction
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
         Debug.Log("ACCESS_TOKEN : " + PlayerPrefs.HasKey("access_token"));
     }
 
@@ -137,18 +133,6 @@ public class gameman : GameDataFunction
         return false;
     }
 
-    public void updatecompet()
-    {
-        GetContentsByIndate(TableName.competitiondic);
-    }
-
-    private void DownLoadContents()
-    {
-        GetContentsByIndate(TableName.competitiondic);
-        GetContentsByIndate(TableName.quizplayerdic);
-        GetContentsByIndate(TableName.answerdic);
-    }
-
     void Usnick() //닉네임이 존재(정상 가입)
     {
         Debug.Log("nicknuck"); //nickname check 함수 진입 표시
@@ -187,7 +171,6 @@ public class gameman : GameDataFunction
     private void MoveMain()
     {
         PlayerPrefs.SetString(PrefsString.nickname, userna);
-        DownLoadContents();
         SceneManager.LoadScene("02.Main");
     }
 
@@ -452,29 +435,7 @@ public class gameman : GameDataFunction
 
     #endregion
 
-    #region 퀴즈용
-    public Answer CheckAnswer()
-    {
-        Answer ans = new Answer();
-        answerdic.TryGetValue(imageText, out ans);
-        return ans;
-    }
-
-    public Quiz FindQuiz()
-    {
-        return quizplayerdic.FindQuiz(imageText);
-    }
-
-    public void Load()
-    {
-        userna = PlayerPrefs.GetString(PrefsString.nickname);
-    }
-    /*
-    public List<string> GetList()
-    {
-        return competdic.getCompetitionList();
-    }*/
-    #endregion
+ 
 }
 
 #endif
