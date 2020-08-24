@@ -17,6 +17,8 @@ using TTM.Server;
 using System;
 using LitJson;
 
+using TTM.Classes;
+
 public class gameman : GameDataFunction
 {
     public AudioSource baaudio;
@@ -45,6 +47,8 @@ public class gameman : GameDataFunction
     public string endingTime;
     public bool loadRankChek;
     public bool che = false; //종료 시간 버튼 눌렸는지 확인
+    public DateTime[] contest;
+    public int cnt = 0; //몇번 째 대회인지
 
     public GameObject LoginB;
 
@@ -141,14 +145,19 @@ public class gameman : GameDataFunction
 
     public void updatecompet()
     {
-        GetContentsByIndate(TableName.competitiondic);
+        //GetContentsByIndate(TableName.competitiondic);
+        PCompetitionDictionary dic = new PCompetitionDictionary();
+        dic.GetCompetitions();
     }
 
     private void DownLoadContents()
     {
-        GetContentsByIndate(TableName.competitiondic);
+        /*GetContentsByIndate(TableName.competitiondic);
         GetContentsByIndate(TableName.quizplayerdic);
-        GetContentsByIndate(TableName.answerdic);
+        GetContentsByIndate(TableName.answerdic);*/
+        PCompetitionDictionary dic = new PCompetitionDictionary();
+        dic.GetCompetitions();
+
     }
 
     void Usnick() //닉네임이 존재(정상 가입)
