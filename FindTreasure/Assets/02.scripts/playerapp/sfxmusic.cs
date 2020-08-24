@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class sfxmusic : MonoBehaviour
 {
-    public void start()
+    public void Go()
     {
         gameman.Instance.sfaudio.Play();
     }

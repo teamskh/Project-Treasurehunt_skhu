@@ -31,7 +31,8 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Awake()
     {
-        m_ClickAction += sfxmusic.start;
+        m_ClickAction += sfxmusic.Go;
+        Debug.Log("ho");
         m_ClickAction += SetActive;
         //m_ClickAction += score.click;
         curlist = PlayerContents.Instance.CompetitionList();
@@ -52,6 +53,7 @@ public class CreateCompetbuttons : MonoBehaviour
         backmid.SetActive(false);
         bar.SetActive(true);
         rankButton.SetActive(true);
+        Debug.Log("click");
     }
 
 }

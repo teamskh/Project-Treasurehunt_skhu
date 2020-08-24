@@ -46,11 +46,14 @@ public class gameman :MonoBehaviour
     {
         get
         {
+            /*
             if (instance == null)
             {
                 instance = new gameman();
                 DontDestroyOnLoad(instance);
             }
+            return instance;
+            */
             return instance;
         }
     }
@@ -59,7 +62,18 @@ public class gameman :MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         Debug.Log("ACCESS_TOKEN : " + PlayerPrefs.HasKey("access_token"));
+
     }
 
     private void Start()

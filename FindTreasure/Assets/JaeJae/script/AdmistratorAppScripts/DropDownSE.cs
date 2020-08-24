@@ -128,8 +128,8 @@ public class DropDownSE : MonoBehaviour
         gameman.Instance.endtime = endtime;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////추가
-        gameman.Instance.contest[gameman.Instance.cnt] = endtime;
-        gameman.Instance.cnt++;
+        //gameman.Instance.contest[gameman.Instance.cnt] = endtime;
+        //gameman.Instance.cnt++;
 
     }
     public void SelectButtonEndnow()
