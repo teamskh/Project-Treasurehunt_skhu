@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 
-using DataInfo;
-
 using TTM.Classes;
 using TTM.Save;
 
