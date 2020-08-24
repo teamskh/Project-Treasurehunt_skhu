@@ -29,23 +29,12 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     GameObject rankButton;
 
-    /*
-    private CompetDic scripts;
-
-    private void Start()
-    {
-        
-        scripts = gameObject.AddComponent<CompetDic>();
-    }
-
-    */
-    // Start is called before the first frame update
     void Awake()
     {
         m_ClickAction += sfxmusic.start;
         m_ClickAction += SetActive;
         //m_ClickAction += score.click;
-        //curlist = gameman.Instance.GetList(); gameman 연관 수정 필요 
+        curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
             b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count+1) * 60);

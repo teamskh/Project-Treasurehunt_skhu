@@ -122,6 +122,7 @@ namespace TTM.Classes
 
         public bool GetQuizz(int competition)
         {
+            this.Clear();
             //where 조건 설정
             Param where = new Param();
             where.Add("idcompetition", competition);
@@ -251,6 +252,7 @@ namespace TTM.Classes
         //대회 목록 받아오기
         public void GetCompetitions()
         {
+            this.Clear();
             BackendReturnObject bro = new BackendReturnObject();
             bro = Backend.GameSchemaInfo.Get("competitions", new Param(), 100);
             if (bro.IsSuccess())
@@ -323,6 +325,7 @@ namespace TTM.Classes
     {
         protected override Competition GetCompetition(JsonData data)
         {
+
             Debug.Log("PCompetitionDictionary Call");
             Competition comp = new Competition();
             comp.Name = data["name"]["S"].ToString();
