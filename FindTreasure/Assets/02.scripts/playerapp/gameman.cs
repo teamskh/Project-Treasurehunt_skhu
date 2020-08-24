@@ -25,9 +25,6 @@ public class gameman :MonoBehaviour
     public GameObject nicknamebar;
 
     public string userna;
-    //페이지 이동시 저장될 유저이름
-    //playerdic;
-    //public bool chek = false;
 
     public string time;
 
@@ -36,8 +33,6 @@ public class gameman :MonoBehaviour
 
     [SerializeField]
     private InputField NicknameInput;
-
-    bool chek = false; //정상 로그인 - 컨텐츠 로드 완료
 
     public DateTime endtime;
     public string endingTime;
@@ -117,7 +112,7 @@ public class gameman :MonoBehaviour
                 PlayerPrefs.DeleteKey("access_token");
 
                 obj.Clear();
-                obj = Backend.BMember.LoginWithTheBackendToken();
+                obj = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google);
 
                 if (obj.IsSuccess())
                 {
