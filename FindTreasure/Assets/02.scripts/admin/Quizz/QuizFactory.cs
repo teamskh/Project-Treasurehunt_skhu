@@ -21,13 +21,10 @@ public class QuizFactory : MonoBehaviour
     WordAnswerUtil wpanelCompo;
     Q quiz;
     QuiDictionary dic;
-    // Start is called before the first frame update
 
     private void OnEnable()
     {
-        //활성화 하자 마자 초기화
-        quiz = new Q();
-
+        Debug.Log("Set Initial");
         //Scene에서 맞는 패널 자체 장착
         panel?.Add(BasePanel.Find("TFPanel").gameObject ?? null);
         panel?.Add(BasePanel.Find("IPanel").gameObject ?? null);
@@ -37,23 +34,31 @@ public class QuizFactory : MonoBehaviour
     void Start()
     {
         //문제 유형 전달
-        kind = PlayerPrefs.GetInt("ButtonClick");
-        key = scenechange.Qname;
-        Debug.Log(key);
-        dic = new QuiDictionary();
-        code=PlayerPrefs.GetInt("a_competition");
-        Debug.Log(code);
+        kind = PlayerPrefs.GetInt("ButtonClick",-1);
+        PlayerPrefs.DeleteKey("ButtonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
 
-        dic.GetQuizz(code);
-        dic.TryGetValue(key, out quiz);
+        if (kind < 0)
+        {
+            key = scenechange.Qname;
+
+            dic = new QuiDictionary();
+            code = PlayerPrefs.GetInt("a_competition");
+
+            dic.GetQuizz(code);
+            dic.TryGetValue(key, out quiz);
+
+            kind = quiz.Kind.Value;
+        }
+
         //특정 Panel 활성화
         SetPanelActive();
 
         //문제 추가용 inputField 세트 및 연결하는 초기화 과정
         inputfields = gameObject.AddComponent<InputFieldUtil>();
+        inputfields.Quiz = quiz;
 
-        if (quiz==null)//여기를 어떻게 고쳐야할까
-        {
+       // if (quiz==null)//여기를 어떻게 고쳐야할까
+       // {
             //종류에 맞는 컴포넌트 추가를 위한 Coroutine 
             //각각 컴포넌트 더하고 기본 세팅하는 기능
             switch (kind)
@@ -68,45 +73,43 @@ public class QuizFactory : MonoBehaviour
                     StartCoroutine(WPanelSet());
                     break;
             }
-        }
-        else
-        {
-            Debug.Log(quiz.Kind + " kind");
-            switch (quiz.Kind)
-            {
-                case 0:
-                    StartCoroutine(TFPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(1);
-                    break;
-                case 1:
-                    StartCoroutine(IPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(2);
-                    break;
-                case 2:
-                    StartCoroutine(WPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(3);
-                    break;
-            }
-        }
+        //}
+        //else
+        //{
+        //    inputfields.Quiz = quiz;
+        //    Debug.Log(quiz.Kind + " kind");
+        //    switch (quiz.Kind)
+        //    {
+        //        case 0:
+        //            StartCoroutine(TFPanelSet());
+        //            Debug.Log(1);
+        //            break;
+        //        case 1:
+        //            StartCoroutine(IPanelSet());
+        //            Debug.Log(2);
+        //            break;
+        //        case 2:
+        //            StartCoroutine(WPanelSet());
+        //            Debug.Log(3);
+        //            break;
+        //    }
+
+            //nputfields.SetInputFieldString(0, quiz.Title);
+            //nputfields.SetInputFieldString(1, quiz.Str);
+            //nputfields.SetScore(quiz.Score);
+       // }
 
         //버튼 객체 있으면 Save 함수를 클릭 리스너로 등록
         SaveButton?.onClick.AddListener(() => Save());
     }
-    void QuizExist()
-    {
 
-    }
     void Save()
     {
+        if(quiz == null)
+        {
+            Debug.LogError("Need to Check Answer");
+            return;
+        }
         //Title inputField에서 내용 받아오기
         if ((quiz.Title = inputfields.GetInputFieldString(0)) == "")
         {
@@ -127,10 +130,9 @@ public class QuizFactory : MonoBehaviour
         quiz.Score = inputfields.GetScore();
         Debug.Log($"Score : {quiz.Score}");
 
-        Debug.Log($"Kind : {quiz.Kind}");
-
         //전달자에 kind전달
         quiz.Kind = kind;
+        Debug.Log($"Kind : {quiz.Kind}");
 
         //Quiz가 index 종류일 경우 보기 항목 받아오기
         if (kind == 1)
@@ -186,9 +188,11 @@ public class QuizFactory : MonoBehaviour
     //정답 전달
     public void SetAnswer(object T)
     {
+        quiz = new Q();
         if (T.GetType() == typeof(int))
             Debug.Log($"Index: {T}");
         quiz.Answer = T;
+        Debug.Log(quiz.Answer);
     }
 
     #region Panel Controll
@@ -222,7 +226,6 @@ public class QuizFactory : MonoBehaviour
         //보기 변수를 받아오기 위해 ipanelCompo에 컴포넌트 저장
         ipanelCompo = gameObject.AddComponent<IndexTranslateUtil>();
         ipanelCompo.Set(panel[1]);
-
     }
 
     IEnumerator WPanelSet()

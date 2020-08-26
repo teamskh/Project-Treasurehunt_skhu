@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TTM.Classes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class InputFieldUtil : MonoBehaviour
     Toggle toggle;
     Slider slider;
     Text score;
+    public Q Quiz { get; set; }
 
     private void OnEnable()
     {
@@ -35,11 +37,20 @@ public class InputFieldUtil : MonoBehaviour
         //toggle에 리스너 달기
         toggle.onValueChanged.AddListener((bool bOn)=>IsTrueFalse(bOn));
         slider.onValueChanged.AddListener((float f) =>SliderVale(f));
+
+        if (Quiz != null) SetQuiz();
+    }
+
+    void SetQuiz()
+    {
+        SetInputFieldString(0, Quiz.Title);
+        SetInputFieldString(1, Quiz.Str);
+        SetScore(Quiz.Score);
     }
 
     //inputFied 채워 넣는 용
     //0번은 Title, 1번은 내용
-    public void SetInputFieldString(int i, string context)
+    void SetInputFieldString(int i, string context)
     {
         if (i < 0) Debug.LogError($"i : {i}");
         if (contents[i] != null)//Contests[i]를 쓰는것만으로도 오류남 어째유,,
