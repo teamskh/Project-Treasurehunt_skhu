@@ -75,7 +75,7 @@ public class AnsIn : MonoBehaviour
     private Answer FindAnswer(string key)
     {
         Answer answer = new Answer();
-
+        /*
         AnswerDictionary dic;
 
         if(false)
@@ -92,7 +92,7 @@ public class AnsIn : MonoBehaviour
             Debug.Log("AnswerJson Doesn't Exist");
         }
         //answer.GetAns();
-
+        */
         return answer;
     }
 }

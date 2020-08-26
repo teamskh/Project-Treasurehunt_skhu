@@ -20,8 +20,7 @@ public class QuizFactory : MonoBehaviour
     IndexTranslateUtil ipanelCompo;
     WordAnswerUtil wpanelCompo;
     Q quiz;
-    Competition compet;
-    Dictionary<string, Q> dic;
+    QuiDictionary dic;
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -40,8 +39,11 @@ public class QuizFactory : MonoBehaviour
         //문제 유형 전달
         kind = PlayerPrefs.GetInt("ButtonClick");
         key = scenechange.Qname;
-        dic = new Dictionary<string, Q>();
-        code=PlayerPrefs.GetInt("a_quiz");
+        Debug.Log(key);
+        dic = new QuiDictionary();
+        code=PlayerPrefs.GetInt("a_competition");
+        Debug.Log(code);
+
         dic.GetQuizz(code);
         dic.TryGetValue(key, out quiz);
         //특정 Panel 활성화
@@ -49,8 +51,7 @@ public class QuizFactory : MonoBehaviour
 
         //문제 추가용 inputField 세트 및 연결하는 초기화 과정
         inputfields = gameObject.AddComponent<InputFieldUtil>();
-        //Debug.Log(quiz.Kind +" kind");
-        //quiz.Kind ?? null;
+
         if (quiz==null)//여기를 어떻게 고쳐야할까
         {
             //종류에 맞는 컴포넌트 추가를 위한 Coroutine 
@@ -100,7 +101,10 @@ public class QuizFactory : MonoBehaviour
         //버튼 객체 있으면 Save 함수를 클릭 리스너로 등록
         SaveButton?.onClick.AddListener(() => Save());
     }
+    void QuizExist()
+    {
 
+    }
     void Save()
     {
         //Title inputField에서 내용 받아오기

@@ -20,7 +20,8 @@ public class QuizList : MonoBehaviour
     public void LoadQuiz()
     {
         dic = new QuiDictionary();
-        dic.GetQuizz(comp.wordNumber);
+        var idcompetition = PlayerPrefs.GetInt("a_competition");
+        dic.GetQuizz(idcompetition);
         foreach (GameObject item in QList)
         {
             Destroy(item);

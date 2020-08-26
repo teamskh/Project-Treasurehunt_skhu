@@ -148,8 +148,8 @@ public class scrolling : MonoBehaviour
     {
         Answer answer = new Answer();
 
-        AnswerDictionary dic;
-
+        //AnswerDictionary dic;
+        /*
         if (false)
         {
             Debug.Log("AnswerJson Exist");
@@ -164,7 +164,7 @@ public class scrolling : MonoBehaviour
             Debug.Log("AnswerJson Doesn't Exist");
         }
         //.GetAns();
-
+        */
         return answer;
     }
 }

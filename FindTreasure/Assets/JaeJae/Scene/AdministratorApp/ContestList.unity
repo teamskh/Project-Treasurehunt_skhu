@@ -1933,8 +1933,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703134199}
-  - component: {fileID: 703134198}
-  - component: {fileID: 703134200}
   - component: {fileID: 703134201}
   - component: {fileID: 703134203}
   - component: {fileID: 703134204}
@@ -1946,28 +1944,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &703134198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703134197}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495a0876476efb7439999385e57371ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ContestPanel: {fileID: 709674063}
-  ContestName_infT: {fileID: 1248124413}
-  ContestTN_dbox: {fileID: 82868955}
-  ContestPw_infT: {fileID: 819762090}
-  Team: {fileID: 2094139461}
-  individual: {fileID: 615676690}
-  ContestBPrefab: {fileID: 3584218156163941509, guid: a391bde2de5a0574ab1543f774c3b8d9,
-    type: 3}
-  Content: {fileID: 367321883}
-  all_t: {fileID: 1006182812}
 --- !u!4 &703134199
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,18 +1958,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &703134200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703134197}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8c98c734d7d204ba45406030b8ae37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &703134201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,7 +4984,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 703134198}
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:

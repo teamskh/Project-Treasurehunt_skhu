@@ -15,7 +15,7 @@ using UnityEngine.SceneManagement;
 using System;
 using LitJson;
 
-public class gameman : GameDataFunction
+public class gameman : MonoBehaviour//GameDataFunction
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
@@ -137,6 +137,7 @@ public class gameman : GameDataFunction
         return false;
     }
 
+    /*
     public void updatecompet()
     {
         GetContentsByIndate(TableName.competitiondic);
@@ -148,7 +149,7 @@ public class gameman : GameDataFunction
         GetContentsByIndate(TableName.quizplayerdic);
         GetContentsByIndate(TableName.answerdic);
     }
-
+    */
     void Usnick() //닉네임이 존재(정상 가입)
     {
         Debug.Log("nicknuck"); //nickname check 함수 진입 표시
@@ -187,7 +188,7 @@ public class gameman : GameDataFunction
     private void MoveMain()
     {
         PlayerPrefs.SetString(PrefsString.nickname, userna);
-        DownLoadContents();
+        //DownLoadContents();
         SceneManager.LoadScene("02.Main");
     }
 
@@ -451,18 +452,20 @@ public class gameman : GameDataFunction
     }
 
     #endregion
-
+    
     #region 퀴즈용
     public Answer CheckAnswer()
     {
         Answer ans = new Answer();
-        answerdic.TryGetValue(imageText, out ans);
+        //answerdic.TryGetValue(imageText, out ans);
         return ans;
     }
 
     public Quiz FindQuiz()
     {
-        return quizplayerdic.FindQuiz(imageText);
+        Quiz q = new Quiz();
+        return q;
+        //return quizplayerdic.FindQuiz(imageText);
     }
 
     public void Load()
