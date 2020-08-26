@@ -6394,6 +6394,7 @@ GameObject:
   - component: {fileID: 2106536533}
   - component: {fileID: 2106536532}
   - component: {fileID: 2106536535}
+  - component: {fileID: 2106536536}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -6463,6 +6464,18 @@ MonoBehaviour:
   Panel2: {fileID: 1206532610}
   Panel3: {fileID: 2112677282}
   title: 
+--- !u!114 &2106536536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106536531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cbc3a02e54fa4c93464cd6f1d0011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2112677282
 GameObject:
   m_ObjectHideFlags: 0

@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789230659}
+      - m_Target: {fileID: 0}
         m_MethodName: setAnswer
         m_Mode: 3
         m_Arguments:
@@ -730,9 +730,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247023733}
-  - component: {fileID: 247023732}
-  - component: {fileID: 1789230658}
-  - component: {fileID: 1789230659}
   - component: {fileID: 247023735}
   - component: {fileID: 247023734}
   m_Layer: 0
@@ -742,21 +739,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &247023732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 711072066104644361, guid: 8541c0bafd000274ea5dfe20eab455b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 711072065729047881}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247023731}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6bcb68d20b05b1458ed78f4376b5be2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_titleQuiz:
-    m_keys: []
 --- !u!4 &247023733
 Transform:
   m_ObjectHideFlags: 0
@@ -2231,7 +2213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789230659}
+      - m_Target: {fileID: 0}
         m_MethodName: setAnswer
         m_Mode: 3
         m_Arguments:
@@ -3003,7 +2985,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789230659}
+      - m_Target: {fileID: 0}
         m_MethodName: setAnswer
         m_Mode: 3
         m_Arguments:
@@ -5116,7 +5098,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789230659}
+      - m_Target: {fileID: 0}
         m_MethodName: setAnswer
         m_Mode: 3
         m_Arguments:
@@ -6906,59 +6888,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785218256}
   m_CullTransparentMesh: 0
---- !u!114 &1789230658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 711072066104644363, guid: 8541c0bafd000274ea5dfe20eab455b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 711072065729047881}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247023731}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e46232899887a4aaa61ee00ab4374c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txts:
-  - {fileID: 1651348966}
-  - {fileID: 415131446}
-  - {fileID: 620092775}
-  - {fileID: 701401368}
-  nos:
-  - {fileID: 1510935514}
-  - {fileID: 1095685098}
-  - {fileID: 768669247}
-  - {fileID: 391676610}
---- !u!114 &1789230659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 711072066104644362, guid: 8541c0bafd000274ea5dfe20eab455b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 711072065729047881}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247023731}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f62ef989a0b7354aac79f2bc45c2c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 1068908213}
-  quiz: {fileID: 1164145348}
-  TFPanel: {fileID: 1527654353}
-  IPanel: {fileID: 1653888797}
-  ipanel1: {fileID: 1092186074}
-  ipanel2: {fileID: 1711152116}
-  WPanel: {fileID: 1278310432}
-  Word: {fileID: 1023473953}
-  Quizlog: {fileID: 0}
-  text: {fileID: 563819812}
-  slider: {fileID: 42292545}
-  toggle_s: {fileID: 1895355945}
-  input1: {fileID: 2011965088}
-  input2: {fileID: 651941565}
-  input3: {fileID: 1980985339}
-  check: 1
-  check2: 1
 --- !u!1 &1811514154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7094,7 +7023,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 448266138}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.61111104
+  m_Size: 0.6111111
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8606,5 +8535,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8541c0bafd000274ea5dfe20eab455b8, type: 3}

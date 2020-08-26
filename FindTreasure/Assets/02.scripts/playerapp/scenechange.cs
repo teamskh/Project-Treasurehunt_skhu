@@ -22,7 +22,6 @@ public class scenechange :MonoBehaviour
 
     public void changeadminScene()
     {
-       // adminManager.Instance.GetContentsByIndate(TTM.Server.TableName.competitiondic);
         SceneManager.LoadScene("ContestList");
     }
 
