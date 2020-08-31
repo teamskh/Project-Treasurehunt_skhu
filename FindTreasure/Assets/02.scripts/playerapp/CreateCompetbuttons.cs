@@ -43,6 +43,7 @@ public class CreateCompetbuttons : MonoBehaviour
                 if (t.gameObject.layer == 8) t.text = title;
             }
             buttons.Add(b);
+            b.GetComponent<Button>().onClick.AddListener(() =>PlayerContents.Instance.ClickListener(title));
             b.GetComponent<Button>().onClick.AddListener(m_ClickAction);
         }
     }

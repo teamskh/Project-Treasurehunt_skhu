@@ -75,4 +75,9 @@ public class PlayerContents
             arr.Add(key);
         return arr;
     }
+
+    public void ClickListener(string com)
+    {
+        Compets.CurrentCode(com);
+    }
 }
