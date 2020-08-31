@@ -9,9 +9,19 @@ static class ParamExtension
 {
     public static Param SetQuiz(this Param myParam, Q quiz)
     {
+        /*
         myParam.Add("idcompetition", 0);
-        myParam.Add("idquiz", 0);
-      
+        myParam.Add("idquiz", 0);*/
+        var idcompetition= PlayerPrefs.GetInt("a_competition");
+        myParam.Add("idcompetition", idcompetition);
+
+        QuiDictionary dic = new QuiDictionary();
+        dic.GetQuizz(idcompetition);
+
+        int idquiz = 0;
+        MakeRandomCode.MakeCode(dic, out idquiz);
+        myParam.Add("idquiz", idquiz);
+
         myParam.Add("title", quiz.Title);
         myParam.Add("context", quiz.Str);
         myParam.Add("score", quiz.Score.Value);
@@ -59,7 +69,7 @@ static class ParamExtension
 
     public static void InsertCompetition(this Param param)
     {
-        TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
+        CompetitionDictionary dic = new CompetitionDictionary();
         dic.GetCompetitions();
 
         int code = 0;

@@ -52,12 +52,8 @@ public class CreateCompetbuttons : MonoBehaviour
                 }
             }
             buttons.Add(b);
-            te = title; // 버튼 이름 사용하기
-
-            
-            b.GetComponent<Button>().onClick.AddListener(m_ClickAction); //얘처럼 한줄 더
-
-
+            b.GetComponent<Button>().onClick.AddListener(() =>PlayerContents.Instance.ClickListener(title));
+            b.GetComponent<Button>().onClick.AddListener(m_ClickAction);
         }
     }
     

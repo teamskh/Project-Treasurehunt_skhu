@@ -48,14 +48,6 @@ public class gameman :MonoBehaviour
     {
         get
         {
-            /*
-            if (instance == null)
-            {
-                instance = new gameman();
-                DontDestroyOnLoad(instance);
-            }
-            return instance;
-            */
             return instance;
         }
     }

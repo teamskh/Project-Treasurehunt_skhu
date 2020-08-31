@@ -327,7 +327,6 @@ namespace TTM.Classes
     {
         protected override Competition GetCompetition(JsonData data)
         {
-
             Debug.Log("PCompetitionDictionary Call");
             Competition comp = new Competition();
             comp.Name = data["name"]["S"].ToString();
