@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerContents
 {
-    PCompetitionDictionary Compets;
+    PCompetitionDictionary Compets; //key 대회이름, value 대회 내용 
     Dictionary<int, PQuizDicitionary> Quizzdic;
     static event Action DicUpdate;
 
@@ -68,11 +68,13 @@ public class PlayerContents
         return currentlib;
     }
 
-    public List<string>  CompetitionList()
+    public List<string>  CompetitionList() //prefab을 만듦 
     {
         List<string> arr = new List<string>();
         foreach (var key in Compets.Keys)
             arr.Add(key);
         return arr;
     }
+
+    
 }

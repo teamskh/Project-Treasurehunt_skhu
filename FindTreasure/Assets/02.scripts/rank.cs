@@ -92,7 +92,8 @@ public class rank : MonoBehaviour
                         endtimeT.text = gameman.Instance.endingTime;
                     }
                 }
-                endtimeT.text = test;
+                endtimeT.text = test; //남은 시간
+
                 gameman.Instance.endingTime = test;
             }
             else

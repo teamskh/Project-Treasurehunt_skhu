@@ -41,6 +41,8 @@ public class gameman :MonoBehaviour
 
     public GameObject LoginB;
 
+    public string[] conname;  
+
     static gameman instance;
     public static gameman Instance
     {
