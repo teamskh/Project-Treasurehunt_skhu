@@ -124,13 +124,6 @@ public class DropDownSE : MonoBehaviour
         {
             endtime = Convert.ToDateTime(CalendarController._EDateString +" "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
         }
-        chon = true;
-        /*gameman.Instance.che=chon;
-        gameman.Instance.endtime = endtime;
-
-        gameman.Instance.conname[cnt] = "d";
-        cnt++;*/
-
 
     }
     public void SelectButtonEndnow()

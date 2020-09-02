@@ -37,7 +37,10 @@ public class gameman :MonoBehaviour
     public DateTime endtime;
     public string endingTime;
     public bool loadRankChek;
-    public bool che = false; //종료 시간 버튼 눌렸는지 확인
+    //public bool che = false; //종료 시간 버튼 눌렸는지 확인 쓸모 없는 걸로 확인
+
+    public int EndScore; //서버에 있는 대회 점수
+    public bool start = false; //대회 버튼 눌렀는지 여부
 
     public GameObject LoginB;
 

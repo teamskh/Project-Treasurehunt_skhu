@@ -12,7 +12,7 @@ using BackEnd;
 public class rank : MonoBehaviour
 {
     public Text Name;
-    private TimeSpan times;
+    //private TimeSpan times;
 
     public GameObject endTime;
     public GameObject endScore;
@@ -32,15 +32,14 @@ public class rank : MonoBehaviour
     {
         Name.text = PlayerPrefs.GetString("nickna");
         corutuine = CountTime();
+
+        if(gameman.Instance.start == true) //대회버튼이 눌려 대회시간 돌아가기 이벤트 달기 -> 검색 ㄱㄱ
+        {
+            StartCoroutine(CountTime());
+            StartCoroutine(corutuine);
+        }
         //StartCoroutine(CountTime());
         //StartCoroutine(corutuine);
-
-    }
-
-    public void StartTime()
-    {
-        StartCoroutine(CountTime());
-        StartCoroutine(corutuine);
     }
     
     public void Loadrank()
@@ -65,8 +64,8 @@ public class rank : MonoBehaviour
     {
         while (true)
         {
-            if (gameman.Instance.che == true)
-            {
+            //if (gameman.Instance.che == true)
+            //{
                 TimeSpan times = gameman.Instance.endtime - DateTime.Now;
                 test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
                 if (times.Seconds < 1)
@@ -83,7 +82,7 @@ public class rank : MonoBehaviour
                 }
                 else
                 {
-                    if (gameman.Instance.score == 30)
+                    if (gameman.Instance.score == gameman.Instance.EndScore) //서버에서 점수 가져오기
                     {
                         statusbar.SetActive(false);
                         Endingmess.SetActive(true);
@@ -95,12 +94,13 @@ public class rank : MonoBehaviour
                 endtimeT.text = test; //남은 시간
 
                 gameman.Instance.endingTime = test;
-            }
+            //}
+            /*
             else
             {
                 DateTime str = DateTime.Now;
                 endtimeT.text = str.ToString();
-            }
+            }*/
             yield return new WaitForSeconds(1);
         }
     }
