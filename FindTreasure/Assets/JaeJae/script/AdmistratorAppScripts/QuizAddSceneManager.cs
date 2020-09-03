@@ -5,38 +5,6 @@ using UnityEngine.SceneManagement;
 
 public /*static*/ class QuizAddSceneManager : MonoBehaviour
 {
-    public static int ButtonClick=-1;
-    
-    public void ChangeSceneToOXQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 0;
-    }
-    
-    public void ChangeSceneToMultiCQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 1;
-    }
-    
-    public void ChangeSceneToShortAnswerQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 2;
-    }
-
-    public void ChangeSceneToConnectedQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        //ButtonClick = 3;
-    }
-
-    public void ChangeSceneToPlacementQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-                                          //ButtonClick = 4;
-    }
-
     #region ver.YJ
 
     //추천 : Click listener에서 달때 kind 값을 명시하는 방식으로 사용할 수 있음.
@@ -59,6 +27,5 @@ public /*static*/ class QuizAddSceneManager : MonoBehaviour
                 SceneManager.LoadScene("QuizMenu");
             }
         }
-        PlayerPrefs.SetInt("ButtonClick", ButtonClick);
     }
 }

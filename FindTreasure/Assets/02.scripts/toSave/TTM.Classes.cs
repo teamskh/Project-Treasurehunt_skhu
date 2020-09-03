@@ -123,6 +123,7 @@ namespace TTM.Classes
         public bool GetQuizz(int competition)
         {
             this.Clear();
+            transCode.Clear();
             //where 조건 설정
             Param where = new Param();
             where.Add("idcompetition", competition);
