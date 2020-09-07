@@ -8,6 +8,10 @@ public class Scroll : MonoBehaviour
 {
     [SerializeField]
     GameObject OX;
+    [SerializeField]
+    GameObject List;
+    [SerializeField]
+    GameObject Input;
 
     Transform qtxt;
     Transform buttonPos;
@@ -15,12 +19,12 @@ public class Scroll : MonoBehaviour
     private void Awake()
     {
         qtxt = transform.Find("qtxt");
-        buttonPos = qtxt?.GetChild(0);
+        buttonPos = transform.Find("Buttons");
     }
 
     public void Init(Q item)
     {
-        int kind = 0;// item.Kind.Value;
+        int kind = item.Kind.Value;
         qtxt.GetComponent<TextMesh>().text = item.Str;
          
         switch (kind)
@@ -29,8 +33,10 @@ public class Scroll : MonoBehaviour
                 Instantiate(OX, buttonPos);
                 break;
             case 1:
+                Instantiate(List, buttonPos);
                 break;
             case 2:
+                Instantiate(Input, buttonPos);
                 break;
             default:
                 break;

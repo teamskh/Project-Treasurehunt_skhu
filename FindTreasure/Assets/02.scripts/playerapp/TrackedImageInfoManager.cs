@@ -25,8 +25,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     [SerializeField]
     private Button captureImageButton;
 
-    [SerializeField]
-    private GameObject Scroll;
 
     [SerializeField]
     private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f);
@@ -51,17 +49,17 @@ public class TrackedImageInfoManager : MonoBehaviour
         return name;
     }
 
-    IEnumerator Enqueue(string name)
+    IEnumerator Enqueue(string name,GameObject trackImg)
     {
-        GameObject obj = Instantiate(Scroll);
-        ARobj.Add(name, obj);
+        ARobj.Add(name, trackImg);
         nameTable.Enqueue(name);
         if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
 
         yield return null;
 
         Q item = PlayerContents.Instance.FindQ(name);
-        obj.GetComponent<Scroll>()?.Init(item);
+        if (item != null)
+            trackImg.GetComponentInChildren<Scroll>().Init(item);
     }
 
     #endregion
@@ -73,36 +71,25 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             trackImageManager = gameObject.GetComponent<ARTrackedImageManager>();
             if (trackImageManager != null) Debug.Log("Not Manager");
-            trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary(runtimeImageLibrary);
+            trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary();
             if (trackImageManager.referenceLibrary is MutableRuntimeReferenceImageLibrary) Debug.Log("Not ReferenceLibrary");
             trackImageManager.maxNumberOfMovingImages = 3;
-            trackImageManager.trackedImagePrefab = Scroll;
 
             trackImageManager.enabled = true;
 
-           // trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+            trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
 
             ShowTrackerInfo();
             // Debug.Log("Not MutableLibrary");
 
             MakeLibrary();
-            // captureImageButton.onClick.AddListener(() => StartCoroutine(CaptureImage()));
+            
         }catch(Exception e)
         {
             Debug.Log(e.StackTrace);
         }
     }
     
-   //private IEnumerator CaptureImage()
-   //{
-   //    yield return new WaitForEndOfFrame();
-   //
-   //    jobLog.text = "Capturing Image...";
-   //
-   //    var texture = ScreenCapture.CaptureScreenshotAsTexture();
-   //
-   //    StartCoroutine(AddImageJob(texture));
-   //}
 
     public void ShowTrackerInfo()
     {
@@ -123,10 +110,12 @@ public class TrackedImageInfoManager : MonoBehaviour
             Debug.Log("Mutable Error");
 
     }
-   // void OnDisable()
-   // {
-   //     trackImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
-   // }
+
+
+    void OnDisable()
+    {
+        trackImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
+    }
 
     public IEnumerator AddImageJob(Texture2D texture2D,string name)
     {
@@ -180,48 +169,41 @@ public class TrackedImageInfoManager : MonoBehaviour
         }
     }
 
-  //  void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
-  //  {
-  //     // foreach (ARTrackedImage trackedImage in eventArgs.added)
-  //     // {
-  //     //     // Display the name of the tracked image in the canvas
-  //     //     UpdateARImage(trackedImage);
-  //     //     pos = trackedImage.transform.position;
-  //     //     trackedImage.transform.Rotate(Vector3.up, 180);
-  //     // }
-  //     //
-  //     // foreach (ARTrackedImage trackedImage in eventArgs.updated)
-  //     // {
-  //     //     // Display the name of the tracked image in the canvas
-  //     //     UpdateARImage(trackedImage);
-  //     //     trackedImage.transform.Rotate(Vector3.up, 180);
-  //     // }
-  //  }
+    void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    {
+        foreach (ARTrackedImage trackedImage in eventArgs.added)
+        {
+            // Display the name of the tracked image in the canvas
+            UpdateARImage(trackedImage);
+            pos = trackedImage.transform.position;
+             trackedImage.transform.Rotate(Vector3.right, 90);
+        }
+       
+        foreach (ARTrackedImage trackedImage in eventArgs.updated)
+        {
+            // Display the name of the tracked image in the canvas
+            UpdateARImage(trackedImage);
+            trackedImage.transform.Rotate(Vector3.right, 90);
+        }
+    }
 
     private void UpdateARImage(ARTrackedImage trackedImage)
     {
-        // Display the name of the tracked image in the canvas
-        if (Vector3.Distance(pos, trackedImage.transform.position) > 100)
-        {
-            pos = trackedImage.transform.position;
-            Debug.Log($"Img Pos: {trackedImage.transform.position}");
-            Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
-        }
-
         // Assign and Place Game Object
-        AssignGameObject(trackedImage.referenceImage.name, trackedImage.transform.position);
+        AssignGameObject(trackedImage.referenceImage.name, trackedImage);
     }
 
-    void AssignGameObject(string name, Vector3 newPosition)
+    void AssignGameObject(string name, ARTrackedImage img)
     {
         GameObject goARObject;
 
-        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name));
+        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name,img.gameObject));
 
         if (ARobj.TryGetValue(name, out goARObject)){
 
-            goARObject.transform.position =Vector3.zero;
+            goARObject.transform.position=new Vector3(0, 0, 1.5f);
             goARObject.transform.localScale = scaleFactor;
+
         } 
     }
 

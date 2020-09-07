@@ -24,11 +24,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642013752886406834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.59, z: 0}
+  m_LocalPosition: {x: 0, y: -6.42, z: -0.11816406}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
-  m_Father: {fileID: 8050264648259019425}
-  m_RootOrder: 0
+  m_Father: {fileID: 8050264648931465211}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8050264647885624643
 GameObject:
@@ -61,7 +61,6 @@ Transform:
   - {fileID: 8050264648158983495}
   - {fileID: 8050264649233583598}
   - {fileID: 8050264648931465211}
-  - {fileID: 8050264648259019425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,12 +191,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050264648259019424}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.83, z: -0.11816406}
+  m_LocalPosition: {x: 0, y: -1.8300002, z: -0.11816406}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5140754299593439881}
-  m_Father: {fileID: 8050264647885624641}
-  m_RootOrder: 3
+  m_Children: []
+  m_Father: {fileID: 8050264648931465211}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8050264648259019431
 MeshRenderer:
@@ -287,7 +285,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8050264648259019425}
+  - {fileID: 5140754299593439881}
   m_Father: {fileID: 8050264647885624641}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,6 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f573bbc10b55ea8498d357e6a7c638af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OX: {fileID: 1569927973463613283, guid: 7c1f0d79e83e65144850ee11403e655f, type: 3}
+  List: {fileID: 2475165776114853944, guid: 7af11851067608c40957c2c911c5216c, type: 3}
+  Input: {fileID: 6308312051609478842, guid: 25cbdbffdef0fa6459ba242e290971cd, type: 3}
 --- !u!1 &8050264649233583593
 GameObject:
   m_ObjectHideFlags: 0

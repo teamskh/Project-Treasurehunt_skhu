@@ -52,6 +52,10 @@ public class CreateCompetbuttons : MonoBehaviour
 
             b.GetComponent<Button>().onClick.AddListener(() =>PlayerContents.Instance.ClickListener(title));
             b.GetComponent<Button>().onClick.AddListener(m_ClickAction);
+
+            var TrackManager = GameObject.Find("AR Session Origin");
+            if(TrackManager!=null)
+            b.GetComponent<Button>().onClick.AddListener(() => TrackManager.AddComponent<TrackedImageInfoManager>());
         }
     }
     
