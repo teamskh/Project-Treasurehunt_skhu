@@ -7,6 +7,14 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
+    /////////////////////////////추가사항
+    public class ComInfo 
+    {
+        public string ConName;
+        public int MaxScore;
+        public DateTime ConEndTime;
+    }
+
     public class Competition
     {
         public string Name { get; set; }
@@ -22,7 +30,9 @@ namespace TTM.Classes
         #region Set Times
         public void setNowStart() { StartTime = DateTime.Now; }
 
-        public void setNowEnd() { EndTime = DateTime.Now; }
+        public void setNowEnd() {
+            EndTime = DateTime.Now;
+        }
         #endregion
 
         public override string ToString()
@@ -287,8 +297,7 @@ namespace TTM.Classes
                 if (DateTime.TryParse(data["starttime"]["S"].ToString(), out date))
                     comp.StartTime = date;
             if (data.Keys.Contains("endtime"))
-                if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))
-                    comp.EndTime = date;
+                if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))   comp.EndTime = date;
 
             if (data.Keys.Contains("info"))
             {
@@ -365,6 +374,12 @@ namespace TTM.Classes
                 PlayerPrefs.SetInt("p_competition", code);
             Debug.Log($"p_Competition : {code}");
         }
+    }
+
+    ////////////////////////////////////////////////// 추가사항
+    public class PComInfoDictionary
+    {
+
     }
 
     public interface ITTMDictionary

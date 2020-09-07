@@ -15,11 +15,10 @@ using UnityEngine.SceneManagement;
 using System;
 using LitJson;
 
-public class gameman :MonoBehaviour
+public class gameman : MonoBehaviour
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
-    public int score = 0;
     public string imageText; //문제,답 내용 결정
 
     public GameObject nicknamebar;
@@ -29,7 +28,6 @@ public class gameman :MonoBehaviour
     public string time;
 
     public bool isSuccess = false;
-    BackendReturnObject bro = new BackendReturnObject();
 
     [SerializeField]
     private InputField NicknameInput;
@@ -39,12 +37,10 @@ public class gameman :MonoBehaviour
     public bool loadRankChek;
     //public bool che = false; //종료 시간 버튼 눌렸는지 확인 쓸모 없는 걸로 확인
 
-    public int EndScore; //서버에 있는 대회 점수
-    public bool start = false; //대회 버튼 눌렀는지 여부
+    public int EndScore; //서버에 있는 대회 점수 얘도 결정
+    public int score = 0;  //얘도 빼도 될듯
 
     public GameObject LoginB;
-
-    public string[] conname;  
 
     static gameman instance;
     public static gameman Instance

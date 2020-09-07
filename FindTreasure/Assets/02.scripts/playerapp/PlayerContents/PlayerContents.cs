@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerContents
 {
+
     PCompetitionDictionary Compets; //key 대회이름, value 대회 내용
     Dictionary<int, PQuizDicitionary> Quizzdic;
     static event Action DicUpdate;

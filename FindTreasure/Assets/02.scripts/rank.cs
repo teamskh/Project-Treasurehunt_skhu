@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
-using TTM.Classes;
-using TTM.Save;
-using BackEnd;
 
 public class rank : MonoBehaviour
 {
@@ -32,16 +28,15 @@ public class rank : MonoBehaviour
     {
         Name.text = PlayerPrefs.GetString("nickna");
         corutuine = CountTime();
-
-        if(gameman.Instance.start == true) //대회버튼이 눌려 대회시간 돌아가기 이벤트 달기 -> 검색 ㄱㄱ
-        {
-            StartCoroutine(CountTime());
-            StartCoroutine(corutuine);
-        }
-        //StartCoroutine(CountTime());
-        //StartCoroutine(corutuine);
+        
     }
-    
+
+    public void StartCo() //대회버튼이 눌려 대회시간 돌아가기
+    {
+        StartCoroutine(CountTime());
+        StartCoroutine(corutuine);
+    }
+
     public void Loadrank()
     {
         gameman.Instance.loadRankChek = true;
