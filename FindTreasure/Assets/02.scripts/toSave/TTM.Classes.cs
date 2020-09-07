@@ -38,52 +38,6 @@ namespace TTM.Classes
         }
     }
 
-    #region Data Classes ver1.0
-    public class QuizInfo
-    {
-        public string Str { get; set; }
-        public int Score { get; set; }
-        public int Kind { get; set; }
-        public string[] List { get; set; }
-        public bool Banswer { get; set; }
-        public int Ianswer { get; set; }
-        public string Wanswer { get; set; }
-
-        public void SetMax() { Score = 30;}
-
-        public void SetListInit(){
-            if (Kind == 1)
-                List = new string[4];
-        }
-    }
-
-    public class Quiz
-    {
-        public string Str { get; set; }
-        public int Kind { get; set; }
-        public string[] List { get; set; }
-
-        public bool CopyList(string[] list)
-        {
-            if (Kind == 1)
-            {
-                List = (string[])list.Clone();
-                return true;
-            }
-            return false;
-        }
-    }
-
-    public class Answer
-    {
-        public int Kind { get; set; }
-        public int Score { get; set; }
-        public bool Banswer { get; set; }
-        public int Ianswer { get; set; }
-        public string Wanswer { get; set; }
-
-    }
-    #endregion
 
     #region Data Classes ver2.0
     public class Q
