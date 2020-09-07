@@ -19,8 +19,6 @@ public class QuizList : MonoBehaviour
     Competition comp = new Competition();
 
     public GameObject AskD;
-    Button Y;
-    Button N;
     public void LoadQuiz()
     {
         dic = new QuiDictionary();
@@ -58,16 +56,12 @@ public class QuizList : MonoBehaviour
     public void Start()
     {
        
-        //AskD.SetActive(false);
+        AskD.SetActive(false);
 
     }
     public void OnEnable()
     {
-
         LoadQuiz();
-        AskD = GameObject.Find("Panel").transform.Find("AskDel").gameObject;
-        Y = GameObject.Find("Panel").transform.Find("AskDel").transform.Find("Y").GetComponent<Button>();
-        N = GameObject.Find("Panel").transform.Find("AskDel").transform.Find("N").GetComponent<Button>();
     }
 
 

@@ -10,7 +10,6 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
 
     public UnityEvent onClick;
     //private bool btnDown = false;
-    public GameObject BPrefab;
     public float durationThreshold = 1f;
     public float duration = 1.3f;
     public UnityEvent onLongPress = new UnityEvent();
@@ -24,7 +23,7 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
     {
         //held = false;
         //GameObject AskD = gameObject.GetComponent<QuizList>().AskD;
-        BPrefab.GetComponent<Button>()?.onClick.AddListener(SceneChange);
+        GetComponent<Button>()?.onClick.AddListener(SceneChange);
         Invoke("OnLongPress", durationThreshold);
     }
 
@@ -44,8 +43,12 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
     private void OnLongPress()
     {
         //held = true;
-        BPrefab.GetComponent<Button>()?.onClick.RemoveListener(SceneChange);
-        gameObject.AddComponent<QuizList>().SetActive();
+        GetComponent<Button>()?.onClick.RemoveListener(SceneChange);
+
+        //gameObject.AddComponent<QuizList>().SetActive();
+        GameObject.Find("GameSetting")?.GetComponent<QuizList>().SetActive(); 
+        //Hierchy에 QuizList가 2개가 되고, GameSetting에서 설정한 베이스 세팅을 AddComponent()과정에서 해주지 않아 문제 발생
+
         onLongPress.Invoke();
         Debug.Log("OnLongPressed!!");
     }
@@ -61,7 +64,7 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
 
     void SceneChange()
     {
-        gameObject.GetComponent<scenechange>().OnClicked(BPrefab);
+        gameObject.GetComponent<scenechange>().OnClicked(gameObject);
     }
 
     /*
