@@ -17,6 +17,10 @@ public class QuizList : MonoBehaviour
     public static Texture2D texture;
     QuiDictionary dic;
     Competition comp = new Competition();
+
+    public GameObject AskD;
+    Button Y;
+    Button N;
     public void LoadQuiz()
     {
         dic = new QuiDictionary();
@@ -46,17 +50,31 @@ public class QuizList : MonoBehaviour
         //글씨 조정
         quizb.GetComponentInChildren<Text>().text = name;
         quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(quizb.GetComponentInChildren<Text>().text));
-
+        //quizb.AddComponent<TextButton>();
+        //quizb.GetComponent<Button>()?.onClick.AddListener(() => gameObject.GetComponent<scenechange>().OnClicked(quizb));
         return quizb;
     }
 
     public void Start()
     {
        
+        //AskD.SetActive(false);
+
     }
     public void OnEnable()
     {
+
         LoadQuiz();
+        AskD = GameObject.Find("Panel").transform.Find("AskDel").gameObject;
+        Y = GameObject.Find("Panel").transform.Find("AskDel").transform.Find("Y").GetComponent<Button>();
+        N = GameObject.Find("Panel").transform.Find("AskDel").transform.Find("N").GetComponent<Button>();
+    }
+
+
+    public void SetActive()
+    {
+        AskD.SetActive(true);
+        Debug.Log("Active?");
     }
 
     /*
@@ -118,57 +136,57 @@ public class QuizList : MonoBehaviour
         {
             quizb.GetComponentInChildren<RawImage>().texture = Camera1.savess;
         }*/
-        /*
-        var dirPath = Application.dataPath + "/Resources/Texture/";
+    /*
+    var dirPath = Application.dataPath + "/Resources/Texture/";
 
-        if (System.IO.Directory.Exists(dirPath))
+    if (System.IO.Directory.Exists(dirPath))
+    {
+        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(dirPath);
+
+        foreach (var item in di.GetFiles())
         {
-            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(dirPath);
-
-            foreach (var item in di.GetFiles())
+            Debug.Log(item.Name);
+            if (item.Name == name + ".png")
             {
-                Debug.Log(item.Name);
-                if (item.Name == name + ".png")
+                string PATH = "Texture/" + name;
+                //texture = Resources.Load(PATH, typeof(Texture2D)) as Texture2D;
+                texture = Resources.Load<Texture2D>(PATH);
+                if (texture == null)
                 {
-                    string PATH = "Texture/" + name;
-                    //texture = Resources.Load(PATH, typeof(Texture2D)) as Texture2D;
-                    texture = Resources.Load<Texture2D>(PATH);
-                    if (texture == null)
-                    {
-                        Debug.Log("망함 "+PATH);
-                    }
-                    else
-                    {
-                        quizb.GetComponentInChildren<RawImage>().texture = texture;
-                    }
-                    
+                    Debug.Log("망함 "+PATH);
                 }
+                else
+                {
+                    quizb.GetComponentInChildren<RawImage>().texture = texture;
+                }
+
             }
         }
-        */
-        /*
-        quizb.transform.SetParent(Content.transform, true);
-        return quizb;
     }
+    */
+    /*
+    quizb.transform.SetParent(Content.transform, true);
+    return quizb;
+}
 
-    public void Start()
+public void Start()
+{
+    if (number == 1)
     {
-        if (number == 1)
-        {
-            MakeQuizButton(onClicks.Ttitle);//추가
-            number = 0;
-        }
-        //LoadQuiz();
+        MakeQuizButton(onClicks.Ttitle);//추가
+        number = 0;
     }
-    public void OnEnable()
-    {
-        LoadQuiz();
-    }
-    public void OnDisable()
-    {
-        foreach (GameObject item in QList) Destroy(item);
-    }*/
-        public void Update()
+    //LoadQuiz();
+}
+public void OnEnable()
+{
+    LoadQuiz();
+}
+public void OnDisable()
+{
+    foreach (GameObject item in QList) Destroy(item);
+}*/
+    public void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
