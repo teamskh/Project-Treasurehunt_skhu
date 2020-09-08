@@ -48,22 +48,18 @@ public class QuizList : MonoBehaviour
         //글씨 조정
         quizb.GetComponentInChildren<Text>().text = name;
         quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(quizb.GetComponentInChildren<Text>().text));
-        //quizb.AddComponent<TextButton>();
-        //quizb.GetComponent<Button>()?.onClick.AddListener(() => gameObject.GetComponent<scenechange>().OnClicked(quizb));
+        
         return quizb;
     }
 
     public void Start()
     {
-       
         AskD.SetActive(false);
-
     }
     public void OnEnable()
     {
         LoadQuiz();
     }
-
 
     public void SetActive()
     {

@@ -174,7 +174,6 @@ public class QuizFactory : MonoBehaviour
         if (newQ == false)
             param.UpdateQuiz(quiz);
         else param.SetQuiz(quiz).InsertQuiz();
-        //param.SetQuiz(quiz).InsertQuiz();
 
         Debug.Log($"Param Data : {param.ToStr()}");
         newQ = true;

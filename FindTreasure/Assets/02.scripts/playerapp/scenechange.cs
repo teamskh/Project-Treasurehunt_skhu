@@ -51,9 +51,9 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
     }
-    public void ChangeSceneToAdMenu(Button button)
+    public void ChangeSceneToAdMenu(GameObject gameObject)
     {
-        Qname = button.GetComponentInChildren<Text>().text;
+        Qname = gameObject.GetComponentInChildren<Text>().text;
         Debug.Log(Qname);
         ChangeSceneToAdMenu();
     }

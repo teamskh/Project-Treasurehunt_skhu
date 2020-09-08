@@ -7,23 +7,18 @@ using UnityEngine.UI;
 
 public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
-
     public UnityEvent onClick;
-    //private bool btnDown = false;
     public float durationThreshold = 1f;
-    public float duration = 1.3f;
     public UnityEvent onLongPress = new UnityEvent();
-    public UnityEvent setActive = new UnityEvent();
-    public bool isPointerDown = false;
-    public bool longPressTriggered = false;
-    public float timePressStarted;
-    
+    public static string Oname;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         //held = false;
-        //GameObject AskD = gameObject.GetComponent<QuizList>().AskD;
-        GetComponent<Button>()?.onClick.AddListener(SceneChange);
+        if(GameObject.Find("GameSetting")==true)
+            GetComponent<Button>()?.onClick.AddListener(SceneChange);
+        else if(GameObject.Find("GameManager")==true)
+            GetComponent<Button>()?.onClick.AddListener(Change);
         Invoke("OnLongPress", durationThreshold);
     }
 
@@ -43,22 +38,29 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
     private void OnLongPress()
     {
         //held = true;
-        GetComponent<Button>()?.onClick.RemoveListener(SceneChange);
-
-        //gameObject.AddComponent<QuizList>().SetActive();
-        GameObject.Find("GameSetting")?.GetComponent<QuizList>().SetActive(); 
-        //Hierchy에 QuizList가 2개가 되고, GameSetting에서 설정한 베이스 세팅을 AddComponent()과정에서 해주지 않아 문제 발생
-
+        if (GameObject.Find("GameSetting") == true)
+        {
+            GetComponent<Button>()?.onClick.RemoveListener(SceneChange);
+            Oname=GetComponent<Button>()?.GetComponentInChildren<Text>().text;
+            GameObject.Find("GameSetting")?.GetComponent<QuizList>().SetActive();
+            //Hierchy에 QuizList가 2개가 되고, GameSetting에서 설정한 베이스 세팅을 AddComponent()과정에서 해주지 않아 문제 발생
+        }
+        else if (GameObject.Find("GameManager") == true)
+        {
+            GetComponent<Button>()?.onClick.RemoveListener(Change);
+            Oname = GetComponent<Button>()?.GetComponentInChildren<Text>().text;
+            GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetActive();
+        }
         onLongPress.Invoke();
         Debug.Log("OnLongPressed!!");
     }
 
-  
+
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         Debug.Log(name + "Game Object Clicked!", this);
-
+        
         onClick.Invoke();
     }
 
@@ -67,69 +69,8 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
         gameObject.GetComponent<scenechange>().OnClicked(gameObject);
     }
 
-    /*
-    private void Update()
+    void Change()
     {
-        if (isPointerDown && !longPressTriggered)
-        {
-            if (Time.time - timePressStarted > durationThreshold)
-            {
-                longPressTriggered = true;
-                onLongPress.Invoke();
-                Debug.Log("OnLongPressed!!");
-
-                AskD.SetActive(true);
-            }
-        }
+        gameObject.GetComponent<scenechange>().ChangeSceneToAdMenu(gameObject);
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        timePressStarted = Time.time;
-        isPointerDown = true;
-        longPressTriggered = false;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        isPointerDown = false;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isPointerDown = false;
-    }
-
-    public void OnPointerClick(PointerEventData pointerEventData)
-    {
-        Debug.Log(name + "Game Object Clicked!", this);
-
-        onClick.Invoke();
-    }*/
-
-    /*
-    void Update()
-    {
-        if (btnDown)
-            Debug.Log("Button Touch");
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        btnDown = true;
-        if (eventData.clickTime >= 0.5f)
-        {
-            gameObject.AddComponent<QuizList>().Active();
-        }
-        else
-        {
-            BPrefab.GetComponent<Button>()?.onClick.AddListener(() => gameObject.AddComponent<scenechange>().OnClicked(BPrefab));
-        }
-    }
-    
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        btnDown = false;
-    }*/
-
 }
