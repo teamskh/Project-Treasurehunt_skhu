@@ -7,14 +7,6 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
-    /////////////////////////////추가사항
-    public class ComInfo 
-    {
-        public string ConName;
-        public int MaxScore;
-        public DateTime ConEndTime;
-    }
-
     public class Competition
     {
         public string Name { get; set; }
@@ -26,6 +18,12 @@ namespace TTM.Classes
         public string Info { get; set; }
         public int UserPass { get; set; }
         public int wordNumber { get; set; }
+
+        //---------------------------추가--------------------------//
+
+        public String ConName { get; set; }
+        public int MaxScore { get; set; }
+        public DateTime EndingTime { get; set; }
 
         #region Set Times
         public void setNowStart() { StartTime = DateTime.Now; }
@@ -46,6 +44,14 @@ namespace TTM.Classes
 
             return compLog;
         }
+
+        #region Con3
+        public void SetCon()
+        {
+
+        }
+        #endregion
+
     }
 
     #region Data Classes ver1.0
@@ -121,7 +127,7 @@ namespace TTM.Classes
             return base.ToString();
         }
     }
-
+     
     public class QuiDictionary : Dictionary<string, Q>,ITTMDictionary
     {
         public Dictionary<string, int> transCode = new Dictionary<string, int>();
@@ -307,6 +313,11 @@ namespace TTM.Classes
             if (data.Keys.Contains("userpass"))
                 comp.UserPass = int.Parse(data["userpass"]["N"].ToString());
 
+            /*-----------------------------------------추가------------------------------------------------------*/
+            comp.ConName = comp.Name;
+            //comp.MaxScore;
+            comp.EndingTime = comp.EndTime;
+
             return comp;
         }
         #endregion
@@ -365,6 +376,11 @@ namespace TTM.Classes
             var code = int.Parse(data["code"]["N"].ToString());
             transCode.Add(comp.Name,code);
 
+            /*-----------------------------------------추가------------------------------------------------------*/
+            comp.ConName = comp.Name;
+            //comp.MaxScore;
+            comp.EndingTime = comp.EndTime;
+
             return comp;
         }
         public override void CurrentCode(string name)
@@ -375,13 +391,6 @@ namespace TTM.Classes
             Debug.Log($"p_Competition : {code}");
         }
     }
-
-    ////////////////////////////////////////////////// 추가사항
-    public class PComInfoDictionary
-    {
-
-    }
-
     public interface ITTMDictionary
     {
         bool AvailableCode(int code);

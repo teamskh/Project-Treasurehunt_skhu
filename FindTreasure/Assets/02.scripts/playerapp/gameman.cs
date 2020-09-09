@@ -322,6 +322,7 @@ public class gameman : MonoBehaviour
     {
         Debug.Log("-------------Logout-------------");
         Debug.Log(Backend.BMember.Logout().ToString());
+        
     }
 
     // 닉네임 변경
