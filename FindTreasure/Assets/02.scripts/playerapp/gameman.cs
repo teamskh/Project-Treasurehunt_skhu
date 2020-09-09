@@ -318,13 +318,6 @@ public class gameman : MonoBehaviour
 
     }
 
-    public void Logout()
-    {
-        Debug.Log("-------------Logout-------------");
-        Debug.Log(Backend.BMember.Logout().ToString());
-        
-    }
-
     // 닉네임 변경
     public void UpdateNickname()
     {
@@ -401,11 +394,16 @@ public class gameman : MonoBehaviour
             }
         }
     }
-
-
     #endregion
 
+
     #region Logout Signout
+    // 로그아웃
+    public void Logout()
+    {
+        Debug.Log("-------------Logout-------------");
+        Debug.Log(Backend.BMember.Logout().ToString());
+    }
 
     // 회원 탈퇴 
     public void SignOut()

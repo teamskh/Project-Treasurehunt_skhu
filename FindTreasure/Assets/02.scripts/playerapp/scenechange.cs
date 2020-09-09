@@ -8,6 +8,12 @@ public class scenechange :MonoBehaviour
 {
     public static string Qname;
     public static int QButtonClick = -1;
+
+    public void ChangeFirst()
+    {
+        SceneManager.LoadScene("01.start");
+    }
+
     public void changeMainScene()
     {
         //gameman.Instance.updatecompet();
