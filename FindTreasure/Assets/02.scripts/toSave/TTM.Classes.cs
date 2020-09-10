@@ -166,12 +166,13 @@ namespace TTM.Classes
             return true;
         }
 
-        public virtual void CurrentCode(string name)
+        public virtual int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_quiz", code);
             Debug.Log($"a_quiz : {code}");
+            return code;
         }
     }
 
@@ -205,12 +206,13 @@ namespace TTM.Classes
 
             return item;
         }
-        public override void CurrentCode(string name)
+        public override int CurrentCode(string name)
         {//정답 체크시
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("p_quiz", code);
             Debug.Log($"p_quiz : {code}");
+            return code;
         }
     }
 
@@ -287,13 +289,14 @@ namespace TTM.Classes
         }
 
         //버튼을 눌렀을 때 현재의 대회 코드 선택하는 함수
-        public virtual void CurrentCode(string name)
+        public virtual int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_competition", code);
             // a_competition에 저장된 int 값을 where용 Param.Add("code", code)의 code변수 값으로 사용
             Debug.Log($"a_Competition : {code}");
+            return code;
         }
         #endregion
     }
@@ -338,32 +341,30 @@ namespace TTM.Classes
 
             return comp;
         }
-        public override void CurrentCode(string name)
+        public override int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("p_competition", code);
             Debug.Log($"p_Competition : {code}");
+            return code;
         }
     }
     public interface ITTMDictionary
     {
         bool AvailableCode(int code);
 
-       void CurrentCode(string name);
+       int CurrentCode(string name);
     }
 
     #region AnswerClass
     public class SAnswer
     {
-       public static int CheckAnswer(string ans)
+       public static int CheckAnswer(int idcompetition, KeyValuePair<int,string> ans)
         {
-            var idcompetition = PlayerPrefs.GetInt("p_competition");
-            var idquiz = PlayerPrefs.GetInt("p_quiz");
-
             Param where = new Param();
             where.Add("idcompetition", idcompetition);
-            where.Add("idquiz", idquiz);
+            where.Add("idquiz", ans.Key);
 
             BackendReturnObject bro = new BackendReturnObject();
             Backend.GameSchemaInfo.Get("Quizz", where, 1);
@@ -371,7 +372,7 @@ namespace TTM.Classes
             {
                 JsonData data = bro.GetReturnValuetoJSON()["row"];
                 var answer = data["answer"]["S"].ToString();
-                if(answer == ans)
+                if(answer == ans.Value)
                 {
                     var score = data["score"]["N"].ToString();
                     return int.Parse(score);
@@ -385,7 +386,7 @@ namespace TTM.Classes
             else
             {
                 Debug.Log("Deleted Quizz");
-                return 0;
+                return -1;
             }
         }
     }
