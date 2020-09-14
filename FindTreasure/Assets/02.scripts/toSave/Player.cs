@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     string path = "Assets/Resources/Log/{0}.dat";
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
     Dictionary<int, string> Answers = new Dictionary<int, string>();
+    List<ShortInfo> shortInfos = new List<ShortInfo>();
     string user;
     public int CurComp;
 
@@ -123,6 +124,20 @@ public class Player : MonoBehaviour
 
         serializer.Serialize(ws, Log);
         ws.Close();
+    }
+
+    public void UpdateUserCompets(ShortInfo shortInfo)
+    {
+        foreach(var Short in shortInfos)
+        {
+            if(Short.ConName == shortInfo.ConName)
+            {
+                Short.UpdateEndingTime(shortInfo.EndingTime);
+                return;
+            }
+        }
+
+        shortInfos.Add(shortInfo);
     }
 
     #region Answers

@@ -7,6 +7,19 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
+    public class ShortInfo
+    {
+        public String ConName { get; set; }
+        public int MaxScore { get; set; }
+        public DateTime EndingTime { get; set; }
+        
+        public void UpdateEndingTime(DateTime newDateTime)
+        {
+            if (EndingTime != newDateTime)
+                EndingTime = newDateTime;
+           
+        }
+    }
     public class Competition
     {
         public string Name { get; set; }
@@ -19,11 +32,7 @@ namespace TTM.Classes
         public int UserPass { get; set; }
         public int wordNumber { get; set; }
 
-        //---------------------------추가--------------------------//
-
-        public String ConName { get; set; }
-        public int MaxScore { get; set; }
-        public DateTime EndingTime { get; set; }
+        public ShortInfo shorts;
 
         #region Set Times
         public void setNowStart() { StartTime = DateTime.Now; }
@@ -270,11 +279,6 @@ namespace TTM.Classes
             if (data.Keys.Contains("userpass"))
                 comp.UserPass = int.Parse(data["userpass"]["N"].ToString());
 
-            /*-----------------------------------------추가------------------------------------------------------*/
-            comp.ConName = comp.Name;
-            //comp.MaxScore;
-            comp.EndingTime = comp.EndTime;
-
             return comp;
         }
         #endregion
@@ -303,6 +307,15 @@ namespace TTM.Classes
 
     public class PCompetitionDictionary : CompetitionDictionary
     {
+        public List<ShortInfo> GetShorts()
+        {
+            List<ShortInfo> list = new List<ShortInfo>();
+            foreach(var compet in this.Values)
+            {
+                list.Add(compet.shorts);
+            }
+            return list;
+        }
         protected override Competition GetCompetition(JsonData data)
         {
             Debug.Log("PCompetitionDictionary Call");
@@ -318,7 +331,8 @@ namespace TTM.Classes
                         return null;
                     else
                         comp.StartTime = date;
-                
+            
+            //종료 시간 미정 컨트롤 필요
             if (data.Keys.Contains("endtime"))
                 if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))
                     comp.EndTime = date;
@@ -334,10 +348,11 @@ namespace TTM.Classes
             var code = int.Parse(data["code"]["N"].ToString());
             transCode.Add(comp.Name,code);
 
-            /*-----------------------------------------추가------------------------------------------------------*/
-            comp.ConName = comp.Name;
+            /// For Shorts ///            
+            comp.shorts = new ShortInfo();
+            comp.shorts.ConName = comp.Name;
             //comp.MaxScore;
-            comp.EndingTime = comp.EndTime;
+            comp.shorts.EndingTime = comp.EndTime;
 
             return comp;
         }

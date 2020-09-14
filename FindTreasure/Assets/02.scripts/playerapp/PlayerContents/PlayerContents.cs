@@ -12,12 +12,14 @@ public class PlayerContents
     public string CurCompetition { get => CurCompetName; }
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
+    List<ShortInfo> CurOpenCompets;
 
     #region Singleton
     PlayerContents()
     {
         Compets = new PCompetitionDictionary();
         DicUpdate = () => Compets.GetCompetitions();
+        DicUpdate += () => CurOpenCompets = Compets.GetShorts();
     }
 
     private static PlayerContents _Instance;
@@ -63,6 +65,16 @@ public class PlayerContents
         CurCompet = Compets.CurrentCode(com);
         CurCompetName = com;
         CurLib.GetQuizz(CurCompet);
+        Player.Instance.UpdateUserCompets(FindShorts(com));
+    }
+
+    ShortInfo FindShorts(string name)
+    {
+        foreach(var shorts in CurOpenCompets)
+        {
+            if (shorts.ConName == name) return shorts;
+        }
+        return null;
     }
     
 }
