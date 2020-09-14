@@ -126,7 +126,10 @@ public class InputFieldUtil : MonoBehaviour
     {
         slider.interactable = !On;
         if (On)
+        {
             score.text = "30";
+            SliderVale(30);
+        }
         else
             SliderVale(slider.value);
     }
