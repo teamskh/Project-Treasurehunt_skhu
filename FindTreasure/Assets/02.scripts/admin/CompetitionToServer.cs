@@ -15,6 +15,7 @@ public class CompetitionToServer : MonoBehaviour
     [SerializeField] GameObject buttonprefab;
     [SerializeField] GameObject Adapter;
 
+    public GameObject AskD;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class CompetitionToServer : MonoBehaviour
             }
 
         });
+        AskD.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,4 +84,9 @@ public class CompetitionToServer : MonoBehaviour
         return competb;
     }
 
+    public void SetActive()
+    {
+        AskD.SetActive(true);
+        Debug.Log("Active?");
+    }
 }

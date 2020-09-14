@@ -47,6 +47,48 @@ static class ParamExtension
         else
             Debug.Log(bro.ToString());
     }
+    
+    public static void DeleteQuiz(this Param param, Q Quiz) //추가
+    {
+        var idcompetition = PlayerPrefs.GetInt("a_competition");
+        var idquiz = PlayerPrefs.GetInt("a_quiz");
+        
+        Param where = new Param();
+        where.Add("idquiz", idquiz);
+        where.Add("idcompetition", idcompetition);
+        
+        BackendReturnObject bro = new BackendReturnObject();
+        bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
+        Debug.Log(where.GetJson());
+        string inDate = bro.GetReturnValuetoJSON()["rows"][0]["inDate"]["S"].ToString();
+        Debug.Log(inDate);
+        bro = Backend.GameSchemaInfo.Delete("Quizz", inDate);
+        if (bro.IsSuccess())
+            Debug.Log("Success");
+        else
+            Debug.Log(bro.ToString());
+    }
+    
+    public static void UpdateQuiz(this Param param, Q Quiz) //추가
+    {
+        param.SetQuiz(Quiz);
+        var idcompetition = PlayerPrefs.GetInt("a_competition");
+        var idquiz = PlayerPrefs.GetInt("a_quiz");
+
+        Param where = new Param();
+        where.Add("idquiz", idquiz);
+        where.Add("idcompetition", idcompetition);
+        BackendReturnObject bro = new BackendReturnObject();
+        bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
+        Debug.Log(where.GetJson());
+        string inDate = bro.GetReturnValuetoJSON()["rows"][0]["inDate"]["S"].ToString();
+        Debug.Log(inDate);
+        bro= Backend.GameSchemaInfo.Update("Quizz", inDate, param);
+        if (bro.IsSuccess())
+            Debug.Log("Success");
+        else
+            Debug.Log(bro.ToString());
+    }
 
     public static string ToStr(this Param param) {
         string txt = "";
@@ -85,7 +127,7 @@ static class ParamExtension
             Debug.Log(bro.ToString());
     }
 
-    public static void DeleteCompetition(this Param param, Competition comp)
+    public static void DeleteCompetition(this Param param, Competition comp) //추가
     {
         
         TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();

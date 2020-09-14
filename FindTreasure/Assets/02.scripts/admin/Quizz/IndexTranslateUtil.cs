@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class IndexTranslateUtil : MonoBehaviour
 {
+    string[] num = { "1", "2", "3", "4" };
     List<InputField> list = new List<InputField>();
     List<GameObject> buttons = new List<GameObject>();
     List<string> cont;
     GameObject panel1;
     GameObject panel2;
     GameObject swit_b;
+    GameObject canc_b;
 
     public void Set(GameObject panel)
     {
@@ -31,14 +33,19 @@ public class IndexTranslateUtil : MonoBehaviour
         //panel switch
         switch_b?.onClick.AddListener(() => SwitchingPanel(false));
 
-        cont = null;
+        //cont = null;
+
+        Button cancel_b = canc_b.GetComponent<Button>();
+        cancel_b?.onClick.AddListener(() =>GetList());
+        cancel_b?.onClick.AddListener(() => SwitchingPanel(true));
     }
-    
+
     void BaseSet(RectTransform rt)
     {
         panel1 = rt.GetChild(0).gameObject;
         panel2 = rt.GetChild(1).gameObject;
         swit_b = rt.GetChild(2).gameObject;
+        canc_b = rt.GetChild(3).gameObject;
     }
 
     void SwitchingPanel(bool p1)
@@ -48,6 +55,7 @@ public class IndexTranslateUtil : MonoBehaviour
         //버튼은 switch 기능을 하기 위함이기 때문에 첫화면에서 활성화 되어 있어야 한다.
         //때문에 panel1과 같이 활성화한다.
         swit_b.SetActive(p1);
+        canc_b.SetActive(!p1);
     }
 
     //IPanel(1) 패널에서 접근(rt : IPanel(1)의 RectTransform)
@@ -99,5 +107,18 @@ public class IndexTranslateUtil : MonoBehaviour
     public List<string> GetList()
     {
         return cont;
+    }
+
+    public void SelectB(object T)   //버튼 색 바꾸기 추가
+    {
+        int answer = (int)T;
+        for (int i = 1; i <= num.Length; i++)
+        {
+            GameObject.Find("No" + i).GetComponent<Image>().color = new Color(1, 1, 1);
+            if (answer == i)
+            {
+                GameObject.Find("No" + i).GetComponent<Image>().color = new Color(0, 1, 1);
+            }
+        }
     }
 }

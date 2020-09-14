@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class scenechange :MonoBehaviour
-{
+{ 
     public static string Qname;
     public static int QButtonClick = -1;
 
-    public void ChangeFirst()
-    {
-        SceneManager.LoadScene("01.start");
-    }
 
     public void changeMainScene()
     {
@@ -55,9 +51,9 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
     }
-    public void ChangeSceneToAdMenu(Button button)
+    public void ChangeSceneToAdMenu(GameObject gameObject)
     {
-        Qname = button.GetComponentInChildren<Text>().text;
+        Qname = gameObject.GetComponentInChildren<Text>().text;
         Debug.Log(Qname);
         ChangeSceneToAdMenu();
     }
@@ -91,12 +87,21 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
     }//onclicks에 quizchage랑 연결
+    /*
     public void OnClicked(Button button)
     {
         Qname=button.GetComponentInChildren<Text>().text;
         Debug.Log(Qname);
         ChangeSceneToQuizAddToChange();
+    }*/
+
+    public void OnClicked(GameObject gameObject)
+    {
+        Qname = gameObject.GetComponentInChildren<Text>().text;
+        Debug.Log(Qname);
+        ChangeSceneToQuizAddToChange();
     }
+
     public void Loading()
     {
         SceneManager.LoadScene("loading");
