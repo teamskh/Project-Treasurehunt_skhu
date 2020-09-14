@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LogSignOut : MonoBehaviour
 {
-    private gameman manager;
+    public gameman manager;
     // 첫 화면으로 돌아가면 음악이 두번 겹치므로 배경음악과 효과음을 제거해준다.
     public void DesMusic()
     {
@@ -21,6 +21,7 @@ public class LogSignOut : MonoBehaviour
     {
         manager.SignOut();
         Debug.Log("탈퇴");
+        DesMusic();
     }
 
     // 로그아웃
@@ -28,5 +29,6 @@ public class LogSignOut : MonoBehaviour
     {
         manager.Logout();
         Debug.Log("로그아웃");
+        DesMusic();
     }
 }

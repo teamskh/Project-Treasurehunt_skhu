@@ -19,8 +19,7 @@ namespace TTM.Classes
         public int UserPass { get; set; }
         public int wordNumber { get; set; }
 
-        //---------------------------추가--------------------------//
-
+        //---------------------------추가(종료시간, 대회이름, 최대점수)--------------------------//
         public String ConName { get; set; }
         public int MaxScore { get; set; }
         public DateTime EndingTime { get; set; }
@@ -42,19 +41,15 @@ namespace TTM.Classes
             if (Mode) compLog += $"MaxMember : {MaxMember} \n";
             compLog += $"Password : {Password}";
 
+            //---------------------------추가(종료시간, 대회이름, 최대점수)--------------------------//
+            compLog += $"Title : {ConName}\n";
+            compLog += $"MaxScore : {MaxScore}\n";
+            compLog += $"EndingTime : {EndingTime}\n";
+
             return compLog;
         }
-
-        #region Con3
-        public void SetCon()
-        {
-
-
-        }
-        #endregion
-
     }
-
+    
 
     #region Data Classes ver2.0
     public class Q
@@ -350,6 +345,7 @@ namespace TTM.Classes
             return code;
         }
     }
+
     public interface ITTMDictionary
     {
         bool AvailableCode(int code);

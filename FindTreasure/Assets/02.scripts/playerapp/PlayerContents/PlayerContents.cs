@@ -9,7 +9,7 @@ public class PlayerContents
     PCompetitionDictionary Compets;
     int CurCompet;
     string CurCompetName;
-    public string CurCompetition { get => CurCompetName; }
+    public string CurCompetition { get => CurCompetName; } //얘 가지고 사용하면 될듯
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
 
