@@ -7,6 +7,19 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
+    public class ShortInfo
+    {
+        public String ConName { get; set; }
+        public int MaxScore { get; set; }
+        public DateTime EndingTime { get; set; }
+        
+        public void UpdateEndingTime(DateTime newDateTime)
+        {
+            if (EndingTime != newDateTime)
+                EndingTime = newDateTime;
+           
+        }
+    }
     public class Competition
     {
         public string Name { get; set; }
@@ -19,10 +32,14 @@ namespace TTM.Classes
         public int UserPass { get; set; }
         public int wordNumber { get; set; }
 
+        public ShortInfo shorts;
+
         #region Set Times
         public void setNowStart() { StartTime = DateTime.Now; }
 
-        public void setNowEnd() { EndTime = DateTime.Now; }
+        public void setNowEnd() {
+            EndTime = DateTime.Now;
+        }
         #endregion
 
         public override string ToString()
@@ -36,54 +53,17 @@ namespace TTM.Classes
 
             return compLog;
         }
-    }
 
-    #region Data Classes ver1.0
-    public class QuizInfo
-    {
-        public string Str { get; set; }
-        public int Score { get; set; }
-        public int Kind { get; set; }
-        public string[] List { get; set; }
-        public bool Banswer { get; set; }
-        public int Ianswer { get; set; }
-        public string Wanswer { get; set; }
-
-        public void SetMax() { Score = 30;}
-
-        public void SetListInit(){
-            if (Kind == 1)
-                List = new string[4];
-        }
-    }
-
-    public class Quiz
-    {
-        public string Str { get; set; }
-        public int Kind { get; set; }
-        public string[] List { get; set; }
-
-        public bool CopyList(string[] list)
+        #region Con3
+        public void SetCon()
         {
-            if (Kind == 1)
-            {
-                List = (string[])list.Clone();
-                return true;
-            }
-            return false;
+
+
         }
-    }
-
-    public class Answer
-    {
-        public int Kind { get; set; }
-        public int Score { get; set; }
-        public bool Banswer { get; set; }
-        public int Ianswer { get; set; }
-        public string Wanswer { get; set; }
+        #endregion
 
     }
-    #endregion
+
 
     #region Data Classes ver2.0
     public class Q
@@ -111,7 +91,7 @@ namespace TTM.Classes
             return base.ToString();
         }
     }
-
+     
     public class QuiDictionary : Dictionary<string, Q>,ITTMDictionary
     {
         public Dictionary<string, int> transCode = new Dictionary<string, int>();
@@ -195,12 +175,13 @@ namespace TTM.Classes
             return true;
         }
 
-        public virtual void CurrentCode(string name)
+        public virtual int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_quiz", code);
             Debug.Log($"a_quiz : {code}");
+            return code;
         }
     }
 
@@ -234,12 +215,13 @@ namespace TTM.Classes
 
             return item;
         }
-        public override void CurrentCode(string name)
+        public override int CurrentCode(string name)
         {//정답 체크시
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("p_quiz", code);
             Debug.Log($"p_quiz : {code}");
+            return code;
         }
     }
 
@@ -254,6 +236,7 @@ namespace TTM.Classes
         public void GetCompetitions()
         {
             this.Clear();
+            transCode.Clear();
             BackendReturnObject bro = new BackendReturnObject();
             bro = Backend.GameSchemaInfo.Get("competitions", new Param(), 100);
             if (bro.IsSuccess())
@@ -286,8 +269,7 @@ namespace TTM.Classes
                 if (DateTime.TryParse(data["starttime"]["S"].ToString(), out date))
                     comp.StartTime = date;
             if (data.Keys.Contains("endtime"))
-                if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))
-                    comp.EndTime = date;
+                if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))   comp.EndTime = date;
 
             if (data.Keys.Contains("info"))
             {
@@ -311,22 +293,31 @@ namespace TTM.Classes
         }
 
         //버튼을 눌렀을 때 현재의 대회 코드 선택하는 함수
-        public virtual void CurrentCode(string name)
+        public virtual int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_competition", code);
             // a_competition에 저장된 int 값을 where용 Param.Add("code", code)의 code변수 값으로 사용
             Debug.Log($"a_Competition : {code}");
+            return code;
         }
         #endregion
     }
 
     public class PCompetitionDictionary : CompetitionDictionary
     {
+        public List<ShortInfo> GetShorts()
+        {
+            List<ShortInfo> list = new List<ShortInfo>();
+            foreach(var compet in this.Values)
+            {
+                list.Add(compet.shorts);
+            }
+            return list;
+        }
         protected override Competition GetCompetition(JsonData data)
         {
-
             Debug.Log("PCompetitionDictionary Call");
             Competition comp = new Competition();
             comp.Name = data["name"]["S"].ToString();
@@ -340,7 +331,8 @@ namespace TTM.Classes
                         return null;
                     else
                         comp.StartTime = date;
-                
+            
+            //종료 시간 미정 컨트롤 필요
             if (data.Keys.Contains("endtime"))
                 if (DateTime.TryParse(data["endtime"]["S"].ToString(), out date))
                     comp.EndTime = date;
@@ -356,35 +348,38 @@ namespace TTM.Classes
             var code = int.Parse(data["code"]["N"].ToString());
             transCode.Add(comp.Name,code);
 
+            /// For Shorts ///            
+            comp.shorts = new ShortInfo();
+            comp.shorts.ConName = comp.Name;
+            //comp.MaxScore;
+            comp.shorts.EndingTime = comp.EndTime;
+
             return comp;
         }
-        public override void CurrentCode(string name)
+        public override int CurrentCode(string name)
         {
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("p_competition", code);
             Debug.Log($"p_Competition : {code}");
+            return code;
         }
     }
-
     public interface ITTMDictionary
     {
         bool AvailableCode(int code);
 
-       void CurrentCode(string name);
+       int CurrentCode(string name);
     }
 
     #region AnswerClass
     public class SAnswer
     {
-       public static int CheckAnswer(string ans)
+       public static int CheckAnswer(int idcompetition, KeyValuePair<int,string> ans)
         {
-            var idcompetition = PlayerPrefs.GetInt("p_competition");
-            var idquiz = PlayerPrefs.GetInt("p_quiz");
-
             Param where = new Param();
             where.Add("idcompetition", idcompetition);
-            where.Add("idquiz", idquiz);
+            where.Add("idquiz", ans.Key);
 
             BackendReturnObject bro = new BackendReturnObject();
             Backend.GameSchemaInfo.Get("Quizz", where, 1);
@@ -392,7 +387,7 @@ namespace TTM.Classes
             {
                 JsonData data = bro.GetReturnValuetoJSON()["row"];
                 var answer = data["answer"]["S"].ToString();
-                if(answer == ans)
+                if(answer == ans.Value)
                 {
                     var score = data["score"]["N"].ToString();
                     return int.Parse(score);
@@ -406,7 +401,7 @@ namespace TTM.Classes
             else
             {
                 Debug.Log("Deleted Quizz");
-                return 0;
+                return -1;
             }
         }
     }

@@ -7,15 +7,19 @@ using UnityEngine;
 public class PlayerContents
 {
     PCompetitionDictionary Compets;
-    Dictionary<int, PQuizDicitionary> Quizzdic;
+    int CurCompet;
+    string CurCompetName;
+    public string CurCompetition { get => CurCompetName; }
+    PQuizDicitionary CurLib;
     static event Action DicUpdate;
+    List<ShortInfo> CurOpenCompets;
 
     #region Singleton
     PlayerContents()
     {
-        Quizzdic = new Dictionary<int, PQuizDicitionary>();
         Compets = new PCompetitionDictionary();
-        DicUpdate = UpdateDics;
+        DicUpdate = () => Compets.GetCompetitions();
+        DicUpdate += () => CurOpenCompets = Compets.GetShorts();
     }
 
     private static PlayerContents _Instance;
@@ -32,47 +36,45 @@ public class PlayerContents
     }
     #endregion
 
-    //event로 걸어 놓은 함수(인스턴스에 접근할때마다 최신 버전으로 패치)
-    void UpdateDics()
-    {
-        Compets.GetCompetitions();
-        foreach (var key in Compets.transCode.Values)
-        {
-            PQuizDicitionary dic;
-            if (!Quizzdic.ContainsKey(key))
-                dic = new PQuizDicitionary();
-            else
-                Quizzdic.TryGetValue(key, out dic);
-
-            dic.GetQuizz(key);
-            Quizzdic.Remove(key);
-            Quizzdic.Add(key, dic);
-        }
-    } 
+    public int CheckAnswer(KeyValuePair<int, string> ans) => SAnswer.CheckAnswer(CurCompet, ans);
 
     public Q FindQ(string key)
     {
         Q Quiz;
 
-        int code = PlayerPrefs.GetInt("p_competition");
-
-        FindLib(code).TryGetValue(key, out Quiz);
+        CurLib.TryGetValue(key, out Quiz);
         
         return Quiz;
     }
-    
-    PQuizDicitionary FindLib(int code)
+
+    public void FindQ(string name, out int quizid)
     {
-        PQuizDicitionary currentlib;
-        Quizzdic.TryGetValue(code, out currentlib);
-        return currentlib;
+        CurLib.transCode.TryGetValue(name, out quizid);
     }
 
-    public List<string>  CompetitionList()
+    public List<string> CompetitionList()
     {
         List<string> arr = new List<string>();
         foreach (var key in Compets.Keys)
             arr.Add(key);
         return arr;
     }
+
+    public void ClickListener(string com)
+    {
+        CurCompet = Compets.CurrentCode(com);
+        CurCompetName = com;
+        CurLib.GetQuizz(CurCompet);
+        Player.Instance.UpdateUserCompets(FindShorts(com));
+    }
+
+    ShortInfo FindShorts(string name)
+    {
+        foreach(var shorts in CurOpenCompets)
+        {
+            if (shorts.ConName == name) return shorts;
+        }
+        return null;
+    }
+    
 }

@@ -14,7 +14,7 @@ public class TrackedImageInfoManager : MonoBehaviour
     ARTrackedImageManager m_TrackedImageManager;
 
     [SerializeField]
-    private Text debugLog;
+    private string debugLog;
 
     [SerializeField]
     private Text jobLog;
@@ -25,8 +25,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     [SerializeField]
     private Button captureImageButton;
 
-    [SerializeField]
-    private GameObject[] arObjectsToPlace;
 
     [SerializeField]
     private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f);
@@ -34,60 +32,86 @@ public class TrackedImageInfoManager : MonoBehaviour
     [SerializeField]
     private XRReferenceImageLibrary runtimeImageLibrary;
 
-    private ARTrackedImageManager trackImageManager;
+    private ARTrackedImageManager trackImageManager = new ARTrackedImageManager();
 
-    private Dictionary<string, GameObject> arObjects = new Dictionary<string, GameObject>();
+    Queue<string> nameTable = new Queue<string>();
+    Dictionary<string, GameObject> ARobj = new Dictionary<string, GameObject>();
+    Vector3 pos;
+
+    #region Controll ARObjects
+    string Dequeue()
+    {
+        var name = nameTable.Dequeue();
+        GameObject obj;
+        ARobj.TryGetValue(name, out obj);
+        Destroy(obj);
+        ARobj.Remove(name);
+        return name;
+    }
+
+    IEnumerator Enqueue(string name,GameObject trackImg)
+    {
+        ARobj.Add(name, trackImg);
+        nameTable.Enqueue(name);
+        if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
+
+        yield return null;
+
+        Q item = PlayerContents.Instance.FindQ(name);
+        if (item != null)
+            trackImg.GetComponentInChildren<Scroll>().Init(item);
+    }
+
+    #endregion
 
     void Start()
     {
-        debugLog.text += "Creating Runtime Mutable Image Library\n";
+        Debug.Log("Creating Runtime Mutable Image Library\n");
+        try
+        {
+            trackImageManager = gameObject.GetComponent<ARTrackedImageManager>();
+            if (trackImageManager != null) Debug.Log("Not Manager");
+            trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary();
+            if (trackImageManager.referenceLibrary is MutableRuntimeReferenceImageLibrary) Debug.Log("Not ReferenceLibrary");
+            trackImageManager.maxNumberOfMovingImages = 3;
 
-        trackImageManager = gameObject.GetComponent<ARTrackedImageManager>();
-        trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary(runtimeImageLibrary); //
-        trackImageManager.maxNumberOfMovingImages = 3;
+            trackImageManager.enabled = true;
 
-         // setup all game objects in dictionary
-      // foreach (GameObject arObject in arObjectsToPlace)
-      // {
-      //     GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
-      //     newARObject.name = arObject.name;
-      //     arObjects.Add(arObject.name, newARObject);
-      // }
+            trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
 
-        trackImageManager.enabled = true;
+            ShowTrackerInfo();
+            // Debug.Log("Not MutableLibrary");
 
-        trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
-
-        ShowTrackerInfo();
-
-        MakeLibrary();
-       // captureImageButton.onClick.AddListener(() => StartCoroutine(CaptureImage()));
-
+            MakeLibrary();
+            
+        }catch(Exception e)
+        {
+            Debug.Log(e.StackTrace);
+        }
     }
     
-   //private IEnumerator CaptureImage()
-   //{
-   //    yield return new WaitForEndOfFrame();
-   //
-   //    jobLog.text = "Capturing Image...";
-   //
-   //    var texture = ScreenCapture.CaptureScreenshotAsTexture();
-   //
-   //    StartCoroutine(AddImageJob(texture));
-   //}
 
     public void ShowTrackerInfo()
     {
         var runtimeReferenceImageLibrary = trackImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
+        if (runtimeReferenceImageLibrary != null)
+        {
+            debugLog += $"TextureFormat.RGBA32 supported: {runtimeReferenceImageLibrary.IsTextureFormatSupported(TextureFormat.RGBA32)}\n";
+            debugLog += $"Supported Texture Count ({runtimeReferenceImageLibrary.supportedTextureFormatCount})\n";
+            debugLog += $"trackImageManager.trackables.count ({trackImageManager.trackables.count})\n";
+           // debugLog += $"trackImageManager.trackedImagePrefab.name ({trackImageManager.trackedImagePrefab.name})\n";
+            debugLog += $"trackImageManager.maxNumberOfMovingImages ({trackImageManager.maxNumberOfMovingImages})\n";
+            debugLog += $"trackImageManager.supportsMutableLibrary ({trackImageManager.subsystem.SubsystemDescriptor.supportsMutableLibrary})\n";
+            debugLog += $"trackImageManager.requiresPhysicalImageDimensions ({trackImageManager.subsystem.SubsystemDescriptor.requiresPhysicalImageDimensions})\n";
 
-        debugLog.text += $"TextureFormat.RGBA32 supported: {runtimeReferenceImageLibrary.IsTextureFormatSupported(TextureFormat.RGBA32)}\n";
-        debugLog.text += $"Supported Texture Count ({runtimeReferenceImageLibrary.supportedTextureFormatCount})\n";
-        debugLog.text += $"trackImageManager.trackables.count ({trackImageManager.trackables.count})\n";
-        debugLog.text += $"trackImageManager.trackedImagePrefab.name ({trackImageManager.trackedImagePrefab.name})\n";
-        debugLog.text += $"trackImageManager.maxNumberOfMovingImages ({trackImageManager.maxNumberOfMovingImages})\n";
-        debugLog.text += $"trackImageManager.supportsMutableLibrary ({trackImageManager.subsystem.SubsystemDescriptor.supportsMutableLibrary})\n";
-        debugLog.text += $"trackImageManager.requiresPhysicalImageDimensions ({trackImageManager.subsystem.SubsystemDescriptor.requiresPhysicalImageDimensions})\n";
+            Debug.Log(debugLog);
+        }
+        else
+            Debug.Log("Mutable Error");
+
     }
+
+
     void OnDisable()
     {
         trackImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
@@ -97,11 +121,11 @@ public class TrackedImageInfoManager : MonoBehaviour
     {
         yield return null;
 
-        debugLog.text = string.Empty;
+        debugLog= string.Empty;
 
-        debugLog.text += "Adding image\n";
+       debugLog += "Adding image\n";
 
-        jobLog.text = "Job Starting...";
+        //jobLog.text = "Job Starting...";
 
         var firstGuid = new SerializableGuid(0, 0);
         var secondGuid = new SerializableGuid(0, 0);
@@ -112,33 +136,36 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             MutableRuntimeReferenceImageLibrary mutableRuntimeReferenceImageLibrary = trackImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
 
-            debugLog.text += $"TextureFormat.RGBA32 supported: {mutableRuntimeReferenceImageLibrary.IsTextureFormatSupported(TextureFormat.RGBA32)}\n";
+            debugLog += $"TextureFormat.RGBA32 supported: {mutableRuntimeReferenceImageLibrary.IsTextureFormatSupported(TextureFormat.RGBA32)}\n";
 
-            debugLog.text += $"TextureFormat size: {texture2D.width}px width {texture2D.height}px height\n";
+            debugLog += $"TextureFormat size: {texture2D.width}px width {texture2D.height}px height\n";
+            Debug.Log(debugLog);
 
-            var jobHandle = mutableRuntimeReferenceImageLibrary.ScheduleAddImageJob(texture2D, Guid.NewGuid().ToString(), 0.1f);
+            //var jobHandle = mutableRuntimeReferenceImageLibrary.ScheduleAddImageJob(texture2D, Guid.NewGuid().ToString(), 0.1f);
+            mutableRuntimeReferenceImageLibrary.ScheduleAddImageJob(texture2D, name, texture2D.width);
+            //while (!jobHandle.IsCompleted)
+            //{
+            //   // jobLog.text = "Job Running...";
+            //}
 
-            while (!jobHandle.IsCompleted)
-            {
-                jobLog.text = "Job Running...";
-            }
-
-            jobLog.text = "Job Completed...";
-            debugLog.text += $"Job Completed ({mutableRuntimeReferenceImageLibrary.count})\n";
-            debugLog.text += $"Supported Texture Count ({mutableRuntimeReferenceImageLibrary.supportedTextureFormatCount})\n";
-            debugLog.text += $"trackImageManager.trackables.count ({trackImageManager.trackables.count})\n";
-            debugLog.text += $"trackImageManager.trackedImagePrefab.name ({trackImageManager.trackedImagePrefab.name})\n";
-            debugLog.text += $"trackImageManager.maxNumberOfMovingImages ({trackImageManager.maxNumberOfMovingImages})\n";
-            debugLog.text += $"trackImageManager.supportsMutableLibrary ({trackImageManager.subsystem.SubsystemDescriptor.supportsMutableLibrary})\n";
-            debugLog.text += $"trackImageManager.requiresPhysicalImageDimensions ({trackImageManager.subsystem.SubsystemDescriptor.requiresPhysicalImageDimensions})\n";
+            debugLog = string.Empty;
+            // jobLog.text = "Job Completed...";
+             debugLog += $"Job Completed ({mutableRuntimeReferenceImageLibrary.count})\n";
+             debugLog += $"Supported Texture Count ({mutableRuntimeReferenceImageLibrary.supportedTextureFormatCount})\n";
+             debugLog += $"trackImageManager.trackables.count ({trackImageManager.trackables.count})\n";
+            // debugLog += $"trackImageManager.trackedImagePrefab.name ({trackImageManager.trackedImagePrefab.name})\n";
+             debugLog += $"trackImageManager.maxNumberOfMovingImages ({trackImageManager.maxNumberOfMovingImages})\n";
+             debugLog += $"trackImageManager.supportsMutableLibrary ({trackImageManager.subsystem.SubsystemDescriptor.supportsMutableLibrary})\n";
+            debugLog += $"trackImageManager.requiresPhysicalImageDimensions ({trackImageManager.subsystem.SubsystemDescriptor.requiresPhysicalImageDimensions})\n";
+            Debug.Log(debugLog);
         }
         catch (Exception e)
         {
             if (texture2D == null)
             {
-                debugLog.text += "texture2D is null";
+                //debugLog.text += "texture2D is null";
             }
-            debugLog.text += $"Error: {e.ToString()}";
+            //debugLog.text += $"Error: {e.ToString()}";
         }
     }
 
@@ -148,75 +175,51 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             // Display the name of the tracked image in the canvas
             UpdateARImage(trackedImage);
-            trackedImage.transform.Rotate(Vector3.up, 180);
+            pos = trackedImage.transform.position;
+             trackedImage.transform.Rotate(Vector3.right, 90);
         }
-
+       
         foreach (ARTrackedImage trackedImage in eventArgs.updated)
         {
             // Display the name of the tracked image in the canvas
             UpdateARImage(trackedImage);
-            trackedImage.transform.Rotate(Vector3.up, 180);
-        }
-        foreach(ARTrackedImage trackedImage in eventArgs.removed)
-        {
-            arObjects[trackedImage.name].SetActive(false);
+            trackedImage.transform.Rotate(Vector3.right, 90);
         }
     }
 
     private void UpdateARImage(ARTrackedImage trackedImage)
     {
-        // Display the name of the tracked image in the canvas
-        currentImageText.text = trackedImage.referenceImage.name;
-
         // Assign and Place Game Object
-        AssignGameObject(trackedImage.referenceImage.name, trackedImage.transform.position);
-
-        Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
+        AssignGameObject(trackedImage.referenceImage.name, trackedImage);
     }
 
-    void AssignGameObject(string name, Vector3 newPosition)
+    void AssignGameObject(string name, ARTrackedImage img)
     {
-        if (arObjectsToPlace != null)
-        {
-            GameObject goARObject = arObjects[name];
-            goARObject.SetActive(true);
-            goARObject.transform.position = newPosition;
+        GameObject goARObject;
+
+        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name,img.gameObject));
+
+        if (ARobj.TryGetValue(name, out goARObject)){
+
+            goARObject.transform.position=new Vector3(0, 0, 1.5f);
             goARObject.transform.localScale = scaleFactor;
-            StartCoroutine(CallingScroll(goARObject));
-            foreach (GameObject go in arObjects.Values)
-            {
-                Debug.Log($"Go in arObjects.Values: {go.name}");
-                if (go.name != name)
-                {
-                    go.SetActive(false);
-                }
-            }
-        }
+
+        } 
     }
 
-    IEnumerator CallingScroll(GameObject obj)
-    {
-        yield return null;
-        PQuizDicitionary dic = new PQuizDicitionary();
-        dic.GetQuizz(0);
-        Q item;
-        dic.TryGetValue(name, out item);
-        obj.GetComponent<Scroll>()?.Init(item);
-    }
 
     void MakeLibrary()
     {
-        var txtures = Resources.LoadAll<Texture2D>("FindTreasure/Images");
+        //var txtures = Resources.LoadAll<Texture2D>("FindTreasure/Images");
         
         //아래 내용은 DownloadFiles 내용이 정상적으로 작동할 때 해제
-        //var competition = PlayerPrefs.GetString("current_competition");
-        //var txtures = Resources.LoadAll<Texture2D>("FindTreasure/IMG/" +competition);
+        var competition = PlayerPrefs.GetInt("p_competition");
+        var txtures = Resources.LoadAll<Texture2D>("FindTreasure/IMG" +competition);
 
         foreach (var txt in txtures)
         {   
             StartCoroutine(AddImageJob(CopyTexture(txt),txt.name));
         }
-        
     }
 
     public Texture2D CopyTexture(Texture2D texture)

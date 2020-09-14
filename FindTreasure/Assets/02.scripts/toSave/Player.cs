@@ -6,20 +6,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using TTM.Classes;
 
 public class Player : MonoBehaviour
 {
     public static bool isLogin = false;
     public static bool LoginKind = false;
     string path = "Assets/Resources/Log/{0}.dat";
-    List<PlayerGameLog> Log = new List<PlayerGameLog>();
+    Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
+    Dictionary<int, string> Answers = new Dictionary<int, string>();
+    List<ShortInfo> shortInfos = new List<ShortInfo>();
     string user;
+    public int CurComp;
+
+    #region Singleton
+    static Player instance;
+
+    public static Player Instance
+    {
+        get => instance;
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    #endregion
 
     private void OnEnable()
     {
         //로그인 이후
         //유저 코드를 user에 저장
-        path = string.Format(path, user);
+        path = string.Format(path,user);
         LoadPlayerLog(); 
     }
     /*
@@ -77,7 +103,7 @@ public class Player : MonoBehaviour
     {
     }
 
-    void Update()
+    void Update( )
     {
         
     }
@@ -87,7 +113,7 @@ public class Player : MonoBehaviour
         Stream rs = new FileStream(path, FileMode.OpenOrCreate);
         BinaryFormatter deserializer = new BinaryFormatter();
 
-        Log = (List<PlayerGameLog>)deserializer.Deserialize(rs);
+        Log = (Dictionary<string,PlayerGameLog>)deserializer.Deserialize(rs);
         rs.Close();
     }
 
@@ -99,4 +125,45 @@ public class Player : MonoBehaviour
         serializer.Serialize(ws, Log);
         ws.Close();
     }
+
+    public void UpdateUserCompets(ShortInfo shortInfo)
+    {
+        foreach(var Short in shortInfos)
+        {
+            if(Short.ConName == shortInfo.ConName)
+            {
+                Short.UpdateEndingTime(shortInfo.EndingTime);
+                return;
+            }
+        }
+
+        shortInfos.Add(shortInfo);
+    }
+
+    #region Answers
+        
+    public IEnumerator CheckAns(string name,string ans)
+    {
+        int code = -1;
+        PlayerContents.Instance.FindQ(name, out code);
+        if (code >= 0)
+            Answers.Add(code, ans);
+        yield return null;
+
+        foreach (KeyValuePair<int, string> pair in Answers) {
+            int score = PlayerContents.Instance.CheckAnswer(pair);
+            if (score > 0)
+            {
+                Answers.Remove(pair.Key);
+            }else if(score == 0)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+    }
+    #endregion
 }

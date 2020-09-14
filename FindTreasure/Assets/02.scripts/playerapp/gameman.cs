@@ -15,11 +15,10 @@ using UnityEngine.SceneManagement;
 using System;
 using LitJson;
 
-public class gameman :MonoBehaviour
+public class gameman : MonoBehaviour
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
-    public int score = 0;
     public string imageText; //문제,답 내용 결정
 
     public GameObject nicknamebar;
@@ -29,7 +28,6 @@ public class gameman :MonoBehaviour
     public string time;
 
     public bool isSuccess = false;
-    BackendReturnObject bro = new BackendReturnObject();
 
     [SerializeField]
     private InputField NicknameInput;
@@ -37,7 +35,10 @@ public class gameman :MonoBehaviour
     public DateTime endtime;
     public string endingTime;
     public bool loadRankChek;
-    public bool che = false; //종료 시간 버튼 눌렸는지 확인
+    //public bool che = false; //종료 시간 버튼 눌렸는지 확인 쓸모 없는 걸로 확인
+
+    public int EndScore; //서버에 있는 대회 점수 얘도 결정
+    public int score = 0;  //얘도 빼도 될듯
 
     public GameObject LoginB;
 
@@ -46,14 +47,6 @@ public class gameman :MonoBehaviour
     {
         get
         {
-            /*
-            if (instance == null)
-            {
-                instance = new gameman();
-                DontDestroyOnLoad(instance);
-            }
-            return instance;
-            */
             return instance;
         }
     }
@@ -325,12 +318,6 @@ public class gameman :MonoBehaviour
 
     }
 
-    public void Logout()
-    {
-        Debug.Log("-------------Logout-------------");
-        Debug.Log(Backend.BMember.Logout().ToString());
-    }
-
     // 닉네임 변경
     public void UpdateNickname()
     {
@@ -407,11 +394,16 @@ public class gameman :MonoBehaviour
             }
         }
     }
-
-
     #endregion
 
+
     #region Logout Signout
+    // 로그아웃
+    public void Logout()
+    {
+        Debug.Log("-------------Logout-------------");
+        Debug.Log(Backend.BMember.Logout().ToString());
+    }
 
     // 회원 탈퇴 
     public void SignOut()

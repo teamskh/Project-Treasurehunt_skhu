@@ -129,7 +129,6 @@ public class CompetitionFactory : MonoBehaviour
         StartCoroutine(BlinkAllText(0.1f));
         return;
     EXIT:
-        comp.UnityLog();
         //Competition 서버 전송
         Param param = new Param();
         param.SetCompetition(comp).InsertCompetition();

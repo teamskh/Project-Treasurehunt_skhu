@@ -27,6 +27,7 @@ public class DropDownSE : MonoBehaviour
     private bool reservEnd;
 
     public bool chon= false;
+    public int cnt = 0;
     
 
     public void HandleInputData()
@@ -123,13 +124,6 @@ public class DropDownSE : MonoBehaviour
         {
             endtime = Convert.ToDateTime(CalendarController._EDateString +" "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
         }
-        chon = true;
-        gameman.Instance.che=chon;
-        gameman.Instance.endtime = endtime;
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////추가
-        //gameman.Instance.contest[gameman.Instance.cnt] = endtime;
-        //gameman.Instance.cnt++;
 
     }
     public void SelectButtonEndnow()
