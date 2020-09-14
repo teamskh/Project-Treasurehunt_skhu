@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class TextButton : MonoBehaviour, IPointerClickHandler
+public class TextButton : UIBehaviour, IPointerClickHandler
 {
     public UnityEvent onClick;
 

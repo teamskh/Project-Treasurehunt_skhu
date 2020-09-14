@@ -11,7 +11,6 @@ public class QuizForUI : MonoBehaviour
     public GameObject sel;
     public GameObject inpu;
 
-    private Animator anim;
     private List<GameObject> list = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -52,6 +51,5 @@ public class QuizForUI : MonoBehaviour
         list.Add(OX);
         list.Add(sel);
         list.Add(inpu);
-        anim = GetComponentInChildren<Animator>();
     }
 }

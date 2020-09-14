@@ -29,7 +29,8 @@ public class QuizToServer : MonoBehaviour
                 else
                     Debug.Log(bro.ToString());
 
-                Dictionary<string, Q> dic = new Dictionary<string, Q>();
+                //Dictionary<string, Q> dic = new Dictionary<string, Q>();
+                QuiDictionary dic = new QuiDictionary();
                 dic.GetQuizz(0);
             }
        

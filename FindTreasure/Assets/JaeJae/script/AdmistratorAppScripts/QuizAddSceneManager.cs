@@ -3,50 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class QuizAddSceneManager : MonoBehaviour
+public /*static*/ class QuizAddSceneManager : MonoBehaviour
 {
-    public static int ButtonClick=-1;
-    
-    public void ChangeSceneToOXQuiz()
+    #region ver.YJ
+
+    //추천 : Click listener에서 달때 kind 값을 명시하는 방식으로 사용할 수 있음.
+    //ex> OX버튼이 눌렸을때 매개변수 kind에 0을 입력하여 전달.
+    //inspector 창에서 Click Method에 이 함수를 등록 할 때, 전달 값을 정할 수 있는 입력창이 생김
+    public void ChangeSceneToQuizAdd(int kind) 
     {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 0;
-    }
-    
-    public void ChangeSceneToMultiCQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 1;
-    }
-    
-    public void ChangeSceneToShortAnswerQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        ButtonClick = 2;
+        PlayerPrefs.SetInt("ButtonClick", kind);
+        SceneManager.LoadScene("QuizAdd");
     }
 
-    public void ChangeSceneToConnectedQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-        //ButtonClick = 3;
-    }
+    #endregion
 
-    public void ChangeSceneToPlacementQuiz()
-    {
-        SceneManager.LoadScene("QuizAdd");//Quiz추가화면 OX
-                                          //ButtonClick = 4;
-    }
     void Update()
-
     {
         if (Application.platform == RuntimePlatform.Android)
         {
             if (Input.GetKey(KeyCode.Escape))
-
             {
                 SceneManager.LoadScene("QuizMenu");
             }
         }
-        PlayerPrefs.SetInt("ButtonClick", ButtonClick);
     }
 }

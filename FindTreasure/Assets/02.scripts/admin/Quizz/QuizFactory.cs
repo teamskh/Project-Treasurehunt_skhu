@@ -5,54 +5,64 @@ using UnityEngine;
 using TTM.Classes;
 using UnityEngine.UI;
 using BackEnd;
-using System.Runtime.InteropServices;
 
 public class QuizFactory : MonoBehaviour
 {
     public RectTransform BasePanel;
     Button SaveButton;
+    Button CancelButton;
 
     private int kind;
     int code;
     string key;
+    bool newQ=true;
     private List<GameObject> panel = new List<GameObject>();
     private InputFieldUtil inputfields;
     IndexTranslateUtil ipanelCompo;
     WordAnswerUtil wpanelCompo;
     Q quiz;
-    Competition compet;
-    Dictionary<string, Q> dic;
-    // Start is called before the first frame update
+    QuiDictionary dic;
 
     private void OnEnable()
     {
-        //활성화 하자 마자 초기화
-        quiz = new Q();
-
+        Debug.Log("Set Initial");
         //Scene에서 맞는 패널 자체 장착
         panel?.Add(BasePanel.Find("TFPanel").gameObject ?? null);
         panel?.Add(BasePanel.Find("IPanel").gameObject ?? null);
         panel?.Add(BasePanel.Find("WPanel").gameObject ?? null);
         SaveButton = GameObject.Find("Save")?.GetComponent<Button>();
+        CancelButton = GameObject.Find("Before")?.GetComponent<Button>();
     }
     void Start()
     {
         //문제 유형 전달
-        kind = PlayerPrefs.GetInt("ButtonClick");
-        key = scenechange.Qname;
-        dic = new Dictionary<string, Q>();
-        code=PlayerPrefs.GetInt("a_quiz");
-        dic.GetQuizz(code);
-        dic.TryGetValue(key, out quiz);
+        kind = PlayerPrefs.GetInt("ButtonClick",-1);
+        PlayerPrefs.DeleteKey("ButtonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
+        CancelButton?.onClick.AddListener(() => Back());
+
+        if (kind < 0)
+        {
+            key = scenechange.Qname;
+
+            dic = new QuiDictionary();
+            code = PlayerPrefs.GetInt("a_competition");
+
+            dic.GetQuizz(code);
+            dic.TryGetValue(key, out quiz);
+
+            kind = quiz.Kind.Value;
+
+            newQ = false;
+            CancelButton?.onClick.AddListener(() => Cancel());
+        }
+
         //특정 Panel 활성화
         SetPanelActive();
 
         //문제 추가용 inputField 세트 및 연결하는 초기화 과정
         inputfields = gameObject.AddComponent<InputFieldUtil>();
-        //Debug.Log(quiz.Kind +" kind");
-        //quiz.Kind ?? null;
-        if (quiz==null)//여기를 어떻게 고쳐야할까
-        {
+        inputfields.Quiz = quiz;
+
             //종류에 맞는 컴포넌트 추가를 위한 Coroutine 
             //각각 컴포넌트 더하고 기본 세팅하는 기능
             switch (kind)
@@ -67,42 +77,30 @@ public class QuizFactory : MonoBehaviour
                     StartCoroutine(WPanelSet());
                     break;
             }
-        }
-        else
-        {
-            Debug.Log(quiz.Kind + " kind");
-            switch (quiz.Kind)
-            {
-                case 0:
-                    StartCoroutine(TFPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(1);
-                    break;
-                case 1:
-                    StartCoroutine(IPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(2);
-                    break;
-                case 2:
-                    StartCoroutine(WPanelSet());
-                    inputfields.SetInputFieldString(0, quiz.Title);
-                    inputfields.SetInputFieldString(1, quiz.Str);
-                    inputfields.SetScore(quiz.Score);
-                    Debug.Log(3);
-                    break;
-            }
-        }
 
         //버튼 객체 있으면 Save 함수를 클릭 리스너로 등록
         SaveButton?.onClick.AddListener(() => Save());
     }
 
+    void Cancel()
+    {
+        var scenechage = GameObject.Find("GameSetting").GetComponent<scenechange>();
+        scenechage.ChangeSceneToQuizMenu();
+    }
+
+    void Back()
+    {
+        var scenechage = GameObject.Find("GameSetting").GetComponent<scenechange>();
+        scenechage.ChangeSceneToQuizType();
+    }
+
     void Save()
     {
+        if(quiz == null)
+        {
+            Debug.LogError("Need to Check Answer");
+            return;
+        }
         //Title inputField에서 내용 받아오기
         if ((quiz.Title = inputfields.GetInputFieldString(0)) == "")
         {
@@ -123,10 +121,9 @@ public class QuizFactory : MonoBehaviour
         quiz.Score = inputfields.GetScore();
         Debug.Log($"Score : {quiz.Score}");
 
-        Debug.Log($"Kind : {quiz.Kind}");
-
         //전달자에 kind전달
         quiz.Kind = kind;
+        Debug.Log($"Kind : {quiz.Kind}");
 
         //Quiz가 index 종류일 경우 보기 항목 받아오기
         if (kind == 1)
@@ -156,7 +153,6 @@ public class QuizFactory : MonoBehaviour
                 return;
             }
 
-            SetAnswer(word);
             //씬 전환
         }
 
@@ -175,17 +171,34 @@ public class QuizFactory : MonoBehaviour
         }
 
         Param param = new Param();
-        param.SetQuiz(quiz).InsertQuiz();
+        if (newQ == false)
+            param.UpdateQuiz(quiz);
+        else param.SetQuiz(quiz).InsertQuiz();
+
         Debug.Log($"Param Data : {param.ToStr()}");
+        newQ = true;
     }
     
     //정답 전달
     public void SetAnswer(object T)
     {
+        quiz = new Q();
         if (T.GetType() == typeof(int))
+        {
             Debug.Log($"Index: {T}");
+            gameObject.AddComponent<IndexTranslateUtil>().SelectB(T);
+        }
+        else if (T.GetType() == typeof(bool))
+            gameObject.AddComponent<TrueFalseButtonUtil>().SelectB(T);
+        else if (T.GetType() == typeof(string))
+        {
+            gameObject.AddComponent<WordAnswerUtil>().Set(panel[2]);
+        }
+
         quiz.Answer = T;
+        Debug.Log(quiz.Answer);
     }
+
 
     #region Panel Controll
     void SetPanelActive()
@@ -218,7 +231,6 @@ public class QuizFactory : MonoBehaviour
         //보기 변수를 받아오기 위해 ipanelCompo에 컴포넌트 저장
         ipanelCompo = gameObject.AddComponent<IndexTranslateUtil>();
         ipanelCompo.Set(panel[1]);
-
     }
 
     IEnumerator WPanelSet()

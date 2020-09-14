@@ -10,7 +10,8 @@ using System;
 public class DownloadFiles : MonoBehaviour
 {
     string defaultURL = "";
-    Dictionary<string, Competition> dic = new Dictionary<string, Competition>();
+    //Dictionary<string, Competition> dic = new Dictionary<string, Competition>();
+    CompetitionDictionary dic = new CompetitionDictionary();
     void Start()
     {
         Backend.Initialize(() => {

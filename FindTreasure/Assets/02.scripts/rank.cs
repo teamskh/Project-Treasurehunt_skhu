@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 
-using DataInfo;
-
 using TTM.Classes;
 using TTM.Save;
 using BackEnd;
@@ -33,9 +31,15 @@ public class rank : MonoBehaviour
     private void Start()
     {
         Name.text = PlayerPrefs.GetString("nickna");
-        gameman.Instance.score = 0;
         corutuine = CountTime();
         //StartCoroutine(CountTime());
+        //StartCoroutine(corutuine);
+
+    }
+
+    public void StartTime()
+    {
+        StartCoroutine(CountTime());
         StartCoroutine(corutuine);
     }
     

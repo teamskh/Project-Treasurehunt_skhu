@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TTM.Classes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,24 @@ public class TrueFalseButtonUtil : MonoBehaviour
         QuizFactory factor = GetComponent<QuizFactory>();
         True?.onClick.AddListener(() =>factor.SetAnswer(true));
         False?.onClick.AddListener(() => factor.SetAnswer(false));
+    }
+    public void SelectB(object T)   //버튼 색 바꾸기 추가
+    {
+        string answer = T.ToString();
+        if(answer=="True")
+        {
+            GameObject.Find("True").GetComponent<Image>().color = new Color(0, 1, 1);
+            GameObject.Find("False").GetComponent<Image>().color = new Color(1, 1, 1);
+        }
+        else if(answer == "False")
+        {
+            GameObject.Find("False").GetComponent<Image>().color = new Color(0, 1, 1);
+            GameObject.Find("True").GetComponent<Image>().color = new Color(1, 1, 1);
+        }
+        else
+        {
+            return;
+        }
     }
 
 }

@@ -49,7 +49,7 @@ public class Camera1 : MonoBehaviour
 	{
 		upperbar.SetActive(false);
 		RawImagePV.SetActive(false);
-		
+
 		usingImage.texture = savess;
 		savess.Apply();
 		

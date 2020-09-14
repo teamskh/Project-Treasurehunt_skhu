@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TTM.Classes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,10 @@ public class InputFieldUtil : MonoBehaviour
     Toggle toggle;
     Slider slider;
     Text score;
+    object T;
+    InputField WordAns;
+
+    public Q Quiz { get; set; }
 
     private void OnEnable()
     {
@@ -35,14 +41,54 @@ public class InputFieldUtil : MonoBehaviour
         //toggle에 리스너 달기
         toggle.onValueChanged.AddListener((bool bOn)=>IsTrueFalse(bOn));
         slider.onValueChanged.AddListener((float f) =>SliderVale(f));
+
+        if (Quiz != null) SetQuiz();
+    }
+   
+    //퀴즈 불러오기
+    void SetQuiz()
+    {
+        SetInputFieldString(0, Quiz.Title);
+        SetInputFieldString(1, Quiz.Str);
+        SetScore(Quiz.Score);
+        if (Quiz.Score == 30)
+        {
+            score.text = "30";
+        }
+        
+        T = Quiz.Answer;
+        
+        if (Quiz.Kind==0)
+        {
+            gameObject.AddComponent<TrueFalseButtonUtil>().SelectB(T);
+        }
+        
+        else if (Quiz.Kind == 1)
+        {
+            for(int i=0; i < 4; i++)
+            {
+                GameObject.Find("list"+(i+1)).GetComponent<InputField>().text = Quiz.List[i];
+            }
+            gameObject.AddComponent<IndexTranslateUtil>().SelectB(T);
+        }
+
+        else if (Quiz.Kind == 2)
+        {
+            var Bpanel = GetComponent<QuizFactory>().BasePanel;
+            var WordAnswer=gameObject.AddComponent<WordAnswerUtil>();
+            GameObject WPanel = Bpanel.Find("WPanel").gameObject;
+            WordAnswer.Set(WPanel);
+            WordAns = GetComponent<WordAnswerUtil>().wordAnswer;
+            WordAns.text = Quiz.Answer.ToString();
+        }
     }
 
     //inputFied 채워 넣는 용
     //0번은 Title, 1번은 내용
-    public void SetInputFieldString(int i, string context)
+    void SetInputFieldString(int i, string context)
     {
         if (i < 0) Debug.LogError($"i : {i}");
-        if (contents[i] != null)//Contests[i]를 쓰는것만으로도 오류남 어째유,,
+        if (contents[i] != null)
         {
             InputField iput = contents[i].GetComponent<InputField>();
             if (iput == null) Debug.LogError("Can't DownCasting to InputField");
@@ -68,6 +114,10 @@ public class InputFieldUtil : MonoBehaviour
 
     public int SetScore(int? i)
     {
+        if(i==30)
+        {
+            toggle.isOn = true;
+        }
         return (int)(slider.value = (float)i);
     }
 
@@ -76,7 +126,10 @@ public class InputFieldUtil : MonoBehaviour
     {
         slider.interactable = !On;
         if (On)
+        {
             score.text = "30";
+            SliderVale(30);
+        }
         else
             SliderVale(slider.value);
     }

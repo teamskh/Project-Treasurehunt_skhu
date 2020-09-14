@@ -12,7 +12,6 @@ using UnityEngine.XR.ARSubsystems;
 public class TrackedImageInfoManager : MonoBehaviour
 {
     ARTrackedImageManager m_TrackedImageManager;
-    public GameObject scroll;
 
     [SerializeField]
     private Text debugLog;

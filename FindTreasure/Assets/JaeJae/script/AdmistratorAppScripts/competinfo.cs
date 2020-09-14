@@ -23,12 +23,12 @@ public class competinfo : MonoBehaviour
     public string title;
 
     Competition compet = new Competition();
-    Dictionary<string, Competition> dic;
+    CompetitionDictionary dic;
     public void Start()
     {
         all_t.SetActive(false);
         key = scenechange.Qname;
-        dic = new Dictionary<string, Competition>();
+        dic = new CompetitionDictionary();
         dic.GetCompetitions();
         if (dic.TryGetValue(key, out compet))
         {

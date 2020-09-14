@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TTM.Save;
-using DataInfo;
 using TTM.Classes;
 using BackEnd;
 
@@ -12,12 +11,11 @@ using GooglePlayGames.BasicApi;
 
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
-using TTM.Server;
 
 using System;
 using LitJson;
 
-public class gameman : GameDataFunction
+public class gameman :MonoBehaviour
 {
     public AudioSource baaudio;
     public AudioSource sfaudio;
@@ -27,9 +25,6 @@ public class gameman : GameDataFunction
     public GameObject nicknamebar;
 
     public string userna;
-    //페이지 이동시 저장될 유저이름
-    //playerdic;
-    //public bool chek = false;
 
     public string time;
 
@@ -38,8 +33,6 @@ public class gameman : GameDataFunction
 
     [SerializeField]
     private InputField NicknameInput;
-
-    bool chek = false; //정상 로그인 - 컨텐츠 로드 완료
 
     public DateTime endtime;
     public string endingTime;
@@ -53,6 +46,14 @@ public class gameman : GameDataFunction
     {
         get
         {
+            /*
+            if (instance == null)
+            {
+                instance = new gameman();
+                DontDestroyOnLoad(instance);
+            }
+            return instance;
+            */
             return instance;
         }
     }
@@ -61,7 +62,7 @@ public class gameman : GameDataFunction
 
     private void Awake()
     {
-        if (instance == null)
+        if(instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
@@ -70,7 +71,9 @@ public class gameman : GameDataFunction
         {
             DontDestroyOnLoad(gameObject);
         }
+
         Debug.Log("ACCESS_TOKEN : " + PlayerPrefs.HasKey("access_token"));
+
     }
 
     private void Start()
@@ -123,7 +126,7 @@ public class gameman : GameDataFunction
                 PlayerPrefs.DeleteKey("access_token");
 
                 obj.Clear();
-                obj = Backend.BMember.LoginWithTheBackendToken();
+                obj = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google);
 
                 if (obj.IsSuccess())
                 {
@@ -137,18 +140,6 @@ public class gameman : GameDataFunction
         }
 
         return false;
-    }
-
-    public void updatecompet()
-    {
-        GetContentsByIndate(TableName.competitiondic);
-    }
-
-    private void DownLoadContents()
-    {
-        GetContentsByIndate(TableName.competitiondic);
-        GetContentsByIndate(TableName.quizplayerdic);
-        GetContentsByIndate(TableName.answerdic);
     }
 
     void Usnick() //닉네임이 존재(정상 가입)
@@ -189,7 +180,6 @@ public class gameman : GameDataFunction
     private void MoveMain()
     {
         PlayerPrefs.SetString(PrefsString.nickname, userna);
-        DownLoadContents();
         SceneManager.LoadScene("02.Main");
     }
 
@@ -454,29 +444,7 @@ public class gameman : GameDataFunction
 
     #endregion
 
-    #region 퀴즈용
-    public Answer CheckAnswer()
-    {
-        Answer ans = new Answer();
-        answerdic.TryGetValue(imageText, out ans);
-        return ans;
-    }
-
-    public Quiz FindQuiz()
-    {
-        return quizplayerdic.FindQuiz(imageText);
-    }
-
-    public void Load()
-    {
-        userna = PlayerPrefs.GetString(PrefsString.nickname);
-    }
-
-    public List<string> GetList()
-    {
-        return competdic.getCompetitionList();
-    }
-    #endregion
+ 
 }
 
 #endif

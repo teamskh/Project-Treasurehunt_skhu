@@ -9,9 +9,19 @@ static class ParamExtension
 {
     public static Param SetQuiz(this Param myParam, Q quiz)
     {
+        /*
         myParam.Add("idcompetition", 0);
-        myParam.Add("idquiz", 0);
-      
+        myParam.Add("idquiz", 0);*/
+        var idcompetition= PlayerPrefs.GetInt("a_competition");
+        myParam.Add("idcompetition", idcompetition);
+
+        QuiDictionary dic = new QuiDictionary();
+        dic.GetQuizz(idcompetition);
+
+        int idquiz = 0;
+        MakeRandomCode.MakeCode(dic, out idquiz);
+        myParam.Add("idquiz", idquiz);
+
         myParam.Add("title", quiz.Title);
         myParam.Add("context", quiz.Str);
         myParam.Add("score", quiz.Score.Value);
@@ -37,6 +47,48 @@ static class ParamExtension
         else
             Debug.Log(bro.ToString());
     }
+    
+    public static void DeleteQuiz(this Param param, Q Quiz) //추가
+    {
+        var idcompetition = PlayerPrefs.GetInt("a_competition");
+        var idquiz = PlayerPrefs.GetInt("a_quiz");
+        
+        Param where = new Param();
+        where.Add("idquiz", idquiz);
+        where.Add("idcompetition", idcompetition);
+        
+        BackendReturnObject bro = new BackendReturnObject();
+        bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
+        Debug.Log(where.GetJson());
+        string inDate = bro.GetReturnValuetoJSON()["rows"][0]["inDate"]["S"].ToString();
+        Debug.Log(inDate);
+        bro = Backend.GameSchemaInfo.Delete("Quizz", inDate);
+        if (bro.IsSuccess())
+            Debug.Log("Success");
+        else
+            Debug.Log(bro.ToString());
+    }
+    
+    public static void UpdateQuiz(this Param param, Q Quiz) //추가
+    {
+        param.SetQuiz(Quiz);
+        var idcompetition = PlayerPrefs.GetInt("a_competition");
+        var idquiz = PlayerPrefs.GetInt("a_quiz");
+
+        Param where = new Param();
+        where.Add("idquiz", idquiz);
+        where.Add("idcompetition", idcompetition);
+        BackendReturnObject bro = new BackendReturnObject();
+        bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
+        Debug.Log(where.GetJson());
+        string inDate = bro.GetReturnValuetoJSON()["rows"][0]["inDate"]["S"].ToString();
+        Debug.Log(inDate);
+        bro= Backend.GameSchemaInfo.Update("Quizz", inDate, param);
+        if (bro.IsSuccess())
+            Debug.Log("Success");
+        else
+            Debug.Log(bro.ToString());
+    }
 
     public static string ToStr(this Param param) {
         string txt = "";
@@ -59,7 +111,7 @@ static class ParamExtension
 
     public static void InsertCompetition(this Param param)
     {
-        TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
+        CompetitionDictionary dic = new CompetitionDictionary();
         dic.GetCompetitions();
 
         int code = 0;
@@ -75,7 +127,7 @@ static class ParamExtension
             Debug.Log(bro.ToString());
     }
 
-    public static void DeleteCompetition(this Param param, Competition comp)
+    public static void DeleteCompetition(this Param param, Competition comp) //추가
     {
         
         TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
