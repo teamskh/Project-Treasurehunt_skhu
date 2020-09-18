@@ -18,6 +18,8 @@ public class PlayerContents
     PlayerContents()
     {
         Compets = new PCompetitionDictionary();
+        CurOpenCompets = new List<ShortInfo>();
+        CurLib = new PQuizDicitionary();
         DicUpdate = () => Compets.GetCompetitions();
         DicUpdate += () => CurOpenCompets = Compets.GetShorts();
     }

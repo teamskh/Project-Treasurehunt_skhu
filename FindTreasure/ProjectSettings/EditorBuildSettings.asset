@@ -5,15 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
+    path: Assets/01.Scenes/playerapp/01.start.unity
+    guid: 00920807a420000009920807a4200000
+  - enabled: 1
     path: Assets/01.Scenes/playerapp/02.Main.unity
     guid: 6aefd9411e7567541b14ba0b0d595737
-  - enabled: 0
-    path: Assets/01.Scenes/playerapp/03.Setting.unity
-    guid: a783dc629f3071444850e7174bce0a5d
   - enabled: 1
     path: Assets/JaeJae/Scene/AdministratorApp/ContestList.unity
     guid: a8925bcc64057be41a36c029c038e92f
@@ -39,8 +36,8 @@ EditorBuildSettings:
     path: Assets/JaeJae/Scene/AdministratorApp/loading.unity
     guid: 7fef0245d1e17fe4498f6e76c3637c7e
   - enabled: 0
-    path: Assets/JaeJae/Scene/AdministratorApp/Test.unity
-    guid: 0b19325728dd9fb45a859170059c7fd8
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36a78d431dacbd845aaa084b1bb0a063,
       type: 2}
