@@ -3,6 +3,10 @@ using LitJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace TTM.Classes
@@ -16,10 +20,22 @@ namespace TTM.Classes
         public void UpdateEndingTime(DateTime newDateTime)
         {
             if (EndingTime != newDateTime)
-                EndingTime = newDateTime;
-           
+                EndingTime = newDateTime;  
         }
     }
+
+    public static class ShortInfoList
+    {
+        public static ShortInfo Find(this List<ShortInfo> shorts,string name)
+        {
+            foreach(var item in shorts)
+            {
+                if (item.ConName == name) return item;
+            }
+            return null;
+        }
+    }
+
     public class Competition
     {
         public string Name { get; set; }
@@ -408,4 +424,80 @@ namespace TTM.Classes
 
     #endregion
     #endregion
+
+    public class DataPath
+    {
+        public string[] path;
+        string exc = ".dat";
+
+        public DataPath(string Filename ="Log",string Usercode ="0")
+        {
+            path = new string[3];
+            path[0] = "/Assets/Resources";
+#if UNITY_ANDROID
+            path[0] = Application.persistentDataPath;
+#endif
+            path[1] = Filename;
+            path[2] = Usercode;
+        }
+        
+        public string this[int index]
+        {
+            get
+            {
+                switch (index)
+                {
+                    case 0:
+                        return path[0];
+                    case 1:
+                        return path[0] + '/' + path[1];
+                    default:
+                        return path[0] + '/' + path[1] + '/' + path[2] + exc;
+                }
+            }
+            set
+            {
+                path[index] = value;
+            }
+        }
+        public override string ToString()
+        {
+             return path[0] + '/' + path[1] + '/' + path[2] + exc;
+        }
+    }
+
+    public static class SaveLoad
+    {
+        public static void Load<T>(this T obj, string user, string type ="") 
+        {
+            DataPath path = new DataPath(Usercode: user+type );
+
+            if (!Directory.Exists(path[1]))
+            {
+                Debug.Log("Directory Doesn't exist");
+                Directory.CreateDirectory(path[1]);
+            }
+            Stream rs = new FileStream(path.ToString(), FileMode.OpenOrCreate);
+            BinaryFormatter deserializer = new BinaryFormatter();
+
+            if (rs.Length > 0)
+                obj = (T)deserializer.Deserialize(rs);
+            rs.Close();
+        }
+
+        public static void Save<T>(this T obj, string user, string type ="") 
+        {
+            if (obj != null)
+            {
+                DataPath path = new DataPath();
+                path[2] = user + type;
+                
+                Stream ws = new FileStream(path.ToString(), FileMode.Truncate);
+                BinaryFormatter serializer = new BinaryFormatter();
+
+                serializer.Serialize(ws, obj);
+                ws.Close();
+            }
+        }
+    }
 }
