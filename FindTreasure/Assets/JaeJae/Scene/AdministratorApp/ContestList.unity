@@ -2100,6 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AddPanel: {fileID: 709674064}
+  AddButton: {fileID: 900631026}
 --- !u!1 &709674063
 GameObject:
   m_ObjectHideFlags: 0

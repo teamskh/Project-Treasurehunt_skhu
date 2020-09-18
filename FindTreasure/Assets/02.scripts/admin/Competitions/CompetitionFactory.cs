@@ -10,6 +10,9 @@ public class CompetitionFactory : MonoBehaviour
     [SerializeField]
     Transform AddPanel;
 
+    [SerializeField]
+    GameObject AddButton;
+
     Button addButton, okButtton, cancelButton;
 
     InputField nameField, passwordField;
@@ -26,7 +29,7 @@ public class CompetitionFactory : MonoBehaviour
     private void OnEnable()
     {
         // 대회 추가 버튼 클릭 리스너 등록
-        addButton = GameObject.Find("Add")?.GetComponent<Button>();
+        addButton = AddButton.GetComponent<Button>();
         addButton?.onClick.AddListener(() => setAddPanelActive(true));
 
         if (AddPanel != null)
