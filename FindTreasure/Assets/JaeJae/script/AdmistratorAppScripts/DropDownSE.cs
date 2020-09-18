@@ -52,6 +52,7 @@ public class DropDownSE : MonoBehaviour
         HandleInputData();
         StartCoroutine(CountTime());
     }
+    /*
     void Update()
     { 
             if (Application.platform == RuntimePlatform.Android)
@@ -67,7 +68,7 @@ public class DropDownSE : MonoBehaviour
         {
             SceneManager.LoadScene("administratorMenu");
         }
-    }
+    }*/
     private void SetDropdownOptionsExample()
     {
         startH.options.Clear();

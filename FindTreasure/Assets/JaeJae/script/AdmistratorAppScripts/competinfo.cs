@@ -58,6 +58,7 @@ public class competinfo : MonoBehaviour
             }
         }
     }
+    /*
     public void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -73,7 +74,7 @@ public class competinfo : MonoBehaviour
         {
             SceneManager.LoadScene("ContestList");
         }
-    }
+    }*/
     public void PasswordSave()
     {
         if (ContestPw_infT.text.Length < 1)

@@ -17,7 +17,7 @@ public /*static*/ class QuizAddSceneManager : MonoBehaviour
     }
 
     #endregion
-
+    /*
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -27,5 +27,5 @@ public /*static*/ class QuizAddSceneManager : MonoBehaviour
                 SceneManager.LoadScene("QuizMenu");
             }
         }
-    }
+    }*/
 }

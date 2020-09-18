@@ -5265,7 +5265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1392265375}
   - component: {fileID: 1392265374}
-  - component: {fileID: 1392265376}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -5301,20 +5300,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1392265376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392265373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PointCloudPrefab: {fileID: 3817439987615580466, guid: 224321ca0e068b44cbfe1b551da3da92,
-    type: 3}
 --- !u!1 &1403638471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8031,6 +8016,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Device: 0
+  m_PoseSource: 2
+  m_PoseProviderComponent: {fileID: 0}
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_UseRelativeTransform: 0
 --- !u!4 &2031549130
 Transform:
   m_ObjectHideFlags: 0

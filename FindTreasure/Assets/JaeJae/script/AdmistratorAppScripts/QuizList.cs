@@ -176,6 +176,7 @@ public void OnDisable()
 {
     foreach (GameObject item in QList) Destroy(item);
 }*/
+    /*
     public void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -191,5 +192,5 @@ public void OnDisable()
         {
             SceneManager.LoadScene("administratorMenu");
         }
-    }
+    }*/
 }

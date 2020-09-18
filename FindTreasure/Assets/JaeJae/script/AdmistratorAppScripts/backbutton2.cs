@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class backbutton2 : MonoBehaviour
 {
+    /*
     // Start is called before the first frame update
     void Update()
 
@@ -14,5 +15,5 @@ public class backbutton2 : MonoBehaviour
             {
                 SceneManager.LoadScene("ContestList");
             }
-    }
+    }*/
 }

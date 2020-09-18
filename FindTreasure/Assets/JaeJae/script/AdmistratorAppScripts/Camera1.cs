@@ -32,12 +32,11 @@ public class Camera1 : MonoBehaviour
 		Texture2D ss = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 		ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
 		ss.Apply();
-		upperbar.SetActive(true);
-		RawImagePV.SetActive(true);
-		selectImage.texture = ss;
-
 		savess = ss;
 		savess.Apply();
+		selectImage.texture = ss;
+		upperbar.SetActive(true);
+		RawImagePV.SetActive(true);
 	}
 
 	public void TakeScreenShot()
@@ -49,11 +48,32 @@ public class Camera1 : MonoBehaviour
 	{
 		upperbar.SetActive(false);
 		RawImagePV.SetActive(false);
+		Texture2D texture= new Texture2D(700, 500, TextureFormat.RGB24, false);
 
-		usingImage.texture = savess;
-		savess.Apply();
+		texture.ReadPixels(new Rect(200, 600, 1000, 900),0,0);
+		
+		texture=ScaleTexture(texture, (int)usingImage.rectTransform.rect.width, (int)usingImage.rectTransform.rect.height);
+		texture.Apply();
+		usingImage.texture = texture;
+		
 		
 	}
+
+	private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
+	{
+		Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
+		Color[] rpixels = result.GetPixels(0);
+		float incX = (1.0f / (float)targetWidth);
+		float incY = (1.0f / (float)targetHeight);
+		for (int px = 0; px < rpixels.Length; px++)
+		{
+			rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth), incY * ((float)Mathf.Floor(px / targetWidth)));
+		}
+		result.SetPixels(rpixels, 0);
+		result.Apply();
+		return result;
+	}
+
 	/*
 	public void saveImage()
     {

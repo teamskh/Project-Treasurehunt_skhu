@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 871503099}
+      - m_Target: {fileID: 1244072181}
         m_MethodName: ChangeSceneToQuizAdd
         m_Mode: 3
         m_Arguments:
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 871503099}
+      - m_Target: {fileID: 1244072181}
         m_MethodName: ChangeSceneToQuizAdd
         m_Mode: 3
         m_Arguments:
@@ -2338,7 +2338,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 871503099}
+      - m_Target: {fileID: 1244072181}
         m_MethodName: ChangeSceneToQuizAdd
         m_Mode: 3
         m_Arguments:
