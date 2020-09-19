@@ -1,4 +1,5 @@
-﻿using BackEnd;
+﻿using System;
+using BackEnd;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
 using System.Collections;
@@ -7,47 +8,57 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TTM.Classes;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     public static bool isLogin = false;
     public static bool LoginKind = false;
-    string path = "Assets/Resources/Log/{0}.dat";
+    DataPath path = new DataPath();
+
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
     Dictionary<int, string> Answers = new Dictionary<int, string>();
     List<ShortInfo> shortInfos = new List<ShortInfo>();
-    string user;
+    List<Recodes.Recode> recodes = new List<Recodes.Recode>();
     public int CurComp;
 
-    #region Singleton
+    static event Action Save;
+    static event Action Load;
+
+    string userCode;
+
+#region Singleton
     static Player instance;
 
     public static Player Instance
     {
-        get => instance;
+        get
+        {
+            Save();
+            return instance;
+        }
     }
 
     private void Awake()
     {
         if (instance == null)
         {
-            DontDestroyOnLoad(gameObject);
             instance = this;
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
+            Load();
         }
     }
-    #endregion
+#endregion
 
-    private void OnEnable()
+    private void AfterLogin()
     {
-        //로그인 이후
-        //유저 코드를 user에 저장
-        path = string.Format(path,user);
-        LoadPlayerLog(); 
+        userCode = PlayerPrefs.GetString("usercode");
+        Save = () => Log.Save(userCode);//shortInfos.Save(userCode);
+        Save += () => recodes.Save(userCode, "recode");
+
+        Load = () => shortInfos.Load(userCode);
+        Load += () => recodes.Load(userCode, "recode");
     }
+
     /*
     public static bool AdminLogin()
     {
@@ -108,24 +119,6 @@ public class Player : MonoBehaviour
         
     }
 
-    void LoadPlayerLog()
-    {
-        Stream rs = new FileStream(path, FileMode.OpenOrCreate);
-        BinaryFormatter deserializer = new BinaryFormatter();
-
-        Log = (Dictionary<string,PlayerGameLog>)deserializer.Deserialize(rs);
-        rs.Close();
-    }
-
-    public void Save()
-    {
-        Stream ws = new FileStream(path, FileMode.Truncate);
-        BinaryFormatter serializer = new BinaryFormatter();
-
-        serializer.Serialize(ws, Log);
-        ws.Close();
-    }
-
     public void UpdateUserCompets(ShortInfo shortInfo)
     {
         foreach(var Short in shortInfos)
@@ -140,7 +133,20 @@ public class Player : MonoBehaviour
         shortInfos.Add(shortInfo);
     }
 
-    #region Answers
+    void FinishCompets(string competname)
+    {
+        shortInfos.Remove(shortInfos.Find(competname));
+        PlayerGameLog item;
+        Log.TryGetValue(competname, out item);
+        if (item != null)
+        {
+            recodes.Add(item.Summary());
+            Log.Remove(competname);
+        }
+        Save();
+    }
+
+#region Answers
         
     public IEnumerator CheckAns(string name,string ans)
     {
@@ -152,18 +158,15 @@ public class Player : MonoBehaviour
 
         foreach (KeyValuePair<int, string> pair in Answers) {
             int score = PlayerContents.Instance.CheckAnswer(pair);
-            if (score > 0)
-            {
-                Answers.Remove(pair.Key);
-            }else if(score == 0)
+            if (score < 0)
             {
                 
             }
-            else
+            else 
             {
-
+                Answers.Remove(pair.Key);
             }
         }
     }
-    #endregion
+#endregion
 }

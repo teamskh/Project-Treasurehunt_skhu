@@ -18,6 +18,8 @@ public class PlayerContents
     PlayerContents()
     {
         Compets = new PCompetitionDictionary();
+        CurOpenCompets = new List<ShortInfo>();
+        CurLib = new PQuizDicitionary();
         DicUpdate = () => Compets.GetCompetitions();
         DicUpdate += () => CurOpenCompets = Compets.GetShorts();
     }
@@ -63,18 +65,16 @@ public class PlayerContents
     public void ClickListener(string com)
     {
         CurCompet = Compets.CurrentCode(com);
+        Debug.Log($"{com}'s Clicklistener");
         CurCompetName = com;
+        Debug.Log($"{com}'s Clicklistener");
         CurLib.GetQuizz(CurCompet);
-        Player.Instance.UpdateUserCompets(FindShorts(com));
-    }
-
-    ShortInfo FindShorts(string name)
-    {
-        foreach(var shorts in CurOpenCompets)
+        Debug.Log($"{com}'s Clicklistener");
+        if (CurOpenCompets != null)
         {
-            if (shorts.ConName == name) return shorts;
+            Debug.Log($"{com}'s Clicklistener");
+            Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
-        return null;
+        Debug.Log($"{com}'s Clicklistener");
     }
-    
 }
