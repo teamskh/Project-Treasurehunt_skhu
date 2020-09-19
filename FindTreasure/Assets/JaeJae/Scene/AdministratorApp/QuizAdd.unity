@@ -4050,6 +4050,7 @@ GameObject:
   - component: {fileID: 1056822130}
   - component: {fileID: 1056822129}
   - component: {fileID: 1056822132}
+  - component: {fileID: 1056822133}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -4114,6 +4115,18 @@ MonoBehaviour:
   usingImage: {fileID: 1745781987}
   CselectB: {fileID: 560541972}
   Image: {fileID: 1745781985}
+--- !u!114 &1056822133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056822128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1068908211
 GameObject:
   m_ObjectHideFlags: 0

@@ -147,17 +147,20 @@ public class scenechange :MonoBehaviour
         
 
     }
+
     private void Update()
     {/*
         foreach (var item in mUIStack)
         {
             Debug.Log(item + "+++++++++++++++++++++++++"); // 3 번째 2 번째 1 번째  
         }*/
+        /*
         if (Input.GetKey(KeyCode.Escape))
         {
-            BackSpace.Instance.ToString();
+            
             string name= BackSpace.Instance.Pop().ToString();
-            SceneManager.LoadScene(name);
+            Debug.Log(BackSpace.Instance.ToString());
+            SceneManager.LoadScene(name);*/
             //SceneManager.GetActiveScene().name;
             /*
             string name = mUIStack.Pop().ToString();
@@ -200,7 +203,7 @@ public class scenechange :MonoBehaviour
                     break;
             }*/
 
-        }
+        //}
 
     }
 }
