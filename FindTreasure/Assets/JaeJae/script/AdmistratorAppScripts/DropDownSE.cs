@@ -52,23 +52,7 @@ public class DropDownSE : MonoBehaviour
         HandleInputData();
         StartCoroutine(CountTime());
     }
-    /*
-    void Update()
-    { 
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                if (Input.GetKey(KeyCode.Escape))
-
-                {
-                    SceneManager.LoadScene("administratorMenu");
-                }
-            }
-        if (Input.GetKey(KeyCode.Escape))
-
-        {
-            SceneManager.LoadScene("administratorMenu");
-        }
-    }*/
+    
     private void SetDropdownOptionsExample()
     {
         startH.options.Clear();
