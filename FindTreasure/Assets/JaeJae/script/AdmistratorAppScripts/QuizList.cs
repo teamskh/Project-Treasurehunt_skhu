@@ -176,21 +176,5 @@ public void OnDisable()
 {
     foreach (GameObject item in QList) Destroy(item);
 }*/
-    /*
-    public void Update()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            if (Input.GetKey(KeyCode.Escape))
 
-            {
-                SceneManager.LoadScene("administratorMenu");
-            }
-        }
-        if (Input.GetKey(KeyCode.Escape))
-
-        {
-            SceneManager.LoadScene("administratorMenu");
-        }
-    }*/
 }

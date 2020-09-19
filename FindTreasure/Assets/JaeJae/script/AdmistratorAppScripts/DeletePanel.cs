@@ -29,7 +29,11 @@ public class DeletePanel : MonoBehaviour
     void Delete()
     {
         string key = LongPressButton.Oname;
-        if (GameObject.Find("GameSetting") == true)
+        if (GameObject.Find("PlayAr") == true)
+        {
+            Application.Quit();
+        }
+        else if (GameObject.Find("GameSetting") == true)
         {
             dic = new QuiDictionary();
             dic.TryGetValue(key, out quiz);
