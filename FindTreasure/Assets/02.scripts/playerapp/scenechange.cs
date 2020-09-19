@@ -106,4 +106,5 @@ public class scenechange :MonoBehaviour
     {
         SceneManager.LoadScene("loading");
     }
+    
 }
