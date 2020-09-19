@@ -58,23 +58,7 @@ public class competinfo : MonoBehaviour
             }
         }
     }
-    /*
-    public void Update()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            if (Input.GetKey(KeyCode.Escape))
 
-            {
-                SceneManager.LoadScene("ContestList");
-            }
-        }
-        if (Input.GetKey(KeyCode.Escape))
-
-        {
-            SceneManager.LoadScene("ContestList");
-        }
-    }*/
     public void PasswordSave()
     {
         if (ContestPw_infT.text.Length < 1)

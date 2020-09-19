@@ -4963,6 +4963,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 167802551}
     m_Modifications:
+    - target: {fileID: 2967678807409965735, guid: 1e6753ae8db048544a8144bb115e59a8,
+        type: 3}
+      propertyPath: m_Text
+      value: "\uB300\uD68C\uB97C \uC0AD\uC81C\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+      objectReference: {fileID: 0}
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
       propertyPath: m_LocalPosition.x
