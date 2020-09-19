@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 {
     public static bool isLogin = false;
     public static bool LoginKind = false;
-    DataPath path = new DataPath();
 
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
     Dictionary<int, string> Answers = new Dictionary<int, string>();
