@@ -9,56 +9,63 @@ public class scenechange :MonoBehaviour
     public static string Qname;
     public static int QButtonClick = -1;
 
-    public static Stack mUIStack = new Stack();
+    //public static Stack mUIStack = new Stack();
 
     public void changeMainScene()
     {
         //gameman.Instance.updatecompet();
         SceneManager.LoadScene("02.Main");
         //mUIStack.Push(1);
-       
+        BackSpace.Instance.Clear();
+        //mUIStack.Clear();
     }
 
     public void changeadminScene()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestList");
         //mUIStack.Push(2);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToAdMenu()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
         //mUIStack.Push(3);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToQuizMenu()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
         //mUIStack.Push(4);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToContestSetting()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestMenu");//대회 세팅 화면
         //mUIStack.Push(5);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToCStartEnd()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("CStartEnd");//시작끝시간 페이지 화면
         //mUIStack.Push(6);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToRealTimeR()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("RealTimeR");//실시간 랭킹 화면
         //mUIStack.Push(7);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     
@@ -84,30 +91,34 @@ public class scenechange :MonoBehaviour
     */
     public void ChangeSceneToContestClosed()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestClosed");//대회폐쇄화면
         //mUIStack.Push(8);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToQuizType()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizType");//Quiz type설정 화면
         //mUIStack.Push(9);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToQuizAdd()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//Quiz Add 화면
         //mUIStack.Push(10);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
     
     public void ChangeSceneToQuizAddToChange()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
         //mUIStack.Push(11);
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }//onclicks에 quizchage랑 연결
 
     public void OnClicked(GameObject gameObject)
@@ -119,8 +130,9 @@ public class scenechange :MonoBehaviour
 
     public void Loading()
     {
+        //mUIStack.Push(SceneManager.GetActiveScene().name);
+        BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("loading");
-        mUIStack.Push(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeSceneToQuizAdd(int kind)
@@ -136,14 +148,15 @@ public class scenechange :MonoBehaviour
 
     }
     private void Update()
-    {
+    {/*
         foreach (var item in mUIStack)
         {
             Debug.Log(item + "+++++++++++++++++++++++++"); // 3 번째 2 번째 1 번째  
-        }
+        }*/
         if (Input.GetKey(KeyCode.Escape))
         {
-            string name=mUIStack.Pop().ToString();
+            BackSpace.Instance.ToString();
+            string name= BackSpace.Instance.Pop().ToString();
             SceneManager.LoadScene(name);
             //SceneManager.GetActiveScene().name;
             /*
