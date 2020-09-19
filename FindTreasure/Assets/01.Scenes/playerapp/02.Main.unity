@@ -6160,6 +6160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj: {fileID: 78944203}
   bar: {fileID: 289201239}
+  StartObj: {fileID: 865626680}
+  ListObj: {fileID: 216061922}
+  BtnObj: {fileID: 5243581424486035108}
+  welcome: {fileID: 1448527406}
 --- !u!114 &940987646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6172,10 +6176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartObj: {fileID: 865626680}
-  ListObj: {fileID: 216061922}
-  BtnObj: {fileID: 5243581424486035108}
-  welcome: {fileID: 1448527406}
 --- !u!1001 &954032828
 PrefabInstance:
   m_ObjectHideFlags: 0
