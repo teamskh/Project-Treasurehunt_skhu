@@ -5,11 +5,11 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+public class LongPressButton : UIBehaviour, /*IPointerClickHandler,*/ IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
-    public UnityEvent onClick;
-    public float durationThreshold = 1f;
-    public UnityEvent onLongPress = new UnityEvent();
+    private UnityEvent onClick;
+    private float durationThreshold = 1f;
+    private UnityEvent onLongPress = new UnityEvent();
     public static string Oname;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -56,13 +56,13 @@ public class LongPressButton : UIBehaviour, IPointerClickHandler, IPointerDownHa
     }
 
 
-
+    /*
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         Debug.Log(name + "Game Object Clicked!", this);
         
         onClick.Invoke();
-    }
+    }*/
 
     void SceneChange()
     {
