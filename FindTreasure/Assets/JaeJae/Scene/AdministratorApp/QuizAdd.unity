@@ -4227,7 +4227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakePicture_b: {fileID: 1197997854}
   RawImagePV: {fileID: 2095350057}
-  upperbar: {fileID: 0}
+  upperbar: {fileID: 1041122618}
   selectImage: {fileID: 982943435}
   usingImage: {fileID: 1745781987}
   CselectB: {fileID: 560541972}
