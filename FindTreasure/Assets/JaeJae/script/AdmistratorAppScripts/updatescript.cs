@@ -8,14 +8,8 @@ public class updatescript : MonoBehaviour
     [SerializeField]
     GameObject Panel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
