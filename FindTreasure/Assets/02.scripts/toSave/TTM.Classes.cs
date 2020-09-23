@@ -430,7 +430,7 @@ namespace TTM.Classes
         public string[] path;
         string exc = ".dat";
 
-        public DataPath(string Filename ="Log",string Usercode ="0")
+        public DataPath(string Filename ="Log",string Usercode ="0", string exc =".dat")
         {
             path = new string[3];
             path[0] = "/Assets/Resources";
@@ -439,6 +439,7 @@ namespace TTM.Classes
 #endif
             path[1] = Filename;
             path[2] = Usercode;
+            this.exc = exc;
         }
         
         public string this[int index]
@@ -464,6 +465,11 @@ namespace TTM.Classes
         {
              return path[0] + '/' + path[1] + '/' + path[2] + exc;
         }
+
+        public void SetJPG() => exc = ".jpg";
+        public void SetPNG() => exc = ".png";
+        public string File() => path[2] + exc;
+        public string DirFile() => path[1] + '/' + path[2] + exc;
     }
 
     public static class SaveLoad
