@@ -1681,25 +1681,6 @@ MonoBehaviour:
   BPrefab: {fileID: 4504820443070760683, guid: e8a44a37255e56945b5f752453e27395, type: 3}
   Content: {fileID: 903746219}
   AskD: {fileID: 1720953685}
---- !u!114 &1979585454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979585449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc1393e5ca4dcc439cfc7d34c5302a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
-  Obj: {fileID: 1631626095}
-  bar: {fileID: 0}
-  StartObj: {fileID: 0}
-  ListObj: {fileID: 999216451}
-  BtnObj: {fileID: 1752182400}
-  welcome: {fileID: 0}
 --- !u!114 &1979585455
 MonoBehaviour:
   m_ObjectHideFlags: 0

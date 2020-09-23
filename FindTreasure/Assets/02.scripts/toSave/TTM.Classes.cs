@@ -48,6 +48,8 @@ namespace TTM.Classes
         public int UserPass { get; set; }
         public int wordNumber { get; set; }
 
+        public int MaxScore { get; set; }//////// 이게 돼여?
+
         public ShortInfo shorts;
 
         #region Set Times
@@ -69,15 +71,6 @@ namespace TTM.Classes
 
             return compLog;
         }
-
-        #region Con3
-        public void SetCon()
-        {
-
-
-        }
-        #endregion
-
     }
 
 
@@ -367,7 +360,7 @@ namespace TTM.Classes
             /// For Shorts ///            
             comp.shorts = new ShortInfo();
             comp.shorts.ConName = comp.Name;
-            //comp.MaxScore;
+            comp.shorts.MaxScore = comp.MaxScore;
             comp.shorts.EndingTime = comp.EndTime;
 
             return comp;

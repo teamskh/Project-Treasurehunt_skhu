@@ -14,6 +14,9 @@ public class PlayerContents
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
 
+    CreateCompetbuttons CCb;
+    rank Rank;
+
     #region Singleton
     PlayerContents()
     {
@@ -76,5 +79,19 @@ public class PlayerContents
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
         Debug.Log($"{com}'s Clicklistener");
+    }
+
+    void SetendTime()
+    {
+        foreach(string k in CCb.ConName)
+        {
+            if (k == CurCompetName)//gogo 부분에 버튼 이름이 들어간다.
+            {
+                //종료시간과 최대 점수
+                //gameman.Instance.endingTime;
+                //gameman.Instance.score;
+            }
+        }
+        Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
     }
 }
