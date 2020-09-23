@@ -12,6 +12,7 @@ public class Ani : MonoBehaviour
     public GameObject ListObj;
     public GameObject BtnObj;
     public GameObject welcome;
+    
 
     public void Sidebtn()
     {
@@ -30,13 +31,14 @@ public class Ani : MonoBehaviour
         StartCoroutine(abled(1.36f));
     }
 
+    /*
     public void BtnZip()
     {
         Obj.SetBool("start", true);
-        StartCoroutine(Btnabled(0.8f));
-        
+        StartCoroutine(Btnabled(0.5f));
+
         StartCoroutine(BtnDisabled(2f));
-    }
+    }*/
 
     IEnumerator Disabled(float waitTime)
     {
@@ -52,18 +54,20 @@ public class Ani : MonoBehaviour
         ListObj.SetActive(true);
     }
 
-    IEnumerator Btnabled(float waitTime)
+    /*IEnumerator Btnabled(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         BtnObj.SetActive(true);
         ListObj.SetActive(true);
+        HideObj.SetActive(true);
     }
 
     IEnumerator BtnDisabled(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         Obj.SetBool("start", false);
+        HideObj.SetActive(false);
         BtnObj.SetActive(false);
         ListObj.SetActive(false);
-    }
+    }*/
 }
