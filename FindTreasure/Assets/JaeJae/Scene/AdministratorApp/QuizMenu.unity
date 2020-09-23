@@ -1846,6 +1846,7 @@ GameObject:
   - component: {fileID: 1979585453}
   - component: {fileID: 1979585455}
   - component: {fileID: 1979585454}
+  - component: {fileID: 1979585456}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1918,7 +1919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc1393e5ca4dcc439cfc7d34c5302a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
   Obj: {fileID: 1631626095}
   bar: {fileID: 0}
   StartObj: {fileID: 0}
@@ -1937,6 +1937,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63472d96fee273a409768cae1221a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1979585456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979585449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panel: {fileID: 0}
 --- !u!1 &1986211236
 GameObject:
   m_ObjectHideFlags: 0
