@@ -5,6 +5,7 @@ using UnityEngine;
 using TTM.Classes;
 using UnityEngine.UI;
 using BackEnd;
+using UnityEngine.SceneManagement;
 
 public class QuizFactory : MonoBehaviour
 {
@@ -84,14 +85,13 @@ public class QuizFactory : MonoBehaviour
 
     void Cancel()
     {
-        var scenechage = GameObject.Find("GameSetting").GetComponent<scenechange>();
-        scenechage.ChangeSceneToQuizMenu();
+        SceneManager.LoadScene("QuizMenu");
     }
 
     void Back()
     {
-        var scenechage = GameObject.Find("GameSetting").GetComponent<scenechange>();
-        scenechage.ChangeSceneToQuizType();
+        SceneManager.LoadScene("QuizType");
+        BackSpace.Instance.Pop();
     }
 
     void Save()
