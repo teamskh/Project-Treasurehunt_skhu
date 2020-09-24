@@ -73,6 +73,7 @@ public class PlayerContents
         Debug.Log($"{com}'s Clicklistener");
         CurLib.GetQuizz(CurCompet);
         Debug.Log($"{com}'s Clicklistener");
+        SetendTime();
         if (CurOpenCompets != null)
         {
             Debug.Log($"{com}'s Clicklistener");
@@ -81,17 +82,19 @@ public class PlayerContents
         Debug.Log($"{com}'s Clicklistener");
     }
 
-    void SetendTime()
+    public void SetendTime()
     {
-        foreach(string k in CCb.ConName)
+        foreach (var Short in CurOpenCompets)
         {
-            if (k == CurCompetName)//gogo 부분에 버튼 이름이 들어간다.
+            if (Short.ConName == CurOpenCompets.Find(CurCompetName).ConName)
             {
-                //종료시간과 최대 점수
-                //gameman.Instance.endingTime;
-                //gameman.Instance.score;
+                Debug.Log(CurOpenCompets.Find(CurCompetName).ConName);
+                gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
+                gameman.Instance.EndScore = CurOpenCompets.Find(CurCompetName).MaxScore;
+                Debug.Log(gameman.Instance.endtime);
+                Debug.Log(gameman.Instance.EndScore);
             }
         }
-        Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
+       Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
     }
 }

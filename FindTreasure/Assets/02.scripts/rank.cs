@@ -63,7 +63,7 @@ public class rank : MonoBehaviour
             //{
                 TimeSpan times = gameman.Instance.endtime - DateTime.Now;
                 test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
-                if (times.Seconds < 1)
+                if (times.Seconds < 1) //시간 종료
                 {
                     statusbar.SetActive(false);
                     
@@ -72,19 +72,15 @@ public class rank : MonoBehaviour
                     openendmess = true;
                     
                     endTime.SetActive(false);
-                    //gameman.Instance.endingTime = " ";
                     endscoreT.text = gameman.Instance.score.ToString();
                 }
-                else
+                else if (gameman.Instance.score == gameman.Instance.EndScore) //최대점수 도달
                 {
-                    if (gameman.Instance.score == gameman.Instance.EndScore) //서버에서 점수 가져오기
-                    {
-                        statusbar.SetActive(false);
-                        Endingmess.SetActive(true);
-                        endScore.SetActive(false);
-                        gameman.Instance.score = 30;
-                        endtimeT.text = gameman.Instance.endingTime;
-                    }
+                    statusbar.SetActive(false);
+                    Endingmess.SetActive(true);
+                    endScore.SetActive(false);
+                    gameman.Instance.score = gameman.Instance.EndScore;
+                    endtimeT.text = gameman.Instance.endingTime;
                 }
                 endtimeT.text = test; //남은 시간
 

@@ -32,12 +32,12 @@ public class gameman : MonoBehaviour
     [SerializeField]
     private InputField NicknameInput;
 
-    public DateTime endtime;
-    public string endingTime;
+    public DateTime endtime; //서버에 있는 종료 시간
+    public string endingTime; //최대 점수 도달시 시간
     public bool loadRankChek;
     //public bool che = false; //종료 시간 버튼 눌렸는지 확인 쓸모 없는 걸로 확인
 
-    public int EndScore; //서버에 있는 대회 점수 얘도 결정
+    public int EndScore; //서버에 있는 대회 점수 얘로 결정
     public int score = 0;  //얘도 빼도 될듯
 
     public GameObject LoginB;
