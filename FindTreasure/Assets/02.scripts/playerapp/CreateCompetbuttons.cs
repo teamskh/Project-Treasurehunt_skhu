@@ -16,7 +16,8 @@ public class CreateCompetbuttons : MonoBehaviour
     private List<GameObject> buttons = new List<GameObject>();
 
     private UnityAction m_ClickAction;
-    
+
+    public List<string> ConName;
 
     [SerializeField]
     GameObject List;
@@ -39,13 +40,14 @@ public class CreateCompetbuttons : MonoBehaviour
         m_ClickAction += SetActive;
         //m_ClickAction += score.click;
         curlist = PlayerContents.Instance.CompetitionList();
-        foreach (string title in curlist) { //title이 버튼 이름 -> title이 버튼 이름이라는 건 대회이름이라는 건가?
+        foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
             b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count+1) * 60);
             foreach(Text t in b.GetComponentsInChildren<Text>()){
                 if (t.gameObject.layer == 8)
                 {
                     t.text = title;
+                    ConName.Add(title);/////////////////추가
                 }
             }
             buttons.Add(b);
@@ -67,18 +69,5 @@ public class CreateCompetbuttons : MonoBehaviour
         bar.SetActive(true);
         rankButton.SetActive(true);
         Debug.Log("click");
-    }
-
-    void SetendTime()
-    {
-        /*
-        foreach(string k in conlist)
-        {
-            if (k == "gogo")//gogo 부분에 버튼 이름이 들어간다.
-            {
-                
-            }
-        }*/
-        Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
     }
 }

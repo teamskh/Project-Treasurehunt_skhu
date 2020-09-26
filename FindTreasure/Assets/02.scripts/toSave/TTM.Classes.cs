@@ -69,15 +69,6 @@ namespace TTM.Classes
 
             return compLog;
         }
-
-        #region Con3
-        public void SetCon()
-        {
-
-
-        }
-        #endregion
-
     }
 
 
@@ -90,6 +81,7 @@ namespace TTM.Classes
         public int? Kind { get; set; }
         public String[] List { get; set; }
         public object Answer { get; set; }
+        public int? sum = 0;
 
         public override string ToString()
         {
@@ -97,6 +89,7 @@ namespace TTM.Classes
             quiz += $"Title : {Title}\n";
             quiz += $"Str : {Str}\n";
             quiz += $"Score : {Score}\n";
+
             quiz += $"Kind : {Kind}\n";
             if(Kind ==1)
                 for(int i = 0; i < 4; i++)
@@ -159,6 +152,8 @@ namespace TTM.Classes
             item.Kind = int.Parse(quiz["kind"]["N"].ToString());
 
             item.Score = int.Parse(quiz["score"]["N"].ToString());
+            ///////////////////////////////////////////////////////////////
+            item.sum += item.Score;
 
             var ans = quiz["answer"]["S"].ToString();
             switch (item.Kind)
@@ -200,6 +195,7 @@ namespace TTM.Classes
             Debug.Log($"a_quiz : {code}");
             return code;
         }
+        
     }
 
     public class PQuizDicitionary:QuiDictionary
@@ -218,6 +214,8 @@ namespace TTM.Classes
             item.Str = quiz["context"]["S"].ToString();
 
             item.Kind = int.Parse(quiz["kind"]["N"].ToString());
+
+            sum += int.Parse(quiz["score"]["N"].ToString());
 
             if(item.Kind == 1)
             {
@@ -240,6 +238,9 @@ namespace TTM.Classes
             Debug.Log($"p_quiz : {code}");
             return code;
         }
+
+        public int sum = 0;
+
     }
 
     //관리자 Competition 전용 클래스
@@ -369,9 +370,10 @@ namespace TTM.Classes
             /// For Shorts ///            
             comp.shorts = new ShortInfo();
             comp.shorts.ConName = comp.Name;
-            //comp.MaxScore;
+            ////////////////////////////////////////
+            comp.shorts.MaxScore = 0;
             comp.shorts.EndingTime = comp.EndTime;
-
+            
             return comp;
         }
         public override int CurrentCode(string name)
