@@ -40,6 +40,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Load = () => Debug.Log("Load() : Before Login");
+        Save = () => Debug.Log("Save() : Before Login");
+
         if (instance == null)
         {
             instance = this;

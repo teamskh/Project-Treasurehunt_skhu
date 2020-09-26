@@ -79,7 +79,6 @@ public class rank : MonoBehaviour
                     statusbar.SetActive(false);
                     Endingmess.SetActive(true);
                     endScore.SetActive(false);
-                    gameman.Instance.score = gameman.Instance.EndScore;
                     endtimeT.text = gameman.Instance.endingTime;
                 }
                 endtimeT.text = test; //남은 시간
