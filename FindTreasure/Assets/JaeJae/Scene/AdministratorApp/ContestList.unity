@@ -2152,7 +2152,7 @@ RectTransform:
   - {fileID: 508129956}
   - {fileID: 1138447142}
   m_Father: {fileID: 919802289}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2853,8 +2853,8 @@ RectTransform:
   m_Children:
   - {fileID: 167802551}
   - {fileID: 120568312}
-  - {fileID: 1908779233}
   - {fileID: 709674064}
+  - {fileID: 1908779233}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4174,6 +4174,7 @@ GameObject:
   - component: {fileID: 1393885543}
   - component: {fileID: 1393885546}
   - component: {fileID: 1393885545}
+  - component: {fileID: 1393885544}
   m_Layer: 5
   m_Name: BtnZip
   m_TagString: Untagged
@@ -4246,18 +4247,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393885545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: BtnZip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1393885545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5092,7 +5082,7 @@ PrefabInstance:
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
