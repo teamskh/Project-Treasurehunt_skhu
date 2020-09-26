@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 {
     public static bool isLogin = false;
     public static bool LoginKind = false;
-    DataPath path = new DataPath();
 
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
     Dictionary<int, string> Answers = new Dictionary<int, string>();
@@ -41,6 +40,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Load = () => Debug.Log("Load() : Before Login");
+        Save = () => Debug.Log("Save() : Before Login");
+
         if (instance == null)
         {
             instance = this;
