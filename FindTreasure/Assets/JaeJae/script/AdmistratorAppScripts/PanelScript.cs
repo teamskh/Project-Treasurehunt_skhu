@@ -2,36 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PanelScript : MonoBehaviour
 {
-    [SerializeField]
-    GameObject Panel;
+    Button CPB,RCS,CMB;
+    GameObject Panel_T;
+    private List<GameObject> panel = new List<GameObject>();
+    //private List<GameObject> Button = new List<GameObject>();
 
+    //int bkind;
+    int Pkind;
+    
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().name == "ContestList")
+        {
+            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("ContestSetupPanel").gameObject ?? null);
+            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskDel").gameObject ?? null);
+        }
+        else if (SceneManager.GetActiveScene().name == "ContestMenu")
+        {
+            CPB = GameObject.Find("ChangePw_b")?.GetComponent<Button>();
+            RCS = GameObject.Find("ReCSetting_b")?.GetComponent<Button>();
+            CMB = GameObject.Find("ChangeMode_b")?.GetComponent<Button>();
+            //Button?.Add(GameObject.Find("ChangePw_b").gameObject ?? null);
+            //Button?.Add(GameObject.Find("ReCSetting_b").gameObject ?? null);
+            //Button?.Add(GameObject.Find("ChangeMode_b").gameObject ?? null);
+            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_pw").gameObject ?? null);
+            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_comp").gameObject ?? null);
+            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_mode").gameObject ?? null);
+        }
+        else if(SceneManager.GetActiveScene().name == "02.Main")
+        {
+            panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
+        }
+        else if (SceneManager.GetActiveScene().name == "QuizMenu")
+        {
+            panel?.Add(GameObject.Find("Panel").transform.Find("AskDel").gameObject ?? null);
+        }
+        Panel_T = GameObject.Find("Panel_T").gameObject;
+    }
     private void Start()
     {
-        Panel.SetActive(false);
+        Panel_T.SetActive(false);
     }
 
-    private void Update()
+    public void setNumber(int kind)
     {
-        Forupdate();
+        panel[kind].SetActive(true);
+        Panel_T.SetActive(true);
+        Pkind = kind;
     }
-
-    void Forupdate()
+    public void set()
     {
-        if(GameObject.Find("Panel_pw")|| GameObject.Find("Panel_comp") || GameObject.Find("Panel_mode"))
-        {
-            Panel.SetActive(true);
-            if (Input.GetMouseButtonDown(0))
-            {
-                string obj_name=EventSystem.current.currentSelectedGameObject.name;
-                Debug.Log(obj_name);
-                if (obj_name == "Panel_T")
-                {
-                    Panel.SetActive(false);
-                }
-            }
-        }
+        panel[Pkind].SetActive(false);
+        Panel_T.SetActive(false);
     }
 }

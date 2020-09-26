@@ -14,14 +14,17 @@ public class DeletePanel : MonoBehaviour
     Q quiz;
     CompetitionDictionary compdic;
     Competition comp;
+    //GameObject Panel_T;
 
     public void OnEnable()
     {
+        //Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
         Y = transform.Find("Y").GetComponent<Button>();
         N = transform.Find("N").GetComponent<Button>();
     }
     private void Start()
     {
+        //Panel_T.SetActive(true);
         Y?.onClick.AddListener(() => Delete());
         N?.onClick.AddListener(() => Cancel());
     }

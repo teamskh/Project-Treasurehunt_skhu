@@ -86,7 +86,8 @@ public class CompetitionToServer : MonoBehaviour
 
     public void SetActive()
     {
-        AskD.SetActive(true);
+        gameObject.GetComponent<PanelScript>().setNumber(1);
+        //AskD.SetActive(true);
         Debug.Log("Active?");
     }
 }

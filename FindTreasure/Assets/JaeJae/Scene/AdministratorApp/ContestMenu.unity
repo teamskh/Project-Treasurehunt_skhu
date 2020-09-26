@@ -513,16 +513,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2112677282}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2106536537}
+        m_MethodName: setNumber
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &122507247
 MonoBehaviour:
@@ -837,16 +837,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1206532610}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2106536537}
+        m_MethodName: setNumber
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &206599426
 MonoBehaviour:
@@ -3516,7 +3516,7 @@ GameObject:
   - component: {fileID: 913307428}
   - component: {fileID: 913307427}
   m_Layer: 5
-  m_Name: ChagePw_b
+  m_Name: ChangePw_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3590,16 +3590,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1823139792}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2106536537}
+        m_MethodName: setNumber
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &913307428
 MonoBehaviour:
@@ -4612,7 +4612,7 @@ GameObject:
   - component: {fileID: 1206532613}
   - component: {fileID: 1206532612}
   m_Layer: 5
-  m_Name: Panel_comp
+  m_Name: Panel_mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6759,6 +6759,7 @@ GameObject:
   - component: {fileID: 1655306528}
   - component: {fileID: 1655306527}
   - component: {fileID: 1655306526}
+  - component: {fileID: 1655306529}
   m_Layer: 5
   m_Name: Panel_T
   m_TagString: Untagged
@@ -6821,6 +6822,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1655306529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655306525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c521211f72ce6b446964cdcb159d6311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106536537}
+        m_MethodName: set
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1658350026
 GameObject:
   m_ObjectHideFlags: 0
@@ -9119,7 +9146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23005b69da9b664d8d2a37629e2cae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 1655306525}
 --- !u!1 &2112677282
 GameObject:
   m_ObjectHideFlags: 0
@@ -9132,7 +9158,7 @@ GameObject:
   - component: {fileID: 2112677285}
   - component: {fileID: 2112677284}
   m_Layer: 5
-  m_Name: Panel_mode
+  m_Name: Panel_comp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9374,7 +9400,7 @@ GameObject:
   - component: {fileID: 2146048958}
   - component: {fileID: 2146048957}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Panel_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

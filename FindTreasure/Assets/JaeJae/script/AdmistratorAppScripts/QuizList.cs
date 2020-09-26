@@ -63,7 +63,8 @@ public class QuizList : MonoBehaviour
 
     public void SetActive()
     {
-        AskD.SetActive(true);
+        //AskD.SetActive(true);
+        gameObject.GetComponent<PanelScript>().setNumber(0);
         Debug.Log("Active?");
     }
 

@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class updatescript : MonoBehaviour
 {
-    [SerializeField]
-    GameObject Panel;
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -15,7 +12,7 @@ public class updatescript : MonoBehaviour
         {
             if (BackSpace.Instance.Count==0)
             {
-                Panel.SetActive(true);
+                gameObject.GetComponent<PanelScript>().setNumber(0);
             }
 
             string name = BackSpace.Instance.Pop().ToString();
