@@ -210,11 +210,16 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void MakeLibrary()
     {
-        //var txtures = Resources.LoadAll<Texture2D>("FindTreasure/Images");
-        
+        DataPath path = new DataPath("JPG/" + PlayerContents.Instance.CurCompetition);
+        path.SetJPG();
+
+        //Directory.GetFiles()
+
         //아래 내용은 DownloadFiles 내용이 정상적으로 작동할 때 해제
         var competition = PlayerPrefs.GetInt("p_competition");
         var txtures = Resources.LoadAll<Texture2D>("FindTreasure/IMG" +competition);
+
+
 
         foreach (var txt in txtures)
         {   

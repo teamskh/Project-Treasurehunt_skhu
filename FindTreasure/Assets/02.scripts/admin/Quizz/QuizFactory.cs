@@ -177,6 +177,8 @@ public class QuizFactory : MonoBehaviour
 
         Debug.Log($"Param Data : {param.ToStr()}");
         newQ = true;
+
+        SaveImage.Instance.SaveIMG(quiz.Title);
     }
     
     //정답 전달

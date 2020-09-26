@@ -196,6 +196,7 @@ namespace TTM.Classes
             int code = -1;
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_quiz", code);
+            AdminCurState.Instance.Quiz = name;
             Debug.Log($"a_quiz : {code}");
             return code;
         }
@@ -315,6 +316,7 @@ namespace TTM.Classes
             if (transCode.TryGetValue(name, out code))
                 PlayerPrefs.SetInt("a_competition", code);
             // a_competition에 저장된 int 값을 where용 Param.Add("code", code)의 code변수 값으로 사용
+            AdminCurState.Instance.Competition = name;
             Debug.Log($"a_Competition : {code}");
             return code;
         }
@@ -470,6 +472,8 @@ namespace TTM.Classes
         public void SetPNG() => exc = ".png";
         public string File() => path[2] + exc;
         public string DirFile() => path[1] + '/' + path[2] + exc;
+        public string Dir() => path[1];
+        public string Files(string name) => path[0] +'/'+path[1] + '/' + name + exc;
     }
 
     public static class SaveLoad

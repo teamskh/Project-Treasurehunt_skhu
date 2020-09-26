@@ -32,8 +32,7 @@ public class Camera1 : MonoBehaviour
 		Texture2D ss = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 		ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
 		ss.Apply();
-		savess = ss;
-		savess.Apply();
+		SaveImage.Instance.SetNewTexture(ss);
 		selectImage.texture = ss;
 		upperbar.SetActive(true);
 		RawImagePV.SetActive(true);
@@ -116,7 +115,7 @@ public class Camera1 : MonoBehaviour
 					Debug.Log("Couldn't load texture from " + path);
 					return;
 				}
-				
+				SaveImage.Instance.SetNewTexture(texture);
 				usingImage.texture = texture;
 			}
 		}, "Select a PNG image", "image/png");

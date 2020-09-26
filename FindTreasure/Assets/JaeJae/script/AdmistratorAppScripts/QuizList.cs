@@ -35,7 +35,9 @@ public class QuizList : MonoBehaviour
             foreach (string item in list)
             {
                 QList.Add(MakeQuizButton(item));
+                DownLoadIMG(item);
             }
+        ControlIMGs();
     }
     
     public GameObject MakeQuizButton(string name)
@@ -176,5 +178,54 @@ public void OnDisable()
 {
     foreach (GameObject item in QList) Destroy(item);
 }*/
+    void ControlIMGs()
+    {
+        DataPath path = new DataPath(Filename: "JPG/" + AdminCurState.Instance.Competition);
 
+         var delpath = FTP.FtpDownloadUsingWebClient(new DataPath(path.Dir(), "Deleted", ".txt"));
+        foreach(var name in unpackTXT(delpath))
+        {
+            DataPath curpath = new DataPath(path.Dir(), name);
+            curpath.SetJPG();
+
+            File.Delete(curpath.ToString());
+        }
+
+        var modpath = FTP.FtpDownloadUsingWebClient(new DataPath(path.Dir(), "Modified", ".txt"));
+        foreach (var name in unpackTXT(modpath))
+        {
+            DataPath curpath = new DataPath(path.Dir(), name);
+            curpath.SetJPG();
+
+            if (File.Exists(curpath.ToString()))
+            {
+                File.Delete(curpath.ToString());
+            }
+
+            IMG(curpath);
+        }
+    }
+    void DownLoadIMG(string name)
+    {
+        DataPath path = new DataPath(Filename: "JPG/" + AdminCurState.Instance.Competition, Usercode: name);
+        path.SetJPG();
+        IMG(path);
+    }
+
+    bool IMG(DataPath path)
+    {
+        if (!File.Exists(path.ToString()))
+        {
+            FTP.FtpDownloadUsingWebClient(path);
+            return true;
+        }
+
+        return false;
+    }
+
+    string[] unpackTXT(string path)
+    {
+        var names = File.ReadAllText(path);
+        return names.Split(char.Parse("\n"));
+    }
 }
