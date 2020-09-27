@@ -11,14 +11,18 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
     private float durationThreshold = 1f;
     private UnityEvent onLongPress = new UnityEvent();
     public static string Oname;
-
+    public static string Bname;
     public void OnPointerDown(PointerEventData eventData)
     {
         //held = false;
         if(GameObject.Find("GameSetting")==true)
             GetComponent<Button>()?.onClick.AddListener(SceneChange);
-        else if(GameObject.Find("GameManager")==true)
-            GetComponent<Button>()?.onClick.AddListener(Change);
+        else if (GameObject.Find("GameManager") == true)
+        {
+            Bname = GetComponent<Button>()?.GetComponentInChildren<Text>().text;
+            GetComponent<Button>()?.onClick.AddListener(ActivePanel);
+            //GetComponent<Button>()?.onClick.AddListener(Change);
+        }
         Invoke("OnLongPress", durationThreshold);
     }
 
@@ -47,7 +51,8 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
         }
         else if (GameObject.Find("GameManager") == true)
         {
-            GetComponent<Button>()?.onClick.RemoveListener(Change);
+            //GetComponent<Button>()?.onClick.RemoveListener(Change);
+            GetComponent<Button>()?.onClick.RemoveListener(ActivePanel);
             Oname = GetComponent<Button>()?.GetComponentInChildren<Text>().text;
             GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetActive();
         }
@@ -60,8 +65,13 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
         gameObject.GetComponent<scenechange>().OnClicked(gameObject);
     }
 
-    void Change()
+    public void Change()
     {
         gameObject.GetComponent<scenechange>().ChangeSceneToAdMenu(gameObject);
+    }
+
+    void ActivePanel()
+    {
+        gameObject.GetComponent<PanelScript>().setNumber(2);
     }
 }

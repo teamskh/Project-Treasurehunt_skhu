@@ -18,7 +18,6 @@ public class DeletePanel : MonoBehaviour
 
     public void OnEnable()
     {
-        //Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
         Y = transform.Find("Y").GetComponent<Button>();
         N = transform.Find("N").GetComponent<Button>();
     }

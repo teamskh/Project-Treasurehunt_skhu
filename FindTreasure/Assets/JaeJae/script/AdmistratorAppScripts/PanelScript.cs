@@ -21,6 +21,7 @@ public class PanelScript : MonoBehaviour
         {
             panel?.Add(GameObject.Find("ContestCanvas").transform.Find("ContestSetupPanel").gameObject ?? null);
             panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskPw").gameObject ?? null);
         }
         else if (SceneManager.GetActiveScene().name == "ContestMenu")
         {
