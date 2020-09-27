@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TTM.Classes;
 using UnityEngine;
 
@@ -97,5 +98,10 @@ public class PlayerContents
             }
         }
        //Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
+    }
+
+    public List<string> FileList()
+    {
+        return CurLib.Keys.ToList();
     }
 }
