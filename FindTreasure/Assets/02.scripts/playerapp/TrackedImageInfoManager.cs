@@ -213,17 +213,20 @@ public class TrackedImageInfoManager : MonoBehaviour
         DataPath path = new DataPath("JPG/" + PlayerContents.Instance.CurCompetition);
         path.SetJPG();
 
-        //Directory.GetFiles()
+        List<string> quiznames = PlayerContents.Instance.FileList();
 
-        //아래 내용은 DownloadFiles 내용이 정상적으로 작동할 때 해제
-        var competition = PlayerPrefs.GetInt("p_competition");
-        var txtures = Resources.LoadAll<Texture2D>("FindTreasure/IMG" +competition);
-
-
-
-        foreach (var txt in txtures)
-        {   
-            StartCoroutine(AddImageJob(CopyTexture(txt),txt.name));
+        foreach(var quiz in quiznames)
+        {
+            var p = path.Files(quiz);
+            byte[] bytetexture = File.ReadAllBytes(p);
+            if (bytetexture.Length > 0)
+            {
+                Texture2D txtur = new Texture2D(0, 0);
+                txtur.name = quiz;
+                txtur.LoadImage(bytetexture);
+                txtur.Apply();
+                StartCoroutine(AddImageJob(CopyTexture(txtur), quiz));
+            }
         }
     }
 

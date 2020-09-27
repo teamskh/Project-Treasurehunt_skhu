@@ -32,6 +32,8 @@ public class SaveImage
     {
         byte[] imageBytes = Saves.EncodeToJPG();
         DataPath path = new DataPath("JPG/" +AdminCurState.Instance.Competition, Name);
+        if (!Directory.Exists(path[1]))
+            Directory.CreateDirectory(path[1]);
 
         path.SetJPG();
         if (!File.Exists(path.ToString()))
