@@ -6122,7 +6122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.59999, y: -94.423}
+  m_AnchoredPosition: {x: 197, y: -94.423}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350625124
@@ -7959,8 +7959,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.1, y: -15.200073}
-  m_SizeDelta: {x: 445.26, y: 100}
+  m_AnchoredPosition: {x: 24.40001, y: -15.200073}
+  m_SizeDelta: {x: 602.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710644483
 MonoBehaviour:
@@ -7993,7 +7993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB300\uD68C \uC2DC\uC791 / \uC885\uB8CC"
+  m_Text: "\uB300\uD68C \uC2DC\uC791 / \uC885\uB8CC  \uC218\uC815"
 --- !u!222 &1710644484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8297,7 +8297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
 --- !u!1 &1838092632
 GameObject:
   m_ObjectHideFlags: 0

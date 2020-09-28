@@ -74,14 +74,14 @@ public class PlayerContents
         Debug.Log($"{com}'s Clicklistener");
         CurLib.GetQuizz(CurCompet);
         Debug.Log($"{com}'s Clicklistener");
-        SetendTime();
-
         if (CurOpenCompets != null)
         {
             Debug.Log($"{com}'s Clicklistener");
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
         Debug.Log($"{com}'s Clicklistener");
+
+        SetendTime();
     }
 
     public void SetendTime()
@@ -90,7 +90,6 @@ public class PlayerContents
         {
             if (Short.ConName == CurOpenCompets.Find(CurCompetName).ConName)
             {
-                Debug.Log(CurOpenCompets.Find(CurCompetName).ConName);
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
                 Debug.Log(gameman.Instance.endtime);

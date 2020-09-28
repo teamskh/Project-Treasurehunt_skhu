@@ -49,9 +49,12 @@ namespace TTM.Classes
         public int wordNumber { get; set; }
 
         public ShortInfo shorts;
-
+        public DropDownSE timeset;
+        
         #region Set Times
-        public void setNowStart() { StartTime = DateTime.Now; }
+        public void setNowStart() {
+            StartTime = DateTime.Now;
+        }
 
         public void setNowEnd() {
             EndTime = DateTime.Now;
