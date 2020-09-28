@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +13,7 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
     private UnityEvent onLongPress = new UnityEvent();
     public static string Oname;
     public static string Bname;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         //held = false;
@@ -20,7 +22,7 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
         else if (GameObject.Find("GameManager") == true)
         {
             Bname = GetComponent<Button>()?.GetComponentInChildren<Text>().text;
-            GetComponent<Button>()?.onClick.AddListener(ActivePanel);
+            GetComponent<Button>()?.onClick.AddListener(()=>ActivePanel());
             //GetComponent<Button>()?.onClick.AddListener(Change);
         }
         Invoke("OnLongPress", durationThreshold);
@@ -44,7 +46,6 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
         //held = true;
         if (GameObject.Find("GameSetting") == true)
         {
-            GetComponent<Button>()?.onClick.RemoveListener(SceneChange);
             Oname=GetComponent<Button>()?.GetComponentInChildren<Text>().text;
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().SetActive();
             //Hierchy에 QuizList가 2개가 되고, GameSetting에서 설정한 베이스 세팅을 AddComponent()과정에서 해주지 않아 문제 발생
@@ -72,6 +73,7 @@ public class LongPressButton : UIBehaviour, IPointerDownHandler, IPointerUpHandl
 
     void ActivePanel()
     {
-        gameObject.GetComponent<PanelScript>().setNumber(2);
+        //gameObject.GetComponent<PanelScript>().setNumber(2);
+        GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().Active();
     }
 }

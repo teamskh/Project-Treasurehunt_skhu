@@ -10,9 +10,6 @@ public class PanelScript : MonoBehaviour
     Button CPB,RCS,CMB;
     GameObject Panel_T;
     private List<GameObject> panel = new List<GameObject>();
-    //private List<GameObject> Button = new List<GameObject>();
-
-    //int bkind;
     int Pkind;
     
     private void OnEnable()
