@@ -61,6 +61,12 @@ namespace TTM.Classes
         }
         #endregion
 
+        public Competition()
+        {
+            StartTime = DateTime.MaxValue;
+            EndTime = DateTime.MaxValue;
+        }
+
         public override string ToString()
         {
             string compLog = "";
