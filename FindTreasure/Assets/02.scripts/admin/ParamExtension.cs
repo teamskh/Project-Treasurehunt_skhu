@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BackEnd;
 using LitJson;
@@ -106,6 +107,9 @@ static class ParamExtension
         else param.Add("info", comp.Info);
         if (comp.UserPass.ToString()==null) comp.Info = null;
         else param.Add("userpass", comp.UserPass);
+        param.Add("starttime", comp.StartTime.ToString());
+        param.Add("endtime", comp.EndTime.ToString());
+
         return param;
     }
 
@@ -140,5 +144,21 @@ static class ParamExtension
             Debug.Log("Success");
         else
             Debug.Log(bro.ToString());
+    }
+
+    public static void UpdateCompetition(this Param param) {
+
+    }
+
+    static Param SetStartTime(this Param mine, DateTime starttime)
+    {
+        mine.Add("starttime", starttime.ToString());
+        return mine;
+    }
+
+    static Param SetEndTime(this Param mine, DateTime endtime)
+    {
+        mine.Add("endtime", endtime.ToString());
+        return mine;
     }
 }
