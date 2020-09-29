@@ -680,6 +680,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 703134198}
+        m_MethodName: resetInput
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 528792766}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 703134204}
+        m_MethodName: resetP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &120568314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,9 +1388,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 703134203}
-        m_MethodName: Go
-        m_Mode: 1
+      - m_Target: {fileID: 120568311}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1377,9 +1399,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 120568311}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 703134203}
+        m_MethodName: Go
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1578,6 +1600,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521456908}
   m_CullTransparentMesh: 0
+--- !u!114 &528792766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 950345033726278023, guid: dbf4ee291482d134ba6fa0ce39815966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309519078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615676688
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,8 +3404,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 703134203}
-        m_MethodName: Go
+      - m_Target: {fileID: 703134198}
+        m_MethodName: set
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3381,8 +3415,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 703134198}
-        m_MethodName: set
+      - m_Target: {fileID: 703134203}
+        m_MethodName: Go
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

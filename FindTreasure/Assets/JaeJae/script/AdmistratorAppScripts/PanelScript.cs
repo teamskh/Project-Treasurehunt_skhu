@@ -35,6 +35,7 @@ public class PanelScript : MonoBehaviour
         else if(SceneManager.GetActiveScene().name == "02.Main")
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("PanelAdPw").gameObject ?? null);
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
         {
@@ -62,5 +63,10 @@ public class PanelScript : MonoBehaviour
     {
         panel[Pkind].SetActive(false);
         Panel_T.SetActive(false);
+    }
+    
+    public void resetInput(InputField inputfield)
+    {
+        inputfield.SetTextWithoutNotify("");
     }
 }
