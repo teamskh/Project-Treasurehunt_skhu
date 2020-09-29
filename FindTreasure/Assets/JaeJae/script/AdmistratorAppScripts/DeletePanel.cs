@@ -25,7 +25,7 @@ public class DeletePanel : MonoBehaviour
     {
         //Panel_T.SetActive(true);
         Y?.onClick.AddListener(() => Delete());
-        N?.onClick.AddListener(() => Cancel());
+        //N?.onClick.AddListener(() => Cancel());
     }
 
     void Delete()
@@ -41,7 +41,7 @@ public class DeletePanel : MonoBehaviour
             dic.TryGetValue(key, out quiz);
             Param param = new Param();
             param.DeleteQuiz(quiz);
-            GameObject.Find("AskDel")?.SetActive(false);
+            //GameObject.Find("AskDel")?.SetActive(false);
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().LoadQuiz();
         }
         else if(GameObject.Find("GameManager") == true)
@@ -50,13 +50,13 @@ public class DeletePanel : MonoBehaviour
             compdic.TryGetValue(key, out comp);
             Param param = new Param();
             param.DeleteCompetition(comp);
-            GameObject.Find("AskDel")?.SetActive(false);
+            //GameObject.Find("AskDel")?.SetActive(false);
             GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
         }
     }
-    
+    /*
     void Cancel()
     {
-        GameObject.Find("AskDel")?.SetActive(false);
-    }
+        //GameObject.Find("AskDel")?.SetActive(false);
+    }*/
 }

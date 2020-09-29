@@ -40,6 +40,10 @@ public class PanelScript : MonoBehaviour
         {
             panel?.Add(GameObject.Find("Panel").transform.Find("AskDel").gameObject ?? null);
         }
+        else if (SceneManager.GetActiveScene().name == "QuizAdd")
+        {
+            panel?.Add(GameObject.Find("Canvas").transform.Find("CameraP").gameObject ?? null);
+        }
         Panel_T = GameObject.Find("Panel_T").gameObject;
     }
     private void Start()
@@ -49,6 +53,7 @@ public class PanelScript : MonoBehaviour
 
     public void setNumber(int kind)
     {
+        Debug.Log(panel[kind].name);
         panel[kind].SetActive(true);
         Panel_T.SetActive(true);
         Pkind = kind;
