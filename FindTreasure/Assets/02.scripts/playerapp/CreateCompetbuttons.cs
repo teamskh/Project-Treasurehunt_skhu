@@ -46,10 +46,10 @@ public class CreateCompetbuttons : MonoBehaviour
     void Awake()
     {
         //m_ClickAction += sfxmusic.Go;
-        if (gameman.Instance.endtime < DateTime.Now) //현재 시간이 종료시간보다 지났으면 팝업 띄우기
-            m_ClickAction += SetActiveEndNotice;
-        else if (gameman.Instance.endtime > DateTime.Now) //현재 시간이 종료시간보다 전이면 팝업 띄우기
+        if (gameman.Instance.Opentime > DateTime.Now) //현재 시간이 종료시간보다 전이면 팝업 띄우기
             m_ClickAction += SetActiveOpebNotice;
+        else if (gameman.Instance.endtime < DateTime.Now) //현재 시간이 종료시간보다 지났으면 팝업 띄우기
+            m_ClickAction += SetActiveEndNotice;
         else
             m_ClickAction += SetActive;
         //m_ClickAction += score.click;
