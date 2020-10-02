@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 using TTM.Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -183,27 +184,40 @@ public void OnDisable()
     {
         DataPath path = new DataPath(Filename: "JPG/" + AdminCurState.Instance.Competition);
 
-         var delpath = FTP.FtpDownloadUsingWebClient(new DataPath(path.Dir(), "Deleted", ".txt"));
-        foreach(var name in unpackTXT(delpath))
-        {
-            DataPath curpath = new DataPath(path.Dir(), name);
-            curpath.SetJPG();
-
-            File.Delete(curpath.ToString());
-        }
-
-        var modpath = FTP.FtpDownloadUsingWebClient(new DataPath(path.Dir(), "Modified", ".txt"));
-        foreach (var name in unpackTXT(modpath))
-        {
-            DataPath curpath = new DataPath(path.Dir(), name);
-            curpath.SetJPG();
-
-            if (File.Exists(curpath.ToString()))
+        try {
+            var delpath = FTP.ImageServerDownload(new DataPath(path.Dir(), "Deleted", ".txt"));
+            foreach (var name in unpackTXT(delpath))
             {
+                DataPath curpath = new DataPath(path.Dir(), name);
+                curpath.SetJPG();
+
                 File.Delete(curpath.ToString());
             }
+        }
+        catch (WebException e)
+        {
+            Debug.Log(e.Message);
+        }
 
-            IMG(curpath);
+        try
+        {
+            var modpath = FTP.ImageServerDownload(new DataPath(path.Dir(), "Modified", ".txt"));
+            foreach (var name in unpackTXT(modpath))
+            {
+                DataPath curpath = new DataPath(path.Dir(), name);
+                curpath.SetJPG();
+
+                if (File.Exists(curpath.ToString()))
+                {
+                    File.Delete(curpath.ToString());
+                }
+
+
+                IMG(curpath);
+            }
+        }catch(WebException e)
+        {
+            Debug.Log(e.Message);
         }
     }
     void DownLoadIMG(string name)
@@ -217,7 +231,7 @@ public void OnDisable()
     {
         if (!File.Exists(path.ToString()))
         {
-            FTP.FtpDownloadUsingWebClient(path);
+            FTP.ImageServerDownload(path);
             return true;
         }
 
