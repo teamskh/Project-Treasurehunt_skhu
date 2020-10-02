@@ -10,9 +10,6 @@ public class PanelScript : MonoBehaviour
     Button CPB,RCS,CMB;
     GameObject Panel_T;
     private List<GameObject> panel = new List<GameObject>();
-    //private List<GameObject> Button = new List<GameObject>();
-
-    //int bkind;
     int Pkind;
     
     private void OnEnable()
@@ -21,6 +18,7 @@ public class PanelScript : MonoBehaviour
         {
             panel?.Add(GameObject.Find("ContestCanvas").transform.Find("ContestSetupPanel").gameObject ?? null);
             panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskPw").gameObject ?? null);
         }
         else if (SceneManager.GetActiveScene().name == "ContestMenu")
         {
@@ -37,10 +35,15 @@ public class PanelScript : MonoBehaviour
         else if(SceneManager.GetActiveScene().name == "02.Main")
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("PanelAdPw").gameObject ?? null);
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
         {
             panel?.Add(GameObject.Find("Panel").transform.Find("AskDel").gameObject ?? null);
+        }
+        else if (SceneManager.GetActiveScene().name == "QuizAdd")
+        {
+            panel?.Add(GameObject.Find("Canvas").transform.Find("CameraP").gameObject ?? null);
         }
         Panel_T = GameObject.Find("Panel_T").gameObject;
     }
@@ -51,6 +54,7 @@ public class PanelScript : MonoBehaviour
 
     public void setNumber(int kind)
     {
+        Debug.Log(panel[kind].name);
         panel[kind].SetActive(true);
         Panel_T.SetActive(true);
         Pkind = kind;
@@ -59,5 +63,10 @@ public class PanelScript : MonoBehaviour
     {
         panel[Pkind].SetActive(false);
         Panel_T.SetActive(false);
+    }
+    
+    public void resetInput(InputField inputfield)
+    {
+        inputfield.SetTextWithoutNotify("");
     }
 }

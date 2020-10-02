@@ -38,7 +38,7 @@ public class QuizFactory : MonoBehaviour
     {
         //문제 유형 전달
         kind = PlayerPrefs.GetInt("ButtonClick",-1);
-        PlayerPrefs.DeleteKey("ButtonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
+        PlayerPrefs.DeleteKey("Butaus tonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
         CancelButton?.onClick.AddListener(() => Back());
 
         if (kind < 0)

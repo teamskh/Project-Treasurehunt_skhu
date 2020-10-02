@@ -135,7 +135,6 @@ public class CompetitionFactory : MonoBehaviour
         //Competition 서버 전송
         Param param = new Param();
         param.SetCompetition(comp).InsertCompetition();
-        Debug.Log(FTP.FtpMakeDir(comp.Name));
 
         //버튼 리스트 리셋용 호출
         var script = GetComponent<CompetitionToServer>();
@@ -143,6 +142,9 @@ public class CompetitionFactory : MonoBehaviour
 
         return;
     }
-
+    public void resetP()
+    {
+        resetFields();
+    }
     
 }
