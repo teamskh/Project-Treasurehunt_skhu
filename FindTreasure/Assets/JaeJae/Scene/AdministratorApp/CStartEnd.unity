@@ -8213,10 +8213,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1794906042}
-  - component: {fileID: 1794906043}
   - component: {fileID: 1794906044}
-  - component: {fileID: 1794906041}
   - component: {fileID: 1794906045}
+  - component: {fileID: 1794906043}
+  - component: {fileID: 1794906041}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -8297,7 +8297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
 --- !u!1 &1838092632
 GameObject:
   m_ObjectHideFlags: 0
