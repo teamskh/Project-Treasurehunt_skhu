@@ -84,10 +84,13 @@ public class CompetitionToServer : MonoBehaviour
         return competb;
     }
 
+    public void Active()
+    {
+        gameObject.GetComponent<PanelScript>().setNumber(2);
+    }
+
     public void SetActive()
     {
         gameObject.GetComponent<PanelScript>().setNumber(1);
-        //AskD.SetActive(true);
-        Debug.Log("Active?");
     }
 }

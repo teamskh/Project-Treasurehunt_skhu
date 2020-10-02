@@ -142,6 +142,9 @@ public class CompetitionFactory : MonoBehaviour
 
         return;
     }
-
+    public void resetP()
+    {
+        resetFields();
+    }
     
 }
