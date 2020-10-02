@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BackEnd;
+using TTM.Classes;
 
 public class DropDownSE : MonoBehaviour
 {
@@ -28,7 +30,9 @@ public class DropDownSE : MonoBehaviour
 
     public bool chon= false;
     public int cnt = 0;
-    
+
+    Competition compet = new Competition();
+    CompetitionDictionary dic = new CompetitionDictionary();
 
     public void HandleInputData()
     {
@@ -85,30 +89,49 @@ public class DropDownSE : MonoBehaviour
         if (startTAMPM.value == 0)
         {
             starttime = Convert.ToDateTime(CalendarController._SDateString + " " + startH.value.ToString("D2") + ":" + startM.value.ToString("D2"));
-            Debug.Log(starttime);
         }
         else if (startTAMPM.value == 1)
         {
             starttime = Convert.ToDateTime(CalendarController._SDateString + " " + (startH.value + 12).ToString("D2") + ":" + startM.value.ToString("D2"));
         }
+        compet.StartTime = starttime;
+
+        Param param = new Param();
+        param.CompetStart(starttime)
+             .CompetUpdate();
     }
     public void SelectButtonStartnow()
     {
         isOn = true;
         reservStart = false;
         starttime = DateTime.Now;
+
+        compet.StartTime = starttime;
+
+        Param param = new Param();
+        param.CompetStart(starttime)
+             .CompetUpdate();
     }
     public void SelectButtonE()
     {
         reservEnd = true;
+        
         if (EndTAMPM.value == 0)
         {
             endtime = Convert.ToDateTime(CalendarController._EDateString+" "+EndH.value.ToString("D2") + ":" + EndM.value.ToString("D2"));
+           
         }
         else if (EndTAMPM.value == 1)
         {
             endtime = Convert.ToDateTime(CalendarController._EDateString +" "+(EndH.value +12).ToString("D2") + ":" + EndM.value.ToString("D2"));
+            
         }
+
+        compet.EndTime = endtime;
+
+        Param param = new Param();
+        param.CompetEnd(endtime)
+             .CompetUpdate();
 
     }
     public void SelectButtonEndnow()
@@ -116,6 +139,11 @@ public class DropDownSE : MonoBehaviour
         isOn = false;
         reservEnd = false;
         endtime = DateTime.Now;
+        compet.EndTime = endtime;
+
+        Param param = new Param();
+        param.CompetEnd(endtime)
+             .CompetUpdate();
     }
 
     private void FixedUpdate()

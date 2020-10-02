@@ -15,8 +15,15 @@ namespace TTM.Classes
     {
         public String ConName { get; set; }
         public int MaxScore { get; set; }
+        public DateTime StartTime { get; set; }
         public DateTime EndingTime { get; set; }
-        
+
+        public void UpdateStartTime(DateTime newDateTime)
+        {
+            if (StartTime != newDateTime)
+                StartTime = newDateTime;
+        }
+
         public void UpdateEndingTime(DateTime newDateTime)
         {
             if (EndingTime != newDateTime)
@@ -381,6 +388,7 @@ namespace TTM.Classes
             comp.shorts.ConName = comp.Name;
             ////////////////////////////////////////
             comp.shorts.MaxScore = 0;
+            comp.shorts.StartTime = comp.StartTime;
             comp.shorts.EndingTime = comp.EndTime;
             
             return comp;

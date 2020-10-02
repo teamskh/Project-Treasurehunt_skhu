@@ -14,9 +14,7 @@ public class PlayerContents
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
-
-    CreateCompetbuttons CCb;
-    rank Rank;
+    Rank rank;
 
     #region Singleton
     PlayerContents()
@@ -90,13 +88,11 @@ public class PlayerContents
         {
             if (Short.ConName == CurOpenCompets.Find(CurCompetName).ConName)
             {
+                gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
-                Debug.Log(gameman.Instance.endtime);
-                Debug.Log(gameman.Instance.EndScore);
             }
         }
-       //Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
     }
 
     public List<string> FileList()

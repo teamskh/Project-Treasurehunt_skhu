@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
         {
             if(Short.ConName == shortInfo.ConName)
             {
+                Short.UpdateStartTime(shortInfo.StartTime);
                 Short.UpdateEndingTime(shortInfo.EndingTime);
                 return;
             }

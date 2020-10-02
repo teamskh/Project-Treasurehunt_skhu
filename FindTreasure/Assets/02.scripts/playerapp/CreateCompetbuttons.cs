@@ -19,6 +19,8 @@ public class CreateCompetbuttons : MonoBehaviour
 
     public List<string> ConName;
 
+    Rank rank = new Rank();
+
     [SerializeField]
     GameObject List;
 
@@ -46,13 +48,9 @@ public class CreateCompetbuttons : MonoBehaviour
     void Awake()
     {
         //m_ClickAction += sfxmusic.Go;
-        if (gameman.Instance.Opentime > DateTime.Now) //현재 시간이 종료시간보다 전이면 팝업 띄우기
-            m_ClickAction += SetActiveOpebNotice;
-        else if (gameman.Instance.endtime < DateTime.Now) //현재 시간이 종료시간보다 지났으면 팝업 띄우기
-            m_ClickAction += SetActiveEndNotice;
-        else
-            m_ClickAction += SetActive;
         //m_ClickAction += score.click;
+        m_ClickAction += Notice;
+
         curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
@@ -75,7 +73,26 @@ public class CreateCompetbuttons : MonoBehaviour
             b.GetComponent<Button>().onClick.AddListener(() => TrackManager.AddComponent<TrackedImageInfoManager>());
         }
     }
-    
+
+    void Notice()
+    {
+        TimeSpan St = gameman.Instance.Opentime - DateTime.Now;
+        TimeSpan Ed = gameman.Instance.endtime - DateTime.Now;
+
+        if (St.Seconds > 0) //현재 시간이 종료시간보다 전이면 팝업 띄우기
+            SetActiveOpenNotice();
+
+        else if (Ed.Seconds < 0) //현재 시간이 종료시간보다 지났으면 팝업 띄우기
+            SetActiveEndNotice();
+
+        else
+        {
+            SetActive();
+            rank.chek = true;
+            rank.Sign();
+        }
+    }
+
     void SetActive()
     {
         List.SetActive(false);
@@ -85,17 +102,18 @@ public class CreateCompetbuttons : MonoBehaviour
         Debug.Log("click");
     }
 
-    void SetActiveOpebNotice() //대회 시작 전 팝업
+    void SetActiveOpenNotice() //대회 시작 전 팝업
     {
-        NoticeTime.SetActive(true);
+        Debug.Log("1");
         NoticeOpen.SetActive(true);
         NoticeEnd.SetActive(false);
     }
 
     void SetActiveEndNotice() //이미 종료된 팝업
     {
-        NoticeTime.SetActive(true);
+        Debug.Log("2");
         NoticeOpen.SetActive(false);
         NoticeEnd.SetActive(true);
     }
+    
 }
