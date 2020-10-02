@@ -113,7 +113,7 @@ public class competinfo : MonoBehaviour
         param.DeleteCompetition(compet);
         param.SetCompetition(compet).InsertCompetition();
         Panel3.SetActive(false);
-        Debug.Log(FTP.FtpRenameDir(new DataPath("JPG/" + AdminCurState.Instance.Competition), compet.Name));
+        FTP.ImageServerRename(AdminCurState.Instance.Competition, compet.Name);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {
