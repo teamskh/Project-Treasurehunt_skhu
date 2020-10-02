@@ -43,6 +43,7 @@ public class DeletePanel : MonoBehaviour
             param.DeleteQuiz(quiz);
             //GameObject.Find("AskDel")?.SetActive(false);
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().LoadQuiz();
+            FTP.ImageServerOne(AdminCurState.Instance.Competition,key);
         }
         else if(GameObject.Find("GameManager") == true)
         {
@@ -52,6 +53,7 @@ public class DeletePanel : MonoBehaviour
             param.DeleteCompetition(comp);
             //GameObject.Find("AskDel")?.SetActive(false);
             GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
+            FTP.ImageServerAllIMG(key);
         }
     }
     /*

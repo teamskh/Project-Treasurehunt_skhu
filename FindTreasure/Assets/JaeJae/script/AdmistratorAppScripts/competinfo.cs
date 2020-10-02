@@ -176,7 +176,7 @@ public class competinfo : MonoBehaviour
             .CompetUserpass(compet.UserPass)
             .CompetUpdate();
 
-        FTP.ImageServerRename(AdminCurState.Instance.Competition, compet.Name);
+        FTP.ImageServerRenameDir(AdminCurState.Instance.Competition, compet.Name);
     }
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {
