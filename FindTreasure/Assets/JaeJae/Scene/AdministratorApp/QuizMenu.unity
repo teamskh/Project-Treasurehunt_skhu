@@ -1718,12 +1718,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1979585452}
+  - component: {fileID: 1979585456}
   - component: {fileID: 1979585451}
   - component: {fileID: 1979585450}
   - component: {fileID: 1979585453}
   - component: {fileID: 1979585455}
   - component: {fileID: 1979585454}
-  - component: {fileID: 1979585456}
   - component: {fileID: 1979585457}
   m_Layer: 0
   m_Name: GameSetting

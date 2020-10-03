@@ -2786,7 +2786,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 429.7, y: 72.4}
+  m_SizeDelta: {x: 422.2, y: 72.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &521181681
 MonoBehaviour:
@@ -5309,7 +5309,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 0
@@ -6851,7 +6851,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60, y: 0}
-  m_SizeDelta: {x: 429.7, y: 72.4}
+  m_SizeDelta: {x: 422.2, y: 72.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494559362
 MonoBehaviour:
@@ -10362,11 +10362,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106536534}
-  - component: {fileID: 2106536533}
-  - component: {fileID: 2106536532}
-  - component: {fileID: 2106536535}
   - component: {fileID: 2106536536}
+  - component: {fileID: 2106536533}
   - component: {fileID: 2106536537}
+  - component: {fileID: 2106536535}
+  - component: {fileID: 2106536532}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged

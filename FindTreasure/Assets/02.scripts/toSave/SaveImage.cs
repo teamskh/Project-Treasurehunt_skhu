@@ -42,10 +42,10 @@ public class SaveImage
             DataPath modpath = new DataPath(path.Dir(), "Modified", ".txt");
             if (!File.Exists(modpath.ToString())) File.Create(modpath.ToString());
             File.AppendAllText(modpath.ToString(), Name+'\n');
-            FTP.FtpUploadUsingwebClient(modpath);
+            FTP.ImageServerUpload(modpath);
         }
         Debug.Log("File Available: "+File.Exists(path.ToString()));
-        FTP.FtpUploadUsingwebClient(path);
+        FTP.ImageServerUpload(path);
     }
 
     public void SaveIMG() => Save();
@@ -66,7 +66,7 @@ public class SaveImage
             DataPath delpath = new DataPath(path.Dir(), "Deleted", ".txt");
             if (!File.Exists(delpath.ToString())) File.Create(delpath.ToString());
             File.AppendAllText(delpath.ToString(), name+'\n');
-            FTP.FtpUploadUsingwebClient(delpath);
+            FTP.ImageServerUpload(delpath);
 
             FTP.FtpDeleteIMG(path);
         }

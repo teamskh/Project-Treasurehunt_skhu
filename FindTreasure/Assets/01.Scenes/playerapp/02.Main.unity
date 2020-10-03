@@ -984,7 +984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1, y: -96}
+  m_AnchoredPosition: {x: -1, y: -96.00012}
   m_SizeDelta: {x: -30, y: -380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &216061924
@@ -3270,7 +3270,7 @@ PrefabInstance:
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -59
+      value: -59.000122
       objectReference: {fileID: 0}
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
@@ -6593,14 +6593,14 @@ GameObject:
   - component: {fileID: 940987639}
   - component: {fileID: 940987638}
   - component: {fileID: 940987642}
-  - component: {fileID: 940987637}
+  - component: {fileID: 940987640}
   - component: {fileID: 940987641}
   - component: {fileID: 940987643}
   - component: {fileID: 940987644}
   - component: {fileID: 940987645}
   - component: {fileID: 940987646}
   - component: {fileID: 940987647}
-  - component: {fileID: 940987640}
+  - component: {fileID: 940987637}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
