@@ -175,10 +175,17 @@ public class QuizFactory : MonoBehaviour
             param.UpdateQuiz(quiz);
         else param.SetQuiz(quiz).InsertQuiz();
 
+        if (newQ)
+            SaveImage.Instance.SaveIMG(quiz.Title);
+        else
+        {
+            if (key != quiz.Title) FTP.ImageServerRenameFile(AdminCurState.Instance.Competition, key, quiz.Title);
+            if (SaveImage.Instance.NeedToSave)
+                SaveImage.Instance.SaveIMG(quiz.Title);
+        }
         Debug.Log($"Param Data : {param.ToStr()}");
         newQ = true;
-
-        SaveImage.Instance.SaveIMG(quiz.Title);
+        
     }
     
     //정답 전달

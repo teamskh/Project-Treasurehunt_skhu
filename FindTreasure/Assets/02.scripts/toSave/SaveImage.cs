@@ -6,6 +6,7 @@ public class SaveImage
 {
     Texture2D Saves;
     string Name;
+    public bool NeedToSave = false;
 
     static SaveImage instance;
 
@@ -21,7 +22,9 @@ public class SaveImage
     public void SetNewTexture(Texture2D ss)
     {
         Saves = ss;
-        Saves.Apply();
+        if (ss.isReadable)
+            Saves.Apply();
+        NeedToSave = true;
     }
     public void SetName(string name)
     {
@@ -46,6 +49,7 @@ public class SaveImage
         }
         Debug.Log("File Available: "+File.Exists(path.ToString()));
         FTP.ImageServerUpload(path);
+        NeedToSave = false;
     }
 
     public void SaveIMG() => Save();
@@ -56,19 +60,5 @@ public class SaveImage
         Save();
     }
 
-    public static void DeleteIMG(string name)
-    {
-        DataPath path = new DataPath("JPG/" +AdminCurState.Instance.Competition,name);
-        path.SetJPG();
-        if (File.Exists(path.ToString())){
-            File.Delete(path.ToString());
 
-            DataPath delpath = new DataPath(path.Dir(), "Deleted", ".txt");
-            if (!File.Exists(delpath.ToString())) File.Create(delpath.ToString());
-            File.AppendAllText(delpath.ToString(), name+'\n');
-            FTP.ImageServerUpload(delpath);
-
-            FTP.FtpDeleteIMG(path);
-        }
-    }
 }
