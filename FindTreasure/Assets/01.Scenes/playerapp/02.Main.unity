@@ -6600,7 +6600,6 @@ GameObject:
   - component: {fileID: 940987645}
   - component: {fileID: 940987646}
   - component: {fileID: 940987647}
-  - component: {fileID: 940987648}
   - component: {fileID: 940987637}
   m_Layer: 0
   m_Name: GameSetting
