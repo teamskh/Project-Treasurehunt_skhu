@@ -25,12 +25,6 @@ public static class CompetitionParam
         return update;
     }
 
-    public static Param CompetUserpass(this Param update, int userpass)
-    {
-        update.Add("userpass", userpass);
-        return update;
-    }
-
     public static Param CompetStart(this Param update, DateTime start)
     {
         update.Add("starttime", start.ToString());

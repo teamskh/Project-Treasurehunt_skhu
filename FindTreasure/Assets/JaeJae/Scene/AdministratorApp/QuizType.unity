@@ -1792,8 +1792,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1244072182}
   - component: {fileID: 1244072181}
-  - component: {fileID: 1244072183}
   - component: {fileID: 1244072180}
+  - component: {fileID: 1244072183}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -1851,6 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00460b078cf149a469895f2fcb403a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Panel: {fileID: 0}
 --- !u!1 &1345352039
 GameObject:
   m_ObjectHideFlags: 0
