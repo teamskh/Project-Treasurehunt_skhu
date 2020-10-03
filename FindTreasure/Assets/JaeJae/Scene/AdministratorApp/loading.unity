@@ -490,8 +490,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1077337100}
   - component: {fileID: 1077337099}
-  - component: {fileID: 1077337102}
   - component: {fileID: 1077337101}
+  - component: {fileID: 1077337102}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
