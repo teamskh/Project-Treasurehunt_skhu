@@ -16,6 +16,7 @@ public class Camera1 : MonoBehaviour
 	public static Texture2D savess;
 	public GameObject CselectB;
 	public GameObject Image;
+
 	void Start()
     {
 		RawImagePV.SetActive(false);
@@ -54,8 +55,6 @@ public class Camera1 : MonoBehaviour
 		texture=ScaleTexture(texture, (int)usingImage.rectTransform.rect.width, (int)usingImage.rectTransform.rect.height);
 		texture.Apply();
 		usingImage.texture = texture;
-		
-		
 	}
 
 	private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)

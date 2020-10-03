@@ -591,7 +591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 283.3, y: -318.6}
+  m_AnchoredPosition: {x: 283.3, y: -365}
   m_SizeDelta: {x: 160, y: 372.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968747805
@@ -1107,16 +1107,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 101270371}
     m_Modifications:
-    - target: {fileID: 2967678806735298673, guid: 1e6753ae8db048544a8144bb115e59a8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1979585457}
-    - target: {fileID: 2967678806735298673, guid: 1e6753ae8db048544a8144bb115e59a8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set
-      objectReference: {fileID: 0}
     - target: {fileID: 2967678807602157892, guid: 1e6753ae8db048544a8144bb115e59a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1231,16 +1221,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2967678807691154840, guid: 1e6753ae8db048544a8144bb115e59a8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1979585457}
-    - target: {fileID: 2967678807691154840, guid: 1e6753ae8db048544a8144bb115e59a8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6753ae8db048544a8144bb115e59a8, type: 3}
@@ -1740,11 +1720,11 @@ GameObject:
   - component: {fileID: 1979585452}
   - component: {fileID: 1979585456}
   - component: {fileID: 1979585451}
-  - component: {fileID: 1979585455}
+  - component: {fileID: 1979585450}
   - component: {fileID: 1979585453}
+  - component: {fileID: 1979585455}
   - component: {fileID: 1979585454}
   - component: {fileID: 1979585457}
-  - component: {fileID: 1979585450}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged

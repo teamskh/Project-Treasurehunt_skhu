@@ -1005,17 +1005,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1794906043}
-        m_MethodName: SetPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1794906041}
         m_MethodName: Go
         m_Mode: 1
@@ -4241,17 +4230,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1794906043}
-        m_MethodName: SetPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1794906041}
         m_MethodName: Go
         m_Mode: 1
@@ -6122,7 +6100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.59999, y: -94.423}
+  m_AnchoredPosition: {x: 197, y: -94.423}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350625124
@@ -7959,8 +7937,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.1, y: -15.200073}
-  m_SizeDelta: {x: 445.26, y: 100}
+  m_AnchoredPosition: {x: 24.40001, y: -15.200073}
+  m_SizeDelta: {x: 602.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710644483
 MonoBehaviour:
@@ -7993,7 +7971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB300\uD68C \uC2DC\uC791 / \uC885\uB8CC"
+  m_Text: "\uB300\uD68C \uC2DC\uC791 / \uC885\uB8CC  \uC218\uC815"
 --- !u!222 &1710644484
 CanvasRenderer:
   m_ObjectHideFlags: 0

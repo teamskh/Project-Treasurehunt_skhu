@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 
-public class rank : MonoBehaviour
+public class Rank : MonoBehaviour
 {
     public Text Name;
     //private TimeSpan times;
@@ -18,25 +18,26 @@ public class rank : MonoBehaviour
 
     public Text endtimeT;
     public Text endscoreT;
-    public bool openendmess=false;
+    
+    //public bool openendmess=false; //대회 종료
 
     private IEnumerator corutuine;
 
     public string test;
 
-    private void Start()
+    public void Start()
     {
-        Name.text = PlayerPrefs.GetString("nickna");
-        corutuine = CountTime();
-        
+        Name.text = PlayerPrefs.GetString("nickna","no");
     }
 
-    public void StartCo() //대회버튼이 눌려 대회시간 돌아가기
+    public void Sign() //대회버튼이 눌려 대회시간 돌아가기
     {
-        StartCoroutine(CountTime());
-        StartCoroutine(corutuine);
+        TimeSpan times = gameman.Instance.endtime - DateTime.Now;
+        test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
+        endtimeT.text = test;
+        Debug.Log(test);
     }
-
+    
     public void Loadrank()
     {
         gameman.Instance.loadRankChek = true;
@@ -45,15 +46,15 @@ public class rank : MonoBehaviour
 
     public void Close()
     {
-        openendmess = true;
+        //openendmess = true;
         gameman.Instance.loadRankChek = true;
     }
 
-   void Update()
+   /*void Update()
     {
         if(openendmess==true)
             StopCoroutine(corutuine);
-    }
+    }*/
 
     public IEnumerator CountTime()
     {
@@ -61,7 +62,7 @@ public class rank : MonoBehaviour
         {
             //if (gameman.Instance.che == true)
             //{
-                TimeSpan times = gameman.Instance.endtime - DateTime.Now;
+                /*TimeSpan times = gameman.Instance.endtime - DateTime.Now;
                 test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
                 if (times.Seconds < 1) //시간 종료
                 {
@@ -84,6 +85,7 @@ public class rank : MonoBehaviour
                 endtimeT.text = test; //남은 시간
 
                 gameman.Instance.endingTime = test;
+                */
             //}
             /*
             else
@@ -94,4 +96,5 @@ public class rank : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
+    
 }

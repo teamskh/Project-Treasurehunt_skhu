@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
         {
             if(Short.ConName == shortInfo.ConName)
             {
+                Short.UpdateStartTime(shortInfo.StartTime);
                 Short.UpdateEndingTime(shortInfo.EndingTime);
                 return;
             }
@@ -146,7 +147,6 @@ public class Player : MonoBehaviour
         }
         Save();
     }
-
 #region Answers
         
     public IEnumerator CheckAns(string name,string ans)

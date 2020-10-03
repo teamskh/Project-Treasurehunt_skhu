@@ -99,7 +99,7 @@ public class scenechange :MonoBehaviour
         ChangeSceneToQuizAddToChange();
     }
 
-    public void Loading()//학교admin로그인 성공시 쓰기
+    public void Loading()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("loading");
