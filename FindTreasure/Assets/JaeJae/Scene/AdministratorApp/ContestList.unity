@@ -2080,12 +2080,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703134199}
-  - component: {fileID: 703134201}
   - component: {fileID: 703134200}
+  - component: {fileID: 703134201}
+  - component: {fileID: 703134203}
   - component: {fileID: 703134204}
   - component: {fileID: 703134202}
   - component: {fileID: 703134198}
-  - component: {fileID: 703134203}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2930,6 +2930,7 @@ RectTransform:
   - {fileID: 167802551}
   - {fileID: 120568312}
   - {fileID: 709674064}
+  - {fileID: 1309519079}
   - {fileID: 464444355}
   - {fileID: 1908779233}
   m_Father: {fileID: 0}
@@ -4231,14 +4232,32 @@ PrefabInstance:
         type: 3}
       propertyPath: all_t
       value: 
-      objectReference: {fileID: 74976730}
+      objectReference: {fileID: 1309519081}
     - target: {fileID: 6374316966003357285, guid: dbf4ee291482d134ba6fa0ce39815966,
         type: 3}
       propertyPath: re
       value: 
-      objectReference: {fileID: 96058378}
+      objectReference: {fileID: 1309519080}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbf4ee291482d134ba6fa0ce39815966, type: 3}
+--- !u!224 &1309519079 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 211491855635191895, guid: dbf4ee291482d134ba6fa0ce39815966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309519078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1309519080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4824956108286116951, guid: dbf4ee291482d134ba6fa0ce39815966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309519078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1309519081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1008432506547549393, guid: dbf4ee291482d134ba6fa0ce39815966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309519078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369774668
 GameObject:
   m_ObjectHideFlags: 0

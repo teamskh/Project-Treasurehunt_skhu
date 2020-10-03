@@ -14,7 +14,6 @@ public class PlayerContents
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
-    Rank rank;
 
     #region Singleton
     PlayerContents()

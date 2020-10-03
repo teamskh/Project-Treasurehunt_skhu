@@ -16,24 +16,28 @@ public class scenechange :MonoBehaviour
         //gameman.Instance.updatecompet();
         SceneManager.LoadScene("02.Main");
         BackSpace.Instance.Clear();
+        Debug.Log(1);
     }
 
     public void changeadminScene()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestList");
+        Debug.Log(3);
     }
 
     public void ChangeSceneToAdMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
+        Debug.Log(4);
     }
 
     public void ChangeSceneToQuizMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
+        Debug.Log(5);
     }
 
     public void ChangeSceneToContestSetting()
@@ -84,6 +88,8 @@ public class scenechange :MonoBehaviour
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
+
+        Debug.Log(6);
     }//onclicks에 quizchage랑 연결
 
     public void OnClicked(GameObject gameObject)
@@ -93,10 +99,11 @@ public class scenechange :MonoBehaviour
         ChangeSceneToQuizAddToChange();
     }
 
-    public void Loading()//학교admin로그인 성공시 쓰기
+    public void Loading()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("loading");
+        Debug.Log(2);
     }
 
     public void ChangeSceneToQuizAdd(int kind)
