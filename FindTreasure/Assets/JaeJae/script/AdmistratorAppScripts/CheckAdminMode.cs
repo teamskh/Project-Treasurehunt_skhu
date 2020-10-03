@@ -25,7 +25,6 @@ public class CheckAdminMode : MonoBehaviour
                 
             }
         });
-        
     }
 
     private bool CheckPassword(string pw)

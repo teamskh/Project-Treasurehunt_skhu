@@ -203,8 +203,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 29886834}
-  - component: {fileID: 29886833}
   - component: {fileID: 29886835}
+  - component: {fileID: 29886833}
   - component: {fileID: 29886832}
   m_Layer: 0
   m_Name: GameSetting

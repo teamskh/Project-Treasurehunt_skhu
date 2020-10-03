@@ -24,7 +24,6 @@ public class Password : MonoBehaviour
     }
     private void Start()
     {
-        key = LongPressButton.Bname;
         all_t.SetActive(false);
         re.SetActive(false);
         OK_b?.onClick.AddListener(() => OK_s());
@@ -34,7 +33,10 @@ public class Password : MonoBehaviour
     {
         dic = new CompetitionDictionary();
         dic.GetCompetitions();
+
+        key = LongPressButton.Bname;
         dic.TryGetValue(key, out comp);
+
         if (input.text==comp.Password)
         {
             gameObject.AddComponent<scenechange>().ChangeSceneToAdMenu();
