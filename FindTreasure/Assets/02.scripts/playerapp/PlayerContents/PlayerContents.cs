@@ -15,9 +15,6 @@ public class PlayerContents
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
 
-    CreateCompetbuttons CCb;
-    rank Rank;
-
     #region Singleton
     PlayerContents()
     {
@@ -74,14 +71,14 @@ public class PlayerContents
         Debug.Log($"{com}'s Clicklistener");
         CurLib.GetQuizz(CurCompet);
         Debug.Log($"{com}'s Clicklistener");
-        SetendTime();
-
         if (CurOpenCompets != null)
         {
             Debug.Log($"{com}'s Clicklistener");
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
         Debug.Log($"{com}'s Clicklistener");
+
+        SetendTime();
     }
 
     public void SetendTime()
@@ -90,14 +87,11 @@ public class PlayerContents
         {
             if (Short.ConName == CurOpenCompets.Find(CurCompetName).ConName)
             {
-                Debug.Log(CurOpenCompets.Find(CurCompetName).ConName);
+                gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
-                Debug.Log(gameman.Instance.endtime);
-                Debug.Log(gameman.Instance.EndScore);
             }
         }
-       //Rank.StartCo(); //대회 버튼을 눌렀다! -> rank.cs에 코루틴이 돌아감 시간 시작
     }
 
     public List<string> FileList()
