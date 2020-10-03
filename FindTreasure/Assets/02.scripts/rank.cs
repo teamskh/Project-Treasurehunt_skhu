@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 
-public class Rank : MonoBehaviour
+public class rank : MonoBehaviour
 {
     public Text Name;
     //private TimeSpan times;
