@@ -18,34 +18,24 @@ public class Rank : MonoBehaviour
 
     public Text endtimeT;
     public Text endscoreT;
+    
     //public bool openendmess=false; //대회 종료
 
     private IEnumerator corutuine;
 
     public string test;
 
-    public bool chek=false;
-
-    private void Start()
+    public void Start()
     {
-        Name.text = PlayerPrefs.GetString("nickna");
-        Sign();
-        //corutuine = CountTime();
+        Name.text = PlayerPrefs.GetString("nickna","no");
     }
 
     public void Sign() //대회버튼이 눌려 대회시간 돌아가기
     {
-        Debug.Log("touchtouch");
-        if (chek == true)
-            //StartCo();
-            Debug.Log("hoho");
-        else
-            Debug.Log("nonono");
-    }
-
-    void StartCo()
-    {
-        StartCoroutine("Timer");
+        TimeSpan times = gameman.Instance.endtime - DateTime.Now;
+        test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
+        endtimeT.text = test;
+        Debug.Log(test);
     }
     
     public void Loadrank()
@@ -107,9 +97,4 @@ public class Rank : MonoBehaviour
         }
     }
     
-    IEnumerator Timer()
-    {
-        Debug.Log("1");
-        yield return new WaitForSeconds(1);
-    }
 }

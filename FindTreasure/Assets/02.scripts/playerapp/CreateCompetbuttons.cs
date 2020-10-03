@@ -20,6 +20,7 @@ public class CreateCompetbuttons : MonoBehaviour
     public List<string> ConName;
 
     Rank rank = new Rank();
+    QuizList qlist = new QuizList();
 
     [SerializeField]
     GameObject List;
@@ -63,6 +64,8 @@ public class CreateCompetbuttons : MonoBehaviour
                 }
             }
             buttons.Add(b);
+            //ReadytoStart.Ready(title);
+            //b.GetComponent<Button>().onClick.AddListener(() =>FTP.ImageServerDownload());
 
             b.GetComponent<Button>().onClick.AddListener(() =>PlayerContents.Instance.ClickListener(title));
             b.GetComponent<Button>().onClick.AddListener(() =>AvailableAR.MakeAct());
@@ -87,9 +90,9 @@ public class CreateCompetbuttons : MonoBehaviour
 
         else
         {
+            //비밀번호 UI 띄우기
+            InvokeRepeating("Timer", 0.1f, 1f);
             SetActive();
-            rank.chek = true;
-            rank.Sign();
         }
     }
 
@@ -115,5 +118,9 @@ public class CreateCompetbuttons : MonoBehaviour
         NoticeOpen.SetActive(false);
         NoticeEnd.SetActive(true);
     }
-    
+
+    void Timer()
+    {
+        rank.Sign();
+    }
 }

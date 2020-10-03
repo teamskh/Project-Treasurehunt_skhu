@@ -209,8 +209,8 @@ public void OnDisable()
     void DownLoadIMG(string name)
     {
         DataPath path = new DataPath(Filename: "JPG/" + AdminCurState.Instance.Competition, Usercode: name);
-        path.SetJPG();
-        IMG(path);
+        path.SetJPG(); //확장자명 고정
+        IMG(path); //전달
     }
 
     bool IMG(DataPath path)
