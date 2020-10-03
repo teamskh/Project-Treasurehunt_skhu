@@ -147,7 +147,6 @@ public class Player : MonoBehaviour
         }
         Save();
     }
-
 #region Answers
         
     public IEnumerator CheckAns(string name,string ans)
