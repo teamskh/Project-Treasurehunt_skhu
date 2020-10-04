@@ -9,7 +9,6 @@ using System;
 
 public class CreateCompetbuttons : MonoBehaviour
 {
-    //public rank Rank; //rank.cs 에 접촉
     public GameObject Competb;
 
     private List<string> curlist;
@@ -19,7 +18,7 @@ public class CreateCompetbuttons : MonoBehaviour
 
     public List<string> ConName;
 
-    Rank rank = new Rank();
+    rank Ranking = new rank();
     QuizList qlist = new QuizList();
 
     [SerializeField]
@@ -121,6 +120,6 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Timer()
     {
-        rank.Sign();
+        Ranking.Sign();
     }
 }
