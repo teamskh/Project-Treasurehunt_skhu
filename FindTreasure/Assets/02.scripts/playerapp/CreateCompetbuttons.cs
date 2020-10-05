@@ -49,7 +49,7 @@ public class CreateCompetbuttons : MonoBehaviour
     {
         //m_ClickAction += sfxmusic.Go;
         //m_ClickAction += score.click;
-        m_ClickAction += Notice;
+       
 
         curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
@@ -63,23 +63,14 @@ public class CreateCompetbuttons : MonoBehaviour
                 }
             }
             buttons.Add(b);
-            //ReadytoStart.Ready(title);
-            //b.GetComponent<Button>().onClick.AddListener(() =>FTP.ImageServerDownload());
-
-            b.GetComponent<Button>().onClick.AddListener(() =>PlayerContents.Instance.ClickListener(title));
-            b.GetComponent<Button>().onClick.AddListener(() =>AvailableAR.MakeAct());
-            b.GetComponent<Button>().onClick.AddListener(m_ClickAction);
-            
-            var TrackManager = GameObject.Find("AR Session Origin");
-            if(TrackManager!=null)
-            b.GetComponent<Button>().onClick.AddListener(() => TrackManager.AddComponent<TrackedImageInfoManager>());
+            b.GetComponent<Button>().onClick.AddListener(() =>Notice(title));
         }
     }
 
-    void Notice()
+    void Notice(string compet)
     {
-        TimeSpan St = gameman.Instance.Opentime - DateTime.Now;
-        TimeSpan Ed = gameman.Instance.endtime - DateTime.Now;
+        TimeSpan St = PlayerContents.Instance.startTimelimit(compet);
+        TimeSpan Ed = PlayerContents.Instance.endTimelimit(compet);
 
         if (St.Seconds > 0) //현재 시간이 종료시간보다 전이면 팝업 띄우기
             SetActiveOpenNotice();
@@ -89,6 +80,10 @@ public class CreateCompetbuttons : MonoBehaviour
 
         else
         {
+            PlayerContents.Instance.ClickListener(compet);
+            AvailableAR.MakeAct();
+            var TrackManager = GameObject.Find("AR Session Origin");
+            if (TrackManager != null) TrackManager.AddComponent<TrackedImageInfoManager>();
             //비밀번호 UI 띄우기
             InvokeRepeating("Timer", 0.1f, 1f);
             SetActive();
