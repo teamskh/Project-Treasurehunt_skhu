@@ -39,7 +39,7 @@ public class QuizFactory : MonoBehaviour
         //문제 유형 전달
         kind = PlayerPrefs.GetInt("ButtonClick",-1);
         PlayerPrefs.DeleteKey("ButtonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
-        CancelButton?.onClick.AddListener(() => Back());
+        //CancelButton?.onClick.AddListener(() => Back());
 
         if (kind < 0)
         {
@@ -55,6 +55,10 @@ public class QuizFactory : MonoBehaviour
 
             newQ = false;
             CancelButton?.onClick.AddListener(() => Cancel());
+        }
+        else
+        {
+            CancelButton?.onClick.AddListener(() => Back());
         }
 
         //특정 Panel 활성화
@@ -86,12 +90,13 @@ public class QuizFactory : MonoBehaviour
     void Cancel()
     {
         SceneManager.LoadScene("QuizMenu");
+        //BackSpace.Instance.Pop();
     }
 
     void Back()
     {
         SceneManager.LoadScene("QuizType");
-        BackSpace.Instance.Pop();
+        //BackSpace.Instance.Pop();
     }
 
     void Save()

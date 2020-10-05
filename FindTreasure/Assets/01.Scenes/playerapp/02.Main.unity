@@ -2417,9 +2417,9 @@ RectTransform:
   - {fileID: 313607375}
   - {fileID: 1543194620}
   - {fileID: 289201240}
+  - {fileID: 700252914}
   - {fileID: 1799298957}
   - {fileID: 477067180}
-  - {fileID: 700252914}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2495,7 +2495,7 @@ PrefabInstance:
     - target: {fileID: 211491855635191895, guid: dbf4ee291482d134ba6fa0ce39815966,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 211491855635191895, guid: dbf4ee291482d134ba6fa0ce39815966,
         type: 3}
@@ -4597,7 +4597,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 473472317}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6603,16 +6603,16 @@ GameObject:
   m_Component:
   - component: {fileID: 940987639}
   - component: {fileID: 940987638}
+  - component: {fileID: 940987646}
   - component: {fileID: 940987642}
   - component: {fileID: 940987640}
   - component: {fileID: 940987641}
   - component: {fileID: 940987643}
   - component: {fileID: 940987644}
   - component: {fileID: 940987645}
-  - component: {fileID: 940987646}
   - component: {fileID: 940987647}
-  - component: {fileID: 940987637}
   - component: {fileID: 940987648}
+  - component: {fileID: 940987637}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -11010,12 +11010,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 940987647}
-        m_MethodName: SetNumber
+        m_MethodName: setNumber
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -13508,7 +13508,7 @@ RectTransform:
   - {fileID: 67327529}
   - {fileID: 1125425975}
   m_Father: {fileID: 473472317}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

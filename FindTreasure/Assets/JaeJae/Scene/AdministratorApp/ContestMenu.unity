@@ -10428,8 +10428,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106536534}
-  - component: {fileID: 2106536536}
   - component: {fileID: 2106536533}
+  - component: {fileID: 2106536536}
   - component: {fileID: 2106536537}
   - component: {fileID: 2106536535}
   - component: {fileID: 2106536532}
@@ -10493,8 +10493,8 @@ MonoBehaviour:
   ContestName_infT: {fileID: 1318198054}
   ContestInfo_infT: {fileID: 1760341190}
   authen_infT: {fileID: 1494559364}
-  ContestTN_dbox: {fileID: 834002727}
   ContestPw_infT: {fileID: 449468923}
+  ContestTN_dbox: {fileID: 834002727}
   Team: {fileID: 1491998485}
   individual: {fileID: 240018250}
   all_t: {fileID: 95987749}
