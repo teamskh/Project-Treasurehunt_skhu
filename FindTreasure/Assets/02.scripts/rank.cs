@@ -7,41 +7,36 @@ using UnityEngine.Events;
 
 public class rank : MonoBehaviour
 {
-    public Text Name;
-    //private TimeSpan times;
+    // public GameObject endTime;
+    //public GameObject endScore;
 
-    public GameObject endTime;
-    public GameObject endScore;
-
+    //public Text Name;
     public GameObject statusbar;
-    public GameObject Endingmess;
+    //public GameObject Endingmess;
 
     public Text endtimeT;
-    public Text endscoreT;
+    public static TimeSpan conTime;
+    private TimeSpan Times=new TimeSpan(0,0,1);
+    
     
     //public bool openendmess=false; //대회 종료
 
     private IEnumerator corutuine;
 
     public string test;
-
-    public void Start()
-    {
-        Name.text = PlayerPrefs.GetString("nickna","no");
-    }
-
-    public void Sign(string time) //대회버튼이 눌려 대회시간 돌아가기
-    {
-        try
-        {
-            endtimeT.text = time;
-        }
-        catch (NullReferenceException ex)
-        {
-            Debug.Log("why");
-        } 
-    }
     
+    
+    public void OnEnable()
+    {
+        //Name.text = PlayerPrefs.GetString("nickna", "no");
+        Sign();
+    }
+
+    public void Sign()
+    {
+        InvokeRepeating("Timer", 0.1f, 1f);
+    }
+
     public void Loadrank()
     {
         gameman.Instance.loadRankChek = true;
@@ -99,5 +94,11 @@ public class rank : MonoBehaviour
             }*/
             yield return new WaitForSeconds(1);
         }
+    }
+
+    void Timer()
+    {
+        conTime = conTime - Times;
+        endtimeT.text = $"{conTime.Days}일 {conTime.Hours}시간 {conTime.Minutes}분 {conTime.Seconds}초";
     }
 }

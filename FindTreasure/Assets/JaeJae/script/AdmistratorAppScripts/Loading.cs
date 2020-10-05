@@ -15,5 +15,6 @@ public class Loading : MonoBehaviour
         yield return null;
         AsyncOperation operation = SceneManager.LoadSceneAsync("ContestList");
         operation.allowSceneActivation = true;
+            
     }
 }
