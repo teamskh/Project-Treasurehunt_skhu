@@ -6779,17 +6779,17 @@ GameObject:
   m_Component:
   - component: {fileID: 940987639}
   - component: {fileID: 940987638}
+  - component: {fileID: 940987646}
   - component: {fileID: 940987642}
   - component: {fileID: 940987640}
   - component: {fileID: 940987641}
   - component: {fileID: 940987643}
   - component: {fileID: 940987644}
   - component: {fileID: 940987645}
-  - component: {fileID: 940987646}
   - component: {fileID: 940987647}
-  - component: {fileID: 940987637}
   - component: {fileID: 940987648}
   - component: {fileID: 940987649}
+  - component: {fileID: 940987637}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged

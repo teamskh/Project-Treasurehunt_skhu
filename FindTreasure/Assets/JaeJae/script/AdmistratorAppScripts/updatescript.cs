@@ -8,7 +8,7 @@ public class updatescript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Application.platform==RuntimePlatform.Android&&Input.GetKey(KeyCode.Escape))
         {
             if (BackSpace.Instance.Count==0)
             {

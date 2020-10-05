@@ -66,19 +66,18 @@ public class PlayerContents
     public void ClickListener(string com)
     {
         CurCompet = Compets.CurrentCode(com);
-        Debug.Log($"{com}'s Clicklistener");
         CurCompetName = com;
-        Debug.Log($"{com}'s Clicklistener");
         CurLib.GetQuizz(CurCompet);
-        Debug.Log($"{com}'s Clicklistener");
         if (CurOpenCompets != null)
         {
-            Debug.Log($"{com}'s Clicklistener");
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
-        Debug.Log($"{com}'s Clicklistener");
+
+        ReadytoStart.Ready(com);
+        FTP.ImageServerAllDownload(com, CurLib.Keys.ToList());
 
         SetendTime();
+
     }
 
     public void SetendTime()
@@ -98,5 +97,18 @@ public class PlayerContents
     public List<string> FileList()
     {
         return CurLib.Keys.ToList();
+    }
+    
+    public TimeSpan startTimelimit(string compet)
+    {
+        var sInfo = CurOpenCompets.Find(compet);
+
+        return sInfo.StartTime - DateTime.Now;
+    }
+
+    public TimeSpan endTimelimit(string compet)
+    {
+        var sInfo = CurOpenCompets.Find(compet);
+        return sInfo.EndingTime - DateTime.Now;
     }
 }

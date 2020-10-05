@@ -18,13 +18,29 @@ public class BackSpace : Stack<string>
         get
         {
             if (_Instance == null) _Instance = new BackSpace();
+            string StackScenes = "";
+            foreach (var item in _Instance)
+            {
+                StackScenes += item + "\n";
+                if (item == "QuizMenu")
+                {
+                    if (StackScenes.Contains("QuizType QuizAdd QuizMenu"))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            _Instance.Pop();
+                        }
+                    }
+                }
+            }
+            /*
             if(_Instance.Contains("QuizMenu")&& _Instance.Contains("QuizType")&& _Instance.Contains("QuizAdd"))
             {
                 for(int i=0; i < 3; i++)
                 {
                     _Instance.Pop();
                 }
-            }
+            }*/
             return _Instance;
         }
     }
