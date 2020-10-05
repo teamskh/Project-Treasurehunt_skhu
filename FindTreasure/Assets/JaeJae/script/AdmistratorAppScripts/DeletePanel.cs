@@ -38,9 +38,12 @@ public class DeletePanel : MonoBehaviour
         else if (GameObject.Find("GameSetting") == true)
         {
             dic = new QuiDictionary();
+            dic.GetQuizz(PlayerPrefs.GetInt("a_competition"));
             dic.TryGetValue(key, out quiz);
+            int code;
+            dic.transCode.TryGetValue(quiz.Title, out code);
             Param param = new Param();
-            param.DeleteQuiz(quiz);
+            param.DeleteQuiz(code);;
             //GameObject.Find("AskDel")?.SetActive(false);
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().LoadQuiz();
             FTP.ImageServerOne(AdminCurState.Instance.Competition,key);
