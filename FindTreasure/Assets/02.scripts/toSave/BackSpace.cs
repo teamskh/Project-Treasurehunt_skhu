@@ -24,7 +24,7 @@ public class BackSpace : Stack<string>
                 StackScenes += item + "\n";
                 if (item == "QuizMenu")
                 {
-                    if (StackScenes.Contains("QuizType QuizAdd QuizMenu"))
+                    if (StackScenes.Contains("QuizType QuizAdd"))
                     {
                         for (int i = 0; i < 3; i++)
                         {

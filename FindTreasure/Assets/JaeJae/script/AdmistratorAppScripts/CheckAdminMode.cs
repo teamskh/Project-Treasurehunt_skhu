@@ -39,8 +39,7 @@ public class CheckAdminMode : MonoBehaviour
         if (bro.IsSuccess())
         {
             var data = bro.Rows();
-            if (pw == data[0]["univpw"]["S"].ToString()) return true; 
-            Debug.Log(2);
+            if (pw == data[0]["univpw"]["S"].ToString()) return true;
             inDate = bro.GetReturnValuetoJSON()["rows"][0]["univpw"]["S"].ToString();
         }
         if (pw == inDate) return true;
