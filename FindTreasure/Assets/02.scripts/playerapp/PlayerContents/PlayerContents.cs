@@ -87,6 +87,7 @@ public class PlayerContents
         {
             if (Short.ConName == CurOpenCompets.Find(CurCompetName).ConName)
             {
+                gameman.Instance.conName = Short.ConName;
                 gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;

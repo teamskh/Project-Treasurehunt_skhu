@@ -36,6 +36,7 @@ public class PanelScript : MonoBehaviour
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
             panel?.Add(GameObject.Find("Canvas").transform.Find("PanelAdPw").gameObject ?? null);
+            panel[0].transform.SetAsLastSibling();
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
         {
