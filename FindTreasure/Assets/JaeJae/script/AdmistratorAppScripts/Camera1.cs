@@ -71,34 +71,6 @@ public class Camera1 : MonoBehaviour
 		result.Apply();
 		return result;
 	}
-
-	/*
-	public void saveImage()
-    {
-		byte[] imageBytes = savess.EncodeToPNG();
-		var dirPath = Application.dataPath + "/Resources/Texture/";
-		if (!Directory.Exists(dirPath))
-		{
-			Directory.CreateDirectory(dirPath);
-		}
-		File.WriteAllBytes(dirPath + onClicks.Ttitle + ".png", imageBytes);
-		Debug.Log(onClicks.Ttitle);
-#if UNITY_EDITOR
-		AssetDatabase.ImportAsset(dirPath + onClicks.Ttitle + ".png");
-#endif
-	}*/
-	/*
-		public void SaveImage()
-		{
-			//ImageV.gameObject.SetActive(true);
-			Texture2D saveImage = (Texture2D)selectImage.texture;
-			Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(saveImage, "GalleryTest", "Image.png"));
-
-			// To avoid memory leaks
-			Destroy(saveImage);
-			//TakePicture_b.SetActive(true);
-		}
-		*/
 	public void PickImage(int maxSize)
 	{
 		//NativeGallery.OpenSettings();

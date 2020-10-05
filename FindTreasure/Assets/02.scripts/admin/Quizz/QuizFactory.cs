@@ -96,7 +96,7 @@ public class QuizFactory : MonoBehaviour
     void Back()
     {
         SceneManager.LoadScene("QuizType");
-        BackSpace.Instance.Pop();
+        //BackSpace.Instance.Pop();
     }
 
     void Save()
