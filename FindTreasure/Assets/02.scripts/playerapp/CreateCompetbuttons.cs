@@ -18,7 +18,9 @@ public class CreateCompetbuttons : MonoBehaviour
 
     public List<string> ConName;
 
-    rank Ranking = new rank();
+    public static bool che = false;
+
+    public rank Ranking = new rank();
     QuizList qlist = new QuizList();
 
     [SerializeField]
@@ -37,13 +39,16 @@ public class CreateCompetbuttons : MonoBehaviour
     GameObject rankButton;
 
     [SerializeField]
-    GameObject NoticeTime;
+    GameObject homeButton;
 
     [SerializeField]
     GameObject NoticeEnd;
 
     [SerializeField]
     GameObject NoticeOpen;
+
+    [SerializeField]
+    GameObject PassOpen;
 
     void Awake()
     {
@@ -85,8 +90,16 @@ public class CreateCompetbuttons : MonoBehaviour
             var TrackManager = GameObject.Find("AR Session Origin");
             if (TrackManager != null) TrackManager.AddComponent<TrackedImageInfoManager>();
             //비밀번호 UI 띄우기
-            InvokeRepeating("Timer", 0.1f, 1f);
-            SetActive();
+            if(che == false)
+            {
+                PassOpen.SetActive(true);
+            }
+            else if(che == true){
+                InvokeRepeating("Timer", 0.1f, 1f);
+                SetActive();
+                che = false;
+                //Ranking.Sign();
+            }
         }
     }
 
@@ -96,6 +109,7 @@ public class CreateCompetbuttons : MonoBehaviour
         backmid.SetActive(false);
         bar.SetActive(true);
         rankButton.SetActive(true);
+        homeButton.SetActive(true);
         Debug.Log("click");
     }
 
@@ -115,6 +129,10 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Timer()
     {
-        Ranking.Sign();
+        //Ranking.Sign();
+        TimeSpan times = gameman.Instance.endtime - DateTime.Now;
+        string test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
+        Debug.Log(test);
+        Ranking.Sign(test);
     }
 }
