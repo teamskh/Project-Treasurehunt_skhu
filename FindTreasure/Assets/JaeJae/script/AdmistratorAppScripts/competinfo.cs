@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TTM.Classes;
 using BackEnd;
@@ -28,7 +27,7 @@ public class competinfo : MonoBehaviour
     public void Start()
     {
         all_t.SetActive(false);
-        key = scenechange.Qname;
+        key = AdminCurState.Instance.Competition;
         /*
         dic = new CompetitionDictionary();
         dic.GetCompetitions();*/
