@@ -50,9 +50,7 @@ public class QuizList : MonoBehaviour
         Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, (QList.Count + 1) * 155);
         //글씨 조정
         quizb.GetComponentInChildren<Text>().text = name;
-        quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(name));
-        quizb.GetComponent<Button>()?.onClick.AddListener(() => AdminCurState.Instance.Quiz = name);
-       
+        quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(quizb.GetComponentInChildren<Text>().text));
         
         return quizb;
     }

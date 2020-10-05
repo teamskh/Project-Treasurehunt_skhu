@@ -28,7 +28,7 @@ public class competinfo : MonoBehaviour
     public void Start()
     {
         all_t.SetActive(false);
-        key = AdminCurState.Instance.Competition;
+        key = scenechange.Qname;
         /*
         dic = new CompetitionDictionary();
         dic.GetCompetitions();*/

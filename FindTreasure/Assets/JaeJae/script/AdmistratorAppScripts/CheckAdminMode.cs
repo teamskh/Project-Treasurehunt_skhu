@@ -32,23 +32,25 @@ public class CheckAdminMode : MonoBehaviour
         Param where = new Param();
         where.Add("univname", univName);
 
-        BackendReturnObject bro = Backend.GameSchemaInfo.Get("univ", where, 1);
+        BackendReturnObject bro = new BackendReturnObject();
+        Debug.Log(bro.GetStatusCode());
+        bro = Backend.GameSchemaInfo.Get("univ", where, 1);
         Debug.Log(where.GetJson().ToString());
         if (bro.IsSuccess())
         {
             var data = bro.Rows();
-            Debug.Log(data.ToString());
             if (pw == data[0]["univpw"]["S"].ToString()) return true; 
+            Debug.Log(2);
             inDate = bro.GetReturnValuetoJSON()["rows"][0]["univpw"]["S"].ToString();
         }
-        if (pw == inDate ) return true;
+        if (pw == inDate) return true;
         else return false;
     }
 
     public void check()
     {
         Debug.Log(inputField.text);
-        if (CheckPassword(inputField.text))
+        if (CheckPassword(inputField.text) == true)
         {
             gameObject.GetComponent<scenechange>().Loading();
         }

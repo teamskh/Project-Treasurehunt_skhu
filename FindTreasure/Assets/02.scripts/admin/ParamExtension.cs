@@ -49,10 +49,10 @@ static class ParamExtension
             Debug.Log(bro.ToString());
     }
     
-    public static void DeleteQuiz(this Param param, int id) //추가
+    public static void DeleteQuiz(this Param param, Q Quiz) //추가
     {
         var idcompetition = PlayerPrefs.GetInt("a_competition");
-        var idquiz = id;
+        var idquiz = PlayerPrefs.GetInt("a_quiz");
         
         Param where = new Param();
         where.Add("idquiz", idquiz);

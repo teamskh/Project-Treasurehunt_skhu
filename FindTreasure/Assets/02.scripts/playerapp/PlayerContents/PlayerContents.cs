@@ -101,7 +101,7 @@ public class PlayerContents
     public TimeSpan startTimelimit(string compet)
     {
         var sInfo = CurOpenCompets.Find(compet);
-        if (sInfo == null) Debug.Log("Error");
+
         return sInfo.StartTime - DateTime.Now;
     }
 

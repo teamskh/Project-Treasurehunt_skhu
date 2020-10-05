@@ -80,7 +80,6 @@ public class CompetitionToServer : MonoBehaviour
         //글씨 조정
         competb.GetComponentInChildren<Text>().text = name;
         competb.GetComponent<Button>()?.onClick.AddListener(() =>dic.CurrentCode(competb.GetComponentInChildren<Text>().text));
-        competb.GetComponent<Button>()?.onClick.AddListener(() =>FTP.AvaliablePath(new TTM.Classes.DataPath("JPG/" + name)));
        
         return competb;
     }
