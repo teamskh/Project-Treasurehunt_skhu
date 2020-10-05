@@ -22,7 +22,6 @@ public class CheckAdminMode : MonoBehaviour
             {
                 BackendReturnObject bro = new BackendReturnObject();
                 bro = Backend.BMember.CustomLogin("Admin", "toomuch");
-                
             }
         });
     }

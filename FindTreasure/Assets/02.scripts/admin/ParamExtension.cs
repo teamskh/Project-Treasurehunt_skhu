@@ -10,9 +10,6 @@ static class ParamExtension
 {
     public static Param SetQuiz(this Param myParam, Q quiz)
     {
-        /*
-        myParam.Add("idcompetition", 0);
-        myParam.Add("idquiz", 0);*/
         var idcompetition= PlayerPrefs.GetInt("a_competition");
         myParam.Add("idcompetition", idcompetition);
 
