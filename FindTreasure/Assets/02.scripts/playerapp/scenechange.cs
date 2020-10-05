@@ -16,40 +16,41 @@ public class scenechange :MonoBehaviour
         //gameman.Instance.updatecompet();
         SceneManager.LoadScene("02.Main");
         BackSpace.Instance.Clear();
-        Debug.Log(1);
     }
 
     public void changeadminScene()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestList");
-        Debug.Log(3);
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToAdMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
-        Debug.Log(4);
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
-        Debug.Log(5);
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToContestSetting()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestMenu");//대회 세팅 화면
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToCStartEnd()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("CStartEnd");//시작끝시간 페이지 화면
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToRealTimeR()
@@ -76,20 +77,21 @@ public class scenechange :MonoBehaviour
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizType");//Quiz type설정 화면
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizAdd()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//Quiz Add 화면
+        Debug.Log(BackSpace.Instance.ToString());
     }
     
     public void ChangeSceneToQuizAddToChange()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
-
-        Debug.Log(6);
+        Debug.Log(BackSpace.Instance.ToString());
     }//onclicks에 quizchage랑 연결
 
     public void OnClicked(GameObject gameObject)
@@ -103,7 +105,7 @@ public class scenechange :MonoBehaviour
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("loading");
-        Debug.Log(2);
+        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizAdd(int kind)
