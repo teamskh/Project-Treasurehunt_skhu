@@ -6,7 +6,6 @@ using System.IO;
 using System.Net;
 using TTM.Classes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class QuizList : MonoBehaviour

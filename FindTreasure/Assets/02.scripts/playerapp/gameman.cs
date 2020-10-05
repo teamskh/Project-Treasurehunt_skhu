@@ -42,6 +42,7 @@ public class gameman : MonoBehaviour
     public int score = 0;  //얘도 빼도 될듯
 
     public GameObject LoginB;
+    public string conName;
 
     static gameman instance;
     public static gameman Instance

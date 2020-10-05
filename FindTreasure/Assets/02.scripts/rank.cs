@@ -30,12 +30,16 @@ public class rank : MonoBehaviour
         Name.text = PlayerPrefs.GetString("nickna","no");
     }
 
-    public void Sign() //대회버튼이 눌려 대회시간 돌아가기
+    public void Sign(string time) //대회버튼이 눌려 대회시간 돌아가기
     {
-        TimeSpan times = gameman.Instance.endtime - DateTime.Now;
-        test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
-        endtimeT.text = test;
-        Debug.Log(test);
+        try
+        {
+            endtimeT.text = time;
+        }
+        catch (NullReferenceException ex)
+        {
+            Debug.Log("why");
+        } 
     }
     
     public void Loadrank()
@@ -96,5 +100,4 @@ public class rank : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-    
 }
