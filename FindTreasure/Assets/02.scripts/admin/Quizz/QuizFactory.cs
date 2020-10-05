@@ -90,13 +90,13 @@ public class QuizFactory : MonoBehaviour
     void Cancel()
     {
         SceneManager.LoadScene("QuizMenu");
-        //BackSpace.Instance.Pop();
+        BackSpace.Instance.Pop();
     }
 
     void Back()
     {
         SceneManager.LoadScene("QuizType");
-        //BackSpace.Instance.Pop();
+        BackSpace.Instance.Pop();
     }
 
     void Save()

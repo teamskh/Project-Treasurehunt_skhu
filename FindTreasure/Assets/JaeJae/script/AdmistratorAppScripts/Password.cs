@@ -26,6 +26,8 @@ public class Password : MonoBehaviour
     }
     private void Start()
     {
+        dic = new CompetitionDictionary();
+        dic.GetCompetitions();
         all_t.SetActive(false);
         re.SetActive(false);
         OK_b?.onClick.AddListener(() => OK_s());
@@ -34,8 +36,6 @@ public class Password : MonoBehaviour
 
     void OK_s()
     {
-        dic = new CompetitionDictionary();
-        dic.GetCompetitions();
 
         key = LongPressButton.Bname;
         dic.TryGetValue(key, out comp);
