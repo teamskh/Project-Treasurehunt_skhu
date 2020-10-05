@@ -21,10 +21,12 @@ public class RayButtons : MonoBehaviour
         Touch touch = Input.GetTouch(0);
         if(touch.phase == TouchPhase.Began)
         {
+            if (rayManager == null) return;
             if (rayManager.Raycast(touch.position, hits))
             {
                 foreach(var button in hits)
                 {
+                    Debug.Log(button.trackableId.ToString());
                 }
             }
         }

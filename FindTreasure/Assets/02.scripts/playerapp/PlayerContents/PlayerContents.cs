@@ -33,7 +33,7 @@ public class PlayerContents
         {
             if (_Instance == null)
                 _Instance = new PlayerContents();
-            DicUpdate();
+           // DicUpdate();
             return _Instance;
         }
     }
@@ -57,6 +57,7 @@ public class PlayerContents
 
     public List<string> CompetitionList()
     {
+        DicUpdate();
         List<string> arr = new List<string>();
         foreach (var key in Compets.Keys)
             arr.Add(key);
