@@ -6,15 +6,17 @@ using GooglePlayGames;
 
 public class RandomProfile : MonoBehaviour
 {
+    public Text Name;
     public Sprite[] ListPro = new Sprite[4];
     public Image profile;
-    public int num;
-    public string userId;
-    public char loc;
+    private int num;
+    private string userId;
+    private char loc;
 
     // Start is called before the first frame update
     void Start()
     {
+        Name.text = PlayerPrefs.GetString("nickna", "no");
         userId = Social.localUser.id;
         loc = userId[userId.Length - 1];
         num = (int)char.GetNumericValue(loc);

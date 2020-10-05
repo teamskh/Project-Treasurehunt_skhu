@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 using System;
+using TTM.Classes;
 
 public class CreateCompetbuttons : MonoBehaviour
 {
@@ -20,8 +21,21 @@ public class CreateCompetbuttons : MonoBehaviour
 
     public static bool che = false;
 
-    public rank Ranking = new rank();
+    //rank Ranking;
     QuizList qlist = new QuizList();
+
+    //password에 필요
+    CompetitionDictionary dic;
+    Competition comp;
+    [SerializeField]
+    GameObject all_t, re, closePass;
+
+    [SerializeField]
+    InputField input;
+
+    [SerializeField]
+    Button YES_b;
+    private string key;
 
     [SerializeField]
     GameObject List;
@@ -54,8 +68,7 @@ public class CreateCompetbuttons : MonoBehaviour
     {
         //m_ClickAction += sfxmusic.Go;
         //m_ClickAction += score.click;
-       
-
+        
         curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
@@ -74,6 +87,9 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Notice(string compet)
     {
+        //YES_b = GameObject.Find("YES")?.GetComponent<Button>();
+        Debug.Log(YES_b);
+
         TimeSpan St = PlayerContents.Instance.startTimelimit(compet);
         TimeSpan Ed = PlayerContents.Instance.endTimelimit(compet);
 
@@ -85,21 +101,49 @@ public class CreateCompetbuttons : MonoBehaviour
 
         else
         {
-            PlayerContents.Instance.ClickListener(compet);
+            all_t.SetActive(false);
+            re.SetActive(false);
+            PassOpen.SetActive(true);
+            //비밀번호 UI 띄우기
+            YES_b?.onClick.AddListener(() => Password(compet));
+            /*PlayerContents.Instance.ClickListener(compet);
             AvailableAR.MakeAct();
             var TrackManager = GameObject.Find("AR Session Origin");
             if (TrackManager != null) TrackManager.AddComponent<TrackedImageInfoManager>();
-            //비밀번호 UI 띄우기
-            if(che == false)
-            {
-                PassOpen.SetActive(true);
-            }
-            else if(che == true){
-                InvokeRepeating("Timer", 0.1f, 1f);
-                SetActive();
-                che = false;
-                //Ranking.Sign();
-            }
+            */
+        }
+    }
+
+    void Password(string title)
+    {
+        dic = new CompetitionDictionary();
+        dic.GetCompetitions();
+        key = title;
+        dic.TryGetValue(key, out comp);
+        
+        if (input.text == comp.Password)
+        {
+            closePass.SetActive(false);
+
+            //InvokeRepeating("Timer", 0.1f, 1f);
+
+            rank.conTime = PlayerContents.Instance.endTimelimit(title);
+            SetActive();
+
+            /*PlayerContents.Instance.ClickListener(title);
+            AvailableAR.MakeAct();
+            var TrackManager = GameObject.Find("AR Session Origin");
+            if (TrackManager != null) TrackManager.AddComponent<TrackedImageInfoManager>();*/
+        }
+        else if (input.text.Length < 1)
+        {
+            StartCoroutine(setActiveObjinSecond(all_t, 1f));
+            return;
+        }
+        else
+        {
+            StartCoroutine(setActiveObjinSecond(re, 1f));
+            return;
         }
     }
 
@@ -115,24 +159,20 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void SetActiveOpenNotice() //대회 시작 전 팝업
     {
-        Debug.Log("1");
         NoticeOpen.SetActive(true);
         NoticeEnd.SetActive(false);
     }
 
     void SetActiveEndNotice() //이미 종료된 팝업
     {
-        Debug.Log("2");
         NoticeOpen.SetActive(false);
         NoticeEnd.SetActive(true);
     }
 
-    void Timer()
+    IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {
-        //Ranking.Sign();
-        TimeSpan times = gameman.Instance.endtime - DateTime.Now;
-        string test = $"{times.Days}일 {times.Hours}시간 {times.Minutes}분 {times.Seconds}초";
-        Debug.Log(test);
-        Ranking.Sign(test);
+        gameObject.SetActive(true);
+        yield return new WaitForSeconds(second);
+        gameObject.SetActive(false);
     }
 }
