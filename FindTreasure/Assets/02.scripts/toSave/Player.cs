@@ -171,7 +171,9 @@ public class Player : MonoBehaviour
                 Answers.Remove(pair.Key);
                 this.score += score;
                 ReadScore.CallUpdate();
+                
             }
+            TrackedImageInfoManager.CallDestroy(name);
         }
     }
     public void CheckAnswer(string name, string ans)
