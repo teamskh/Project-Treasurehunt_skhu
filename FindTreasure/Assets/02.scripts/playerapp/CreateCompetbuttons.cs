@@ -68,6 +68,8 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     GameObject Pan;
 
+    int code;
+
     void Awake()
     {
         curlist = PlayerContents.Instance.CompetitionList();
@@ -107,39 +109,50 @@ public class CreateCompetbuttons : MonoBehaviour
 
         else
         {
-            Pan.SetActive(true);
-            all_t.SetActive(false);
-            re.SetActive(false);
-            PassOpen.SetActive(true);
+            //Pan.SetActive(true);
+            //all_t.SetActive(false);
+            //re.SetActive(false);
+            //PassOpen.SetActive(true);
             //비밀번호 UI 띄우기
-            YES_b?.onClick.AddListener(Password);
+            code = PlayerContents.Instance.GetUserPass();
+
+            if (code == 0)
+            {
+                rank.conTime = PlayerContents.Instance.endTimelimit();
+                SetActive();
+            }
+            else
+            {
+                gameObject.AddComponent<PanelScript>().setPanel();
+                YES_b?.onClick.AddListener(Password);
+            }
         }
     }
 
     void Password()
     {
-        var code = PlayerContents.Instance.GetUserPass();
-        if (int.Parse(input.text) == code)
-        {
-            closePass.SetActive(false);
+            if (int.Parse(input.text) == code)
+            {
+                //closePass.SetActive(false);
+                //Pan.SetActive(false);
+                gameObject.GetComponent<PanelScript>().setP();
+                //InvokeRepeating("Timer", 0.1f, 1f);
 
-            //InvokeRepeating("Timer", 0.1f, 1f);
+                rank.conTime = PlayerContents.Instance.endTimelimit();
+                SetActive();
 
-            rank.conTime = PlayerContents.Instance.endTimelimit();
-            SetActive();
-
-            PlayerContents.Instance.ClickListener();
-        }
-        else if (input.text.Length < 1)
-        {
-            StartCoroutine(setActiveObjinSecond(all_t, 1f));
-            return;
-        }
-        else
-        {
-            StartCoroutine(setActiveObjinSecond(re, 1f));
-            return;
-        }
+                PlayerContents.Instance.ClickListener();
+            }
+            else if (input.text.Length < 1)
+            {
+                StartCoroutine(setActiveObjinSecond(all_t, 1f));
+                return;
+            }
+            else
+            {
+                StartCoroutine(setActiveObjinSecond(re, 1f));
+                return;
+            }
     }
 
     void SetActive()

@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 50
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
     m_MaxSize: 50
     m_Alignment: 3
@@ -465,20 +465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce80994895abbf418fa54a279685b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
-  durationThreshold: 1
-  duration: 1.3
-  onLongPress:
-    m_PersistentCalls:
-      m_Calls: []
-  setActive:
-    m_PersistentCalls:
-      m_Calls: []
-  isPointerDown: 0
-  longPressTriggered: 0
-  timePressStarted: 0
 --- !u!1 &4504820443207144821
 GameObject:
   m_ObjectHideFlags: 0

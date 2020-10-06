@@ -11,10 +11,18 @@ public class ReadytoStart
 
     public static void Ready(string competition)
     {
-        var Dirpath = SetString(competition);
+        try {
+            var Dirpath = SetString(competition);
 
-        Directory.Delete(Dirpath, true);
+            Directory.Delete(Dirpath, true);
 
-        Directory.CreateDirectory(Dirpath);
+            Directory.CreateDirectory(Dirpath);
+        } catch (DirectoryNotFoundException e)
+        {
+            string path = SetString("");
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            path = SetString(competition);
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+        }
     }
 }
