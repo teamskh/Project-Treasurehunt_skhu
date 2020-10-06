@@ -418,26 +418,26 @@ namespace TTM.Classes
             where.Add("idcompetition", idcompetition);
             where.Add("idquiz", ans.Key);
 
-            BackendReturnObject bro = new BackendReturnObject();
-            Backend.GameSchemaInfo.Get("Quizz", where, 1);
+            BackendReturnObject bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
             if (bro.IsSuccess())
             {
-                JsonData data = bro.GetReturnValuetoJSON()["row"];
-                var answer = data["answer"]["S"].ToString();
-                if(answer == ans.Value)
+                var data = bro.Rows();
+                Debug.Log( data[0]["answer"]["S"].ToString());
+                if(data[0]["answer"]["S"].ToString()== ans.Value)
                 {
-                    var score = data["score"]["N"].ToString();
+                    var score = data[0]["score"]["N"].ToString();
                     return int.Parse(score);
                 }
                 else
                 {
-                    Debug.Log($"Wrong Answer : {ans} != {answer}");
+                    Debug.Log("Wrong Answer");
                     return 0;
                 }
             }
             else
             {
-                Debug.Log("Deleted Quizz");
+                Debug.Log(bro.GetMessage());
+                Debug.Log(where.GetJson());
                 return -1;
             }
         }

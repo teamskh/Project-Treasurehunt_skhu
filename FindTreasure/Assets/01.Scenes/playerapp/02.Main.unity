@@ -1623,7 +1623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &318096825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6391,6 +6391,7 @@ GameObject:
   - component: {fileID: 893807476}
   - component: {fileID: 893807478}
   - component: {fileID: 893807477}
+  - component: {fileID: 893807479}
   m_Layer: 5
   m_Name: texscore
   m_TagString: Untagged
@@ -6431,7 +6432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6457,6 +6458,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893807475}
   m_CullTransparentMesh: 0
+--- !u!114 &893807479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893807475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de47d695b137aa479b08e60371d36e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &923739835
 GameObject:
   m_ObjectHideFlags: 0
@@ -8064,7 +8077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1050575559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9820,9 +9833,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1285169106}
   - component: {fileID: 1285169102}
+  - component: {fileID: 1285169105}
   - component: {fileID: 1285169104}
   - component: {fileID: 1285169103}
-  - component: {fileID: 1285169105}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -14428,7 +14441,6 @@ GameObject:
   - component: {fileID: 1843266160}
   - component: {fileID: 1843266159}
   - component: {fileID: 1843266158}
-  - component: {fileID: 1843266161}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -14484,20 +14496,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1843266161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843266157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8b646872c0b0534282233450982f881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ARSessionOrigin: {fileID: 318096824}
-  ARSession: {fileID: 1050575558}
 --- !u!1 &1853629813
 GameObject:
   m_ObjectHideFlags: 0
