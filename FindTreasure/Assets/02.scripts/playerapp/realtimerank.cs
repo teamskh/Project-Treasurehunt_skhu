@@ -68,7 +68,7 @@ public class realtimerank : MonoBehaviour
     {
         string ra;
         int j = 0;
-        BackendReturnObject BRO = Backend.RTRank.GetMyRTRank("db9848d0-b3be-11ea-8d65-076db9a598b3", 2); //나와 위 아래 2명 //uuid?????????
+        BackendReturnObject BRO = Backend.RTRank.GetMyRTRank("db9848d0-b3be-11ea-8d65-076db9a598b3", 2); //나와 위 아래 2명
         BackendReturnObject BRO1 = Backend.BMember.GetUserInfo();
 
         if (BRO.IsSuccess())
