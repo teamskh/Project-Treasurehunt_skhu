@@ -54,6 +54,10 @@ public class QuizFactory : MonoBehaviour
 
             newQ = false;
             CancelButton?.onClick.AddListener(() => Cancel());
+
+            SaveImage.Instance.SetNewTexture(new Texture2D(0, 0).Load(AdminCurState.Instance.Competition, key), false);
+
+            //SaveImage.instance.getTexture(); //리턴값이 Texture2D
         }
         else
         {

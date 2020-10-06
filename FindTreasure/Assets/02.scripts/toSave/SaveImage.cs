@@ -19,13 +19,16 @@ public class SaveImage
         }
     }
 
-    public void SetNewTexture(Texture2D ss)
+    public void SetNewTexture(Texture2D ss,bool needtosave =true)
     {
         Saves = ss;
         if (ss.isReadable)
             Saves.Apply();
-        NeedToSave = true;
+        NeedToSave = needtosave;
     }
+
+    public Texture2D getTexture() => Saves;
+
     public void SetName(string name)
     {
         Name = name;
