@@ -11,7 +11,6 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class TrackedImageInfoManager : MonoBehaviour
 {
-    private static event Action<string> ScrollRemove;
     ARTrackedImageManager m_TrackedImageManager;
 
     [SerializeField]
@@ -39,8 +38,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     Dictionary<string, GameObject> ARobj = new Dictionary<string, GameObject>();
     Vector3 pos;
 
-    List<string> clearlist = new List<string>();
-
     #region Controll ARObjects
     string Dequeue()
     {
@@ -54,17 +51,13 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     IEnumerator Enqueue(string name,GameObject trackImg)
     {
-        if (!clearlist.Contains(name))
-        {
-            ARobj.Add(name, trackImg);
-            nameTable.Enqueue(name);
-            if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
+        ARobj.Add(name, trackImg);
+        nameTable.Enqueue(name);
+        if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
 
-            yield return null;
+        yield return null;
 
-            trackImg.GetComponentInChildren<Scroll>().Init(name);
-        }
-        else yield return null;
+        trackImg.GetComponentInChildren<Scroll>().Init(name);
     }
 
     #endregion
@@ -93,7 +86,6 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             Debug.Log(e.StackTrace);
         }
-        ScrollRemove = (string name) => clear(name);
     }
     
 
@@ -222,18 +214,6 @@ public class TrackedImageInfoManager : MonoBehaviour
             StartCoroutine(AddImageJob(txtur, txtur.name));
         }
     }
-    
-    void clear(string name)
-    {
-        clearlist.Add(name);
-        GameObject obj;
-        ARobj.TryGetValue(name, out obj);
-        if (obj != null) Destroy(obj);
-    }
 
-    public static void CallDestroy(string name)
-    {
-        ScrollRemove(name);
-    }
     
 }
