@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PanelScript : MonoBehaviour
 {
     Button CPB,RCS,CMB;
-    GameObject Panel_T;
+    GameObject Panel_T, Panel_h;
     private List<GameObject> panel = new List<GameObject>();
     int Pkind;
     
@@ -33,6 +33,8 @@ public class PanelScript : MonoBehaviour
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
             panel?.Add(GameObject.Find("Canvas").transform.Find("PanelAdPw").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("AskPw").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("Panel_h").gameObject ?? null);
             panel[0].transform.SetAsLastSibling();
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
@@ -66,5 +68,17 @@ public class PanelScript : MonoBehaviour
     public void resetInput(InputField inputfield)
     {
         inputfield.SetTextWithoutNotify("");
+    }
+
+    public void setPanel()
+    {
+        panel[2].SetActive(true);
+        panel[3].SetActive(true);
+    }
+
+    public void setP()
+    {
+        panel[2].SetActive(false);
+        panel[3].SetActive(false);
     }
 }

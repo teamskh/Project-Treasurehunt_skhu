@@ -40,6 +40,7 @@ public class Scroll : MonoBehaviour
                 break;
             case 2:
                 gameobj = Instantiate(Input, buttonPos);
+               
                 break;
             default:
                 gameobj = null;
