@@ -10,20 +10,20 @@ public class updatescript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))//Application.platform==RuntimePlatform.Android&&
+        time -= Time.deltaTime;
+        if (Application.platform == RuntimePlatform.Android && Input.GetKey(KeyCode.Escape))
         {
-            time -= Time.deltaTime;
+            
             Debug.Log("뒤로가기x");
 
             if (time > 0)
             {
                 timer = false;
-                Debug.Log(time);
             }
             else
             {
                 timer = true;
-                time = 0.1f;
+                time = 0.05f;
                 if (BackSpace.Instance.Count == 0)
                     {
                         gameObject.GetComponent<PanelScript>().setNumber(0);

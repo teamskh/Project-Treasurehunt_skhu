@@ -25,9 +25,6 @@ public class PanelScript : MonoBehaviour
             CPB = GameObject.Find("ChangePw_b")?.GetComponent<Button>();
             RCS = GameObject.Find("ReCSetting_b")?.GetComponent<Button>();
             CMB = GameObject.Find("ChangeMode_b")?.GetComponent<Button>();
-            //Button?.Add(GameObject.Find("ChangePw_b").gameObject ?? null);
-            //Button?.Add(GameObject.Find("ReCSetting_b").gameObject ?? null);
-            //Button?.Add(GameObject.Find("ChangeMode_b").gameObject ?? null);
             panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_pw").gameObject ?? null);
             panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_comp").gameObject ?? null);
             panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_mode").gameObject ?? null);

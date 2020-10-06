@@ -70,9 +70,6 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Awake()
     {
-        //m_ClickAction += sfxmusic.Go;
-        //m_ClickAction += score.click;
-
         curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
@@ -91,9 +88,6 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Notice(string compet)
     {
-        //YES_b = GameObject.Find("YES")?.GetComponent<Button>();
-        Debug.Log(YES_b);
-
         TimeSpan St = PlayerContents.Instance.startTimelimit(compet);
         TimeSpan Ed = PlayerContents.Instance.endTimelimit(compet);
 
