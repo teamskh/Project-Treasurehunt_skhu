@@ -48,6 +48,9 @@ public class QuizList : MonoBehaviour
         Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, (QList.Count + 1) * 155);
         //글씨 조정
         quizb.GetComponentInChildren<Text>().text = name;
+
+        SaveImage.Instance.SetNewTexture(new Texture2D(0, 0).Load(AdminCurState.Instance.Competition, name), false);
+        quizb.GetComponentInChildren<RawImage>().texture = SaveImage.Instance.getTexture();
         quizb.GetComponent<Button>()?.onClick.AddListener(() => dic.CurrentCode(name));
         quizb.GetComponent<Button>()?.onClick.AddListener(() => AdminCurState.Instance.Quiz = name);
        

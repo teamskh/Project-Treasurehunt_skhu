@@ -36,17 +36,11 @@ public class CompetitionToServer : MonoBehaviour
                     Debug.Log(bro.ToString());
 
 
-                SetList();
+                
             }
-
+            SetList();
         });
         AskD.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void SetList()
