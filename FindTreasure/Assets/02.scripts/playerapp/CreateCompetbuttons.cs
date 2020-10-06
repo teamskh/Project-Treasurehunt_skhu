@@ -100,6 +100,8 @@ public class CreateCompetbuttons : MonoBehaviour
             PassOpen.SetActive(true);
             //비밀번호 UI 띄우기
             YES_b?.onClick.AddListener(() => Password(compet));
+            PlayerContents.Instance.ClickListener(compet);
+            AvailableAR.MakeAct();
         }
     }
 
