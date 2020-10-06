@@ -89,17 +89,8 @@ public class PlayerContents
 
         foreach (var quiz in quiznames)
         {
-            var p = path.Files(quiz);
-            byte[] bytetexture = File.ReadAllBytes(p);
-            if (bytetexture.Length > 0)
-            {
-                Texture2D txtur = new Texture2D(0, 0);
-                txtur.name = quiz;
-                txtur.LoadImage(bytetexture);
-                libs.Add(txtur);
-            }
+            libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
         }
-
         return libs;
     }
 
