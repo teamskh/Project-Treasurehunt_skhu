@@ -2999,7 +2999,7 @@ GameObject:
   - component: {fileID: 501233469}
   - component: {fileID: 501233468}
   m_Layer: 5
-  m_Name: time
+  m_Name: Etime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6886,8 +6886,10 @@ MonoBehaviour:
   statusbar: {fileID: 923739835}
   Endingmess: {fileID: 1543194619}
   endtimeT: {fileID: 1679446100}
-  EndTt: {fileID: 233408954}
-  EndSt: {fileID: 2112117896}
+  Timet: {fileID: 233408954}
+  Etime: {fileID: 501233466}
+  Scoret: {fileID: 2112117896}
+  Escore: {fileID: 231509911}
 --- !u!1 &933254448
 GameObject:
   m_ObjectHideFlags: 0
@@ -6970,7 +6972,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933254451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1543194619}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 923739839}
+        m_MethodName: Gohome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 940987637}
+        m_MethodName: Go
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &933254451
 MonoBehaviour:
   m_ObjectHideFlags: 0

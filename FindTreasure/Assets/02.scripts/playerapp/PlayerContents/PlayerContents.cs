@@ -90,6 +90,7 @@ public class PlayerContents
         foreach (var quiz in quiznames)
         {
             libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
+            Debug.Log("whu");
         }
         return libs;
     }
@@ -129,6 +130,9 @@ public class PlayerContents
                 gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
+                Debug.Log(gameman.Instance.Opentime);
+                Debug.Log(gameman.Instance.endtime);
+                Debug.Log(CurLib.sum);
             }
         }
     }

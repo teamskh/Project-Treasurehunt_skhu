@@ -120,6 +120,7 @@ public class CreateCompetbuttons : MonoBehaviour
             {
                 rank.conTime = PlayerContents.Instance.endTimelimit();
                 SetActive();
+                PlayerContents.Instance.ClickListener();
             }
             else
             {

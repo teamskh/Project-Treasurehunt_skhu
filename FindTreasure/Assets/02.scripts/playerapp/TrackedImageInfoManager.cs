@@ -219,7 +219,9 @@ public class TrackedImageInfoManager : MonoBehaviour
         List<Texture2D> lists = PlayerContents.Instance.getLib();
         foreach(var txtur in lists)
         {
+            Debug.Log("ho");
             StartCoroutine(AddImageJob(txtur, txtur.name));
+            Debug.Log("hoho");
         }
     }
     

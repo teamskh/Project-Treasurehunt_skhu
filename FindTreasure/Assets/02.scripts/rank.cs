@@ -11,13 +11,15 @@ public class rank : MonoBehaviour
     public GameObject statusbar;
     public GameObject Endingmess;
 
-    public Text endtimeT;
+    public Text endtimeT; //상당바에 나오는 시간
     public static TimeSpan conTime;
     private TimeSpan Times=new TimeSpan(0,0,1);
     Player player = new Player();
 
-    public Text EndTt;
-    public Text EndSt;
+    public Text Timet;
+    public GameObject Etime; //종료 메시지
+    public Text Scoret;
+    public GameObject Escore;
 
     public void OnEnable()
     {
@@ -27,12 +29,6 @@ public class rank : MonoBehaviour
     public void Sign()
     {
         InvokeRepeating("Timer", 0.1f, 1f);
-    }
-
-    public void Close()
-    {
-        //gameman.Instance.loadRankChek = true;
-
     }
 
     public void Gohome()
@@ -48,18 +44,19 @@ public class rank : MonoBehaviour
         {
             CancelInvoke("Timer");
             endtimeT.text = "0일 0시간 0분 0초";
-            EndSt.text = player.score.ToString();
-            transform.Find("endingScore").gameObject.SetActive(true);
+            Scoret.text = player.score.ToString();
+            Escore.SetActive(true);
             Endingmess.SetActive(true);
+            gameman.Instance.loadRankChek = true;
+
         }
-        /*
         else if(player.score == gameman.Instance.EndScore)
         {
             CancelInvoke("Timer");
-            EndTt.text = endtimeT.text;
-            transform.Find("endingTime").gameObject.SetActive(true);
+            Timet.text = endtimeT.text;
+            Etime.SetActive(true);
             Endingmess.SetActive(true);
-        }*/
-        Debug.Log(player.score);
+            gameman.Instance.loadRankChek = true;
+        }
     }
 }
