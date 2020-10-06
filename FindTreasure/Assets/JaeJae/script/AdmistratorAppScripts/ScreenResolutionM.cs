@@ -10,6 +10,5 @@ public class ScreenResolutionM : MonoBehaviour
      void Start()
      {
          Screen.SetResolution(Screen.width, (Screen.width*16)/9, true);
-        //Camera.main.orthographicSize = 1920/ (100.0f * 2.0f);
     }
 }

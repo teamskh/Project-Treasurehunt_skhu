@@ -39,11 +39,10 @@ public class QuizFactory : MonoBehaviour
         //문제 유형 전달
         kind = PlayerPrefs.GetInt("ButtonClick",-1);
         PlayerPrefs.DeleteKey("ButtonClick"); // 런타임 중복으로 값이 남지 않게 하기 위함.
-        //CancelButton?.onClick.AddListener(() => Back());
 
         if (kind < 0)
         {
-            key = scenechange.Qname;
+            key = AdminCurState.Instance.Quiz;
 
             dic = new QuiDictionary();
             code = PlayerPrefs.GetInt("a_competition");
@@ -96,7 +95,7 @@ public class QuizFactory : MonoBehaviour
     void Back()
     {
         SceneManager.LoadScene("QuizType");
-        //BackSpace.Instance.Pop();
+        BackSpace.Instance.Pop();
     }
 
     void Save()
@@ -190,7 +189,7 @@ public class QuizFactory : MonoBehaviour
         }
         Debug.Log($"Param Data : {param.ToStr()}");
         newQ = true;
-        
+        gameObject.AddComponent<scenechange>().ChangeSceneToQuizMenu();
     }
     
     //정답 전달

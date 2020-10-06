@@ -73,7 +73,6 @@ public class Camera1 : MonoBehaviour
 	}
 	public void PickImage(int maxSize)
 	{
-		//NativeGallery.OpenSettings();
 		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
 		{
 			Debug.Log("Image path: " + path);
