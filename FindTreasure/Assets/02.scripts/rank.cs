@@ -8,16 +8,17 @@ using UnityEngine.SceneManagement;
 
 public class rank : MonoBehaviour
 {
-    // public GameObject endTime;
-    //public GameObject endScore;
-    
     public GameObject statusbar;
     public GameObject Endingmess;
 
     public Text endtimeT;
     public static TimeSpan conTime;
     private TimeSpan Times=new TimeSpan(0,0,1);
-    
+    Player player = new Player();
+
+    public Text EndTt;
+    public Text EndSt;
+
     public void OnEnable()
     {
         Sign();
@@ -30,7 +31,8 @@ public class rank : MonoBehaviour
 
     public void Close()
     {
-        gameman.Instance.loadRankChek = true;
+        //gameman.Instance.loadRankChek = true;
+
     }
 
     public void Gohome()
@@ -44,9 +46,20 @@ public class rank : MonoBehaviour
         endtimeT.text = $"{conTime.Days}일 {conTime.Hours}시간 {conTime.Minutes}분 {conTime.Seconds}초";
         if (conTime.Seconds<0)
         {
-            endtimeT.text = "0일 0시간 0분 0초";
-            Endingmess.SetActive(true);
             CancelInvoke("Timer");
+            endtimeT.text = "0일 0시간 0분 0초";
+            EndSt.text = player.score.ToString();
+            transform.Find("endingScore").gameObject.SetActive(true);
+            Endingmess.SetActive(true);
         }
+        /*
+        else if(player.score == gameman.Instance.EndScore)
+        {
+            CancelInvoke("Timer");
+            EndTt.text = endtimeT.text;
+            transform.Find("endingTime").gameObject.SetActive(true);
+            Endingmess.SetActive(true);
+        }*/
+        Debug.Log(player.score);
     }
 }
