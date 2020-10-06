@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Loading : MonoBehaviour
+public class MainLoading : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,9 +13,8 @@ public class Loading : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation operation = SceneManager.LoadSceneAsync("ContestList");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("02.Main");
         operation.allowSceneActivation = true;
-            
+
     }
 }
-
