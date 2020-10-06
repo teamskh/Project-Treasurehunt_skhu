@@ -86,6 +86,7 @@ public class scenechange :MonoBehaviour
     {
         //Qname = gameObject.GetComponentInChildren<Text>().text;
         AdminCurState.Instance.Quiz = gameObject.GetComponentInChildren<Text>().text;
+        ChangeSceneToQuizAddToChange();
     }
 
     public void Loading()
