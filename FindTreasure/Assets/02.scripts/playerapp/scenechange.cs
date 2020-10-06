@@ -6,14 +6,10 @@ using UnityEngine.UI;
 
 public class scenechange :MonoBehaviour
 { 
-    public static string Qname;
     public static int QButtonClick = -1;
-
-    //public static Stack mUIStack = new Stack();
 
     public void changeMainScene()
     {
-        //gameman.Instance.updatecompet();
         SceneManager.LoadScene("02.Main");
         BackSpace.Instance.Clear();
     }
@@ -22,35 +18,30 @@ public class scenechange :MonoBehaviour
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestList");
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToAdMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("administratorMenu"); //관리자 메뉴 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizMenu()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizMenu");//Quiz리스트 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToContestSetting()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("ContestMenu");//대회 세팅 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToCStartEnd()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("CStartEnd");//시작끝시간 페이지 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToRealTimeR()
@@ -62,8 +53,8 @@ public class scenechange :MonoBehaviour
     
     public void ChangeSceneToAdMenu(GameObject gameObject)
     {
-        Qname = gameObject.GetComponentInChildren<Text>().text;
-        Debug.Log(Qname);
+        //Qname = gameObject.GetComponentInChildren<Text>().text;
+        AdminCurState.Instance.Competition = gameObject.GetComponentInChildren<Text>().text;
         ChangeSceneToAdMenu();
     }
 
@@ -77,35 +68,30 @@ public class scenechange :MonoBehaviour
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizType");//Quiz type설정 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizAdd()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//Quiz Add 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }
     
     public void ChangeSceneToQuizAddToChange()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("QuizAdd");//QuizMenu에서 바로 Quiz Add 화면
-        Debug.Log(BackSpace.Instance.ToString());
     }//onclicks에 quizchage랑 연결
 
     public void OnClicked(GameObject gameObject)
     {
-        Qname = gameObject.GetComponentInChildren<Text>().text;
-        Debug.Log(Qname);
-        ChangeSceneToQuizAddToChange();
+        //Qname = gameObject.GetComponentInChildren<Text>().text;
+        AdminCurState.Instance.Quiz = gameObject.GetComponentInChildren<Text>().text;
     }
 
     public void Loading()
     {
         BackSpace.Instance.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("loading");
-        Debug.Log(BackSpace.Instance.ToString());
     }
 
     public void ChangeSceneToQuizAdd(int kind)

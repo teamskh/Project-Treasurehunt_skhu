@@ -24,7 +24,7 @@ public class BackSpace : Stack<string>
                 StackScenes += item + "\n";
                 if (item == "QuizMenu")
                 {
-                    if (StackScenes.Contains("QuizType QuizAdd"))
+                    if (_Instance.Contains("QuizType") && _Instance.Contains("QuizAdd"))
                     {
                         for (int i = 0; i < 3; i++)
                         {
@@ -33,14 +33,6 @@ public class BackSpace : Stack<string>
                     }
                 }
             }
-            /*
-            if(_Instance.Contains("QuizMenu")&& _Instance.Contains("QuizType")&& _Instance.Contains("QuizAdd"))
-            {
-                for(int i=0; i < 3; i++)
-                {
-                    _Instance.Pop();
-                }
-            }*/
             return _Instance;
         }
     }

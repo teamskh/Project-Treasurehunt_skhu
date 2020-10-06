@@ -15,8 +15,6 @@ public class Password : MonoBehaviour
     GameObject all_t,re;
     private string key;
 
-    //GameObject Panel_T;
-
     public void OnEnable()
     {
         OK_b = GameObject.Find("OK")?.GetComponent<Button>();
@@ -33,14 +31,12 @@ public class Password : MonoBehaviour
 
     void OK_s()
     {
-
-        key = LongPressButton.Bname;
+        key=AdminCurState.Instance.Competition;
         dic.TryGetValue(key, out comp);
 
         if (input.text==comp.Password)
         {
             gameObject.AddComponent<scenechange>().ChangeSceneToAdMenu();
-            scenechange.Qname=key;
         }
         else if(input.text.Length<1)
         {

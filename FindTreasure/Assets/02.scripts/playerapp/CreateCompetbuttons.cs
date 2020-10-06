@@ -22,6 +22,7 @@ public class CreateCompetbuttons : MonoBehaviour
     public static bool che = false;
 
     //rank Ranking;
+    PanelScript pan = new PanelScript();
     QuizList qlist = new QuizList();
 
     //password에 필요
@@ -64,11 +65,11 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     GameObject PassOpen;
 
+    [SerializeField]
+    GameObject Pan;
+
     void Awake()
     {
-        //m_ClickAction += sfxmusic.Go;
-        //m_ClickAction += score.click;
-        
         curlist = PlayerContents.Instance.CompetitionList();
         foreach (string title in curlist) {
             GameObject b = Instantiate(Competb, transform);
@@ -88,20 +89,25 @@ public class CreateCompetbuttons : MonoBehaviour
 
     void Notice()
     {
-        //YES_b = GameObject.Find("YES")?.GetComponent<Button>();
-        Debug.Log(YES_b);
-
         TimeSpan St = PlayerContents.Instance.startTimelimit();
         TimeSpan Ed = PlayerContents.Instance.endTimelimit();
 
-        if (St.Seconds > 0) //현재 시간이 종료시간보다 전이면 팝업 띄우기
+        if (St.Seconds > 0)
+        {
+            //현재 시간이 종료시간보다 전이면 팝업 띄우기
             SetActiveOpenNotice();
+            Pan.SetActive(true);
+        }
 
-        else if (Ed.Seconds < 0) //현재 시간이 종료시간보다 지났으면 팝업 띄우기
+        else if (Ed.Seconds < 0)
+        { //현재 시간이 종료시간보다 지났으면 팝업 띄우기
             SetActiveEndNotice();
+            Pan.SetActive(true);
+        }
 
         else
         {
+            Pan.SetActive(true);
             all_t.SetActive(false);
             re.SetActive(false);
             PassOpen.SetActive(true);
