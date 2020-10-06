@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasePanel: {fileID: 755245178}
+  Image: {fileID: 1745781987}
 --- !u!1 &316416430
 GameObject:
   m_ObjectHideFlags: 0
