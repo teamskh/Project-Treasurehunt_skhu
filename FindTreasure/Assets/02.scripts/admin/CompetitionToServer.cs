@@ -75,7 +75,7 @@ public class CompetitionToServer : MonoBehaviour
         //위치 조정
         competb.transform.SetParent(Adapter.transform, false);
         //competb.GetComponent<RectTransform>().anchoredPosition.Set(0,Buttons.Count*120);
-        competb.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, (Buttons.Count + 1) * 135);
+        competb.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, 0, (Buttons.Count + 1) * 145);
         
         //글씨 조정
         competb.GetComponentInChildren<Text>().text = name;
