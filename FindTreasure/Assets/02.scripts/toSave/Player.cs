@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     static event Action Load;
 
     string userCode;
+    public int score;
 
 #region Singleton
     static Player instance;
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
 
         Load = () => shortInfos.Load(userCode);
         Load += () => recodes.Load(userCode, "recode");
+        
     }
 
     /*
@@ -113,6 +115,7 @@ public class Player : MonoBehaviour
     }*/
     void Start()
     {
+        score = 0;
     }
 
     void Update( )
@@ -149,7 +152,7 @@ public class Player : MonoBehaviour
     }
 #region Answers
         
-    public IEnumerator CheckAns(string name,string ans)
+    private IEnumerator CheckAns(string name,string ans)
     {
         int code = -1;
         PlayerContents.Instance.FindQ(name, out code);
@@ -161,13 +164,19 @@ public class Player : MonoBehaviour
             int score = PlayerContents.Instance.CheckAnswer(pair);
             if (score < 0)
             {
-                
+                Debug.Log("Wrong");
             }
             else 
             {
                 Answers.Remove(pair.Key);
+                this.score += score;
+                ReadScore.CallUpdate();
             }
         }
+    }
+    public void CheckAnswer(string name, string ans)
+    {
+        StartCoroutine(CheckAns(name, ans));
     }
 #endregion
 }

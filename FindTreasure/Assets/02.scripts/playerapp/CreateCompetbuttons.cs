@@ -81,17 +81,18 @@ public class CreateCompetbuttons : MonoBehaviour
                 }
             }
             buttons.Add(b);
-            b.GetComponent<Button>().onClick.AddListener(() =>Notice(title));
+            b.GetComponent<Button>().onClick.AddListener(() => PlayerContents.Instance.SetCompetName(title));
+            b.GetComponent<Button>().onClick.AddListener(Notice);
         }
     }
 
-    void Notice(string compet)
+    void Notice()
     {
         //YES_b = GameObject.Find("YES")?.GetComponent<Button>();
         Debug.Log(YES_b);
 
-        TimeSpan St = PlayerContents.Instance.startTimelimit(compet);
-        TimeSpan Ed = PlayerContents.Instance.endTimelimit(compet);
+        TimeSpan St = PlayerContents.Instance.startTimelimit();
+        TimeSpan Ed = PlayerContents.Instance.endTimelimit();
 
         if (St.Seconds > 0) //현재 시간이 종료시간보다 전이면 팝업 띄우기
             SetActiveOpenNotice();
@@ -105,32 +106,23 @@ public class CreateCompetbuttons : MonoBehaviour
             re.SetActive(false);
             PassOpen.SetActive(true);
             //비밀번호 UI 띄우기
-            YES_b?.onClick.AddListener(() => Password(compet));
-            PlayerContents.Instance.ClickListener(compet);
-            AvailableAR.MakeAct();
+            YES_b?.onClick.AddListener(Password);
         }
     }
 
-    void Password(string title)
+    void Password()
     {
-        dic = new CompetitionDictionary();
-        dic.GetCompetitions();
-        key = title;
-        dic.TryGetValue(key, out comp);
-        
-        if (input.text == comp.Password)
+        var code = PlayerContents.Instance.GetUserPass();
+        if (int.Parse(input.text) == code)
         {
             closePass.SetActive(false);
 
             //InvokeRepeating("Timer", 0.1f, 1f);
 
-            rank.conTime = PlayerContents.Instance.endTimelimit(title);
+            rank.conTime = PlayerContents.Instance.endTimelimit();
             SetActive();
 
-            /*PlayerContents.Instance.ClickListener(title);
-            AvailableAR.MakeAct();
-            var TrackManager = GameObject.Find("AR Session Origin");
-            if (TrackManager != null) TrackManager.AddComponent<TrackedImageInfoManager>();*/
+            PlayerContents.Instance.ClickListener();
         }
         else if (input.text.Length < 1)
         {

@@ -57,9 +57,7 @@ public class TrackedImageInfoManager : MonoBehaviour
 
         yield return null;
 
-        Q item = PlayerContents.Instance.FindQ(name);
-        if (item != null)
-            trackImg.GetComponentInChildren<Scroll>().Init(item);
+        trackImg.GetComponentInChildren<Scroll>().Init(name);
     }
 
     #endregion
@@ -82,7 +80,7 @@ public class TrackedImageInfoManager : MonoBehaviour
             ShowTrackerInfo();
             // Debug.Log("Not MutableLibrary");
 
-            MakeLibrary();
+            PlayerContents.Instance.setLib(MakeLibrary);
             
         }catch(Exception e)
         {
@@ -210,22 +208,10 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void MakeLibrary()
     {
-        DataPath path = new DataPath("JPG/" + PlayerContents.Instance.CurCompetition);
-        path.SetJPG();
-
-        List<string> quiznames = PlayerContents.Instance.FileList();
-
-        foreach(var quiz in quiznames)
+        List<Texture2D> lists = PlayerContents.Instance.getLib();
+        foreach(var txtur in lists)
         {
-            var p = path.Files(quiz);
-            byte[] bytetexture = File.ReadAllBytes(p);
-            if (bytetexture.Length > 0)
-            {
-                Texture2D txtur = new Texture2D(0, 0);
-                txtur.name = quiz;
-                txtur.LoadImage(bytetexture);
-                StartCoroutine(AddImageJob(txtur, quiz));
-            }
+            StartCoroutine(AddImageJob(txtur, txtur.name));
         }
     }
 

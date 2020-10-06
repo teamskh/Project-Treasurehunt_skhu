@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TTM.Classes;
 using UnityEngine;
@@ -8,12 +9,14 @@ using UnityEngine;
 public class PlayerContents
 {
     PCompetitionDictionary Compets;
+    Competition Cur;
     int CurCompet;
     string CurCompetName;
     public string CurCompetition { get => CurCompetName; } //얘 가지고 사용하면 될듯
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
+    public event Action Library;
 
     #region Singleton
     PlayerContents()
@@ -50,9 +53,15 @@ public class PlayerContents
         return Quiz;
     }
 
-    public void FindQ(string name, out int quizid)
+    public Q FindQ(string name, out int quizid)
     {
         CurLib.transCode.TryGetValue(name, out quizid);
+
+        Q Quiz;
+
+        CurLib.TryGetValue(name, out Quiz);
+
+        return Quiz;
     }
 
     public List<string> CompetitionList()
@@ -64,19 +73,57 @@ public class PlayerContents
         return arr;
     }
 
-    public void ClickListener(string com)
+    public void setLib(Action func)
     {
-        CurCompet = Compets.CurrentCode(com);
-        CurCompetName = com;
+        Library = func;
+    }
+
+    public List<Texture2D> getLib()
+    {
+        List<Texture2D> libs = new List<Texture2D>();
+        
+        DataPath path = new DataPath("JPG/" + CurCompetition);
+        path.SetJPG();
+
+        List<string> quiznames = FileList();
+
+        foreach (var quiz in quiznames)
+        {
+            var p = path.Files(quiz);
+            byte[] bytetexture = File.ReadAllBytes(p);
+            if (bytetexture.Length > 0)
+            {
+                Texture2D txtur = new Texture2D(0, 0);
+                txtur.name = quiz;
+                txtur.LoadImage(bytetexture);
+                libs.Add(txtur);
+            }
+        }
+
+        return libs;
+    }
+
+    public int GetUserPass() => Cur.UserPass;
+
+    public void SetCompetName(string comp)
+    {
+        CurCompetName = comp;
+        Compets.TryGetValue(comp, out Cur);
+    }
+
+    public void ClickListener()
+    {
+        CurCompet = Compets.CurrentCode(CurCompetName);
         CurLib.GetQuizz(CurCompet);
         if (CurOpenCompets != null)
         {
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
 
-        ReadytoStart.Ready(com);
-        FTP.ImageServerAllDownload(com, CurLib.Keys.ToList());
+        ReadytoStart.Ready(CurCompetName);
+        FTP.ImageServerAllDownload(CurCompetName, CurLib.Keys.ToList());
 
+        Library();
         SetendTime();
 
     }
@@ -100,16 +147,16 @@ public class PlayerContents
         return CurLib.Keys.ToList();
     }
     
-    public TimeSpan startTimelimit(string compet)
+    public TimeSpan startTimelimit()
     {
-        var sInfo = CurOpenCompets.Find(compet);
+        var sInfo = Cur.StartTime;
         if (sInfo == null) Debug.Log("Error");
-        return sInfo.StartTime - DateTime.Now;
+        return sInfo - DateTime.Now;
     }
 
-    public TimeSpan endTimelimit(string compet)
+    public TimeSpan endTimelimit()
     {
-        var sInfo = CurOpenCompets.Find(compet);
-        return sInfo.EndingTime - DateTime.Now;
+        var sInfo = Cur.EndTime;
+        return sInfo - DateTime.Now;
     }
 }

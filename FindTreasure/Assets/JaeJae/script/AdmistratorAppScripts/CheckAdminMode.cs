@@ -32,14 +32,12 @@ public class CheckAdminMode : MonoBehaviour
         Param where = new Param();
         where.Add("univname", univName);
 
-        BackendReturnObject bro = new BackendReturnObject();
-        Debug.Log(bro.GetStatusCode());
-        bro = Backend.GameSchemaInfo.Get("univ", where, 1);
-        Debug.Log(where.GetJson().ToString());
+        BackendReturnObject bro = Backend.GameSchemaInfo.Get("univ", where, 1);
         if (bro.IsSuccess())
         {
             var data = bro.Rows();
-            if (pw == data[0]["univpw"]["S"].ToString()) return true;
+            Debug.Log(data[0]["univpw"]["S"].ToString());
+            if (pw.Trim() == data[0]["univpw"]["S"].ToString()) return true;
             inDate = bro.GetReturnValuetoJSON()["rows"][0]["univpw"]["S"].ToString();
         }
         if (pw == inDate) return true;
