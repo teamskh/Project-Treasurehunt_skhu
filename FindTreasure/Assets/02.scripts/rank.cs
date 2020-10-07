@@ -48,8 +48,6 @@ public class rank : MonoBehaviour
             CancelInvoke("Timer");
             endtimeT.text = "0일 0시간 0분 0초";
             Scoret.text = player.score.ToString();
-            Escore.SetActive(true);
-            Endingmess.SetActive(true);
 
             Crank.conname = gameman.Instance.conName;
             Crank.rankTime = "0초";
@@ -57,18 +55,23 @@ public class rank : MonoBehaviour
 
             gameman.Instance.loadRankChek = true;
 
+            Endingmess.SetActive(true);
+            Escore.SetActive(true);
         }
         else if(player.score == gameman.Instance.EndScore)
         {
             CancelInvoke("Timer");
             Timet.text = endtimeT.text;
-            Etime.SetActive(true);
-            Endingmess.SetActive(true);
 
             Crank.conname = gameman.Instance.conName;
             Crank.rankTime = endtimeT.ToString();
             Crank.rankScore = player.score;
+
             gameman.Instance.loadRankChek = true;
+
+            Endingmess.SetActive(true);
+            Etime.SetActive(true);
+
         }
     }
 }
