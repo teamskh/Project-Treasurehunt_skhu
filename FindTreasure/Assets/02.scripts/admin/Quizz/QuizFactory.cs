@@ -24,6 +24,9 @@ public class QuizFactory : MonoBehaviour
     Q quiz;
     QuiDictionary dic;
 
+    [SerializeField]
+    RawImage Image;
+
     private void OnEnable()
     {
         Debug.Log("Set Initial");
@@ -57,7 +60,7 @@ public class QuizFactory : MonoBehaviour
 
             SaveImage.Instance.SetNewTexture(new Texture2D(0, 0).Load(AdminCurState.Instance.Competition, key), false);
 
-            //SaveImage.instance.getTexture(); //리턴값이 Texture2D
+            Image.texture=SaveImage.Instance.getTexture(); //리턴값이 Texture2D
         }
         else
         {
