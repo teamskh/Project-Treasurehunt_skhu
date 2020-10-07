@@ -39,7 +39,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     Dictionary<string, GameObject> ARobj = new Dictionary<string, GameObject>();
     Vector3 pos;
 
-    List<string> clearlist = new List<string>();
 
     #region Controll ARObjects
     string Dequeue()
@@ -54,8 +53,6 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     IEnumerator Enqueue(string name,GameObject trackImg)
     {
-        if (!clearlist.Contains(name))
-        {
             ARobj.Add(name, trackImg);
             nameTable.Enqueue(name);
             if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
@@ -63,8 +60,7 @@ public class TrackedImageInfoManager : MonoBehaviour
             yield return null;
 
             trackImg.GetComponentInChildren<Scroll>().Init(name);
-        }
-        else yield return null;
+       
     }
 
     #endregion
@@ -201,8 +197,6 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void AssignGameObject(string name, ARTrackedImage img)
     {
-        if (!clearlist.Contains(name))
-        {
             GameObject goARObject;
 
             if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name, img.gameObject));
@@ -214,7 +208,6 @@ public class TrackedImageInfoManager : MonoBehaviour
                 goARObject.transform.localScale = scaleFactor;
 
             }
-        }
     }
 
 
@@ -231,12 +224,9 @@ public class TrackedImageInfoManager : MonoBehaviour
     
     void clear(string name)
     {
-        clearlist.Add(name);
         GameObject obj;
         ARobj.TryGetValue(name, out obj);
         if (obj != null) Destroy(obj);
-
-        
     }
 
     public static void CallDestroy(string name)

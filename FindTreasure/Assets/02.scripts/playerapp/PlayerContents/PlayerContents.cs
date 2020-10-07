@@ -17,7 +17,6 @@ public class PlayerContents
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
     public event Action Library;
-    List<string> clearlist;
 
     #region Singleton
     PlayerContents()
@@ -118,7 +117,6 @@ public class PlayerContents
 
         Library();
         SetendTime();
-        clearlist = new List<string>();
     }
 
     public void SetendTime()
