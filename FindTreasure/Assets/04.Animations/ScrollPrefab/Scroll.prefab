@@ -306,6 +306,9 @@ MonoBehaviour:
   OX: {fileID: 1569927973463613283, guid: 7c1f0d79e83e65144850ee11403e655f, type: 3}
   List: {fileID: 2475165776114853944, guid: 7af11851067608c40957c2c911c5216c, type: 3}
   Input: {fileID: 6308312051609478842, guid: 25cbdbffdef0fa6459ba242e290971cd, type: 3}
+  seleted: {fileID: 2100000, guid: 5055964a6e53d404387ef02c80e17638, type: 2}
+  nonseleted: {fileID: 2100000, guid: b6e5c1754261dd84691710b9df3aa5bb, type: 2}
+  title: 
 --- !u!1 &8050264649233583593
 GameObject:
   m_ObjectHideFlags: 0

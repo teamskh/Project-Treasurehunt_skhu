@@ -11,9 +11,13 @@ public class Scroll : MonoBehaviour
     [SerializeField]
     GameObject Input;
 
+    public Material seleted, nonseleted;
+
     Transform qtxt;
     Transform buttonPos;
     public string title;
+    public string context;
+    int kind;
     string answer;
 
     private void Awake()
@@ -25,9 +29,10 @@ public class Scroll : MonoBehaviour
     public void Init(string name)
     {
         Q item = PlayerContents.Instance.FindQ(name);
-        int kind = item.Kind.Value;
+        kind = item.Kind.Value;
         qtxt.GetComponent<TextMesh>().text = item.Str;
         title = name;
+        context = item.Str;
         GameObject gameobj;
         switch (kind)
         {
@@ -40,22 +45,33 @@ public class Scroll : MonoBehaviour
                 break;
             case 2:
                 gameobj = Instantiate(Input, buttonPos);
-               
+
                 break;
             default:
                 gameobj = null;
                 break;
         }
     }
-    
+
+
     public void setAnswer(string ans)
     {
-        if (answer == ans)
+        switch (kind)
         {
-            CheckAnswer();
-            return;
+            case 0:
+            case 1:
+                if (answer == ans)
+                {
+                    CheckAnswer();
+                    return;
+                }
+                answer = ans;
+                break;
+            case 2:
+                answer = ans;
+                CheckAnswer();
+                break;
         }
-        answer = ans;
     }
 
     private void CheckAnswer()
