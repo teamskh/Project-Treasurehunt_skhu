@@ -1,18 +1,14 @@
-﻿
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 public class O : ARButtons 
 {
     [SerializeField] GameObject X;
-    public void Check() {
+    public override void CheckAns()
+    {
         Debug.Log("O Call");
         transform.GetComponentInParent<Scroll>().setAnswer(bool.TrueString);
-        GetComponent<MeshRenderer>().material.color = Color.cyan;
-        X.GetComponent<MeshRenderer>().material.color = Color.white;
+        GetComponent<Renderer>().material = selected;
+        X.GetComponent<Renderer>().material = nonselected;
     }
-    public void Start()
-    {
-        gameObject.name = transform.GetComponentInParent<Scroll>().title + '/' + bool.TrueString;
-    }
+
 }

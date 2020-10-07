@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class X : ARButtons {
     [SerializeField] GameObject O;
-    public void Check()
+    public override void CheckAns()
     {
         Debug.Log("X call");
         transform.GetComponentInParent<Scroll>().setAnswer(bool.FalseString);
-        GetComponent<MeshRenderer>().material.color = Color.cyan;
-        O.GetComponent<MeshRenderer>().material.color = Color.white;
-    }
-    public void Start()
-    {
-        gameObject.name = transform.GetComponentInParent<Scroll>().title + '/' + bool.FalseString;
+        GetComponent<Renderer>().material = selected;
+        O.GetComponent<Renderer>().material = nonselected;
     }
 }
