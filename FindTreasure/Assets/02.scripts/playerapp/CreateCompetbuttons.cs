@@ -115,7 +115,7 @@ public class CreateCompetbuttons : MonoBehaviour
             //PassOpen.SetActive(true);
             //비밀번호 UI 띄우기
             code = PlayerContents.Instance.GetUserPass();
-
+            gameman.Instance.loadRankChek = false;
             if (code == 0)
             {
                 rank.conTime = PlayerContents.Instance.endTimelimit();
@@ -136,6 +136,7 @@ public class CreateCompetbuttons : MonoBehaviour
             {
                 //closePass.SetActive(false);
                 //Pan.SetActive(false);
+                gameman.Instance.loadRankChek = false;
                 gameObject.GetComponent<PanelScript>().setP();
                 //InvokeRepeating("Timer", 0.1f, 1f);
 
