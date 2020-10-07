@@ -39,7 +39,6 @@ public class TrackedImageInfoManager : MonoBehaviour
     Dictionary<string, GameObject> ARobj = new Dictionary<string, GameObject>();
     Vector3 pos;
 
-    List<string> clearlist = new List<string>();
 
     #region Controll ARObjects
     string Dequeue()
@@ -54,8 +53,6 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     IEnumerator Enqueue(string name,GameObject trackImg)
     {
-        if (!clearlist.Contains(name))
-        {
             ARobj.Add(name, trackImg);
             nameTable.Enqueue(name);
             if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
@@ -63,8 +60,7 @@ public class TrackedImageInfoManager : MonoBehaviour
             yield return null;
 
             trackImg.GetComponentInChildren<Scroll>().Init(name);
-        }
-        else yield return null;
+       
     }
 
     #endregion
@@ -201,33 +197,33 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void AssignGameObject(string name, ARTrackedImage img)
     {
-        GameObject goARObject;
+            GameObject goARObject;
 
-        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name,img.gameObject));
+            if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name, img.gameObject));
 
-        if (ARobj.TryGetValue(name, out goARObject)){
+            if (ARobj.TryGetValue(name, out goARObject))
+            {
 
-            goARObject.transform.position=new Vector3(0, 0, 1.5f);
-            goARObject.transform.localScale = scaleFactor;
+                goARObject.transform.position = new Vector3(0, 0, 1.5f);
+                goARObject.transform.localScale = scaleFactor;
 
-        } 
+            }
     }
 
 
     void MakeLibrary()
     {
+        trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary();
+
         List<Texture2D> lists = PlayerContents.Instance.getLib();
         foreach(var txtur in lists)
         {
-            Debug.Log("ho");
             StartCoroutine(AddImageJob(txtur, txtur.name));
-            Debug.Log("hoho");
         }
     }
     
     void clear(string name)
     {
-        clearlist.Add(name);
         GameObject obj;
         ARobj.TryGetValue(name, out obj);
         if (obj != null) Destroy(obj);

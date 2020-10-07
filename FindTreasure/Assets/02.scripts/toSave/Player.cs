@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     List<ShortInfo> shortInfos = new List<ShortInfo>();
     List<Recodes.Recode> recodes = new List<Recodes.Recode>();
     public int CurComp;
+    public List<string> clearlist;
 
     static event Action Save;
     static event Action Load;
@@ -116,6 +117,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         score = 0;
+        clearlist = new List<string>();
     }
 
     void Update( )
@@ -173,6 +175,8 @@ public class Player : MonoBehaviour
                 ReadScore.CallUpdate();
                 
             }
+            clearlist.Add(name);
+            PlayerContents.Instance.repackageLib();
             TrackedImageInfoManager.CallDestroy(name);
         }
     }

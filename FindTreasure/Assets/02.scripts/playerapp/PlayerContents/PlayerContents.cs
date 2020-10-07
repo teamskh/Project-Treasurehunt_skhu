@@ -89,8 +89,8 @@ public class PlayerContents
 
         foreach (var quiz in quiznames)
         {
-            libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
-            Debug.Log("whu");
+            if (!Player.Instance.clearlist.Contains(quiz))
+                libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
         }
         return libs;
     }
@@ -117,7 +117,6 @@ public class PlayerContents
 
         Library();
         SetendTime();
-
     }
 
     public void SetendTime()
@@ -154,4 +153,6 @@ public class PlayerContents
         var sInfo = Cur.EndTime;
         return sInfo - DateTime.Now;
     }
+
+    public void repackageLib() => Library();
 }
