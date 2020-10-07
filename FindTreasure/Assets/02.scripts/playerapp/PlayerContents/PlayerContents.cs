@@ -17,6 +17,7 @@ public class PlayerContents
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
     public event Action Library;
+    List<string> clearlist;
 
     #region Singleton
     PlayerContents()
@@ -89,7 +90,8 @@ public class PlayerContents
 
         foreach (var quiz in quiznames)
         {
-            libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
+            if (!Player.Instance.clearlist.Contains(quiz))
+                libs.Add(new Texture2D(0, 0).Load(CurCompetition, quiz));
         }
         return libs;
     }
@@ -116,7 +118,7 @@ public class PlayerContents
 
         Library();
         SetendTime();
-
+        clearlist = new List<string>();
     }
 
     public void SetendTime()
@@ -150,4 +152,6 @@ public class PlayerContents
         var sInfo = Cur.EndTime;
         return sInfo - DateTime.Now;
     }
+
+    public void repackageLib() => Library();
 }

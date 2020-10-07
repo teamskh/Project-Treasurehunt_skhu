@@ -201,25 +201,33 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void AssignGameObject(string name, ARTrackedImage img)
     {
-        GameObject goARObject;
+        if (!clearlist.Contains(name))
+        {
+            GameObject goARObject;
 
-        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name,img.gameObject));
+            if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name, img.gameObject));
 
-        if (ARobj.TryGetValue(name, out goARObject)){
+            if (ARobj.TryGetValue(name, out goARObject))
+            {
 
-            goARObject.transform.position=new Vector3(0, 0, 1.5f);
-            goARObject.transform.localScale = scaleFactor;
+                goARObject.transform.position = new Vector3(0, 0, 1.5f);
+                goARObject.transform.localScale = scaleFactor;
 
-        } 
+            }
+        }
     }
 
 
     void MakeLibrary()
     {
+        trackImageManager.referenceLibrary = trackImageManager.CreateRuntimeLibrary();
+
         List<Texture2D> lists = PlayerContents.Instance.getLib();
         foreach(var txtur in lists)
         {
+            Debug.Log(txtur.name);
             StartCoroutine(AddImageJob(txtur, txtur.name));
+            Debug.Log("Success");
         }
     }
     
@@ -229,6 +237,8 @@ public class TrackedImageInfoManager : MonoBehaviour
         GameObject obj;
         ARobj.TryGetValue(name, out obj);
         if (obj != null) Destroy(obj);
+
+        
     }
 
     public static void CallDestroy(string name)
