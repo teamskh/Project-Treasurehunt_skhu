@@ -5,8 +5,13 @@ using UnityEngine.EventSystems;
 
 public class ARButtons : MonoBehaviour
 {
-    public int code;
-
+    protected Material selected, nonselected;
+    public string answer;
+    protected virtual void Start()
+    {
+        selected = transform.GetComponentInParent<Scroll>().seleted;
+        nonselected = transform.GetComponentInParent<Scroll>().nonseleted;
+    }
     public virtual void CheckAns() { }
 
 }

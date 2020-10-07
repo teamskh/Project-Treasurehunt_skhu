@@ -53,13 +53,11 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     IEnumerator Enqueue(string name,GameObject trackImg)
     {
-            ARobj.Add(name, trackImg);
-            nameTable.Enqueue(name);
-            if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
-
-            yield return null;
-
-            trackImg.GetComponentInChildren<Scroll>().Init(name);
+        ARobj.Add(name, trackImg);
+        nameTable.Enqueue(name);
+        if (nameTable.Count > trackImageManager.maxNumberOfMovingImages) Dequeue();
+        yield return null;
+        trackImg.GetComponentInChildren<Scroll>().Init(name);
        
     }
 
@@ -78,7 +76,7 @@ public class TrackedImageInfoManager : MonoBehaviour
 
             trackImageManager.enabled = true;
 
-            trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+            //trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
 
             ShowTrackerInfo();
             // Debug.Log("Not MutableLibrary");
@@ -119,10 +117,8 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    public IEnumerator AddImageJob(Texture2D texture2D,string name)
+    public void AddImageJob(Texture2D texture2D,string name)
     {
-        yield return null;
-
         debugLog= string.Empty;
 
        debugLog += "Adding image\n";
@@ -173,19 +169,26 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        foreach (ARTrackedImage trackedImage in eventArgs.added)
+        try
         {
-            // Display the name of the tracked image in the canvas
-            UpdateARImage(trackedImage);
-            pos = trackedImage.transform.position;
-             trackedImage.transform.Rotate(Vector3.right, 90);
+            foreach (ARTrackedImage trackedImage in eventArgs.added)
+            {
+                // Display the name of the tracked image in the canvas
+                UpdateARImage(trackedImage);
+                pos = trackedImage.transform.position;
+                trackedImage.transform.Rotate(Vector3.right, 90);
+            }
+
+            foreach (ARTrackedImage trackedImage in eventArgs.updated)
+            {
+                // Display the name of the tracked image in the canvas
+                UpdateARImage(trackedImage);
+                trackedImage.transform.Rotate(Vector3.right, 90);
+            }
         }
-       
-        foreach (ARTrackedImage trackedImage in eventArgs.updated)
+        catch(NullReferenceException e)
         {
-            // Display the name of the tracked image in the canvas
-            UpdateARImage(trackedImage);
-            trackedImage.transform.Rotate(Vector3.right, 90);
+            Debug.Log(e.StackTrace);
         }
     }
 
@@ -197,17 +200,16 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void AssignGameObject(string name, ARTrackedImage img)
     {
-            GameObject goARObject;
-
-            if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name, img.gameObject));
-
-            if (ARobj.TryGetValue(name, out goARObject))
+        GameObject obj;
+        if (!ARobj.ContainsKey(name)) StartCoroutine(Enqueue(name, img.gameObject));
+        else
+        {
+            if (ARobj.TryGetValue(name, out obj))
             {
-
-                goARObject.transform.position = new Vector3(0, 0, 1.5f);
-                goARObject.transform.localScale = scaleFactor;
-
+                obj.transform.position = new Vector3(0, 0, 1.5f);
+                obj.transform.localScale = scaleFactor;
             }
+        }
     }
 
 
@@ -218,8 +220,9 @@ public class TrackedImageInfoManager : MonoBehaviour
         List<Texture2D> lists = PlayerContents.Instance.getLib();
         foreach(var txtur in lists)
         {
-            StartCoroutine(AddImageJob(txtur, txtur.name));
+            AddImageJob(txtur, txtur.name);
         }
+        trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
     }
     
     void clear(string name)

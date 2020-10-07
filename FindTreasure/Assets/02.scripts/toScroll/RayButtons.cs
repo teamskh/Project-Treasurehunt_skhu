@@ -29,19 +29,20 @@ public class RayButtons : MonoBehaviour
             RaycastHit hitObj;
             if (Physics.Raycast(ray, out hitObj))
             {
-                var check = hitObj.transform.name;
-                var answers = check.Split('/');
-                if (answers.Length == 2)
-                {
-                    if (answers[0] == title)
-                        Player.Instance.CheckAnswer(answers[0], answers[1]);
-                    else
-                    {
-                        title = answers[0];
-                        Debug.Log(hitObj.transform.parent.name);
-                    }
-                }
-                hitObj.transform.GetComponent<ARButtons>()?.CheckAns();
+               // var check = hitObj.transform.name;
+               // var answers = check.Split('/');
+               // if (answers.Length == 2)
+               // {
+               //     if (answers[0] == title)
+               //         Player.Instance.CheckAnswer(answers[0], answers[1]);
+               //     else
+               //     {
+               //         title = answers[0];
+               //         Debug.Log(hitObj.transform.parent.name);
+               //     }
+               // }
+                Debug.Log(hitObj.transform.GetComponent<ARButtons>() != null);
+                hitObj.transform.GetComponent<ARButtons>().CheckAns();
             }
         }
     }
