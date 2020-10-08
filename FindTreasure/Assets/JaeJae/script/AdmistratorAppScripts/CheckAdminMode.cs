@@ -13,19 +13,7 @@ public class CheckAdminMode : MonoBehaviour
     InputField inputField;
     [SerializeField]
     GameObject all_t, re;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Backend.Initialize(() =>
-        {
-            if (Backend.IsInitialized)
-            {
-                BackendReturnObject bro = new BackendReturnObject();
-                bro = Backend.BMember.CustomLogin("Admin", "toomuch");
-            }
-        });
-    }
-
+    
     private bool CheckPassword(string pw)
     {
         Param where = new Param();
@@ -38,6 +26,7 @@ public class CheckAdminMode : MonoBehaviour
             Debug.Log(data[0]["univpw"]["S"].ToString());
             if (pw.Trim() == data[0]["univpw"]["S"].ToString()) return true;
             inDate = bro.GetReturnValuetoJSON()["rows"][0]["univpw"]["S"].ToString();
+            Debug.Log($"Access Token : {PlayerPrefs.GetString("access_token")}");
         }
         if (pw == inDate) return true;
         else return false;
@@ -48,6 +37,8 @@ public class CheckAdminMode : MonoBehaviour
         Debug.Log(inputField.text);
         if (CheckPassword(inputField.text) == true)
         {
+            BackendReturnObject bro = Backend.BMember.CustomLogin("Admin", "toomuch");
+            Debug.Log($"Access Token : {PlayerPrefs.GetString("access_token")}");
             gameObject.GetComponent<scenechange>().Loading();
         }
         else if(inputField.text.Length<1)//비밀번호안침
