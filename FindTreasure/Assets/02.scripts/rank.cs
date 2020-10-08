@@ -14,12 +14,15 @@ public class rank : MonoBehaviour
     public Text endtimeT; //상당바에 나오는 시간
     public static TimeSpan conTime;
     private TimeSpan Times=new TimeSpan(0,0,1);
-    Player player = new Player();
+    
 
     public Text Timet;
     public GameObject Etime; //종료 메시지
     public Text Scoret;
     public GameObject Escore;
+
+    Player player = new Player();
+    createmyrank Crank = new createmyrank();
 
     public void OnEnable()
     {
@@ -47,6 +50,11 @@ public class rank : MonoBehaviour
             Scoret.text = player.score.ToString();
             Escore.SetActive(true);
             Endingmess.SetActive(true);
+
+            Crank.conname = gameman.Instance.conName;
+            Crank.rankTime = "0초";
+            Crank.rankScore = player.score;
+
             gameman.Instance.loadRankChek = true;
 
         }
@@ -56,6 +64,10 @@ public class rank : MonoBehaviour
             Timet.text = endtimeT.text;
             Etime.SetActive(true);
             Endingmess.SetActive(true);
+
+            Crank.conname = gameman.Instance.conName;
+            Crank.rankTime = endtimeT.ToString();
+            Crank.rankScore = player.score;
             gameman.Instance.loadRankChek = true;
         }
     }
