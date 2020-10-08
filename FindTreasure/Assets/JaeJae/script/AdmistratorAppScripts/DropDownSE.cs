@@ -29,6 +29,8 @@ public class DropDownSE : MonoBehaviour
 
     public bool chon= false;
     public int cnt = 0;
+    [SerializeField]
+    Text sdate,edate;
 
     Competition compet = new Competition();
     CompetitionDictionary dic = new CompetitionDictionary();
@@ -54,6 +56,50 @@ public class DropDownSE : MonoBehaviour
         SetDropdownOptionsExample();
         HandleInputData();
         StartCoroutine(CountTime());
+        string key = AdminCurState.Instance.Competition;
+        dic.GetCompetitions();
+        if (dic.TryGetValue(key, out compet))
+        {
+            if (compet.StartTime.Year==9999)
+            {
+                return;
+            }
+            else
+            {
+                sdate.text = compet.StartTime.Year + "-" + compet.StartTime.Month + "-" + compet.StartTime.Day.ToString();
+                startM.value = compet.StartTime.Minute;
+                if (compet.StartTime.Hour > 12)
+                {
+                    startTAMPM.value = 1;
+                    startH.value = compet.StartTime.Hour - 12;
+                }
+                else
+                {
+                    startTAMPM.value = 0;
+                    startH.value = compet.StartTime.Hour;
+                }
+
+            }
+            if (compet.EndTime.Year == 9999)
+            {
+                return;
+            }
+            else
+            {
+                edate.text= compet.EndTime.Year +"-"+ compet.EndTime.Month + "-" + compet.EndTime.Day.ToString();
+                EndM.value = compet.EndTime.Minute;
+                if (compet.EndTime.Hour > 12)
+                {
+                    EndTAMPM.value = 1;
+                    EndH.value = compet.EndTime.Hour - 12;
+                }
+                else
+                {
+                    EndTAMPM.value = 0;
+                    EndH.value = compet.EndTime.Hour;
+                }
+            }
+        }
     }
     
     private void SetDropdownOptionsExample()
@@ -106,7 +152,18 @@ public class DropDownSE : MonoBehaviour
         starttime = DateTime.Now;
 
         compet.StartTime = starttime;
-
+        sdate.text = starttime.Year + "-" + starttime.Month + "-" + starttime.Day.ToString();
+        startM.value = compet.StartTime.Minute;
+        if (compet.StartTime.Hour > 12)
+        {
+            startTAMPM.value = 1;
+            startH.value = compet.StartTime.Hour - 12;
+        }
+        else
+        {
+            startTAMPM.value = 0;
+            startH.value = compet.StartTime.Hour;
+        }
         Param param = new Param();
         param.CompetStart(starttime)
              .CompetUpdate();
@@ -138,8 +195,19 @@ public class DropDownSE : MonoBehaviour
         isOn = false;
         reservEnd = false;
         endtime = DateTime.Now;
+        edate.text = endtime.Year + "-" + endtime.Month + "-" + endtime.Day.ToString();
         compet.EndTime = endtime;
-
+        EndM.value = compet.EndTime.Minute;
+        if (compet.EndTime.Hour > 12)
+        {
+            EndTAMPM.value = 1;
+            EndH.value = compet.EndTime.Hour - 12;
+        }
+        else
+        {
+            EndTAMPM.value = 0;
+            EndH.value = compet.EndTime.Hour;
+        }
         Param param = new Param();
         param.CompetEnd(endtime)
              .CompetUpdate();
