@@ -146,7 +146,7 @@ public class FTP
 
         foreach(var name in files)
         {
-            req = (FtpWebRequest)WebRequest.Create(ftpPath + '/' + path.DirFile());
+            req = (FtpWebRequest)WebRequest.Create(ftpPath + '/' + path.Dir()+'/'+name);
             req.Method = WebRequestMethods.Ftp.DeleteFile;
             req.Credentials = new NetworkCredential(user, pwd);
 
@@ -185,7 +185,7 @@ public class FTP
 
         ImageServerUpload(new DataPath("JPG/" + competition, "Deleted", ".txt"));
         List<string> names = new List<string>();
-        names.Add(name);
+        names.Add(name +".jpg");
         ImageServerDelete(competition, names);
 
     }
