@@ -20,9 +20,7 @@ public class rank : MonoBehaviour
     public GameObject Etime; //종료 메시지
     public Text Scoret;
     public GameObject Escore;
-
-    Player player = new Player();
-    createmyrank Crank = new createmyrank();
+    private int num = 0;
 
     public void OnEnable()
     {
@@ -43,35 +41,39 @@ public class rank : MonoBehaviour
     {
         conTime = conTime - Times;
         endtimeT.text = $"{conTime.Days}일 {conTime.Hours}시간 {conTime.Minutes}분 {conTime.Seconds}초";
-        if (conTime.Seconds<0)
+        if (conTime.Seconds<1)
         {
             CancelInvoke("Timer");
             endtimeT.text = "0일 0시간 0분 0초";
-            Scoret.text = player.score.ToString();
-
-            Crank.conname = gameman.Instance.conName;
-            Crank.rankTime = "0초";
-            Crank.rankScore = player.score;
-
+            Scoret.text = Player.Instance.score.ToString();
+            
             gameman.Instance.loadRankChek = true;
+            num++;
+            GetRecord();
 
             Endingmess.SetActive(true);
             Escore.SetActive(true);
         }
-        else if(player.score == gameman.Instance.EndScore)
+        else if(Player.Instance.score == gameman.Instance.EndScore)
         {
             CancelInvoke("Timer");
             Timet.text = endtimeT.text;
-
-            Crank.conname = gameman.Instance.conName;
-            Crank.rankTime = endtimeT.ToString();
-            Crank.rankScore = player.score;
-
+            
             gameman.Instance.loadRankChek = true;
+            num++;
+            GetRecord();
 
             Endingmess.SetActive(true);
             Etime.SetActive(true);
 
         }
+    }
+
+    public void GetRecord()
+    {
+        PlayerPrefs.SetInt("nextNumber", num);
+        PlayerPrefs.SetString("ConName", gameman.Instance.conName);
+        PlayerPrefs.SetString("Times", endtimeT.ToString());
+        PlayerPrefs.SetInt("Score", Player.Instance.score);
     }
 }

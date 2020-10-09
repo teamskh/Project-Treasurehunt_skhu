@@ -9,10 +9,9 @@ using UnityEngine.UI;
 public class realtimerank : MonoBehaviour
 {
     public Text[] Texrank;
-
     public void Start()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 9; i++)
             Texrank[i].text = " ";
     }
 
@@ -91,12 +90,15 @@ public class realtimerank : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("other");
                     Texrank[j].text = rows[i]["nickname"].ToString();
                     Texrank[j + 1].text = rows[i]["rank"][0].ToString();
                     Texrank[j + 2].text = rows[i]["score"][0].ToString();
                 }
 
+
                 ra = "닉네임 : " + rows[i]["nickname"].ToString() + " 순위 : " + rows[i]["rank"][0].ToString() + " 점수 : " + rows[i]["score"][0].ToString();
+                
                 Debug.Log(ra);
                 j += 3;
             }
@@ -131,7 +133,7 @@ public class realtimerank : MonoBehaviour
         string rowindate;
         rowindate = Backend.BMember.GetUserInfo().GetInDate().ToString();
         
-        BackendReturnObject BRO = Backend.GameInfo.UpdateRTRankTable("rank", "score", gameman.Instance.score, rowindate);
+        BackendReturnObject BRO = Backend.GameInfo.UpdateRTRankTable("rank", "score", Player.Instance.score, rowindate);
         if (BRO.IsSuccess())
         {
             Debug.Log("실시간랭킹갱신");
