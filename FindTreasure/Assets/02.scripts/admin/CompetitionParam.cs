@@ -53,7 +53,7 @@ public static class CompetitionParam
     public static Param CompetToSingle(this Param update)
     {
         update.Add("mode", false);
-        update.Add("maxmember", 0);
+        update.Add("maxmember", 1);
         return update;
     }
     public static Param CompetPassword(this Param update,string pass)
@@ -89,21 +89,25 @@ public static class CompetitionParam
         if (bro.IsSuccess()) Debug.Log("InsertSucess");
     }
 
-    public static void DeleteCompetition(this Param delete,string name)
+    public static void DeleteCompetition(this Param delete)
     {
         CompetitionDictionary dic = new CompetitionDictionary();
         dic.GetCompetitions();
 
         int code;
-        dic.transCode.TryGetValue(name, out code);
+        dic.transCode.TryGetValue(AdminCurState.Instance.Competition, out code);
 
         delete.Add("code", code);
         Param quizz = new Param();
         quizz.Add("idcompetition", code);
-        BackendReturnObject bro = Backend.GameSchemaInfo.Delete("Quizz", quizz);
-        if (bro.IsSuccess())
+        while (true)
         {
-            bro = Backend.GameSchemaInfo.Delete("competitions", delete);
+            BackendReturnObject bro = Backend.GameSchemaInfo.Delete("Quizz", quizz);
+            if (!bro.IsSuccess())
+            {
+                bro = Backend.GameSchemaInfo.Delete("competitions", delete);
+                break;
+            }
         }
     }
 }

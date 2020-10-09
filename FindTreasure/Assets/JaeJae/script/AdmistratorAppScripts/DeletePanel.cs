@@ -50,9 +50,9 @@ public class DeletePanel : MonoBehaviour
             compdic = new CompetitionDictionary();
             compdic.TryGetValue(key, out comp);
             Param param = new Param();
-            param.DeleteCompetition(comp);
+            param.DeleteCompetition();
             GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
-            FTP.ImageServerAllIMG(key);
+            //FTP.ImageServerAllIMG(key);
         }
     }
 }
