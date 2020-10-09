@@ -8,6 +8,7 @@ public class LocalFileUtil
 {
     private static string Modifiedpath = "{0}/JPG/{1}/Modified.txt";
     private static string Deletedpath = "{0}/JPG/{1}/Deleted.txt";
+    private static string Filepath = "{0}/JPG/{1}/{2}.jpg";
 
     private static string SetString(string format, string competition)
     {
@@ -16,7 +17,8 @@ public class LocalFileUtil
         if (!Directory.Exists(Application.persistentDataPath + "/JPG/" + competition))
             Directory.CreateDirectory(Application.persistentDataPath + "/JPG/" + competition);
         return string.Format(format, Application.persistentDataPath, competition);
-    }
+    } 
+
     private static void Add(string competiton, string quiz,string format)
     {
         string path = SetString(format, competiton);
@@ -77,4 +79,15 @@ public class LocalFileUtil
 
     public static void ModifiedRemove(string competition, string quiz) => Remove(competition, quiz, Modifiedpath);
     public static void DeletedRemove(string competition, string quiz) => Remove(competition, quiz, Deletedpath);
+    
+    public static void FileRename(string competition,string before, string after)
+    {
+        string beforepath = string.Format(Filepath, Application.persistentDataPath, competition, before);
+        string afterpath = string.Format(Filepath, Application.persistentDataPath, competition, after);
+
+        if (File.Exists(beforepath))
+        {
+            File.Move(beforepath, afterpath);
+        }
+    }
 }
