@@ -5,10 +5,7 @@ using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using TTM.Classes;
-using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -52,15 +49,15 @@ public class Player : MonoBehaviour
     }
 #endregion
 
-    private void AfterLogin()
+    public void AfterLogin(string gamerid)
     {
-        userCode = PlayerPrefs.GetString("usercode");
-        Save = () => Log.Save(userCode);//shortInfos.Save(userCode);
+        userCode = gamerid;
+        Save = () => Log.Save(userCode);
         Save += () => recodes.Save(userCode, "recode");
 
         Load = () => shortInfos.Load(userCode);
         Load += () => recodes.Load(userCode, "recode");
-        
+        Load();
     }
 
     /*

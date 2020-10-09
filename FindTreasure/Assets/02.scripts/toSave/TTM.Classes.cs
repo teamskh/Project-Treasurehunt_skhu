@@ -506,6 +506,7 @@ namespace TTM.Classes
                 Debug.Log("Directory Doesn't exist");
                 Directory.CreateDirectory(path[1]);
             }
+            Debug.Log("Loader");
             Stream rs = new FileStream(path.ToString(), FileMode.OpenOrCreate);
             BinaryFormatter deserializer = new BinaryFormatter();
 
@@ -520,7 +521,10 @@ namespace TTM.Classes
             {
                 DataPath path = new DataPath();
                 path[2] = user + type;
-                
+
+                if (!Directory.Exists(path[1])) Directory.CreateDirectory(path[1]);
+                if (!File.Exists(path.ToString())) File.Create(path.ToString());
+                Debug.Log("Saver");
                 Stream ws = new FileStream(path.ToString(), FileMode.Truncate);
                 BinaryFormatter serializer = new BinaryFormatter();
 

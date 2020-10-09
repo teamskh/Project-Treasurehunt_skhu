@@ -34,8 +34,8 @@ public class QuizList : MonoBehaviour
         if (list != null)
             foreach (string item in list)
             {
-                QList.Add(MakeQuizButton(item));
                 DownLoadIMG(item);
+                QList.Add(MakeQuizButton(item));
             }
         ControlIMGs();
     }
