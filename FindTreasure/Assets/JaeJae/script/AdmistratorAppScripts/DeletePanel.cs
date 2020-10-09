@@ -52,7 +52,7 @@ public class DeletePanel : MonoBehaviour
             Param param = new Param();
             param.DeleteCompetition();
             GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
-            //FTP.ImageServerAllIMG(key);
+            FTP.ImageServerAllIMG(key);
         }
     }
 }
