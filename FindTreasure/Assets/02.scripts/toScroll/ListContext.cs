@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ListContext : MonoBehaviour
 {
     [SerializeField]
-    List<Text> nums;
+    List<TextMesh> nums;
     
     public void setList(string[] list)
     {
         for(int i = 0; i < 4; i++)
         {
-            nums[i].text = list[0];
+            nums[i].text = list[i];
         }
     }
 }

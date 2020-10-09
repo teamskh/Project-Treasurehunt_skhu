@@ -7,60 +7,81 @@ using UnityEngine.UI;
 
 public class createmyrank : MonoBehaviour
 {
-    public string conname;
-    public string rankTime;
-    public int rankScore;
+    public static string conname;
+    public static string rankTime;
+    public static int rankScore;
+    
+    int nextNumber=0, wordNumber;//대회버튼에 숫자, 단어개수인듯,,?
 
-    public GameObject prefab, Content;//대회버튼, content화면
-    int nextNumber, wordNumber;//대회버튼에 숫자, 단어개수인듯,,?
-                               // Start is called before the first frame update
-        void Start()
+    List<GameObject> Rec = new List<GameObject>();
+    [SerializeField] GameObject Rprefab;
+    [SerializeField] GameObject Adapter;
+
+    public void Start()
+    {
+        if (PlayerPrefs.HasKey("nextNumber"))
         {
-            if (gameman.Instance.loadRankChek == true)
-            {
-                Debug.Log("ho");
-                if (PlayerPrefs.HasKey("nextNumber"))
-                    nextNumber = PlayerPrefs.GetInt("nextNumber");
+            GameObject go = Instantiate(Rprefab, Rprefab.transform.position, Quaternion.identity) as GameObject;
+            go.transform.GetChild(0).transform.GetComponent<Text>().text = PlayerPrefs.GetString("ConName");
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = PlayerPrefs.GetString("Times");
+            go.transform.GetChild(2).transform.GetComponent<Text>().text = PlayerPrefs.GetString("Score");
+            Adapter.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
+        }
+        else
+        {
+            Debug.Log("notFind");
+            PlayerPrefs.DeleteAll();
+        }
 
-                nextNumber++;
-                GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
-                go.transform.GetChild(0).transform.GetComponent<Text>().text = rankScore.ToString(); //점수
+        /*if (gameman.Instance.loadRankChek == true)
+        {
+            nextNumber++;
 
-                string wordString = "대회이름";
-                PlayerPrefs.SetString("words" + wordNumber, wordString);
+            if (PlayerPrefs.HasKey("nextNumber"))
+                nextNumber = PlayerPrefs.GetInt("nextNumber");
 
-                go.transform.GetChild(1).transform.GetComponent<Text>().text = rankTime; //number옆text
-                go.transform.GetChild(2).transform.GetComponent<Text>().text = conname; //number옆text
+            GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
+            
+            string wordString = conname;
+            Debug.Log("****");
+            PlayerPrefs.SetString("words" + wordNumber, wordString);
 
-                go.transform.SetParent(Content.transform);
-                PlayerPrefs.SetInt("nextNumber", nextNumber);
-                wordNumber++;
-                PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
-           
-                Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
-            }
-            else
-            {
-                Debug.Log("nono");
-            }
+            Debug.Log("*5***");
+            Debug.Log(go.activeInHierarchy);
+            Debug.Log(go.activeSelf);
 
-            //PlayerPrefs.DeleteAll();
-            //deleted all playerprefs
+            go.transform.GetChild(0).transform.GetComponent<Text>().text = conname; //대회 이름
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = rankTime; //시간
+            go.transform.GetChild(2).transform.GetComponent<Text>().text = rankScore.ToString(); //점수
 
-            //wordNumber = PlayerPrefs.GetInt("wordNumber");
-            wordNumber = PlayerPrefs.GetInt("nextNumber");
-            Debug.Log(wordNumber);
+            Debug.Log("**8*");
+            go.transform.SetParent(Content.transform);
+            Debug.Log("**9*");
+            PlayerPrefs.SetInt("nextNumber", nextNumber);
+            wordNumber++;
+            PlayerPrefs.SetInt("wordNumber" + wordNumber, wordNumber);
+
             Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
+            gameman.Instance.loadRankChek = false;
+            
+        }
 
-            for (int i = 0; i < wordNumber; i++)
-            {
-                GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
-                go.transform.GetChild(0).transform.GetComponent<Text>().text = rankScore.ToString(); //점수
-                go.transform.GetChild(1).transform.GetComponent<Text>().text = rankTime; //number옆text
-                go.transform.GetChild(2).transform.GetComponent<Text>().text = conname; //number옆text
+        //PlayerPrefs.DeleteAll();//deleted all playerprefs
 
-                go.transform.SetParent(Content.transform);
-            }
+        wordNumber = PlayerPrefs.GetInt("nextNumber");
+        Debug.Log("**"+wordNumber);
+        Content.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
+
+        for (int i = 0; i < wordNumber; i++)
+        {
+            GameObject go = Instantiate(prefab, prefab.transform.position, Quaternion.identity) as GameObject;
+            go.transform.GetChild(0).transform.GetComponent<Text>().text = conname; //대회 이름
+            go.transform.GetChild(1).transform.GetComponent<Text>().text = rankTime; //시간
+            go.transform.GetChild(2).transform.GetComponent<Text>().text = rankScore.ToString(); //점수
+
+            go.transform.SetParent(Content.transform);
+        }
+        */
     }
 }
 
