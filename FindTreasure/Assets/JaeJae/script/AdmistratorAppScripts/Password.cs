@@ -1,6 +1,7 @@
 ﻿using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TTM.Classes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class Password : MonoBehaviour
     GameObject all_t,re;
     private string key;
     CompetitionDictionary compdic;
-
+    GameObject Panel1, Panel2;
     public void OnEnable()
     {
         OK_b = GameObject.Find("OK")?.GetComponent<Button>();
@@ -27,14 +28,7 @@ public class Password : MonoBehaviour
         dic.GetCompetitions();
         all_t.SetActive(false);
         re.SetActive(false);
-        if (GameObject.Find("AskDel"))
-        {
-            OK_b?.onClick.AddListener(() => OK_D());
-        }
-        else
-        {
-            OK_b?.onClick.AddListener(() => OK_s());
-        }
+        OK_b?.onClick.AddListener(() => OK_s());
     }
 
     void OK_s()
@@ -44,7 +38,29 @@ public class Password : MonoBehaviour
 
         if (input.text==comp.Password)
         {
-            gameObject.AddComponent<scenechange>().ChangeSceneToAdMenu();
+            if (GameObject.Find("AskDel"))
+            {
+                string key = AdminCurState.Instance.Competition;
+                compdic = new CompetitionDictionary();
+                compdic.TryGetValue(key, out comp);
+                Param param = new Param();
+                param.DeleteCompetition();
+                GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
+                try
+                {
+                    FTP.ImageServerAllIMG(key);
+                }
+                catch (WebException e)
+                {
+                    Debug.Log(e.Message);
+                }
+                gameObject.GetComponent<PanelScript>().setP(1);
+                input.SetTextWithoutNotify("");
+            }
+            else
+            {
+                gameObject.AddComponent<scenechange>().ChangeSceneToAdMenu();
+            }
         }
         else if(input.text.Length<1)
         {
@@ -58,17 +74,6 @@ public class Password : MonoBehaviour
         }
     }
 
-    void OK_D()
-    {
-        string key = AdminCurState.Instance.Competition;
-        compdic = new CompetitionDictionary();
-        compdic.TryGetValue(key, out comp);
-        Param param = new Param();
-        param.DeleteCompetition();
-        GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
-        FTP.ImageServerAllIMG(key);
-        gameObject.AddComponent<PanelScript>().setP(1);
-    }
 
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
     {

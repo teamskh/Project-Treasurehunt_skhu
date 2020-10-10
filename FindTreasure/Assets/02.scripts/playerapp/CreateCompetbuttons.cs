@@ -124,7 +124,8 @@ public class CreateCompetbuttons : MonoBehaviour
             }
             else
             {
-                gameObject.AddComponent<PanelScript>().setPanel(2);
+                //gameObject.AddComponent<PanelScript>().setPanel(2);
+                gameObject.AddComponent<PanelScript>().set(2);
                 YES_b?.onClick.AddListener(Password);
             }
         }

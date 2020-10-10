@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PanelScript : MonoBehaviour
 {
     Button CPB,RCS,CMB;
-    GameObject Panel_T, Panel_h;
+    GameObject Panel_T;
     private List<GameObject> panel = new List<GameObject>();
     int Pkind;
     
@@ -26,9 +26,10 @@ public class PanelScript : MonoBehaviour
             CPB = GameObject.Find("ChangePw_b")?.GetComponent<Button>();
             RCS = GameObject.Find("ReCSetting_b")?.GetComponent<Button>();
             CMB = GameObject.Find("ChangeMode_b")?.GetComponent<Button>();
-            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_pw").gameObject ?? null);
-            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_comp").gameObject ?? null);
-            panel?.Add(GameObject.Find("Panel_A").transform.Find("Panel_mode").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("Panel_pw").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("Panel_comp").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("Panel_mode").gameObject ?? null);
+            Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
         }
         else if(SceneManager.GetActiveScene().name == "02.Main")
         {
@@ -36,6 +37,7 @@ public class PanelScript : MonoBehaviour
             panel?.Add(GameObject.Find("Canvas").transform.Find("PanelAdPw").gameObject ?? null);
             panel?.Add(GameObject.Find("Canvas").transform.Find("AskPw").gameObject ?? null);
             panel?.Add(GameObject.Find("Canvas").transform.Find("Panel_h").gameObject ?? null);
+            Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
             panel[0].transform.SetAsLastSibling();
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
@@ -45,12 +47,8 @@ public class PanelScript : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "QuizAdd")
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("CameraP").gameObject ?? null);
+            Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
         }
-        Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
-    }
-    private void Start()
-    {
-        Panel_T.SetActive(false);
     }
 
     public void setNumber(int kind)
@@ -69,6 +67,10 @@ public class PanelScript : MonoBehaviour
     public void set(int a)
     {
         panel[a].SetActive(true);
+    }
+    public void _set(int a)
+    {
+        panel[a].SetActive(false);
     }
 
     public void resetInput(InputField inputfield)
