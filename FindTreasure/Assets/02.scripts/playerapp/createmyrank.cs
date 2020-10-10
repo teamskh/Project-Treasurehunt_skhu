@@ -7,32 +7,22 @@ using UnityEngine.UI;
 
 public class createmyrank : MonoBehaviour
 {
-    public static string conname;
-    public static string rankTime;
-    public static int rankScore;
-    
-    int nextNumber=0, wordNumber;//대회버튼에 숫자, 단어개수인듯,,?
-
-    List<GameObject> Rec = new List<GameObject>();
-    [SerializeField] GameObject Rprefab;
-    [SerializeField] GameObject Adapter;
+    public GameObject CompetR;
+    private List<string> curlist;
+    private List<GameObject> buttons = new List<GameObject>();
+    public List<string> ConName;
 
     public void Start()
     {
-        if (PlayerPrefs.HasKey("nextNumber"))
-        {
-            GameObject go = Instantiate(Rprefab, Rprefab.transform.position, Quaternion.identity) as GameObject;
+
+
+        //PlayerPrefs.DeleteAll();
+
+            /*GameObject go = Instantiate(Rprefab, Rprefab.transform.position, Quaternion.identity) as GameObject;
             go.transform.GetChild(0).transform.GetComponent<Text>().text = PlayerPrefs.GetString("ConName");
             go.transform.GetChild(1).transform.GetComponent<Text>().text = PlayerPrefs.GetString("Times");
             go.transform.GetChild(2).transform.GetComponent<Text>().text = PlayerPrefs.GetString("Score");
-            Adapter.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);
-        }
-        else
-        {
-            Debug.Log("notFind");
-            PlayerPrefs.DeleteAll();
-        }
-
+            Adapter.transform.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, wordNumber * 112);*/
         /*if (gameman.Instance.loadRankChek == true)
         {
             nextNumber++;
@@ -82,6 +72,24 @@ public class createmyrank : MonoBehaviour
             go.transform.SetParent(Content.transform);
         }
         */
+    }
+
+    private void OnEnable()
+    {
+        curlist = PlayerContents.Instance.CompetitionList();
+        foreach (string title in curlist)
+        {
+            GameObject b = Instantiate(CompetR, transform);
+            b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count + 1) * 60);
+            foreach (Text t in b.transform.GetComponentsInChildren<Text>(true))
+            {
+                if (t.gameObject.layer == 8)
+                {
+                    t.text = title;
+                    ConName.Add(title);
+                }
+            }
+        }
     }
 }
 

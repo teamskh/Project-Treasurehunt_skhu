@@ -50,8 +50,8 @@ public class CreateCompetbuttons : MonoBehaviour
     [SerializeField]
     GameObject bar;
 
-    [SerializeField]
-    GameObject rankButton;
+    /*[SerializeField]
+    GameObject rankButton;*/
 
     [SerializeField]
     GameObject homeButton;
@@ -162,7 +162,7 @@ public class CreateCompetbuttons : MonoBehaviour
         List.SetActive(false);
         backmid.SetActive(false);
         bar.SetActive(true);
-        rankButton.SetActive(true);
+        //rankButton.SetActive(true);
         homeButton.SetActive(true);
         Debug.Log("click");
     }

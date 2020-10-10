@@ -7258,7 +7258,6 @@ GameObject:
   - component: {fileID: 940987647}
   - component: {fileID: 940987648}
   - component: {fileID: 940987637}
-  - component: {fileID: 940987640}
   m_Layer: 0
   m_Name: GameSetting
   m_TagString: Untagged
@@ -7304,20 +7303,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &940987640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940987636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da44882af1c41024d937551b7709a648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rprefab: {fileID: 8870570066614791162, guid: 1c2f02cfab70dc94f846a561b0b78ef2, type: 3}
-  Adapter: {fileID: 1066118862}
 --- !u!114 &940987641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8349,6 +8334,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1361023351}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1066118864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066118862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da44882af1c41024d937551b7709a648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompetR: {fileID: 8870570066614791162, guid: 1c2f02cfab70dc94f846a561b0b78ef2, type: 3}
+  ConName: []
 --- !u!1 &1094297792
 GameObject:
   m_ObjectHideFlags: 0
@@ -11325,7 +11324,12 @@ PrefabInstance:
     - target: {fileID: 4184675682672640153, guid: 152d6913ee16ce046bf0c1007570d726,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -810
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184675682672640153, guid: 152d6913ee16ce046bf0c1007570d726,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4184675682802385613, guid: 152d6913ee16ce046bf0c1007570d726,
         type: 3}
@@ -15498,7 +15502,6 @@ MonoBehaviour:
   backmid: {fileID: 1701956944}
   sfxmusic: {fileID: 940987637}
   bar: {fileID: 923739835}
-  rankButton: {fileID: 1469759809}
   homeButton: {fileID: 713893953}
   NoticeEnd: {fileID: 1709383005}
   NoticeOpen: {fileID: 764761316}
