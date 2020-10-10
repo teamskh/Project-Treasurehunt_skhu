@@ -117,8 +117,9 @@ public class TrackedImageInfoManager : MonoBehaviour
         trackImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    public void AddImageJob(Texture2D texture2D,string name)
+    public IEnumerator AddImageJob(Texture2D texture2D,string name)
     {
+        yield return null;
         debugLog= string.Empty;
 
        debugLog += "Adding image\n";
@@ -220,7 +221,7 @@ public class TrackedImageInfoManager : MonoBehaviour
         List<Texture2D> lists = PlayerContents.Instance.getLib();
         foreach(var txtur in lists)
         {
-            AddImageJob(txtur, txtur.name);
+            StartCoroutine( AddImageJob(txtur, txtur.name));
         }
         trackImageManager.trackedImagesChanged += OnTrackedImagesChanged;
     }

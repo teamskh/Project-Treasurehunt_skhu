@@ -16,9 +16,10 @@ public class PanelScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "ContestList")
         {
-            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("ContestSetupPanel").gameObject ?? null);
-            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskDel").gameObject ?? null);
-            panel?.Add(GameObject.Find("ContestCanvas").transform.Find("AskPw").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("ContestSetupPanel").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("AskPw").gameObject ?? null);
+            panel[2].transform.SetAsLastSibling();
         }
         else if (SceneManager.GetActiveScene().name == "ContestMenu")
         {
@@ -39,13 +40,13 @@ public class PanelScript : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "QuizMenu")
         {
-            panel?.Add(GameObject.Find("Panel").transform.Find("AskDel").gameObject ?? null);
+            panel?.Add(GameObject.Find("Canvas").transform.Find("AskDel").gameObject ?? null);
         }
         else if (SceneManager.GetActiveScene().name == "QuizAdd")
         {
             panel?.Add(GameObject.Find("Canvas").transform.Find("CameraP").gameObject ?? null);
         }
-        Panel_T = GameObject.Find("Panel_T").gameObject;
+        Panel_T = GameObject.Find("Canvas").transform.Find("Panel_T").gameObject;
     }
     private void Start()
     {
@@ -64,21 +65,26 @@ public class PanelScript : MonoBehaviour
         panel[Pkind].SetActive(false);
         Panel_T.SetActive(false);
     }
-    
+
+    public void set(int a)
+    {
+        panel[a].SetActive(true);
+    }
+
     public void resetInput(InputField inputfield)
     {
         inputfield.SetTextWithoutNotify("");
     }
 
-    public void setPanel()
+    public void setPanel(int a)
     {
-        panel[2].SetActive(true);
-        panel[3].SetActive(true);
+        panel[a].SetActive(true);
+        panel[a+1].SetActive(true);
     }
 
-    public void setP()
+    public void setP(int a)
     {
-        panel[2].SetActive(false);
-        panel[3].SetActive(false);
+        panel[a].SetActive(false);
+        panel[a+1].SetActive(false);
     }
 }

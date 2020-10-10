@@ -124,7 +124,7 @@ public class CreateCompetbuttons : MonoBehaviour
             }
             else
             {
-                gameObject.AddComponent<PanelScript>().setPanel();
+                gameObject.AddComponent<PanelScript>().setPanel(2);
                 YES_b?.onClick.AddListener(Password);
             }
         }
@@ -137,7 +137,7 @@ public class CreateCompetbuttons : MonoBehaviour
                 //closePass.SetActive(false);
                 //Pan.SetActive(false);
                 gameman.Instance.loadRankChek = false;
-                gameObject.GetComponent<PanelScript>().setP();
+                gameObject.GetComponent<PanelScript>().setP(2);
                 //InvokeRepeating("Timer", 0.1f, 1f);
 
                 rank.conTime = PlayerContents.Instance.endTimelimit();

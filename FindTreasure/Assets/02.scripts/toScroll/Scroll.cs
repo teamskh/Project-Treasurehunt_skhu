@@ -41,6 +41,7 @@ public class Scroll : MonoBehaviour
                 break;
             case 1:
                 gameobj = Instantiate(List, buttonPos);
+                Debug.Log($"List size: {item.List.Length}");
                 gameobj.GetComponent<ListContext>().setList(item.List);
                 break;
             case 2:
