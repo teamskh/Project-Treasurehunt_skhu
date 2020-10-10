@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
+    [Serializable]
     public class ShortInfo
     {
         public String ConName { get; set; }
@@ -497,8 +498,7 @@ namespace TTM.Classes
 
     public static class SaveLoad
     {
-        public static void Load<T>(this T obj, string user, string type ="") 
-        {
+        public static void Load<T>(this T obj, string user, string type ="") {
             DataPath path = new DataPath(Usercode: user+type );
 
             if (!Directory.Exists(path[1]))
@@ -515,8 +515,7 @@ namespace TTM.Classes
             rs.Close();
         }
 
-        public static void Save<T>(this T obj, string user, string type ="") 
-        {
+        public static void Save<T>(this T obj, string user, string type =""){
             if (obj != null)
             {
                 DataPath path = new DataPath();

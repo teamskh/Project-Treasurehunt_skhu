@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     static event Action Save;
     static event Action Load;
+    static event Action End;
 
     string userCode;
     public int score;
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     {
         get
         {
-            Save();
             return instance;
         }
     }
@@ -53,10 +53,12 @@ public class Player : MonoBehaviour
     {
         userCode = gamerid;
         Save = () => Log.Save(userCode);
-        Save += () => recodes.Save(userCode, "recode");
-
-        Load = () => shortInfos.Load(userCode);
+        End = () => recodes.Save(userCode, "recode");
+        End += () => shortInfos.Save(userCode, "current");
+        
+        Load = () => Log.Load(userCode);
         Load += () => recodes.Load(userCode, "recode");
+        Load += () => shortInfos.Load(userCode, "current");
         Load();
     }
 
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour
             Log.Remove(competname);
         }
         Save();
+        End();
     }
 #region Answers
         
@@ -175,6 +178,7 @@ public class Player : MonoBehaviour
             clearlist.Add(name);
             PlayerContents.Instance.repackageLib();
             TrackedImageInfoManager.CallDestroy(name);
+            Save();
         }
     }
     public void CheckAnswer(string name, string ans)

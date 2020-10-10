@@ -108,7 +108,7 @@ public class gameman : MonoBehaviour
     {
     }
     #endregion
-
+    
     private bool AutoLogin()
     {
         BackendReturnObject obj = Backend.BMember.CheckUserInBackend(GetTokens(), FederationType.Google);
