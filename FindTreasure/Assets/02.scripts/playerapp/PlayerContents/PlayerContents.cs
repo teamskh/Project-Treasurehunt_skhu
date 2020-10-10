@@ -129,9 +129,6 @@ public class PlayerContents
                 gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
-                Debug.Log(gameman.Instance.Opentime);
-                Debug.Log(gameman.Instance.endtime);
-                Debug.Log(CurLib.sum);
             }
         }
     }
