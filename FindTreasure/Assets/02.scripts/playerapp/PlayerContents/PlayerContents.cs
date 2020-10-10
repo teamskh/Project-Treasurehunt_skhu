@@ -11,8 +11,8 @@ public class PlayerContents
     PCompetitionDictionary Compets;
     Competition Cur;
     int CurCompet;
-    string CurCompetName;
-    public string CurCompetition { get => CurCompetName; } //얘 가지고 사용하면 될듯
+    public string CurCompetName; //[yjh]20.10.10 11:15 수정 public으로 바꿈 (주석 삭제plz)
+    public string CurCompetition { get => CurCompetName; } 
     PQuizDicitionary CurLib;
     static event Action DicUpdate;
     List<ShortInfo> CurOpenCompets;
@@ -129,6 +129,8 @@ public class PlayerContents
                 gameman.Instance.Opentime = CurOpenCompets.Find(CurCompetName).StartTime;
                 gameman.Instance.endtime = CurOpenCompets.Find(CurCompetName).EndingTime;
                 gameman.Instance.EndScore = CurLib.sum;
+
+
             }
         }
     }

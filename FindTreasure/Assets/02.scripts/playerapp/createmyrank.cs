@@ -11,10 +11,12 @@ public class createmyrank : MonoBehaviour
     private List<string> curlist;
     private List<GameObject> buttons = new List<GameObject>();
     public List<string> ConName;
+    public Player player;
 
     private void Awake()
     {
-        curlist = PlayerContents.Instance.CompetitionList();
+        curlist = Player.Instance.clearlist; //이게 맞아,,,?
+        
         foreach (string title in curlist)
         {
             GameObject b = Instantiate(CompetR, transform);
@@ -24,16 +26,18 @@ public class createmyrank : MonoBehaviour
                 if (t.gameObject.layer == 0) //대회이름
                 {
                     t.text = "0";
+                    //t.text = Player.Instance.Log.Values.ToString(); //이게 맞아,,?
                     ConName.Add(title);
                 }
                 else if(t.gameObject.layer == 9) //시간 
                 {
                     t.text = title;
+                    //t.text = Player.Instance.Log.Values.ToString(); //아닌 것 같은데,,,
                     ConName.Add(title);
                 }
                 else if (t.gameObject.layer == 5) //점수
                 {
-                    t.text = title;
+                    //t.text = Player.Instance.Log.Values.ToString(); //엉엉엉엉
                     ConName.Add(title);
                 }
                 
