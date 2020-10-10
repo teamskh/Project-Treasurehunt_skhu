@@ -12,8 +12,6 @@ public class DeletePanel : MonoBehaviour
     Button N;
     QuiDictionary dic;
     Q quiz;
-    CompetitionDictionary compdic;
-    Competition comp;
 
     public void OnEnable()
     {
@@ -43,16 +41,6 @@ public class DeletePanel : MonoBehaviour
             param.DeleteQuiz(code);
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().LoadQuiz();
             FTP.ImageServerOne(AdminCurState.Instance.Competition,key);
-        }
-        else if(GameObject.Find("GameManager") == true)
-        {
-            string key = AdminCurState.Instance.Competition;
-            compdic = new CompetitionDictionary();
-            compdic.TryGetValue(key, out comp);
-            Param param = new Param();
-            param.DeleteCompetition();
-            GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
-            FTP.ImageServerAllIMG(key);
         }
     }
 }
