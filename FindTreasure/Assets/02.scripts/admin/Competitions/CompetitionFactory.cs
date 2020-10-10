@@ -140,7 +140,7 @@ public class CompetitionFactory : MonoBehaviour
         //버튼 리스트 리셋용 호출
         var script = GetComponent<CompetitionToServer>();
         script?.SetList();
-
+        resetFields();
         return;
     }
     public void resetP()

@@ -14,6 +14,7 @@ public class Password : MonoBehaviour
     [SerializeField]
     GameObject all_t,re;
     private string key;
+    CompetitionDictionary compdic;
 
     public void OnEnable()
     {
@@ -26,7 +27,14 @@ public class Password : MonoBehaviour
         dic.GetCompetitions();
         all_t.SetActive(false);
         re.SetActive(false);
-        OK_b?.onClick.AddListener(() => OK_s());
+        if (GameObject.Find("AskDel"))
+        {
+            OK_b?.onClick.AddListener(() => OK_D());
+        }
+        else
+        {
+            OK_b?.onClick.AddListener(() => OK_s());
+        }
     }
 
     void OK_s()
@@ -48,6 +56,18 @@ public class Password : MonoBehaviour
             StartCoroutine(setActiveObjinSecond(re, 1f));
             return;
         }
+    }
+
+    void OK_D()
+    {
+        string key = AdminCurState.Instance.Competition;
+        compdic = new CompetitionDictionary();
+        compdic.TryGetValue(key, out comp);
+        Param param = new Param();
+        param.DeleteCompetition();
+        GameObject.Find("GameManager")?.GetComponent<CompetitionToServer>().SetList();
+        FTP.ImageServerAllIMG(key);
+        gameObject.AddComponent<PanelScript>().setP(1);
     }
 
     IEnumerator setActiveObjinSecond(GameObject gameObject, float second)
