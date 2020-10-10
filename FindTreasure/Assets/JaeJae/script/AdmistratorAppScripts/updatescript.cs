@@ -26,8 +26,9 @@ public class updatescript : MonoBehaviour
                 time = 0.05f;
                 if (BackSpace.Instance.Count == 0)
                     {
-                        gameObject.GetComponent<PanelScript>().setNumber(0);
-                    }
+                    //gameObject.GetComponent<PanelScript>().setNumber(0);
+                    gameObject.GetComponent<PanelScript>().set(0);
+                }
 
                     string name = BackSpace.Instance.Pop().ToString();
                     Debug.Log(BackSpace.Instance.ToString());
