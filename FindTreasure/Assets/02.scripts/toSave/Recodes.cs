@@ -10,12 +10,18 @@ namespace Recodes
         public DateTime ClearTime;
         public int Rank;
 
-        public Recode(string comName, int score =0, int rank=0)
+        /*public Recode(string comName, int score =0, int rank=0)
         {
             CompetitionName = comName;
             Score = score;
             ClearTime = DateTime.Now;
             Rank = rank;
+        }*/
+        public Recode(string comName,int score=0)
+        {
+            CompetitionName = comName;
+            Score = score;
+            ClearTime = DateTime.Now;
         }
     }
 

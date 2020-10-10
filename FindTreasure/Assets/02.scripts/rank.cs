@@ -46,10 +46,8 @@ public class rank : MonoBehaviour
             CancelInvoke("Timer");
             endtimeT.text = "0일 0시간 0분 0초";
             Scoret.text = Player.Instance.score.ToString();
-            
-            gameman.Instance.loadRankChek = true;
-            num++;
-            GetRecord();
+
+            //Player.FinishCompets(PlayerContents.Instance.CurCompetName);
 
             Endingmess.SetActive(true);
             Escore.SetActive(true);
@@ -58,22 +56,12 @@ public class rank : MonoBehaviour
         {
             CancelInvoke("Timer");
             Timet.text = endtimeT.text;
-            
-            gameman.Instance.loadRankChek = true;
-            num++;
-            GetRecord();
+
+            //Player.FinishCompets(PlayerContents.Instance.CurCompetName);
 
             Endingmess.SetActive(true);
             Etime.SetActive(true);
 
         }
-    }
-
-    public void GetRecord()
-    {
-        PlayerPrefs.SetInt("nextNumber", num);
-        PlayerPrefs.SetString("ConName", gameman.Instance.conName);
-        PlayerPrefs.SetString("Times", endtimeT.ToString());
-        PlayerPrefs.SetInt("Score", Player.Instance.score);
     }
 }
