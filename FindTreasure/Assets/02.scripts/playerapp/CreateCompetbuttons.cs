@@ -73,10 +73,12 @@ public class CreateCompetbuttons : MonoBehaviour
     void Awake()
     {
         curlist = PlayerContents.Instance.CompetitionList();
-        foreach (string title in curlist) {
+        foreach (string title in curlist)
+        {
             GameObject b = Instantiate(Competb, transform);
-            b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count+1) * 60);
-            foreach(Text t in b.GetComponentsInChildren<Text>()){
+            b.GetComponent<RectTransform>().anchoredPosition.Set(0, (buttons.Count + 1) * 60);
+            foreach (Text t in b.GetComponentsInChildren<Text>())
+            {
                 if (t.gameObject.layer == 8)
                 {
                     t.text = title;
@@ -84,8 +86,12 @@ public class CreateCompetbuttons : MonoBehaviour
                 }
             }
             buttons.Add(b);
-            b.GetComponent<Button>().onClick.AddListener(() => PlayerContents.Instance.SetCompetName(title));
-            b.GetComponent<Button>().onClick.AddListener(Notice);
+
+            if (!Player.Instance.isFinished(title))
+            {
+                b.GetComponent<Button>().onClick.AddListener(() => PlayerContents.Instance.SetCompetName(title));
+                b.GetComponent<Button>().onClick.AddListener(Notice);
+            }
         }
     }
 
