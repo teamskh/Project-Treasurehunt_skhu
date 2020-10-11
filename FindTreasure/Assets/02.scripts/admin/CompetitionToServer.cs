@@ -81,11 +81,13 @@ public class CompetitionToServer : MonoBehaviour
 
     public void Active()
     {
-        gameObject.GetComponent<PanelScript>().setNumber(2);
+        //gameObject.GetComponent<PanelScript>().setNumber(2);
+        gameObject.GetComponent<PanelScript>().set(2);
     }
 
     public void SetActive()
     {
-        gameObject.GetComponent<PanelScript>().setNumber(1);
+        //gameObject.GetComponent<PanelScript>().setNumber(1);
+        gameObject.GetComponent<PanelScript>().set(1);
     }
 }

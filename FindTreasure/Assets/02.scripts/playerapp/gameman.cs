@@ -166,7 +166,7 @@ public class gameman : MonoBehaviour
             {
                 Debug.Log("User Data : " + nickname.ToString());
                 userna = nickname.ToString();
-                Player.Instance.AfterLogin(data["row"]["inDate"].ToString());
+                //Player.Instance.AfterLogin(data["row"]["inDate"].ToString());
                 MoveMain();
             }
         }

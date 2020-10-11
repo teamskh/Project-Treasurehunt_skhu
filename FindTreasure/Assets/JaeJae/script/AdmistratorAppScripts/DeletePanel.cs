@@ -41,6 +41,7 @@ public class DeletePanel : MonoBehaviour
             param.DeleteQuiz(code);
             GameObject.Find("GameSetting")?.GetComponent<QuizList>().LoadQuiz();
             FTP.ImageServerOne(AdminCurState.Instance.Competition,key);
+            gameObject.GetComponent<PanelScript>()._set(0);
         }
     }
 }
