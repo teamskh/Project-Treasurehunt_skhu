@@ -41,7 +41,7 @@ public class rank : MonoBehaviour
     {
         conTime = conTime - Times;
         endtimeT.text = $"{conTime.Days}일 {conTime.Hours}시간 {conTime.Minutes}분 {conTime.Seconds}초";
-        if (conTime.Seconds<1)
+        if (conTime.TotalSeconds<1)
         {
             CancelInvoke("Timer");
             endtimeT.text = "0일 0시간 0분 0초";
