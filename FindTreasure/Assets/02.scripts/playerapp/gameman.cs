@@ -32,6 +32,9 @@ public class gameman : MonoBehaviour
     [SerializeField]
     private InputField NicknameInput;
 
+    [SerializeField]
+    private Text notice;
+
     public DateTime endtime; //서버에 있는 종료 시간
     public string endingTime; //최대 점수 도달시 시간
     public bool loadRankChek;
@@ -281,6 +284,7 @@ public class gameman : MonoBehaviour
         {
             if (CheckNickName() == false)
             {
+                notice.text = "닉네임은 한글, 영어, 숫자";
                 Debug.Log("닉네임은 한글, 영어, 숫자");
                 return;
             }
@@ -298,12 +302,20 @@ public class gameman : MonoBehaviour
                 switch (BRO.GetStatusCode())
                 {
                     case "409":
+                        notice.text = "이미 중복된 닉네임";
                         Debug.Log("이미 중복된 닉네임");
                         break;
                     case "400":
                         if (BRO.GetMessage().Contains("too long"))
+                        {
+                            
                             Debug.Log("20자 이상의 닉네임");
-                        else if (BRO.GetMessage().Contains("blank")) Debug.Log("닉네임에 앞/뒤 공백");
+                        }
+                        else if (BRO.GetMessage().Contains("blank"))
+                        {
+                            notice.text = "닉네임에 앞/뒤 공백";
+                            Debug.Log("닉네임에 앞/뒤 공백");
+                        }
                         break;
                     default:
                         Debug.Log("서버 공통 에러 발생: " + BRO.GetErrorCode());
