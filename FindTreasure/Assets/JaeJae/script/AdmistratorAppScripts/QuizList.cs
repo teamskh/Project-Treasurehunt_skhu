@@ -31,13 +31,14 @@ public class QuizList : MonoBehaviour
         QList.Clear();
 
         var list = dic.Keys;
+        ControlIMGs(); 
         if (list != null)
             foreach (string item in list)
             {
                 DownLoadIMG(item);
                 QList.Add(MakeQuizButton(item));
             }
-        ControlIMGs();
+        
     }
     
     public GameObject MakeQuizButton(string name)
@@ -98,14 +99,10 @@ public class QuizList : MonoBehaviour
             {
                 DataPath curpath = new DataPath(path.Dir(), name);
                 curpath.SetJPG();
-
                 if (File.Exists(curpath.ToString()))
                 {
                     File.Delete(curpath.ToString());
                 }
-
-
-                IMG(curpath);
             }
         }catch(WebException e)
         {
