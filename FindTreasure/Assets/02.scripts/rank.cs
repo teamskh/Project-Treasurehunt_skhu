@@ -47,7 +47,7 @@ public class rank : MonoBehaviour
             endtimeT.text = "0일 0시간 0분 0초";
             Scoret.text = Player.Instance.score.ToString();
 
-            //Player.FinishCompets(PlayerContents.Instance.CurCompetName);
+            Player.Instance.FinishCompets();
 
             Endingmess.SetActive(true);
             Escore.SetActive(true);
@@ -57,7 +57,7 @@ public class rank : MonoBehaviour
             CancelInvoke("Timer");
             Timet.text = endtimeT.text;
 
-            //Player.FinishCompets(PlayerContents.Instance.CurCompetName);
+            Player.Instance.FinishCompets();
 
             Endingmess.SetActive(true);
             Etime.SetActive(true);

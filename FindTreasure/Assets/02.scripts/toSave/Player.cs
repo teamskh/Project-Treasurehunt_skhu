@@ -130,10 +130,12 @@ public class Player : MonoBehaviour
             PlayerGameLog newLog = new PlayerGameLog(competname);
             CurLog = newLog;
             Log.Add(competname, newLog);
+            shortInfos.Add(PlayerContents.Instance.GetShortInfo());
         }
+        UpdateUserCompets(PlayerContents.Instance.GetShortInfo());
         score = CurLog.Score;
         clearlist = CurLog.SolvedQuizz();
-        Debug.Log(CurLog);
+        ReadScore.CallUpdate();
     }
 
     public void UpdateUserCompets(ShortInfo shortInfo)
@@ -151,18 +153,25 @@ public class Player : MonoBehaviour
         shortInfos.Add(shortInfo);
     }
 
-    void FinishCompets(string competname)
+    public void FinishCompets()
     {
+        try
+        {
+            var competname = CurLog.Competition;
         shortInfos.Remove(shortInfos.Find(competname));
         PlayerGameLog item;
-        Log.TryGetValue(competname, out item);
-        if (item != null)
+        if (Log.TryGetValue(competname, out item))
         {
+            Debug.Log(item.Summary());
             recodes.Add(item.Summary());
             Log.Remove(competname);
         }
         Save();
         End();
+        }catch (Exception e)
+            {
+                Debug.Log(e.StackTrace);
+            }
     }
 #region Answers
         

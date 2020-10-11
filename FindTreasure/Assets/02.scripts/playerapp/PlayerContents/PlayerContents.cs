@@ -78,10 +78,7 @@ public class PlayerContents
         Library = func;
     }
 
-    public void GetLogAdd( out int Max)
-    {
-        Max = CurLib.Count;
-    }
+    public ShortInfo GetShortInfo() => Cur.shorts;
 
     public List<Texture2D> getLib()
     {

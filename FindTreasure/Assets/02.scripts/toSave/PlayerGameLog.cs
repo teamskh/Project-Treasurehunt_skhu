@@ -5,7 +5,7 @@ using System.Linq;
 [Serializable]
 public class PlayerGameLog 
 {
-    string Competition { get; } = "";
+    public string Competition { get; } = "";
     Dictionary<string, int> PlayLog;
     public int Score { get 
         {
