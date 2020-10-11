@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public static bool LoginKind = false;
 
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
-    Dictionary<int, string> Answers = new Dictionary<int, string>();
     List<ShortInfo> shortInfos = new List<ShortInfo>();
     List<Recodes.Recode> recodes = new List<Recodes.Recode>();
     public int CurComp;
@@ -21,7 +20,9 @@ public class Player : MonoBehaviour
 
     static event Action Save;
     static event Action Load;
+    static event Action End;
 
+    PlayerGameLog CurLog;
     string userCode;
     public int score;
 
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     {
         get
         {
-            Save();
             return instance;
         }
     }
@@ -53,10 +53,12 @@ public class Player : MonoBehaviour
     {
         userCode = gamerid;
         Save = () => Log.Save(userCode);
-        Save += () => recodes.Save(userCode, "recode");
-
-        Load = () => shortInfos.Load(userCode);
+        End = () => recodes.Save(userCode, "recode");
+        End += () => shortInfos.Save(userCode, "current");
+        
+        Load = () => Log.Load(userCode);
         Load += () => recodes.Load(userCode, "recode");
+        Load += () => shortInfos.Load(userCode, "current");
         Load();
     }
 
@@ -114,12 +116,26 @@ public class Player : MonoBehaviour
     void Start()
     {
         score = 0;
-        clearlist = new List<string>();
     }
 
     void Update( )
     {
         
+    }
+    
+    public void StartCompet(string competname)
+    {
+        if (!Log.TryGetValue(competname, out CurLog))
+        {
+            PlayerGameLog newLog = new PlayerGameLog(competname);
+            CurLog = newLog;
+            Log.Add(competname, newLog);
+            shortInfos.Add(PlayerContents.Instance.GetShortInfo());
+        }
+        UpdateUserCompets(PlayerContents.Instance.GetShortInfo());
+        score = CurLog.Score;
+        clearlist = CurLog.SolvedQuizz();
+        ReadScore.CallUpdate();
     }
 
     public void UpdateUserCompets(ShortInfo shortInfo)
@@ -137,17 +153,25 @@ public class Player : MonoBehaviour
         shortInfos.Add(shortInfo);
     }
 
-    void FinishCompets(string competname)
+    public void FinishCompets()
     {
+        try
+        {
+            var competname = CurLog.Competition;
         shortInfos.Remove(shortInfos.Find(competname));
         PlayerGameLog item;
-        Log.TryGetValue(competname, out item);
-        if (item != null)
+        if (Log.TryGetValue(competname, out item))
         {
+            Debug.Log(item.Summary());
             recodes.Add(item.Summary());
             Log.Remove(competname);
         }
         Save();
+        End();
+        }catch (Exception e)
+            {
+                Debug.Log(e.StackTrace);
+            }
     }
 #region Answers
         
@@ -155,31 +179,33 @@ public class Player : MonoBehaviour
     {
         int code = -1;
         PlayerContents.Instance.FindQ(name, out code);
-        if (code >= 0)
-            Answers.Add(code, ans);
-        yield return null;
 
-        foreach (KeyValuePair<int, string> pair in Answers) {
-            int score = PlayerContents.Instance.CheckAnswer(pair);
-            if (score < 0)
-            {
-                Debug.Log("Wrong");
-            }
-            else 
-            {
-                Answers.Remove(pair.Key);
-                this.score += score;
-                ReadScore.CallUpdate();
-                
-            }
-            clearlist.Add(name);
-            PlayerContents.Instance.repackageLib();
-            TrackedImageInfoManager.CallDestroy(name);
+        if (code >= 0)
+        {
+            yield return null;
+            int score = PlayerContents.Instance.CheckAnswer(code,ans);
+             if (score < 0)
+             {
+                 Debug.Log("Wrong");
+             }
+             else
+             {
+                 CurLog.Record(name, score);
+                 this.score = CurLog.Score;
+                 ReadScore.CallUpdate();
+             }
+
+             clearlist.Add(name);
+
+             PlayerContents.Instance.repackageLib();
+             TrackedImageInfoManager.CallDestroy(name);
+             Save();
         }
+        yield return null;
     }
     public void CheckAnswer(string name, string ans)
     {
-        StartCoroutine(CheckAns(name, ans));
+        StartCoroutine(CheckAns(name,ans));
     }
 #endregion
 }

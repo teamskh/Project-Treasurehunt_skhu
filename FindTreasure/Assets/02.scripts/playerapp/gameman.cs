@@ -111,7 +111,7 @@ public class gameman : MonoBehaviour
     {
     }
     #endregion
-
+    
     private bool AutoLogin()
     {
         BackendReturnObject obj = Backend.BMember.CheckUserInBackend(GetTokens(), FederationType.Google);
@@ -169,7 +169,7 @@ public class gameman : MonoBehaviour
             {
                 Debug.Log("User Data : " + nickname.ToString());
                 userna = nickname.ToString();
-                //Player.Instance.AfterLogin(data["row"]["inDate"].ToString());
+                Player.Instance.AfterLogin(data["row"]["inDate"].ToString());
                 MoveMain();
             }
         }

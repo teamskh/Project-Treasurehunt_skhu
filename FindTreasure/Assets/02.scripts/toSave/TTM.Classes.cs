@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace TTM.Classes
 {
+    [Serializable]
     public class ShortInfo
     {
         public String ConName { get; set; }
@@ -412,18 +413,18 @@ namespace TTM.Classes
     #region AnswerClass
     public class SAnswer
     {
-       public static int CheckAnswer(int idcompetition, KeyValuePair<int,string> ans)
+       public static int CheckAnswer(int idcompetition, int code, string ans)
         {
             Param where = new Param();
             where.Add("idcompetition", idcompetition);
-            where.Add("idquiz", ans.Key);
+            where.Add("idquiz", code);
 
             BackendReturnObject bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
             if (bro.IsSuccess())
             {
                 var data = bro.Rows();
                 Debug.Log( data[0]["answer"]["S"].ToString());
-                if(data[0]["answer"]["S"].ToString()== ans.Value)
+                if(data[0]["answer"]["S"].ToString()== ans)
                 {
                     var score = data[0]["score"]["N"].ToString();
                     return int.Parse(score);
@@ -497,8 +498,7 @@ namespace TTM.Classes
 
     public static class SaveLoad
     {
-        public static void Load<T>(this T obj, string user, string type ="") 
-        {
+        public static void Load<T>(this T obj, string user, string type ="") {
             DataPath path = new DataPath(Usercode: user+type );
 
             if (!Directory.Exists(path[1]))
@@ -515,8 +515,7 @@ namespace TTM.Classes
             rs.Close();
         }
 
-        public static void Save<T>(this T obj, string user, string type ="") 
-        {
+        public static void Save<T>(this T obj, string user, string type =""){
             if (obj != null)
             {
                 DataPath path = new DataPath();

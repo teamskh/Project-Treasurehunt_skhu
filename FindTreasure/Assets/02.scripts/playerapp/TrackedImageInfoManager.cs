@@ -177,14 +177,14 @@ public class TrackedImageInfoManager : MonoBehaviour
                 // Display the name of the tracked image in the canvas
                 UpdateARImage(trackedImage);
                 pos = trackedImage.transform.position;
-                trackedImage.transform.Rotate(Vector3.right, 90);
             }
 
             foreach (ARTrackedImage trackedImage in eventArgs.updated)
             {
                 // Display the name of the tracked image in the canvas
                 UpdateARImage(trackedImage);
-                trackedImage.transform.Rotate(Vector3.right, 90);
+                if (trackedImage.transform.rotation.x != 90)
+                    trackedImage.transform.Rotate(Vector3.right, 90);
             }
         }
         catch(NullReferenceException e)

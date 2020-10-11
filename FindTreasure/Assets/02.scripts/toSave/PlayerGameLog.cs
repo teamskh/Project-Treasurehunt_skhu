@@ -1,30 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 [Serializable]
 public class PlayerGameLog 
 {
-    string Competition { get; } = "";
-    int Size { get; } = 0;
-    bool[] PlayLog { get; set; }
-    public int Score { get; set; }
+    public string Competition { get; } = "";
+    Dictionary<string, int> PlayLog;
+    public int Score { get 
+        {
+            int score = 0;
+            foreach (var item in PlayLog.Values)
+                score += item;
+            return score;
+        }
+    }
 
-    public PlayerGameLog(string comp, int size)
+    public PlayerGameLog(string comp)
     {
         Competition = comp;
-        Size = size;
-        PlayLog = new bool[size];
-        Score = 0;
+        PlayLog = new Dictionary<string, int>();
     }
 
     public override string ToString()
     {
-        return "Competition : " + Competition + "  Size : " + Size;
+        var info = "Competition : " + Competition +'\n';
+        
+        foreach(var item in PlayLog)
+        {
+            info += $"name : {item.Key}, score : {item.Value}\n";
+        }
+        return info;
     }
 
-    public void Record(int quizid, int score)
+    public void Record(string quizname, int score)
     {
-        PlayLog[quizid] = (score > 0) ? true : false;
-        Score += score;
+        if(!PlayLog.ContainsKey(quizname))
+            PlayLog.Add(quizname, score);
+    }
+    
+    public List<string> SolvedQuizz()
+    {
+        return PlayLog.Keys.ToList();
     }
 
     public Recodes.Recode Summary()

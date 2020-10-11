@@ -42,7 +42,7 @@ public class PlayerContents
     }
     #endregion
 
-    public int CheckAnswer(KeyValuePair<int, string> ans) => SAnswer.CheckAnswer(CurCompet, ans);
+    public int CheckAnswer(int code, string ans) => SAnswer.CheckAnswer(CurCompet, code,ans);
 
     public Q FindQ(string key)
     {
@@ -78,6 +78,8 @@ public class PlayerContents
         Library = func;
     }
 
+    public ShortInfo GetShortInfo() => Cur.shorts;
+
     public List<Texture2D> getLib()
     {
         List<Texture2D> libs = new List<Texture2D>();
@@ -112,6 +114,7 @@ public class PlayerContents
             Player.Instance.UpdateUserCompets(CurOpenCompets.Find(CurCompetName));
         }
 
+        Player.Instance.StartCompet(CurCompetName);
         ReadytoStart.Ready(CurCompetName);
         FTP.ImageServerAllDownload(CurCompetName, CurLib.Keys.ToList());
 
