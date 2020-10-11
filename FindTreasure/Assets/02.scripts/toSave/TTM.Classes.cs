@@ -413,18 +413,18 @@ namespace TTM.Classes
     #region AnswerClass
     public class SAnswer
     {
-       public static int CheckAnswer(int idcompetition, KeyValuePair<int,string> ans)
+       public static int CheckAnswer(int idcompetition, int code, string ans)
         {
             Param where = new Param();
             where.Add("idcompetition", idcompetition);
-            where.Add("idquiz", ans.Key);
+            where.Add("idquiz", code);
 
             BackendReturnObject bro = Backend.GameSchemaInfo.Get("Quizz", where, 1);
             if (bro.IsSuccess())
             {
                 var data = bro.Rows();
                 Debug.Log( data[0]["answer"]["S"].ToString());
-                if(data[0]["answer"]["S"].ToString()== ans.Value)
+                if(data[0]["answer"]["S"].ToString()== ans)
                 {
                     var score = data[0]["score"]["N"].ToString();
                     return int.Parse(score);
