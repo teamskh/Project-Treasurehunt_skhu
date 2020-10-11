@@ -128,34 +128,4 @@ static class ParamExtension
             Debug.Log(bro.ToString());
     }
 
-    public static void DeleteCompetition(this Param param, Competition comp) //추가
-    {
-        
-        TTM.Classes.CompetitionDictionary dic = new TTM.Classes.CompetitionDictionary();
-        dic.GetCompetitions();
-
-        Debug.Log(param.GetJson());
-        BackendReturnObject bro = new BackendReturnObject();
-        bro = Backend.GameSchemaInfo.Delete("competitions", param);
-        if (bro.IsSuccess())
-            Debug.Log("Success");
-        else
-            Debug.Log(bro.ToString());
-    }
-
-    public static void UpdateCompetition(this Param param) {
-
-    }
-
-    static Param SetStartTime(this Param mine, DateTime starttime)
-    {
-        mine.Add("starttime", starttime.ToString());
-        return mine;
-    }
-
-    static Param SetEndTime(this Param mine, DateTime endtime)
-    {
-        mine.Add("endtime", endtime.ToString());
-        return mine;
-    }
 }
