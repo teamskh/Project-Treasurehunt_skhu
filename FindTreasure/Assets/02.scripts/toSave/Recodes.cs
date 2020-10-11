@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Recodes
 {
@@ -10,7 +11,7 @@ namespace Recodes
         public DateTime ClearTime;
         public int Rank;
 
-        public Recode(string comName, int score =0, int rank=0)
+        public Recode(string comName, int score = 0, int rank = 0)
         {
             CompetitionName = comName;
             Score = score;
@@ -24,6 +25,15 @@ namespace Recodes
             info += $"ClearTime : {ClearTime}";
             return info;
         }
+    }
+    public static class RecordUtil
+    {
+        public static bool isCleared(this List<Recode> list, string name)
+        {
+            foreach (var item in list)
+                if (name == item.CompetitionName) return true;
+            return false;
+        } 
     }
 
 }

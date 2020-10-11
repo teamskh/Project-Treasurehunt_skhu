@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TTM.Classes;
+using Recodes;
 
 public class Player : MonoBehaviour
 {
@@ -122,7 +123,7 @@ public class Player : MonoBehaviour
     {
         
     }
-    
+    public bool isFinished(string compet) => recodes.isCleared(compet);
     public void StartCompet(string competname)
     {
         if (!Log.TryGetValue(competname, out CurLog))
