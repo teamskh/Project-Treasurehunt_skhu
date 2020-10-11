@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     Dictionary<string,PlayerGameLog> Log = new Dictionary<string, PlayerGameLog>();
     List<ShortInfo> shortInfos = new List<ShortInfo>();
     List<Recodes.Recode> recodes = new List<Recodes.Recode>();
+    public List<Recode> Record { get => recodes; }
     public int CurComp;
     public List<string> clearlist;
 
