@@ -199,7 +199,10 @@ public class QuizFactory : MonoBehaviour
         else param.SetQuiz(quiz).InsertQuiz();
 
         if (newQ)
+        {
+            if (!SaveImage.Instance.NeedToSave) return;
             SaveImage.Instance.SaveIMG(quiz.Title);
+        }
         else
         {
             if (key != quiz.Title) FTP.ImageServerRenameFile(AdminCurState.Instance.Competition, key, quiz.Title);
