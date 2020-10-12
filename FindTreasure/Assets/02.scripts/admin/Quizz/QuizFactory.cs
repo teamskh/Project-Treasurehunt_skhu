@@ -23,6 +23,7 @@ public class QuizFactory : MonoBehaviour
     WordAnswerUtil wpanelCompo;
     Q quiz;
     QuiDictionary dic;
+    GameObject Panel_T;
 
     [SerializeField]
     RawImage Image;
@@ -34,6 +35,7 @@ public class QuizFactory : MonoBehaviour
         panel?.Add(BasePanel.Find("TFPanel").gameObject ?? null);
         panel?.Add(BasePanel.Find("IPanel").gameObject ?? null);
         panel?.Add(BasePanel.Find("WPanel").gameObject ?? null);
+        Panel_T = GameObject.Find("Canvas").transform.Find("AskPw").gameObject;
         SaveButton = GameObject.Find("Save")?.GetComponent<Button>();
         CancelButton = GameObject.Find("Before")?.GetComponent<Button>();
     }
@@ -109,12 +111,16 @@ public class QuizFactory : MonoBehaviour
     {
         if(quiz == null)
         {
+            Panel_T.SetActive(true);
+            Panel_T.GetComponentInChildren<Text>().text= "답을 선택해주세요";
             Debug.LogError("Need to Check Answer");
             return;
         }
         //Title inputField에서 내용 받아오기
         if ((quiz.Title = inputfields.GetInputFieldString(0)) == "")
         {
+            Panel_T.SetActive(true);
+            Panel_T.GetComponentInChildren<Text>().text = "제목을 입력해주세요";
             Debug.LogError("Title is Empty");
             return;
         }
@@ -123,6 +129,8 @@ public class QuizFactory : MonoBehaviour
         //Context inputField에서 내용 받아오기
         if ((quiz.Str = inputfields.GetInputFieldString(1)) == "")
         {
+            Panel_T.SetActive(true);
+            Panel_T.GetComponentInChildren<Text>().text = "퀴즈 내용을 입력해주세요";
             Debug.LogError("Context is empty");
             return;
         }
@@ -142,6 +150,8 @@ public class QuizFactory : MonoBehaviour
             var list = ipanelCompo.GetList();
             if (list == null)
             {
+                Panel_T.SetActive(true);
+                Panel_T.GetComponentInChildren<Text>().text = "답을 입력해주세요";
                 Debug.LogError("List is Null");
             }
 
@@ -160,6 +170,8 @@ public class QuizFactory : MonoBehaviour
             var word = wpanelCompo.GetWordAnswer();
             if (word == "")
             {
+                Panel_T.SetActive(true);
+                Panel_T.GetComponentInChildren<Text>().text = "답을 입력해주세요";
                 Debug.LogError("Word Answer is Empty");
                 return;
             }
