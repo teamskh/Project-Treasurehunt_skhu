@@ -193,14 +193,14 @@ public class QuizFactory : MonoBehaviour
                 break;
         }
 
-        Param param = new Param();
-        if (newQ == false)
-            param.UpdateQuiz(quiz);
-        else param.SetQuiz(quiz).InsertQuiz();
-
         if (newQ)
         {
-            if (!SaveImage.Instance.NeedToSave) return;
+            if (!SaveImage.Instance.NeedToSave)
+            {
+                Panel_T.SetActive(true);
+                Panel_T.GetComponentInChildren<Text>().text = "사진을 추가해주세요";
+                return;
+            }
             SaveImage.Instance.SaveIMG(quiz.Title);
         }
         else
@@ -209,6 +209,13 @@ public class QuizFactory : MonoBehaviour
             if (SaveImage.Instance.NeedToSave)
                 SaveImage.Instance.SaveIMG(quiz.Title);
         }
+
+        Param param = new Param();
+        if (newQ == false)
+            param.UpdateQuiz(quiz);
+        else param.SetQuiz(quiz).InsertQuiz();
+
+
         Debug.Log($"Param Data : {param.ToStr()}");
         newQ = true;
         gameObject.AddComponent<scenechange>().ChangeSceneToQuizMenu();
