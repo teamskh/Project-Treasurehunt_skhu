@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class FTP
 {
-    static string ftpPath = "ftp://ydlwnsj25.iptime.org:1617/";
-    static string user = "toomuch";
-    static string pwd = "find";
+    static string ftpPath = "";
+    static string user = "";
+    static string pwd = "";
 
     #region ver1.0
 
